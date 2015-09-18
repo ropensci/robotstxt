@@ -1,0 +1,10 @@
+# robots.txt zu http://www.example.org/
+
+User-agent: UniversalRobot/1.0
+User-agent: mein-Robot
+Disallow: /quellen/dtd/
+
+User-agent: *
+Disallow: /unsinn/
+Disallow: /temp/
+Disallow: /newsticker.shtml

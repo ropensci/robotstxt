@@ -1,0 +1,25 @@
+User-agent: *
+Disallow: /includes/
+Allow: /includes/images/mediathek/
+Disallow: /WEB-INF/
+Disallow: /cgibin/
+Disallow: /include/
+Disallow: /script/
+Disallow: /layout/
+Disallow: /track
+Disallow: /adwords/
+Disallow: /service/empfehlen/
+Disallow: /dokumente/suche/
+Disallow: /mobil/
+Disallow: /xml/
+Disallow: /service/quiz/
+Disallow: /presse/akkreditierung/bundesversammlung2010/
+Disallow: /bundestag/gremien/enquete/wachstum/datenaustausch/
+Disallow: /bundestag/ausschuesse17/a13/datenaustausch/
+Disallow: /apps/
+Disallow: /mediathek/
+Allow: /mediathek/parlamentstv
+Disallow: /blueprint/WEB-INF
+Disallow: /htdocs_f/service/recommend/
+Disallow: /htdocs_e/service/recommend/
+

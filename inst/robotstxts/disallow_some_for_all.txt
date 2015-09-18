@@ -1,0 +1,6 @@
+# source: http://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /~joe/

@@ -1,0 +1,7 @@
+# source: http://www.robotstxt.org/robotstxt.html
+
+User-agent: Google
+Disallow:
+
+User-agent: *
+Disallow: /
