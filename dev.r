@@ -4,33 +4,15 @@ library(robotstxt)
 
 
 parse_robotstxt <- function(txt){
-  # make one long string
-  txt_long <- paste0(txt, collapse = "\n")
-
-  # text as vector of lines
-  txt_vec <- unlist(str_split(txt_long, "\n"))
-
-  # text as list split by empty lines
-  txt_parts <-
-    unlist(
-      str_split(
-        str_replace(
-          str_replace_all(txt_long, "#.*?\n",""),
-          "^\n",""),
-        "\n[ \t]*\n"
-      )
-    )
-
-
   # return
-  res <- named_list(
-    get_useragent(txt_long),
-    get_comments(txt_long)
-  )
+  res <-
+    list(
+      useragents  = get_useragent(txt),
+      comments    = get_comments(txt),
+      permissions = get_permissions(txt)
+    )
   return(res)
 }
-
-
 
 
 # test
@@ -49,13 +31,19 @@ rtxt_yh    <- readLines(system.file("robotstxts/robots_yahoo.txt", package = "ro
 rtxt_she   <- readLines(system.file("robotstxts/selfhtml_Example.txt", package = "robotstxt"), warn = FALSE)
 
 
+txt <- rtxt_she
 txt_long  <- paste0(txt, collapse = "\n")
 txt_vec   <- unlist(str_split(txt_long, "\n"))
 txt_parts <- unlist( str_split( str_replace(str_replace_all(txt_long, "#.*?\n",""),"^\n",""), "\n[ \t]*\n" ) )
 
 
 
+
+
+
+get_permissions(rtxt_she)
 parse_robotstxt(rtxt_she)
+
 
 
 
