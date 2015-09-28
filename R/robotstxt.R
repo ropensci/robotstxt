@@ -1,3 +1,12 @@
+#' function for making paths uniform
+#' @param path path to be sanatized
+#' @return sanatized path
+sanatize_path <- function(path){
+  tmp <- path
+  if( !grepl("^/", path) ) tmp <- paste0("/", path)
+  return(tmp)
+}
+
 #' function for extracting HTTP useragents from robots.txt
 #' @param txt content of the robots.txt file
 get_useragent <- function(txt){
@@ -15,16 +24,17 @@ get_comments <- function(txt){
 
 #' function for extracting robotstxt fields
 #' @param txt content of the robots.txt file
-get_fields <- function(txt, type="all", regex=NULL){
+get_fields <- function(txt, type="all", regex=NULL, invert=FALSE){
+  if( all(txt == "") | all(!grepl(":",txt)) ) return(data.frame(field="", value="")[NULL,])
   txt_vec   <- unlist(stringr::str_split(txt, "\n"))
   fields    <- grep("(^[ \t]{0,2}[^#]\\w.*)", txt_vec, value=TRUE)
-  fields    <- data.frame(do.call(rbind, str_split(fields, ":")), stringsAsFactors = FALSE)
+  fields    <- data.frame(do.call(rbind, str_split(fields, ":", n=2)), stringsAsFactors = FALSE)
   names(fields) <- c("field", "value")
   fields$value <- stringr::str_trim(fields$value)
   fields$field <- stringr::str_trim(fields$field)
   # subset by regex
   if ( !is.null(regex) ){
-    fields <- fields[ grepl(regex, fields$field) ,]
+    fields <- fields[ grep(regex, fields$field, invert=invert, ignore.case=TRUE) ,]
   }
   if ( all(type == "all") ){
     return(fields)
@@ -56,6 +66,21 @@ get_permissions <- function(txt){
   return(perm_df)
 }
 
+#' function parsing robots.txt
+#' @param  txt content of the robots.txt file
+#' @return a named list with useragents, comments, permissions, sitemap
+parse_robotstxt <- function(txt){
+  # return
+  res <-
+    list(
+      useragents  = get_useragent(txt),
+      comments    = get_comments(txt),
+      permissions = get_permissions(txt),
+      sitemap     = get_fields(txt, type="sitemap")
+    )
+  return(res)
+}
+
 #' a representation of robotstxt
 robotstxt <-
   R6::R6Class(
@@ -68,17 +93,22 @@ robotstxt <-
       bots        =  NA,
       permissions =  NA,
       domain      =  NA,
+      sitemap     =  NA,
+      other       =  NA,
   # startup
-      initialize = function(text, domain) {
+      initialize = function(domain, text) {
         if (missing(domain)) self$domain <- "???"
         if (!missing(text)){
           self$text <- text
+          if(!missing(domain)){
+            self$domain <- domain
+          }
         }else{
           if(!missing(domain)){
             self$domain <- domain
             rtxt <- httr::GET(paste0(domain,"/robots.txt"))
             if( rtxt$status == 200 ){
-              self$text <- rtxt
+              self$text <- httr::content(rtxt)
             }else{
               stop("robotstxt: could not get robots txt from domain")
             }
@@ -88,6 +118,13 @@ robotstxt <-
         }
         self$bots        <- get_useragent(self$text)
         self$permissions <- get_permissions(self$text)
+        self$sitemap     <- get_fields(self$text, type="sitemap")
+        self$other       <-
+          get_fields(
+            self$text,
+            regex  = "sitemap|allow|user-agent",
+            invert = TRUE
+          )
       },
   # checking if bot is allowed to to access path
       check = function(path, bot) {

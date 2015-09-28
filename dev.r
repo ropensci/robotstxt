@@ -3,16 +3,7 @@ library(robotstxt)
 
 
 
-parse_robotstxt <- function(txt){
-  # return
-  res <-
-    list(
-      useragents  = get_useragent(txt),
-      comments    = get_comments(txt),
-      permissions = get_permissions(txt)
-    )
-  return(res)
-}
+
 
 
 # test
@@ -41,13 +32,38 @@ txt_parts <- unlist( str_split( str_replace(str_replace_all(txt_long, "#.*?\n","
 
 
 
-get_permissions(rtxt_she)
-parse_robotstxt(rtxt_she)
+permissions <- get_permissions(rtxt_ggl)
+parse_robotstxt(rtxt_ggl)
+
+
+dings <- robotstxt$new(text=rtxt_ggl)
+dings$other
+
+dings <- robotstxt$new(domain="wikipedia.org")
 
 
 
 
+path_allowed <- function(path="/", bot="*"){
+  path <- sanatize_path(path)
+  stopifnot(length(path)==length(bot) | length(bot)==1 | length(path)==1)
+  perm     <- permissions[permissions$useragent %in% c(bot,"*"), ]
+  disallow <- permissions$value[grep("disallow", perm$permission, ignore.case = TRUE)]
+  allow    <- permissions$value[grep("^allow"  , perm$permission, ignore.case = TRUE)]
+  not_allowed <- disallow[as.logical(unlist(lapply(lapply(disallow, grep, x=path, fixed=TRUE), length)))]
+  is_allowed  <- allow[   as.logical(unlist(lapply(lapply(   allow, grep, x=path, fixed=TRUE), length)))]
 
+  # if nothing is forbidden everything should be allowed
+  if( length(not_allowed)==0 ){
+    return(TRUE)
+  }
+  # if some part of the path is forbidden but no part of it is explicitly allowed it should be forbidden
+  if( length(not_allowed) >0 & length(is_allowed)==0 ){
+    return(FALSE)
+  }
+}
+
+path_allowed(path="ct/index.html")
 
 
 

@@ -34,3 +34,23 @@ test_that(
     expect_true(all( parse_robotstxt(rtxt_she   )$useragent %in% c("*","mein-Robot", "UniversalRobot/1.0") ))
   }
 )
+
+test_that(
+  "check does check inputs right",{
+  expect_true({ check(); check("",""); check(1:3); check(bot=1:3); TRUE })
+  expect_error(  check(path=1:2, bot=1:3) )
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
