@@ -1,0 +1,31 @@
+---
+title: "Robotstxt Package Internals"
+author: "Peter Meißner"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{package-internals}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Introduction
+
+This vignette documents how the package and its functionality were designed describing which parts work together. While manuals are good because they impose documentation on all function and allow for instant within source code documentation, they often reveal nothing about how all the parts play together. I myself find that very frustrating so here we go with an attempt to get this right ... 
+
+
+# Prerequisities
+
+```{r}
+library(robotstxt)
+```
+
+# General Design Idea 
+
+The main object is of class `robotstxt` and initiated like this: 
+
+
+```{r}
+robotstxt_object <- robotstxt$new(domain="google.com")
+```

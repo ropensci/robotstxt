@@ -1,9 +1,5 @@
-library(stringr)
+zlibrary(stringr)
 library(robotstxt)
-
-
-
-
 
 
 # test
@@ -29,9 +25,6 @@ txt_parts <- unlist( str_split( str_replace(str_replace_all(txt_long, "#.*?\n","
 
 
 
-
-
-
 permissions <- get_permissions(rtxt_ggl)
 parse_robotstxt(rtxt_ggl)
 
@@ -42,6 +35,12 @@ dings$other
 dings <- robotstxt$new(domain="wikipedia.org")
 
 
+## strategy :
+# use permission value as regex on path
+# special: ?
+# str_replace_all("?..d","\\?", "\\\\?")
+# special: *
+# str_replace_all("/*","\\*", ".*")
 
 
 path_allowed <- function(path="/", bot="*"){
@@ -64,7 +63,8 @@ path_allowed <- function(path="/", bot="*"){
 }
 
 path_allowed(path="ct/index.html")
-
+path_allowed("/drake/?" )
+path_allowed("/")
 
 
 
