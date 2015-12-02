@@ -9,5 +9,6 @@ License: What license is it under?
 LazyData: TRUE
 Imports: R6, stringr
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    magrittr
 VignetteBuilder: knitr

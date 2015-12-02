@@ -23,8 +23,10 @@
 #' @field check(path="/",bot="*") Method for checking whether or not a certain path is
 #'   allowed to be accessed by certain bot.
 #'
-#' @usage rt <- robotstxt$new(domain="google.com") rt$bots rt$permissions[1:10,
-#'   ]
+#' @usage rt <- robotstxt$new(domain="google.com")
+#' rt$bots
+#' rt$permissions[1:10, ]
+#'
 robotstxt <-
   R6::R6Class(
   # class name

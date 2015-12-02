@@ -1,4 +1,4 @@
-zlibrary(stringr)
+library(stringr)
 library(robotstxt)
 
 
@@ -32,7 +32,9 @@ parse_robotstxt(rtxt_ggl)
 dings <- robotstxt$new(text=rtxt_ggl)
 dings$other
 
-dings <- robotstxt$new(domain="wikipedia.org")
+rt <- robotstxt$new(domain="wikipedia.org")
+rt$bots
+
 
 
 ## strategy :
