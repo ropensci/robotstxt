@@ -2,7 +2,9 @@
 title: "README"
 author: "Peter Meißner"
 date: "`r Sys.time()`"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ```{r, include=FALSE}
