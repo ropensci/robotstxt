@@ -2,7 +2,8 @@
 
 #' An object representation of robotstxt
 #' @name robotstxt
-#'
+#' @export
+#' @import R6 hellno
 #' @field text text of robots.txt either supplied by user or downloaded from
 #'   domain
 #' @field bots vector of bot names mentionend in robots.txt
@@ -25,7 +26,7 @@
 #'
 #' @usage rt <- robotstxt$new(domain="google.com")
 #' rt$bots
-#' rt$permissions[1:10, ]
+#' rt$permissions
 #'
 robotstxt <-
   R6::R6Class(
@@ -73,8 +74,6 @@ robotstxt <-
       },
   # checking if bot is allowed to to access path
       check = function(path="/", bot="*") {
-#        if(missing(bot))  bot  <- "*"
-#        if(missing(path)) path <- "/"
         message(paste0("[",bot,"]", " allowed / disallowed @ ", self$domain,  path))
       }
     )

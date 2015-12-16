@@ -15,11 +15,17 @@ parse_robotstxt <- function(txt){
 
 
 #' function for making paths uniform
-#' @param path path to be sanatized
-#' @return sanatized path
-sanatize_path <- function(path){
+#' @param path path to be sanitized
+#' @return sanitized path
+sanitize_path <- function(path){
   tmp <- path
-  if( !grepl("^/", path) ) tmp <- paste0("/", path)
+  if( path=="" ) tmp <- paste0("/", path)
+  return(tmp)
+}
+
+sanitize_perm <- function(perm){
+  tmp <- stringr::str_replace_all(perm, "\\?", "\\\\?")
+  tmp <- stringr::str_replace_all(tmp, "\\*",".*")
   return(tmp)
 }
 
@@ -40,6 +46,10 @@ get_comments <- function(txt){
 
 #' function for extracting robotstxt fields
 #' @param txt content of the robots.txt file
+#' @param type name or names of the fields to be returned, defaults to all
+#'   fields
+#' @param regex subsetting field names via regular expressions
+#' @param invert field selection
 get_fields <- function(txt, type="all", regex=NULL, invert=FALSE){
   if( all(txt == "") | all(!grepl(":",txt)) ) return(data.frame(field="", value="")[NULL,])
   txt_vec   <- unlist(stringr::str_split(txt, "\n"))
