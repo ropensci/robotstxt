@@ -45,6 +45,9 @@ rt$bots
 # str_replace_all("/*","\\*", ".*")
 
 
+
+self$text
+
 path_allowed <- function(path="/", bot="*"){
   path <- sanatize_path(path)
   stopifnot(length(path)==length(bot) | length(bot)==1 | length(path)==1)
@@ -67,6 +70,78 @@ path_allowed <- function(path="/", bot="*"){
 path_allowed(path="ct/index.html")
 path_allowed("/drake/?" )
 path_allowed("/")
+
+
+
+
+
+
+
+
+permissions <- rt_get_permissions(rtxt_she)
+
+
+path_allowed <- function(permissions, path="/", bot="*"){
+
+  # checking and initializetion
+  stopifnot(length(bot)==1)
+  if( is.null(bot) | bot=="" | is.na(bot) ) bot <- "*"
+  perm_sanitized <- within(permissions, value <- sanitize_permission_values(value))
+  path <- sanitize_path(path)
+
+  # subsetting to permissions relevant to bot
+  perm_sanitized <-
+    perm_sanitized[
+        grepl("\\*", perm_sanitized$useragent) | tolower(bot)==tolower(perm_sanitized$useragent),
+      ]
+
+  # checking which permissions are applicable
+  perm_applicable <- perm_sanitized[sapply(perm_sanitized$value, grepl, pattern=path), ]
+
+  # deciding upon rules
+    # no permissions --> TRUE
+  if( dim(perm_applicable)[1]==0 ){
+    return(TRUE)
+  }
+    # only disallows --> FALSE
+  if ( all(grepl("disallow", perm_applicable$permission, ignore.case = TRUE)) ){
+    return(FALSE)
+  }
+    # only allows --> TRUE
+  if ( all(grepl("^allow", perm_applicable$permission, ignore.case = TRUE)) ){
+    return(TRUE)
+  }
+    # diverse permissions but bot specific all disallow
+  if ( all(grepl("disallow", with(perm_applicable, permission[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
+    return(FALSE)
+  }
+    # diverse permissions but bot specific all allow
+  if ( all(grepl("^allow", with(perm_applicable, permission[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
+    return(FALSE)
+  }
+    # diverse permissions ??? --> TRUE because no valid specification?
+  if (
+    all(grepl("disallow", perm_applicable$permission, ignore.case = TRUE)) &
+    all(grepl("^allow", perm_applicable$permission, ignore.case = TRUE))
+  ){
+    return(TRUE)
+  }
+}
+
+
+
+paths_allowed <- function(permissions, paths="/", bot="*"){
+  sapply(paths, path_allowed, permissions=permissions, bot=bot)
+}
+
+
+
+path_allowed(permissions, path="temp", bot="mein-robot")
+
+
+
+
+
 
 
 
