@@ -2,7 +2,6 @@
 
 context("useragent extraction")
 
-library(stringr)
 
 rtxt_asb   <- readLines(system.file("robotstxts/allow_single_bot.txt", package = "robotstxt"), warn = FALSE)
 rtxt_dafa  <- readLines(system.file("robotstxts/disallow_all_for_all.txt", package = "robotstxt"), warn = FALSE)
@@ -35,11 +34,7 @@ test_that(
   }
 )
 
-test_that(
-  "check does check inputs right",{
-  expect_true({ check(); check("",""); check(1:3); check(bot=1:3); TRUE })
-  expect_error(  check(path=1:2, bot=1:3) )
-})
+
 
 
 

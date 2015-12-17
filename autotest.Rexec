@@ -1,0 +1,14 @@
+#!/usr/bin/Rscript
+
+library(testthat)
+
+if( Sys.info()["nodename"]=="popel" ){
+	auto_test(
+		code_path="C:/Dropbox/RPackages/robotstxt/r", 
+		test_path="C:/Dropbox/RPackages/robotstxt/tests/testthat"
+	)
+}
+
+if( Sys.info()["nodename"]=="peter-mint" ){
+	auto_test_package(pkg = "~/Dropbox/RPackages/robotstxt", reporter = "summary")
+}
