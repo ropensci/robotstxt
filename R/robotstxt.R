@@ -3,7 +3,8 @@
 #' An object representation of robotstxt
 #' @name robotstxt
 #' @export
-#' @import R6 hellno
+#' @importFrom R6 R6Class
+#' @import hellno
 #' @field text text of robots.txt either supplied by user or downloaded from
 #'   domain
 #' @field bots vector of bot names mentionend in robots.txt
@@ -43,6 +44,7 @@ robotstxt <-
       other       =  NA,
   # startup
       initialize = function(domain, text) {
+      # check input
         if (missing(domain)) self$domain <- "???"
         if (!missing(text)){
           self$text <- text
@@ -62,19 +64,17 @@ robotstxt <-
             stop("robotstxt: I need text to initialize.")
           }
         }
-        self$bots        <- get_useragent(self$text)
-        self$permissions <- get_permissions(self$text)
-        self$sitemap     <- get_fields(self$text, type="sitemap")
-        self$other       <-
-          get_fields(
-            self$text,
-            regex  = "sitemap|allow|user-agent",
-            invert = TRUE
-          )
+      # fill fields with default data
+        self$bots        <- rt_get_useragent(self$text)
+        self$permissions <- rt_get_permissions(self$text)
+        self$sitemap     <- rt_get_fields(self$text, type="sitemap")
+        self$other       <- rt_get_other(self$text)
+
       },
-  # checking if bot is allowed to to access path
-      check = function(path="/", bot="*") {
-        message(paste0("[",bot,"]", " allowed / disallowed @ ", self$domain,  path))
+  # methods
+    # checking bot permissions
+      check = function(path="/", bot="*", permission=self$permissions){
+        paths_allowed(permissions=permission, path=path, bot=bot)
       }
     )
   )

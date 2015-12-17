@@ -1,56 +1,56 @@
 #' function parsing robots.txt
 #' @param  txt content of the robots.txt file
 #' @return a named list with useragents, comments, permissions, sitemap
+#' @export
 parse_robotstxt <- function(txt){
   # return
   res <-
     list(
-      useragents  = get_useragent(txt),
-      comments    = get_comments(txt),
-      permissions = get_permissions(txt),
-      sitemap     = get_fields(txt, type="sitemap")
+      useragents  = rt_get_useragent(txt),
+      comments    = rt_get_comments(txt),
+      permissions = rt_get_permissions(txt),
+      sitemap     = rt_get_fields(txt, type="sitemap"),
+      other       = rt_get_other(txt)
     )
   return(res)
 }
 
 
-#' function for making paths uniform
-#' @param path path to be sanitized
-#' @return sanitized path
-sanitize_path <- function(path){
-  tmp <- path
-  if( path=="" ) tmp <- paste0("/", path)
-  return(tmp)
-}
-
-sanitize_perm <- function(perm){
-  tmp <- stringr::str_replace_all(perm, "\\?", "\\\\?")
-  tmp <- stringr::str_replace_all(tmp, "\\*",".*")
-  return(tmp)
-}
-
-#' function for extracting HTTP useragents from robots.txt
+#' extracting HTTP useragents from robots.txt
 #' @param txt content of the robots.txt file
-get_useragent <- function(txt){
+rt_get_useragent <- function(txt){
   tmp  <- stringr::str_extract_all(txt, "[uU]ser-agent:.*")
   stringr::str_replace_all(unique(unlist(tmp)), "[uU].*:| |\n","")
 }
 
-#' function for extrcting comments from robots.txt
+
+
+#' extrcting comments from robots.txt
 #' @param txt content of the robots.txt file
-get_comments <- function(txt){
+#' @export
+rt_get_comments <- function(txt){
   txt      <- unlist(stringr::str_split(txt, "\n"))
   clines   <- grep("^[ \t]*#", txt)
   data.frame(line=clines, comment=txt[clines])
 }
 
-#' function for extracting robotstxt fields
+#' get_fields() wrapper to extract !(sitemap,(dis)allow,user-agent)
+#' @param txt \code{\link{get_fields}}
+#' @param regex defaults to "sitemap|allow|user-agent" ; \code{\link{get_fields}}
+#' @param invert defaults to TRUE; \code{\link{get_fields}}
+rt_get_other <- function(txt, regex  = "sitemap|allow|user-agent", invert = TRUE){
+  rt_get_fields( txt, regex, invert)
+}
+
+
+#' extracting robotstxt fields
 #' @param txt content of the robots.txt file
 #' @param type name or names of the fields to be returned, defaults to all
 #'   fields
 #' @param regex subsetting field names via regular expressions
 #' @param invert field selection
-get_fields <- function(txt, type="all", regex=NULL, invert=FALSE){
+#' @export
+rt_get_fields <- function(txt, type="all", regex=NULL, invert=FALSE){
   if( all(txt == "") | all(!grepl(":",txt)) ) return(data.frame(field="", value="")[NULL,])
   txt_vec   <- unlist(stringr::str_split(txt, "\n"))
   fields    <- grep("(^[ \t]{0,2}[^#]\\w.*)", txt_vec, value=TRUE)
@@ -69,12 +69,13 @@ get_fields <- function(txt, type="all", regex=NULL, invert=FALSE){
   }
 }
 
-#' function for extracting permissions from robots.txt
+#' extracting permissions from robots.txt
 #' @param txt content of the robots.txt file
-get_permissions <- function(txt){
+#' @export
+rt_get_permissions <- function(txt){
   txt_parts   <- unlist( stringr::str_split( stringr::str_replace(stringr::str_replace_all(paste0(txt, collapse = "\n"), "#.*?\n",""),"^\n",""), "\n[ \t]*\n" ) )
-  useragents  <- lapply(txt_parts, get_useragent)
-  permissions <- lapply(txt_parts, get_fields, regex="[aA]llow")
+  useragents  <- lapply(txt_parts, rt_get_useragent)
+  permissions <- lapply(txt_parts, rt_get_fields, regex="[aA]llow")
   perm_df     <- data.frame(stringsAsFactors = FALSE)
   for ( i in seq_along(txt_parts) ){
     perm_df <-
@@ -91,4 +92,15 @@ get_permissions <- function(txt){
   rownames(perm_df) <- NULL
   return(perm_df)
 }
+
+
+
+
+
+
+
+
+
+
+
 
