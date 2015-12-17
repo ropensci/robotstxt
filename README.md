@@ -2,6 +2,12 @@
 Peter Meißner  
 `r Sys.time()`  
 
+# STATUS: 
+
+**UNDER DEVELOPMENT**
+
+
+
 
 
 # Installation and Start
