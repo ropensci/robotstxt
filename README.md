@@ -114,6 +114,7 @@ rt_wikipedia$check(path = "/", bot = "*")
 ```
 
 ```
-## [*] allowed / disallowed @ wikipedia.org/
+## $`/`
+## NULL
 ```
 
