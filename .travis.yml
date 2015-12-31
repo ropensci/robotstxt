@@ -20,11 +20,12 @@ after_failure:
 
 notifications:
   email:
-    on_success: change
-    on_failure: change
+    on_success: retep.meissner@gmail.com
+    on_failure: retep.meissner@gmail.com
 
 env:
   matrix:
     - RVERSION=oldrel
     - RVERSION=release
     - RVERSION=devel
+
