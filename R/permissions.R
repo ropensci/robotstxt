@@ -49,13 +49,16 @@ path_allowed <- function(permissions, path="/", bot="*"){
   path <- sanitize_path(path)
 
   # subsetting to permissions relevant to bot
-  perm_sanitized <-
+  perm_applicable <-
     perm_sanitized[
       grepl("\\*", perm_sanitized$useragent) | tolower(bot)==tolower(perm_sanitized$useragent),
       ]
 
-  # checking which permissions are applicable
-  perm_applicable <- perm_sanitized[sapply(perm_sanitized$value, grepl, pattern=path), ]
+  # checking which permissions are applicable to path
+  perm_applicable <-
+    perm_applicable[
+      sapply(perm_applicable$value, grepl, x=path),
+    ]
 
   # deciding upon rules
   # no permissions --> TRUE
@@ -80,8 +83,8 @@ path_allowed <- function(permissions, path="/", bot="*"){
   }
   # diverse permissions ??? --> TRUE because no valid specification?
   if (
-    all(grepl("disallow", perm_applicable$permission, ignore.case = TRUE)) &
-    all(grepl("^allow", perm_applicable$permission, ignore.case = TRUE))
+    any(grepl("disallow", perm_applicable$permission, ignore.case = TRUE)) &
+    any(grepl("^allow", perm_applicable$permission, ignore.case = TRUE))
   ){
     return(NA)
   }
