@@ -1,18 +1,17 @@
 # testing the workings of robotstxt objects
 
-rtxt_asb   <- readLines(system.file("robotstxts/allow_single_bot.txt", package = "robotstxt"), warn = FALSE)
-rtxt_dafa  <- readLines(system.file("robotstxts/disallow_all_for_all.txt", package = "robotstxt"), warn = FALSE)
-rtxt_dafbb <- readLines(system.file("robotstxts/disallow_all_for_BadBot.txt", package = "robotstxt"), warn = FALSE)
-rtxt_dsfa  <- readLines(system.file("robotstxts/disallow_some_for_all.txt", package = "robotstxt"), warn = FALSE)
-rtxt_empty <- readLines(system.file("robotstxts/empty.txt", package = "robotstxt"), warn = FALSE)
-rtxt_amzn  <- readLines(system.file("robotstxts/robots_amazon.txt", package = "robotstxt"), warn = FALSE)
-rtxt_bt    <- readLines(system.file("robotstxts/robots_bundestag.txt", package = "robotstxt"), warn = FALSE)
-rtxt_ggl   <- readLines(system.file("robotstxts/robots_google.txt", package = "robotstxt"), warn = FALSE)
-rtxt_nyt   <- readLines(system.file("robotstxts/robots_new_york_times.txt", package = "robotstxt"), warn = FALSE)
-rtxt_spgl  <- readLines(system.file("robotstxts/robots_spiegel.txt", package = "robotstxt"), warn = FALSE)
-rtxt_yh    <- readLines(system.file("robotstxts/robots_yahoo.txt", package = "robotstxt"), warn = FALSE)
-rtxt_she   <- readLines(system.file("robotstxts/selfhtml_Example.txt", package = "robotstxt"), warn = FALSE)
-
+rtxt_asb   <- rt_get_rtxt("allow_single_bot.txt")
+rtxt_dafa  <- rt_get_rtxt("disallow_all_for_all.txt")
+rtxt_dafbb <- rt_get_rtxt("disallow_all_for_BadBot.txt")
+rtxt_dsfa  <- rt_get_rtxt("disallow_some_for_all.txt")
+rtxt_empty <- rt_get_rtxt("empty.txt")
+rtxt_amzn  <- rt_get_rtxt("robots_amazon.txt")
+rtxt_bt    <- rt_get_rtxt("robots_bundestag.txt")
+rtxt_ggl   <- rt_get_rtxt("robots_google.txt")
+rtxt_nyt   <- rt_get_rtxt("robots_new_york_times.txt")
+rtxt_spgl  <- rt_get_rtxt("robots_spiegel.txt")
+rtxt_yh    <- rt_get_rtxt("robots_yahoo.txt")
+rtxt_she   <- rt_get_rtxt("selfhtml_Example.txt")
 
 context("robotstxt creation")
 
