@@ -10,6 +10,9 @@ named_list <- function(...){
 #' @param name name of the robots.txt files, defaults to a random drawn file ;-)
 #' @export
 rt_get_rtxt <- function(name=sample(rt_list_rtxt(),1)){
+  if( is.numeric(name) ){
+    name <- rt_list_rtxt()[name]
+  }
   readLines( system.file( paste0("robotstxts/",name), package = "robotstxt" ), warn = FALSE)
 }
 
@@ -18,3 +21,4 @@ rt_get_rtxt <- function(name=sample(rt_list_rtxt(),1)){
 rt_list_rtxt <- function(){
   list.files(system.file("robotstxts", package = "robotstxt" ))
 }
+
