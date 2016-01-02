@@ -54,12 +54,7 @@ robotstxt <-
         }else{
           if(!missing(domain)){
             self$domain <- domain
-            rtxt <- httr::GET(paste0(domain,"/robots.txt"))
-            if( rtxt$status == 200 ){
-              self$text <- httr::content(rtxt)
-            }else{
-              stop("robotstxt: could not get robots txt from domain")
-            }
+            self$text   <- rt_get_robotstxt(domain)
           }else{
             stop("robotstxt: I need text to initialize.")
           }
@@ -73,12 +68,20 @@ robotstxt <-
       },
   # methods
     # checking bot permissions
-      check = function(path="/", bot="*", permission=self$permissions){
-        paths_allowed(permissions=permission, path=path, bot=bot)
+      check = function(paths="/", bot="*", permission=self$permissions){
+        paths_allowed(permissions=permission, paths=paths, bot=bot)
       }
     )
   )
 
+
+#' printing robotstxt_text
+#' @param x character vector / robotstxt_text to be printed
+#' @export
+print.robotstxt_text <- function(x){
+  cat(x)
+  invisible(x)
+}
 
 
 

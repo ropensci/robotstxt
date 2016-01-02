@@ -81,13 +81,36 @@ path_allowed <- function(permissions, path="/", bot="*"){
   if ( all(grepl("^allow", with(perm_applicable, permission[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
     return(FALSE)
   }
-  # diverse permissions ??? --> TRUE because no valid specification?
+  # diverse permissions --> longest permision wins
   if (
     any(grepl("disallow", perm_applicable$permission, ignore.case = TRUE)) &
     any(grepl("^allow", perm_applicable$permission, ignore.case = TRUE))
   ){
-    return(NA)
+    perm_path_lengths <- stringr::str_count(perm_applicable$value)
+    iffer <- perm_path_lengths == max(perm_path_lengths)
+    # take longest permission applicable and return TRUE if it Allows, false if it Disallows
+    if( sum(iffer) == 1 ){
+      return(
+        !grepl("disallow", perm_applicable[iffer,]$permission, ignore.case = TRUE)
+      )
+    }
+    if( sum(iffer) > 1 ){
+      if( any( grepl("disallow", perm_applicable[iffer,]$permission, ignore.case = TRUE) ) ){
+        return(FALSE)
+      }
+    }
   }
+  # next missing case ...
+
+  # message and return in case that case is not covered
+  message(
+    paste0(
+      " Help, I do not know what to do :-(",
+      " None of my rules did apply here.",
+      sep="\n"
+    )
+  )
+  return( named_list( path, bot, perm_applicable ) )
 }
 
 #' check if a bot has permissions to access page

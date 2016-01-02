@@ -1,3 +1,17 @@
+#' downloading robots.txt file
+#' @param domain domain from which to download robots.txt file
+#' @export
+rt_get_robotstxt <- function(domain){
+  rtxt <- httr::GET(paste0(domain, "/robots.txt"))
+  if( rtxt$status == 200 ){
+    rtxt <- httr::content(rtxt)
+    class(rtxt) <- c("robotstxt_text", "character")
+  }else{
+    stop("robotstxt: could not get robots txt from domain")
+  }
+  return(rtxt)
+}
+
 #' function parsing robots.txt
 #' @param  txt content of the robots.txt file
 #' @return a named list with useragents, comments, permissions, sitemap
