@@ -13,12 +13,13 @@ sanitize_path <- function(path){
 
 
 
-#' transfroming permissions into regular expressions
-#' @param permissions the permissions to be transformed
+#' transforming permissions into regular expressions (values)
+#'
+#' @param permission_value the value column of permissions (the paths)
 #' @export
 sanitize_permission_values <- function(permission_value){
-  tmp <- sanitize_path(permission_value)
-
+  tmp <- permission_value
+  tmp <- sanitize_path(tmp)
   tmp <- stringr::str_replace_all(tmp, "\\?", "\\\\?") # escape questionmarks
   tmp <- stringr::str_replace_all(tmp, "\\*",".*")     # translate '*' to '.*'
   tmp <- stringr::str_replace_all(tmp, "^/","^/")
@@ -28,7 +29,15 @@ sanitize_permission_values <- function(permission_value){
   return(tmp)
 }
 
-
+#' transforming permissions into regular expressions (whole permission)
+#'
+#' @param permissions the permissions to be transformed
+#' @export
+sanitize_permissions <- function(permissions){
+  tmp <- permissions
+  permissions$value <- sanitize_permission_values(permissions$value)
+  return(tmp)
+}
 
 
 #' check if a bot has permissions to access page
@@ -45,7 +54,7 @@ path_allowed <- function(permissions, path="/", bot="*"){
   # checking and initializetion
   stopifnot(length(bot)==1)
   if( is.null(bot) | bot=="" | is.na(bot) ) bot <- "*"
-  perm_sanitized <- within(permissions, value <- sanitize_permission_values(value))
+  perm_sanitized <- sanitize_permissions(permissions)
   path <- sanitize_path(path)
 
   # subsetting to permissions relevant to bot

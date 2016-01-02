@@ -73,14 +73,15 @@ test_that(
 context("permission checking")
 
 permissions_she <- rt_get_permissions(rtxt_she)
-permissions_pm  <- rt_get_permissions(rtxt_pm)
 permissions_asb <- rt_get_permissions(rtxt_asb)
+permissions_pm  <- rt_get_permissions(rtxt_pm)
 
 test_that(
   "simple check", {
     expect_false(path_allowed(permissions_she, path="temp", bot="mein-robot"))
   }
 )
+
 
 test_that(
   "Allows and Disallows applicable at the same time", {
