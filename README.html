@@ -63,37 +63,73 @@ img {
 <div id="header">
 <h1 class="title">README</h1>
 <h4 class="author"><em>Peter Meißner</em></h4>
-<h4 class="date"><em>2015-12-17 22:44:58</em></h4>
+<h4 class="date"><em>2016-01-01 19:23:20</em></h4>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#status"><span class="toc-section-number">1</span> STATUS:</a></li>
+<li><a href="#installation-and-start"><span class="toc-section-number">2</span> Installation and Start</a></li>
+<li><a href="#documentation"><span class="toc-section-number">3</span> Documentation</a></li>
+<li><a href="#example-usage"><span class="toc-section-number">4</span> Example Usage</a><ul>
+<li><a href="#the-object-oriented-style"><span class="toc-section-number">4.1</span> The Object Oriented Style</a></li>
+<li><a href="#the-functional-style"><span class="toc-section-number">4.2</span> The Functional Style</a></li>
+</ul></li>
+</ul>
+</div>
 
 <div id="status" class="section level1">
-<h1>STATUS:</h1>
+<h1><span class="header-section-number">1</span> STATUS:</h1>
 <p><strong>UNDER DEVELOPMENT</strong></p>
 </div>
 <div id="installation-and-start" class="section level1">
-<h1>Installation and Start</h1>
+<h1><span class="header-section-number">2</span> Installation and Start</h1>
 <pre class="r"><code>devtools::install_github(&quot;petermeissner/robotstxt&quot;)</code></pre>
 </div>
-<div id="dokumentation" class="section level1">
-<h1>Dokumentation</h1>
+<div id="documentation" class="section level1">
+<h1><span class="header-section-number">3</span> Documentation</h1>
 <pre class="r"><code>?robotstxt</code></pre>
 </div>
 <div id="example-usage" class="section level1">
-<h1>Example Usage</h1>
-<p>Loading the package and magrittr for neater code …</p>
+<h1><span class="header-section-number">4</span> Example Usage</h1>
+<p>Loading the package and dplyr/magrittr for neater code …</p>
 <pre class="r"><code>library(robotstxt)
-library(magrittr)</code></pre>
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: 'dplyr'
+## 
+## Die folgenden Objekte sind maskiert von 'package:stats':
+## 
+##     filter, lag
+## 
+## Die folgenden Objekte sind maskiert von 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div id="the-object-oriented-style" class="section level2">
+<h2><span class="header-section-number">4.1</span> The Object Oriented Style</h2>
 <p>Initializing a new instance of the robotstxt class …</p>
-<pre class="r"><code>rt_wikipedia &lt;- robotstxt$new(domain=&quot;wikipedia.org&quot;)</code></pre>
+<pre class="r"><code>rt_wikipedia &lt;- robotstxt$new(domain=&quot;wikipedia.org&quot;)
+
+rt_wikipedia</code></pre>
+<pre><code>## &lt;robotstxt&gt;
+##   Public:
+##     bots: Mediapartners-Google* IsraBot Orthogaffe UbiCrawler DOC  ...
+##     check: function
+##     clone: function
+##     domain: wikipedia.org
+##     initialize: function
+##     other: data.frame
+##     permissions: data.frame
+##     sitemap: data.frame
+##     text: #
+##     # robots.txt for http://www.wikipedia.org/ and friends ...</code></pre>
 <p>Having a look a some fields (the data stored inside the object) …</p>
 <p>… the domain for which the permissions apply …</p>
 <pre class="r"><code>rt_wikipedia$domain</code></pre>
 <pre><code>## [1] &quot;wikipedia.org&quot;</code></pre>
 <p>… the actual text of the robots.txt file …</p>
 <pre class="r"><code>rt_wikipedia$text %&gt;% 
-  substring(1, 400) %&gt;% 
-  cat()</code></pre>
+  substring(1, 400) </code></pre>
 <pre><code>## #
 ## # robots.txt for http://www.wikipedia.org/ and friends
 ## #
@@ -132,9 +168,81 @@ library(magrittr)</code></pre>
 ## [33] &quot;*&quot;</code></pre>
 <p>Checking if some any bot might access the root path …</p>
 <pre class="r"><code># checking for access permissions
-rt_wikipedia$check(path = &quot;/&quot;, bot = &quot;*&quot;)</code></pre>
-<pre><code>## $`/`
-## NULL</code></pre>
+rt_wikipedia$check(paths = c(&quot;/&quot;,&quot;*images/&quot;), bot = &quot;*&quot;)</code></pre>
+<pre><code>##        / *images/ 
+##    FALSE    FALSE</code></pre>
+</div>
+<div id="the-functional-style" class="section level2">
+<h2><span class="header-section-number">4.2</span> The Functional Style</h2>
+<p>Retrieving robots.txt file …</p>
+<pre class="r"><code>rtxt &lt;- 
+  rt_get_robotstxt(&quot;wikipedia.org&quot;) 
+
+rtxt %&gt;% 
+  substring(1,400)</code></pre>
+<pre><code>## #
+## # robots.txt for http://www.wikipedia.org/ and friends
+## #
+## # Please note: There are a lot of pages on this site, and there are
+## # some misbehaved spiders out there that go _way_ too fast. If you're
+## # irresponsible, your access to the site may be blocked.
+## #
+## 
+## # advertising-related bots:
+## User-agent: Mediapartners-Google*
+## Disallow: /
+## 
+## # Wikipedia work bots:
+## User-agent: IsraBot
+## Disallow:
+## 
+## User-agent: Or</code></pre>
+<p>… extracting permissions …</p>
+<pre class="r"><code>rtxt %&gt;% 
+  rt_get_permissions() %&gt;% 
+  slice(1:10)</code></pre>
+<pre><code>##                     useragent permission value
+## 1       Mediapartners-Google*   Disallow     /
+## 2                     IsraBot   Disallow      
+## 3                  Orthogaffe   Disallow      
+## 4                  UbiCrawler   Disallow     /
+## 5                         DOC   Disallow     /
+## 6                         Zao   Disallow     /
+## 7  sitecheck.internetseer.com   Disallow     /
+## 8                     Zealbot   Disallow     /
+## 9                 MSIECrawler   Disallow     /
+## 10                SiteSnagger   Disallow     /</code></pre>
+<p>… parsing robots.txt file more general …</p>
+<pre class="r"><code>rtxt %&gt;% 
+  parse_robotstxt() %&gt;% 
+  lapply(head, 2)</code></pre>
+<pre><code>## $useragents
+## [1] &quot;Mediapartners-Google*&quot; &quot;IsraBot&quot;              
+## 
+## $comments
+##   line                                                comment
+## 1    1                                                      #
+## 2    2 # robots.txt for http://www.wikipedia.org/ and friends
+## 
+## $permissions
+##               useragent permission value
+## 1 Mediapartners-Google*   Disallow     /
+## 2               IsraBot   Disallow      
+## 
+## $sitemap
+## [1] field value
+## &lt;0 rows&gt; (or 0-length row.names)
+## 
+## $other
+## [1] field value
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>… and checking permissions …</p>
+<pre class="r"><code>rtxt %&gt;% 
+  rt_get_permissions() %&gt;% 
+  paths_allowed(paths=c(&quot;/&quot;,&quot;*images/&quot;), bot=&quot;*&quot;)</code></pre>
+<pre><code>##        / *images/ 
+##    FALSE    FALSE</code></pre>
+</div>
 </div>
 
 

@@ -5,6 +5,8 @@ date: "`r Sys.time()`"
 output: 
   html_document: 
     keep_md: yes
+    number_sections: yes
+    toc: yes
 ---
 
 # STATUS: 
@@ -25,24 +27,28 @@ devtools::install_github("petermeissner/robotstxt")
 
 
 
-# Dokumentation
+# Documentation
 
 ```{r}
 ?robotstxt
 ```
 
-# Example Usage
+# Example Usage 
 
-Loading the package and magrittr for neater code  ... 
+Loading the package and dplyr/magrittr for neater code  ... 
 
 ```{r}
 library(robotstxt)
-library(magrittr)
+library(dplyr)
 ```
+
+## The Object Oriented Style
 
 Initializing a new instance of the robotstxt class ... 
 ```{r}
 rt_wikipedia <- robotstxt$new(domain="wikipedia.org")
+
+rt_wikipedia
 ```
 
 
@@ -58,8 +64,7 @@ rt_wikipedia$domain
 
 ```{r}
 rt_wikipedia$text %>% 
-  substring(1, 400) %>% 
-  cat()
+  substring(1, 400) 
 ```
 
 ... bots mentioned by name ...
@@ -71,6 +76,55 @@ rt_wikipedia$bots
 Checking if some any bot might access the root path ... 
 ```{r}
 # checking for access permissions
-rt_wikipedia$check(path = "/", bot = "*")
+rt_wikipedia$check(paths = c("/","*images/"), bot = "*")
 ```
+
+## The Functional Style
+
+Retrieving robots.txt file ... 
+
+```{r}
+rtxt <- 
+  rt_get_robotstxt("wikipedia.org") 
+
+rtxt %>% 
+  substring(1,400)
+``` 
+
+... extracting permissions ... 
+
+```{r}
+rtxt %>% 
+  rt_get_permissions() %>% 
+  slice(1:10)
+``` 
+
+... parsing robots.txt file more general ... 
+
+```{r}
+rtxt %>% 
+  parse_robotstxt() %>% 
+  lapply(head, 2)
+``` 
+
+... and checking permissions ... 
+
+```{r}
+rtxt %>% 
+  rt_get_permissions() %>% 
+  paths_allowed(paths=c("/","*images/"), bot="*")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
