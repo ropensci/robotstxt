@@ -13,10 +13,12 @@ rtxt_nyt   <- rt_get_rtxt("robots_new_york_times.txt")
 rtxt_spgl  <- rt_get_rtxt("robots_spiegel.txt")
 rtxt_yh    <- rt_get_rtxt("robots_yahoo.txt")
 rtxt_she   <- rt_get_rtxt("selfhtml_Example.txt")
+rtxt_pm    <- rt_get_rtxt("robots_pmeissner.txt")
+rtxt_wp    <- rt_get_rtxt("robots_wikipedia.txt")
 
 
 
-
+#### context("path sanitization") ==============================================
 context("path sanitization")
 
 test_that(
@@ -41,7 +43,7 @@ test_that(
   }
 )
 
-
+#### context("permission sanitization") ========================================
 context("permission sanitization")
 
 test_that(
@@ -52,7 +54,7 @@ test_that(
   }
 )
 
-
+#### context("permission grepping works") ======================================
 context("permission grepping works")
 
 test_that(
@@ -67,21 +69,51 @@ test_that(
 )
 
 
+#### context("checking works") =================================================
+context("permission checking")
 
-context("checking works")
-
-permissions <- rt_get_permissions(rtxt_she)
+permissions_she <- rt_get_permissions(rtxt_she)
+permissions_pm  <- rt_get_permissions(rtxt_pm)
+permissions_asb <- rt_get_permissions(rtxt_asb)
 
 test_that(
-  "permission checking works", {
-    expect_false(path_allowed(permissions, path="temp", bot="mein-robot"))
+  "simple check", {
+    expect_false(path_allowed(permissions_she, path="temp", bot="mein-robot"))
   }
 )
 
+test_that(
+  "Allows and Disallows applicable at the same time", {
+    expect_false(path_allowed(permissions_pm,  path="images"))
+    expect_false(path_allowed(permissions_pm,  path="/images"))
+    expect_false(path_allowed(permissions_pm,  path="/images/"))
+    expect_false(path_allowed(permissions_pm,  path="images/"))
+    expect_false(path_allowed(permissions_pm,  path="images/dings"))
+  }
+)
 
+test_that(
+  "check 'only single bot allowed'", {
+    expect_false(path_allowed(permissions_asb,  path="images"))
+    expect_false(path_allowed(permissions_asb,  path="/images"))
+    expect_false(path_allowed(permissions_asb,  path="/images/"))
+    expect_false(path_allowed(permissions_asb,  path="images/"))
+    expect_false(path_allowed(permissions_asb,  path="images/dings"))
+    expect_false(path_allowed(permissions_asb,  path="*"))
 
+    expect_false(path_allowed(permissions_asb,  path="images", bot="harald"))
+    expect_false(path_allowed(permissions_asb,  path="/images", bot="*"))
+    expect_false(path_allowed(permissions_asb,  path="/images/", "*er"))
+    expect_false(path_allowed(permissions_asb,  path="*", bot="erwin"))
 
-
+    expect_true(path_allowed(permissions_asb,  path="images", bot="Google"))
+    expect_true(path_allowed(permissions_asb,  path="/images", bot="Google"))
+    expect_true(path_allowed(permissions_asb,  path="/images/", bot="Google"))
+    expect_true(path_allowed(permissions_asb,  path="images/", bot="Google"))
+    expect_true(path_allowed(permissions_asb,  path="images/dings", bot="Google"))
+    expect_true(path_allowed(permissions_asb,  path="*", bot="Google"))
+  }
+)
 
 
 

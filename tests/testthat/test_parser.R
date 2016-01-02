@@ -15,6 +15,8 @@ rtxt_nyt   <- rt_get_rtxt("robots_new_york_times.txt")
 rtxt_spgl  <- rt_get_rtxt("robots_spiegel.txt")
 rtxt_yh    <- rt_get_rtxt("robots_yahoo.txt")
 rtxt_she   <- rt_get_rtxt("selfhtml_Example.txt")
+rtxt_pm    <- rt_get_rtxt("robots_pmeissner.txt")
+rtxt_wp    <- rt_get_rtxt("robots_wikipedia.txt")
 
 test_that(
   "all user agents are extracted", {
