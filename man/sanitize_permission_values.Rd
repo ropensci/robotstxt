@@ -2,14 +2,14 @@
 % Please edit documentation in R/permissions.R
 \name{sanitize_permission_values}
 \alias{sanitize_permission_values}
-\title{transfroming permissions into regular expressions}
+\title{transforming permissions into regular expressions (values)}
 \usage{
 sanitize_permission_values(permission_value)
 }
 \arguments{
-\item{permissions}{the permissions to be transformed}
+\item{permission_value}{the value column of permissions (the paths)}
 }
 \description{
-transfroming permissions into regular expressions
+transforming permissions into regular expressions (values)
 }
 

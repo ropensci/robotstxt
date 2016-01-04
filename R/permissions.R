@@ -35,7 +35,14 @@ sanitize_permission_values <- function(permission_value){
 #' @export
 sanitize_permissions <- function(permissions){
   tmp <- permissions
-  permissions$value <- sanitize_permission_values(permissions$value)
+  # epressing Disallow "" as Allow "*"
+  iffer <- grepl("Disallow", tmp$permission, ignore.case = TRUE) & grepl("^ *$", tmp$value)
+  if( sum(iffer) > 0 ){
+    tmp[iffer, ]$permission <- "Allow"
+    tmp[iffer, ]$value      <- "/"
+  }
+  # permission path sanitization
+  tmp$value <- sanitize_permission_values(tmp$value)
   return(tmp)
 }
 
@@ -64,10 +71,12 @@ path_allowed <- function(permissions, path="/", bot="*"){
       ]
 
   # checking which permissions are applicable to path
-  perm_applicable <-
-    perm_applicable[
-      sapply(perm_applicable$value, grepl, x=path),
-    ]
+  if( dim(perm_applicable)[1] > 0 ){
+    perm_applicable <-
+      perm_applicable[
+        sapply(perm_applicable$value, grepl, x=path),
+      ]
+  }
 
   # deciding upon rules
   # no permissions --> TRUE
@@ -88,7 +97,7 @@ path_allowed <- function(permissions, path="/", bot="*"){
   }
   # diverse permissions but bot specific all allow
   if ( all(grepl("^allow", with(perm_applicable, permission[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
-    return(FALSE)
+    return(TRUE)
   }
   # diverse permissions --> longest permision wins
   if (

@@ -72,9 +72,11 @@ test_that(
 #### context("checking works") =================================================
 context("permission checking")
 
-permissions_she <- rt_get_permissions(rtxt_she)
-permissions_asb <- rt_get_permissions(rtxt_asb)
-permissions_pm  <- rt_get_permissions(rtxt_pm)
+permissions_she   <- rt_get_permissions(rtxt_she)
+permissions_asb   <- rt_get_permissions(rtxt_asb)
+permissions_pm    <- rt_get_permissions(rtxt_pm)
+permissions_dafa  <- rt_get_permissions(rtxt_dafa)
+permissions_dafbb <- rt_get_permissions(rtxt_dafbb)
 
 test_that(
   "simple check", {
@@ -117,7 +119,36 @@ test_that(
 )
 
 
+test_that(
+  "dissallow all for all", {
+    expect_false(path_allowed(permissions_dafa, path="", bot="mybot"))
+    expect_false(path_allowed(permissions_dafa, path="/imgages", bot="mybot"))
+    expect_false(path_allowed(permissions_dafa, path="index.html", bot="mybot"))
+    expect_false(path_allowed(permissions_dafa, path="*", bot="mybot"))
 
+    expect_false(path_allowed(permissions_dafa, path=""))
+    expect_false(path_allowed(permissions_dafa, path="/imgages"))
+    expect_false(path_allowed(permissions_dafa, path="index.html"))
+    expect_false(path_allowed(permissions_dafa, path="*"))
+  }
+)
+
+
+#### finish
+
+test_that(
+  "dissallow all for BadBot", {
+    expect_false(path_allowed(permissions_dafbb, path="", bot="BadBot"))
+    expect_false(path_allowed(permissions_dafbb, path="/imgages", bot="BadBot"))
+    expect_false(path_allowed(permissions_dafbb, path="index.html", bot="BadBot"))
+    expect_false(path_allowed(permissions_dafbb, path="*", bot="BadBot"))
+
+    expect_true(path_allowed(permissions_dafbb, path=""))
+    expect_true(path_allowed(permissions_dafbb, path="/imgages"))
+    expect_true(path_allowed(permissions_dafbb, path="index.html"))
+    expect_true(path_allowed(permissions_dafbb, path="*"))
+  }
+)
 
 
 

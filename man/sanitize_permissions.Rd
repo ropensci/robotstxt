@@ -2,7 +2,7 @@
 % Please edit documentation in R/permissions.R
 \name{sanitize_permissions}
 \alias{sanitize_permissions}
-\title{transfroming permissions into regular expressions}
+\title{transforming permissions into regular expressions (whole permission)}
 \usage{
 sanitize_permissions(permissions)
 }
@@ -10,6 +10,6 @@ sanitize_permissions(permissions)
 \item{permissions}{the permissions to be transformed}
 }
 \description{
-transfroming permissions into regular expressions
+transforming permissions into regular expressions (whole permission)
 }
 
