@@ -7,11 +7,11 @@
 rt_get_other(txt, regex = "sitemap|allow|user-agent", invert = TRUE)
 }
 \arguments{
-\item{txt}{\code{\link{get_fields}}}
+\item{txt}{\code{\link{rt_get_fields}}}
 
-\item{regex}{defaults to "sitemap|allow|user-agent" ; \code{\link{get_fields}}}
+\item{regex}{defaults to "sitemap|allow|user-agent" ; \code{\link{rt_get_fields}}}
 
-\item{invert}{defaults to TRUE; \code{\link{get_fields}}}
+\item{invert}{defaults to TRUE; \code{\link{rt_get_fields}}}
 }
 \description{
 get_fields() wrapper to extract !(sitemap,(dis)allow,user-agent)

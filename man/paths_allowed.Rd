@@ -11,9 +11,9 @@ paths_allowed(permissions, paths = "/", bot = "*")
 three columns: 'useragent' (name of the bot), 'permission' (permission
 granted: Disallow/Allow) and 'value' (path for which permission applies)}
 
-\item{bot}{name of the bot, defaults to "*"}
+\item{paths}{paths for which to check bot's permission, defaults to "/"}
 
-\item{path}{path for which to check bot's permission, defaults to "/"}
+\item{bot}{name of the bot, defaults to "*"}
 }
 \description{
 wrapper to \code{\link{path_allowed}}

@@ -4,10 +4,12 @@
 \alias{print.robotstxt_text}
 \title{printing robotstxt_text}
 \usage{
-\method{print}{robotstxt_text}(x)
+\method{print}{robotstxt_text}(x, ...)
 }
 \arguments{
 \item{x}{character vector / robotstxt_text to be printed}
+
+\item{...}{goes down the sink}
 }
 \description{
 printing robotstxt_text
