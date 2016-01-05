@@ -49,9 +49,9 @@ rt_get_comments <- function(txt){
 }
 
 #' get_fields() wrapper to extract !(sitemap,(dis)allow,user-agent)
-#' @param txt \code{\link{get_fields}}
-#' @param regex defaults to "sitemap|allow|user-agent" ; \code{\link{get_fields}}
-#' @param invert defaults to TRUE; \code{\link{get_fields}}
+#' @param txt \code{\link{rt_get_fields}}
+#' @param regex defaults to "sitemap|allow|user-agent" ; \code{\link{rt_get_fields}}
+#' @param invert defaults to TRUE; \code{\link{rt_get_fields}}
 rt_get_other <- function(txt, regex  = "sitemap|allow|user-agent", invert = TRUE){
   rt_get_fields( txt, regex, invert)
 }

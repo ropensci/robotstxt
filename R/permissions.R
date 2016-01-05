@@ -138,7 +138,7 @@ path_allowed <- function(permissions, path="/", bot="*"){
 #'  three columns: 'useragent' (name of the bot), 'permission' (permission
 #'  granted: Disallow/Allow) and 'value' (path for which permission applies)
 #' @param bot name of the bot, defaults to "*"
-#' @param path path for which to check bot's permission, defaults to "/"
+#' @param paths paths for which to check bot's permission, defaults to "/"
 #' @seealso \link{path_allowed}
 #' @export
 paths_allowed <- function(permissions, paths="/", bot="*"){
