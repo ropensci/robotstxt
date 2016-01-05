@@ -1,0 +1,5 @@
+# source: https://en.wikipedia.org/wiki/Robots_exclusion_standard
+
+User-agent: BadBot
+User-agent: Googlebot
+Disallow: /private/
