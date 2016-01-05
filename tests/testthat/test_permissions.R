@@ -77,6 +77,7 @@ permissions_asb   <- rt_get_permissions(rtxt_asb)
 permissions_pm    <- rt_get_permissions(rtxt_pm)
 permissions_dafa  <- rt_get_permissions(rtxt_dafa)
 permissions_dafbb <- rt_get_permissions(rtxt_dafbb)
+permissions_empty <- rt_get_permissions(rtxt_empty)
 
 test_that(
   "simple check", {
@@ -134,8 +135,6 @@ test_that(
 )
 
 
-#### finish
-
 test_that(
   "dissallow all for BadBot", {
     expect_false(path_allowed(permissions_dafbb, path="", bot="BadBot"))
@@ -151,7 +150,34 @@ test_that(
 )
 
 
+test_that(
+  "case of Bot naME dOeS not matter", {
+    expect_false(path_allowed(permissions_dafbb, path="", bot="badbot"))
+    expect_false(path_allowed(permissions_dafbb, path="/imgages", bot="badbot"))
+    expect_false(path_allowed(permissions_dafbb, path="index.html", bot="badbot"))
+    expect_false(path_allowed(permissions_dafbb, path="*", bot="badbot"))
 
+    expect_false(path_allowed(permissions_dafbb, path="", bot="Badbot"))
+    expect_false(path_allowed(permissions_dafbb, path="/imgages", bot="Badbot"))
+    expect_false(path_allowed(permissions_dafbb, path="index.html", bot="Badbot"))
+    expect_false(path_allowed(permissions_dafbb, path="*", bot="Badbot"))
+  }
+)
+
+
+test_that(
+  "empty file leads to all allowed for all", {
+    expect_true(path_allowed(permissions_empty, path=""))
+    expect_true(path_allowed(permissions_empty, path="/"))
+    expect_true(path_allowed(permissions_empty, path="/imgages"))
+    expect_true(path_allowed(permissions_empty, path="index.html"))
+
+    expect_true(path_allowed(permissions_empty, path="", bot = "BadBot"))
+    expect_true(path_allowed(permissions_empty, path="/", bot = "BadBot"))
+    expect_true(path_allowed(permissions_empty, path="/imgages", bot = "BadBot"))
+    expect_true(path_allowed(permissions_empty, path="index.html", bot = "BadBot"))
+  }
+)
 
 
 
