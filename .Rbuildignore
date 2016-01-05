@@ -3,3 +3,5 @@
 dev.r
 README.html
 README.Rmd
+.travis.yml
+autotest.Rexec
