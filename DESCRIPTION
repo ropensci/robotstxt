@@ -17,11 +17,14 @@ URL: https://github.com/petermeissner/robotstxt
 Imports:
     R6 (>= 2.1.1),
     stringr (>= 1.0.0),
-    hellno (>= 0.0.1)
+    hellno (>= 0.0.1),
+    httr (>= 1.0.0)
 Suggests:
     knitr,
     rmarkdown,
-    dplyr
+    dplyr,
+    magrittr,
+    testthat
 Depends:
     R (>= 3.0.0)
 VignetteBuilder: knitr
