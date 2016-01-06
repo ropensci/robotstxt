@@ -2,21 +2,16 @@
 % Please edit documentation in R/parse_robotstxt.R
 \name{rt_get_fields}
 \alias{rt_get_fields}
-\title{extracting robotstxt fields}
+\title{extracting permissions from robots.txt}
 \usage{
-rt_get_fields(txt, type = "all", regex = NULL, invert = FALSE)
+rt_get_fields(txt, regex = "", invert = FALSE)
 }
 \arguments{
 \item{txt}{content of the robots.txt file}
 
-\item{type}{name or names of the fields to be returned, defaults to all
-fields}
-
-\item{regex}{subsetting field names via regular expressions}
-
-\item{invert}{field selection}
+\item{regex}{regular expression specify field}
 }
 \description{
-extracting robotstxt fields
+extracting permissions from robots.txt
 }
 
