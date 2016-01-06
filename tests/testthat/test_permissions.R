@@ -1,11 +1,12 @@
 # tests for functions responsible for data gathering and transformation
 
-
 rtxt_asb   <- rt_get_rtxt("allow_single_bot.txt")
 rtxt_dafa  <- rt_get_rtxt("disallow_all_for_all.txt")
 rtxt_dafbb <- rt_get_rtxt("disallow_all_for_BadBot.txt")
 rtxt_dsfa  <- rt_get_rtxt("disallow_some_for_all.txt")
 rtxt_empty <- rt_get_rtxt("empty.txt")
+rtxt_datao <- rt_get_rtxt("disallow_two_at_once.txt")
+rtxt_tcom  <- rt_get_rtxt("testing_comments.txt")
 rtxt_amzn  <- rt_get_rtxt("robots_amazon.txt")
 rtxt_bt    <- rt_get_rtxt("robots_bundestag.txt")
 rtxt_ggl   <- rt_get_rtxt("robots_google.txt")
@@ -72,12 +73,14 @@ test_that(
 #### context("checking works") =================================================
 context("permission checking")
 
-permissions_she   <- rt_get_permissions(rtxt_she)
-permissions_asb   <- rt_get_permissions(rtxt_asb)
-permissions_pm    <- rt_get_permissions(rtxt_pm)
-permissions_dafa  <- rt_get_permissions(rtxt_dafa)
-permissions_dafbb <- rt_get_permissions(rtxt_dafbb)
-permissions_empty <- rt_get_permissions(rtxt_empty)
+permissions_she   <- rt_get_fields(rtxt_she, "allow")
+permissions_asb   <- rt_get_fields(rtxt_asb, "allow")
+permissions_pm    <- rt_get_fields(rtxt_pm, "allow")
+permissions_dafa  <- rt_get_fields(rtxt_dafa, "allow")
+permissions_dafbb <- rt_get_fields(rtxt_dafbb, "allow")
+permissions_empty <- rt_get_fields(rtxt_empty, "allow")
+
+
 
 test_that(
   "simple check", {

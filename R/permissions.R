@@ -3,7 +3,6 @@
 #' making paths uniform
 #' @param path path to be sanitized
 #' @return sanitized path
-#' @export
 sanitize_path <- function(path){
   path <- stringr::str_replace(    path, "^ *", "")
   path <- ifelse( !grepl("^/", path),  paste0("/", path), path)
@@ -16,7 +15,6 @@ sanitize_path <- function(path){
 #' transforming permissions into regular expressions (values)
 #'
 #' @param permission_value the value column of permissions (the paths)
-#' @export
 sanitize_permission_values <- function(permission_value){
   tmp <- permission_value
   tmp <- sanitize_path(tmp)
@@ -32,13 +30,12 @@ sanitize_permission_values <- function(permission_value){
 #' transforming permissions into regular expressions (whole permission)
 #'
 #' @param permissions the permissions to be transformed
-#' @export
 sanitize_permissions <- function(permissions){
   tmp <- permissions
   # epressing Disallow "" as Allow "*"
-  iffer <- grepl("Disallow", tmp$permission, ignore.case = TRUE) & grepl("^ *$", tmp$value)
+  iffer <- grepl("Disallow", tmp$field, ignore.case = TRUE) & grepl("^ *$", tmp$value)
   if( sum(iffer) > 0 ){
-    tmp[iffer, ]$permission <- "Allow"
+    tmp[iffer, ]$field <- "Allow"
     tmp[iffer, ]$value      <- "/"
   }
   # permission path sanitization
@@ -84,36 +81,36 @@ path_allowed <- function(permissions, path="/", bot="*"){
     return(TRUE)
   }
   # only disallows --> FALSE
-  if ( all(grepl("disallow", perm_applicable$permission, ignore.case = TRUE)) ){
+  if ( all(grepl("disallow", perm_applicable$field, ignore.case = TRUE)) ){
     return(FALSE)
   }
   # only allows --> TRUE
-  if ( all(grepl("^allow", perm_applicable$permission, ignore.case = TRUE)) ){
+  if ( all(grepl("^allow", perm_applicable$field, ignore.case = TRUE)) ){
     return(TRUE)
   }
   # diverse permissions but bot specific all disallow
-  if ( all(grepl("disallow", with(perm_applicable, permission[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
+  if ( all(grepl("disallow", with(perm_applicable, field[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
     return(FALSE)
   }
   # diverse permissions but bot specific all allow
-  if ( all(grepl("^allow", with(perm_applicable, permission[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
+  if ( all(grepl("^allow", with(perm_applicable, field[tolower(useragent)==tolower(bot)]), ignore.case = TRUE)) ){
     return(TRUE)
   }
   # diverse permissions --> longest permision wins
   if (
-    any(grepl("disallow", perm_applicable$permission, ignore.case = TRUE)) &
-    any(grepl("^allow", perm_applicable$permission, ignore.case = TRUE))
+    any(grepl("disallow", perm_applicable$field, ignore.case = TRUE)) &
+    any(grepl("^allow", perm_applicable$field, ignore.case = TRUE))
   ){
     perm_path_lengths <- stringr::str_count(perm_applicable$value)
     iffer <- perm_path_lengths == max(perm_path_lengths)
     # take longest permission applicable and return TRUE if it Allows, false if it Disallows
     if( sum(iffer) == 1 ){
       return(
-        !grepl("disallow", perm_applicable[iffer,]$permission, ignore.case = TRUE)
+        !grepl("disallow", perm_applicable[iffer,]$field, ignore.case = TRUE)
       )
     }
     if( sum(iffer) > 1 ){
-      if( any( grepl("disallow", perm_applicable[iffer,]$permission, ignore.case = TRUE) ) ){
+      if( any( grepl("disallow", perm_applicable[iffer,]$field, ignore.case = TRUE) ) ){
         return(FALSE)
       }
     }
@@ -121,7 +118,7 @@ path_allowed <- function(permissions, path="/", bot="*"){
   # next missing case ...
 
   # message and return in case that case is not covered
-  message(
+  warning(
     paste0(
       " Help, I do not know what to do :-(",
       " None of my rules did apply here.",

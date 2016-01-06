@@ -1,0 +1,4 @@
+# source: https://en.wikipedia.org/wiki/Robots_exclusion_standard#Nonstandard_extensions
+
+User-agent: *
+Crawl-delay: 10

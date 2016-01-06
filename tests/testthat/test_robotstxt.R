@@ -1,10 +1,13 @@
 # testing the workings of robotstxt objects
 
+
 rtxt_asb   <- rt_get_rtxt("allow_single_bot.txt")
 rtxt_dafa  <- rt_get_rtxt("disallow_all_for_all.txt")
 rtxt_dafbb <- rt_get_rtxt("disallow_all_for_BadBot.txt")
 rtxt_dsfa  <- rt_get_rtxt("disallow_some_for_all.txt")
 rtxt_empty <- rt_get_rtxt("empty.txt")
+rtxt_datao <- rt_get_rtxt("disallow_two_at_once.txt")
+rtxt_tcom  <- rt_get_rtxt("testing_comments.txt")
 rtxt_amzn  <- rt_get_rtxt("robots_amazon.txt")
 rtxt_bt    <- rt_get_rtxt("robots_bundestag.txt")
 rtxt_ggl   <- rt_get_rtxt("robots_google.txt")

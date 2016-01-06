@@ -22,12 +22,21 @@ parse_robotstxt <- function(txt){
     list(
       useragents  = rt_get_useragent(txt),
       comments    = rt_get_comments(txt),
-      permissions = rt_get_permissions(txt),
-      sitemap     = rt_get_fields(txt, type="sitemap"),
-      other       = rt_get_other(txt)
+      permissions = rt_get_fields(txt, "allow"),
+      crawl_delay = rt_get_fields(txt, "crawl-delay"),
+      sitemap     = rt_get_fields(txt, "sitemap"),
+      host        = rt_get_fields(txt, "host"),
+      other       =
+        rt_get_fields(
+          txt,
+          regex="sitemap|allow|user-agent|host|crawl-delay",
+          invert=TRUE
+        )
     )
   return(res)
 }
+
+
 
 
 #' extracting HTTP useragents from robots.txt
@@ -41,20 +50,14 @@ rt_get_useragent <- function(txt){
 
 #' extrcting comments from robots.txt
 #' @param txt content of the robots.txt file
-#' @export
 rt_get_comments <- function(txt){
   txt      <- unlist(stringr::str_split(txt, "\n"))
-  clines   <- grep("^[ \t]*#", txt)
-  data.frame(line=clines, comment=txt[clines])
+  clines   <- grep("#", txt)
+  ccontent <- stringr::str_extract(txt[clines], "#.*")
+  data.frame(line=clines, comment=ccontent)
 }
 
-#' get_fields() wrapper to extract !(sitemap,(dis)allow,user-agent)
-#' @param txt \code{\link{rt_get_fields}}
-#' @param regex defaults to "sitemap|allow|user-agent" ; \code{\link{rt_get_fields}}
-#' @param invert defaults to TRUE; \code{\link{rt_get_fields}}
-rt_get_other <- function(txt, regex  = "sitemap|allow|user-agent", invert = TRUE){
-  rt_get_fields( txt, regex, invert)
-}
+
 
 
 #' extracting robotstxt fields
@@ -63,8 +66,7 @@ rt_get_other <- function(txt, regex  = "sitemap|allow|user-agent", invert = TRUE
 #'   fields
 #' @param regex subsetting field names via regular expressions
 #' @param invert field selection
-#' @export
-rt_get_fields <- function(txt, type="all", regex=NULL, invert=FALSE){
+rt_get_fields_worker <- function(txt, type="all", regex=NULL, invert=FALSE){
   if( all(txt == "") | all(!grepl(":",txt)) ) return(data.frame(field="", value="")[NULL,])
   txt_vec   <- unlist(stringr::str_split(txt, "\n"))
   fields    <- grep("(^[ \t]{0,2}[^#]\\w.*)", txt_vec, value=TRUE)
@@ -83,32 +85,36 @@ rt_get_fields <- function(txt, type="all", regex=NULL, invert=FALSE){
   }
 }
 
+
 #' extracting permissions from robots.txt
 #' @param txt content of the robots.txt file
-#' @export
-rt_get_permissions <- function(txt){
+#' @param regex regular expression specify field
+rt_get_fields <- function(txt, regex="", invert=FALSE){
   txt_parts   <- unlist( stringr::str_split( stringr::str_replace(stringr::str_replace_all(paste0(txt, collapse = "\n"), "#.*?\n",""),"^\n",""), "\n[ \t]*\n" ) )
   useragents  <- lapply(txt_parts, rt_get_useragent)
-  permissions <- lapply(txt_parts, rt_get_fields, regex="[aA]llow")
-  perm_df     <- data.frame(stringsAsFactors = FALSE)
+  for(i in seq_along(useragents)){
+    if( length(useragents[[i]])==0 ){
+      useragents[[i]] <- NA
+    }
+  }
+  fields      <- lapply(txt_parts, rt_get_fields_worker, regex=regex, invert=invert)
+  df          <- data.frame()
   for ( i in seq_along(txt_parts) ){
-    perm_df <-
+    df <-
       rbind(
-        perm_df,
+        df,
         cbind(
-          useragents[[i]][rep(seq_along(useragents[[i]]), length(permissions[[i]][,1]))],
-          permissions[[i]][rep(seq_along(permissions[[i]][,1]), length(useragents[[i]])),],
+          useragents[[i]][rep(seq_along(useragents[[i]]), length(fields[[i]][,1]))],
+          fields[[i]][rep(seq_along(fields[[i]][,1]), length(useragents[[i]])),],
           stringsAsFactors=FALSE
         )
       )
   }
-  names(perm_df)    <- c("useragent","permission","value")
-  rownames(perm_df) <- NULL
-  return(perm_df)
+  names(df)    <- c("useragent", "field", "value")
+  df <- df[,c("field", "useragent", "value")]
+  rownames(df) <- NULL
+  return(df)
 }
-
-
-
 
 
 

@@ -60,10 +60,11 @@ robotstxt <-
           }
         }
       # fill fields with default data
-        self$bots        <- rt_get_useragent(self$text)
-        self$permissions <- rt_get_permissions(self$text)
-        self$sitemap     <- rt_get_fields(self$text, type="sitemap")
-        self$other       <- rt_get_other(self$text)
+
+        self$bots        <- parse_robotstxt(self$text)$useragent
+        self$permissions <- parse_robotstxt(self$text)$permission
+        self$sitemap     <- parse_robotstxt(self$text)$sitemap
+        self$other       <- parse_robotstxt(self$text)$other
 
       },
   # methods
