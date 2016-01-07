@@ -63,7 +63,7 @@ img {
 <div id="header">
 <h1 class="title">README</h1>
 <h4 class="author"><em>Peter Meißner</em></h4>
-<h4 class="date"><em>2016-01-07 15:06:40</em></h4>
+<h4 class="date"><em>2016-01-07 15:15:10</em></h4>
 </div>
 
 <div id="TOC">
@@ -166,11 +166,17 @@ rt_wikipedia</code></pre>
 ## [29] &quot;k2spider&quot;                   &quot;NPBot&quot;                     
 ## [31] &quot;WebReaper&quot;                  &quot;ia_archiver&quot;               
 ## [33] &quot;*&quot;</code></pre>
-<p>Checking if some any bot might access the root path …</p>
+<p>Checking if some/any bot might access the root path …</p>
 <pre class="r"><code># checking for access permissions
-rt_wikipedia$check(paths = c(&quot;/&quot;,&quot;*images/&quot;), bot = &quot;*&quot;)</code></pre>
-<pre><code>##        / *images/ 
-##    FALSE    FALSE</code></pre>
+rt_wikipedia$check(paths = c(&quot;/&quot;,&quot;api/&quot;), bot = &quot;*&quot;)</code></pre>
+<pre><code>##     /  api/ 
+## FALSE FALSE</code></pre>
+<pre class="r"><code>rt_wikipedia$check(paths = c(&quot;/&quot;,&quot;api/&quot;), bot = &quot;Orthogaffe&quot;)</code></pre>
+<pre><code>##    / api/ 
+## TRUE TRUE</code></pre>
+<pre class="r"><code>rt_wikipedia$check(paths = c(&quot;/&quot;,&quot;api/&quot;), bot = &quot;Mediapartners-Google*  &quot;)</code></pre>
+<pre><code>##     /  api/ 
+## FALSE FALSE</code></pre>
 </div>
 <div id="the-functional-style" class="section level2">
 <h2><span class="header-section-number">4.2</span> The Functional Style</h2>
@@ -210,9 +216,9 @@ names(parsed_rtxt)</code></pre>
   parsed_rtxt$permissions</code></pre>
 <p>… and checking permissions …</p>
 <pre class="r"><code>permissions %&gt;% 
-  paths_allowed(paths=c(&quot;/&quot;,&quot;*images/&quot;), bot=&quot;*&quot;)</code></pre>
-<pre><code>##        / *images/ 
-##    FALSE    FALSE</code></pre>
+  paths_allowed(paths=c(&quot;/&quot;,&quot;images/&quot;), bot=&quot;*&quot;)</code></pre>
+<pre><code>##       / images/ 
+##   FALSE   FALSE</code></pre>
 </div>
 </div>
 

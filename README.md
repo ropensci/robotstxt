@@ -143,16 +143,35 @@ rt_wikipedia$bots
 ## [33] "*"
 ```
 
-Checking if some any bot might access the root path ... 
+Checking if some/any bot might access the root path ... 
+
 
 ```r
 # checking for access permissions
-rt_wikipedia$check(paths = c("/","*images/"), bot = "*")
+rt_wikipedia$check(paths = c("/","api/"), bot = "*")
 ```
 
 ```
-##        / *images/ 
-##    FALSE    FALSE
+##     /  api/ 
+## FALSE FALSE
+```
+
+```r
+rt_wikipedia$check(paths = c("/","api/"), bot = "Orthogaffe")
+```
+
+```
+##    / api/ 
+## TRUE TRUE
+```
+
+```r
+rt_wikipedia$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
+```
+
+```
+##     /  api/ 
+## FALSE FALSE
 ```
 
 ## The Functional Style
@@ -219,12 +238,12 @@ permissions <-
 
 ```r
 permissions %>% 
-  paths_allowed(paths=c("/","*images/"), bot="*")
+  paths_allowed(paths=c("/","images/"), bot="*")
 ```
 
 ```
-##        / *images/ 
-##    FALSE    FALSE
+##       / images/ 
+##   FALSE   FALSE
 ```
 
 
