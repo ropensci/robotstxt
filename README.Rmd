@@ -40,7 +40,6 @@ Loading the package and dplyr/magrittr for neater code  ...
 ```{r}
 library(robotstxt)
 library(dplyr)
-library(magrittr)
 ```
 
 ## The Object Oriented Style
@@ -74,10 +73,13 @@ rt_wikipedia$text %>%
 rt_wikipedia$bots
 ```
 
-Checking if some any bot might access the root path ... 
+Checking if some/any bot might access the root path ... 
+
 ```{r}
 # checking for access permissions
-rt_wikipedia$check(paths = c("/","*images/"), bot = "*")
+rt_wikipedia$check(paths = c("/","api"), bot = "*")
+rt_wikipedia$check(paths = c("/","api"), bot = "Orthogaffe")
+rt_wikipedia$check(paths = c("/","api"), bot = "Mediapartners-Google*  ")
 ```
 
 ## The Functional Style

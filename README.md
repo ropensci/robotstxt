@@ -49,10 +49,6 @@ library(dplyr)
 ##     intersect, setdiff, setequal, union
 ```
 
-```r
-library(magrittr)
-```
-
 ## The Object Oriented Style
 
 Initializing a new instance of the robotstxt class ... 
