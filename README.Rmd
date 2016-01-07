@@ -29,7 +29,7 @@ devtools::install_github("petermeissner/robotstxt")
 
 # Documentation
 
-```{r}
+```{r, eval=FALSE}
 ?robotstxt
 ```
 
@@ -40,6 +40,7 @@ Loading the package and dplyr/magrittr for neater code  ...
 ```{r}
 library(robotstxt)
 library(dplyr)
+library(magrittr)
 ```
 
 ## The Object Oriented Style
@@ -85,33 +86,35 @@ Retrieving robots.txt file ...
 
 ```{r}
 rtxt <- 
-  rt_get_robotstxt("wikipedia.org") 
+  get_robotstxt("wikipedia.org") 
 
 rtxt %>% 
   substring(1,400)
 ``` 
 
-... extracting permissions ... 
-
-```{r}
-rtxt %>% 
-  rt_get_permissions() %>% 
-  slice(1:10)
-``` 
 
 ... parsing robots.txt file more general ... 
 
 ```{r}
-rtxt %>% 
-  parse_robotstxt() %>% 
-  lapply(head, 2)
+parsed_rtxt <- 
+  rtxt %>% 
+  parse_robotstxt() 
+
+names(parsed_rtxt)
 ``` 
+
+... permissions ... 
+
+```{r}
+permissions <- 
+  parsed_rtxt$permissions
+``` 
+
 
 ... and checking permissions ... 
 
 ```{r}
-rtxt %>% 
-  rt_get_permissions() %>% 
+permissions %>% 
   paths_allowed(paths=c("/","*images/"), bot="*")
 ```
 

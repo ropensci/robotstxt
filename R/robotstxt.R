@@ -53,7 +53,7 @@ robotstxt <-
         }else{
           if(!missing(domain)){
             self$domain <- domain
-            self$text   <- rt_get_robotstxt(domain)
+            self$text   <- get_robotstxt(domain)
           }else{
             stop("robotstxt: I need text to initialize.")
           }

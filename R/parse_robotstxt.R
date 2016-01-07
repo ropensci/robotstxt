@@ -1,13 +1,14 @@
 #' downloading robots.txt file
 #' @param domain domain from which to download robots.txt file
 #' @export
-rt_get_robotstxt <- function(domain){
+get_robotstxt <- function(domain){
   rtxt <- httr::GET(paste0(domain, "/robots.txt"))
   if( rtxt$status == 200 ){
     rtxt <- httr::content(rtxt)
     class(rtxt) <- c("robotstxt_text", "character")
   }else{
-    stop("robotstxt: could not get robots txt from domain")
+    warning("robotstxt: could not get robots txt from domain")
+    rtxt <- ""
   }
   return(rtxt)
 }
@@ -94,7 +95,7 @@ rt_get_fields <- function(txt, regex="", invert=FALSE){
   useragents  <- lapply(txt_parts, rt_get_useragent)
   for(i in seq_along(useragents)){
     if( length(useragents[[i]])==0 ){
-      useragents[[i]] <- NA
+      useragents[[i]] <- "*"
     }
   }
   fields      <- lapply(txt_parts, rt_get_fields_worker, regex=regex, invert=invert)

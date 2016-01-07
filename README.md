@@ -40,13 +40,17 @@ library(dplyr)
 ## 
 ## Attaching package: 'dplyr'
 ## 
-## Die folgenden Objekte sind maskiert von 'package:stats':
+## The following objects are masked from 'package:stats':
 ## 
 ##     filter, lag
 ## 
-## Die folgenden Objekte sind maskiert von 'package:base':
+## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
+```
+
+```r
+library(magrittr)
 ```
 
 ## The Object Oriented Style
@@ -162,7 +166,7 @@ Retrieving robots.txt file ...
 
 ```r
 rtxt <- 
-  rt_get_robotstxt("wikipedia.org") 
+  get_robotstxt("wikipedia.org") 
 
 rtxt %>% 
   substring(1,400)
@@ -188,67 +192,37 @@ rtxt %>%
 ## User-agent: Or
 ```
 
-... extracting permissions ... 
-
-
-```r
-rtxt %>% 
-  rt_get_permissions() %>% 
-  slice(1:10)
-```
-
-```
-##                     useragent permission value
-## 1       Mediapartners-Google*   Disallow     /
-## 2                     IsraBot   Disallow      
-## 3                  Orthogaffe   Disallow      
-## 4                  UbiCrawler   Disallow     /
-## 5                         DOC   Disallow     /
-## 6                         Zao   Disallow     /
-## 7  sitecheck.internetseer.com   Disallow     /
-## 8                     Zealbot   Disallow     /
-## 9                 MSIECrawler   Disallow     /
-## 10                SiteSnagger   Disallow     /
-```
 
 ... parsing robots.txt file more general ... 
 
 
 ```r
-rtxt %>% 
-  parse_robotstxt() %>% 
-  lapply(head, 2)
+parsed_rtxt <- 
+  rtxt %>% 
+  parse_robotstxt() 
+
+names(parsed_rtxt)
 ```
 
 ```
-## $useragents
-## [1] "Mediapartners-Google*" "IsraBot"              
-## 
-## $comments
-##   line                                                comment
-## 1    1                                                      #
-## 2    2 # robots.txt for http://www.wikipedia.org/ and friends
-## 
-## $permissions
-##               useragent permission value
-## 1 Mediapartners-Google*   Disallow     /
-## 2               IsraBot   Disallow      
-## 
-## $sitemap
-## [1] field value
-## <0 rows> (or 0-length row.names)
-## 
-## $other
-## [1] field value
-## <0 rows> (or 0-length row.names)
+## [1] "useragents"  "comments"    "permissions" "crawl_delay" "sitemap"    
+## [6] "host"        "other"
 ```
+
+... permissions ... 
+
+
+```r
+permissions <- 
+  parsed_rtxt$permissions
+```
+
 
 ... and checking permissions ... 
 
 
 ```r
-rtxt %>% 
-  rt_get_permissions() %>% 
+permissions %>% 
   paths_allowed(paths=c("/","*images/"), bot="*")
 ```
 
