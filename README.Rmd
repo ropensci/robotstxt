@@ -9,9 +9,11 @@ output:
     toc: yes
 ---
 
-# STATUS: 
+# Preface
 
-**UNDER DEVELOPMENT**
+**STATUS**
+
+UNDER DEVELOPMENT ... **Getting Finished**
 
 
 
@@ -19,7 +21,7 @@ output:
 library(robotstxt)
 ```
 
-# Installation and Start
+**Installation and Start**
 
 ```{r, eval=FALSE}
 devtools::install_github("petermeissner/robotstxt")
@@ -27,11 +29,14 @@ devtools::install_github("petermeissner/robotstxt")
 
 
 
-# Documentation
+**Documentation**
 
 ```{r, eval=FALSE}
 ?robotstxt
 ```
+
+
+
 
 # Example Usage 
 

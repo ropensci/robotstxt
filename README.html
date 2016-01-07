@@ -63,35 +63,30 @@ img {
 <div id="header">
 <h1 class="title">README</h1>
 <h4 class="author"><em>Peter Meißner</em></h4>
-<h4 class="date"><em>2016-01-07 15:15:10</em></h4>
+<h4 class="date"><em>2016-01-07 15:35:51</em></h4>
 </div>
 
 <div id="TOC">
 <ul>
-<li><a href="#status"><span class="toc-section-number">1</span> STATUS:</a></li>
-<li><a href="#installation-and-start"><span class="toc-section-number">2</span> Installation and Start</a></li>
-<li><a href="#documentation"><span class="toc-section-number">3</span> Documentation</a></li>
-<li><a href="#example-usage"><span class="toc-section-number">4</span> Example Usage</a><ul>
-<li><a href="#the-object-oriented-style"><span class="toc-section-number">4.1</span> The Object Oriented Style</a></li>
-<li><a href="#the-functional-style"><span class="toc-section-number">4.2</span> The Functional Style</a></li>
+<li><a href="#preface"><span class="toc-section-number">1</span> Preface</a></li>
+<li><a href="#example-usage"><span class="toc-section-number">2</span> Example Usage</a><ul>
+<li><a href="#the-object-oriented-style"><span class="toc-section-number">2.1</span> The Object Oriented Style</a></li>
+<li><a href="#the-functional-style"><span class="toc-section-number">2.2</span> The Functional Style</a></li>
 </ul></li>
 </ul>
 </div>
 
-<div id="status" class="section level1">
-<h1><span class="header-section-number">1</span> STATUS:</h1>
-<p><strong>UNDER DEVELOPMENT</strong></p>
-</div>
-<div id="installation-and-start" class="section level1">
-<h1><span class="header-section-number">2</span> Installation and Start</h1>
+<div id="preface" class="section level1">
+<h1><span class="header-section-number">1</span> Preface</h1>
+<p><strong>STATUS</strong></p>
+<p>UNDER DEVELOPMENT … <strong>Getting Finished</strong></p>
+<p><strong>Installation and Start</strong></p>
 <pre class="r"><code>devtools::install_github(&quot;petermeissner/robotstxt&quot;)</code></pre>
-</div>
-<div id="documentation" class="section level1">
-<h1><span class="header-section-number">3</span> Documentation</h1>
+<p><strong>Documentation</strong></p>
 <pre class="r"><code>?robotstxt</code></pre>
 </div>
 <div id="example-usage" class="section level1">
-<h1><span class="header-section-number">4</span> Example Usage</h1>
+<h1><span class="header-section-number">2</span> Example Usage</h1>
 <p>Loading the package and dplyr/magrittr for neater code …</p>
 <pre class="r"><code>library(robotstxt)
 library(dplyr)</code></pre>
@@ -106,7 +101,7 @@ library(dplyr)</code></pre>
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <div id="the-object-oriented-style" class="section level2">
-<h2><span class="header-section-number">4.1</span> The Object Oriented Style</h2>
+<h2><span class="header-section-number">2.1</span> The Object Oriented Style</h2>
 <p>Initializing a new instance of the robotstxt class …</p>
 <pre class="r"><code>rt_wikipedia &lt;- robotstxt$new(domain=&quot;wikipedia.org&quot;)
 
@@ -179,7 +174,7 @@ rt_wikipedia$check(paths = c(&quot;/&quot;,&quot;api/&quot;), bot = &quot;*&quot
 ## FALSE FALSE</code></pre>
 </div>
 <div id="the-functional-style" class="section level2">
-<h2><span class="header-section-number">4.2</span> The Functional Style</h2>
+<h2><span class="header-section-number">2.2</span> The Functional Style</h2>
 <p>Retrieving robots.txt file …</p>
 <pre class="r"><code>rtxt &lt;- 
   get_robotstxt(&quot;wikipedia.org&quot;) 

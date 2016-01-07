@@ -2,15 +2,17 @@
 Peter Meißner  
 `r Sys.time()`  
 
-# STATUS: 
+# Preface
 
-**UNDER DEVELOPMENT**
+**STATUS**
+
+UNDER DEVELOPMENT ... **Getting Finished**
 
 
 
 
 
-# Installation and Start
+**Installation and Start**
 
 
 ```r
@@ -19,12 +21,15 @@ devtools::install_github("petermeissner/robotstxt")
 
 
 
-# Documentation
+**Documentation**
 
 
 ```r
 ?robotstxt
 ```
+
+
+
 
 # Example Usage 
 
