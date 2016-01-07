@@ -4,7 +4,6 @@
 #' @name robotstxt
 #' @export
 #' @importFrom R6 R6Class
-#' @import hellno
 #' @field text text of robots.txt either supplied by user or downloaded from
 #'   domain
 #' @field bots vector of bot names mentionend in robots.txt
