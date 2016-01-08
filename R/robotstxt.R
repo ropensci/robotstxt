@@ -1,32 +1,67 @@
 
 
-#' An object representation of robotstxt
+#' An object representation of robots.txt files
+#'
+#' @docType class
+#'
 #' @name robotstxt
+#'
 #' @export
 #' @importFrom R6 R6Class
-#' @field text text of robots.txt either supplied by user or downloaded from
-#'   domain
-#' @field bots vector of bot names mentionend in robots.txt
-#' @field permissions Data.frame with all permissions (Allow/Disallow) the bot
-#'   name they apply to and the path ().
-#' @field domain Domain for which the robots.txt file is valid.
-#' @field sitemap Robots.txt files might contain sitemap entries -- these are
-#'   accessible as data.frame via this field.
-#' @field other Other fields that might have bee written in the robots.txt file.
 #'
-#' @field initialize(domain,text) Method called when initialising object via
-#'   \code{robotstxt$new()}. Needs either \code{text} or \code{domain} to be
-#'   present at initialization. If only domain is supplied -- should be seen as
-#'   default -- than the robots.txt file for that domain will be downloaded. If
-#'   \code{text} is supplied as well, nothing will be downloaded. If only
-#'   \code{text} is supplied than domain is set to '???'.
+#' @keywords data
 #'
-#' @field check(path="/",bot="*") Method for checking whether or not a certain path is
-#'   allowed to be accessed by certain bot.
+#' @return Object of \code{\link{R6Class}} with method(s) for bot permission checking.
 #'
-#' @usage rt <- robotstxt$new(domain="google.com")
+#' @format \code{\link{R6Class}} object.
+#'
+#' @field domain
+#'  character vector holding domain name for which the robots.txt file is valid;
+#'  will be set to NA if not supplied on initialization
+#'
+#' @field text
+#'  character vector of text of robots.txt file;
+#'  either supplied on initializetion
+#'  or automatically downloaded from domain supplied on initialization
+#'
+#' @field bots
+#'  character vector of bot names mentionend in robots.txt
+#'
+#' @field permissions
+#'  data.frame of bot permissions found in robots.txt file
+#'
+#' @field host
+#'  data.frame of host fields found in robots.txt file
+#'
+#' @field sitemap
+#'  data.frame of sitemap fields found in robots.txt file
+#'
+#' @field other
+#'  data.frame of other - none of the above - fields found in robots.txt file
+#'
+#'
+#' @section Methods:
+#' \describe{
+#'  \item{\code{
+#'    initialize(domain, text) }}{
+#'    Method called when initialising object via
+#'    \code{robotstxt$new()}. Needs either \code{text} or \code{domain} to be
+#'    present at initialization. If only domain is supplied -- should be seen as
+#'    default -- than the robots.txt file for that domain will be downloaded. If
+#'    \code{text} is supplied as well, nothing will be downloaded. If only
+#'    \code{text} is supplied than domain is set to '???'.
+#'  }
+#'  \item{\code{
+#'    check( path="/", bot="*" ) }}{
+#'    Method for checking whether or not paths are allowed to be accessed by a bot
+#'  }
+#' }
+#'
+#' @examples
+#' rt <- robotstxt$new(domain="google.com")
 #' rt$bots
 #' rt$permissions
+#' rt$check( paths = c("/", "forbidden"), bot="*")
 #'
 robotstxt <-
   R6::R6Class(
@@ -35,16 +70,19 @@ robotstxt <-
   # declaration
     public = list(
   # puplic data fields
+      domain      =  NA,
       text        =  NA,
       bots        =  NA,
+      comments    =  NA,
       permissions =  NA,
-      domain      =  NA,
+      crawl_delay =  NA,
+      host        =  NA,
       sitemap     =  NA,
       other       =  NA,
   # startup
       initialize = function(domain, text) {
       # check input
-        if (missing(domain)) self$domain <- "???"
+        if (missing(domain)) self$domain <- NA
         if (!missing(text)){
           self$text <- text
           if(!missing(domain)){
@@ -60,11 +98,15 @@ robotstxt <-
         }
       # fill fields with default data
 
-        self$bots        <- parse_robotstxt(self$text)$useragent
-        self$permissions <- parse_robotstxt(self$text)$permission
-        self$sitemap     <- parse_robotstxt(self$text)$sitemap
-        self$other       <- parse_robotstxt(self$text)$other
+        tmp <- parse_robotstxt(self$text)
 
+        self$bots        <- tmp$useragents
+        self$comments    <- tmp$comments
+        self$permissions <- tmp$permissions
+        self$crawl_delay <- tmp$crawl_delay
+        self$host        <- tmp$host
+        self$sitemap     <- tmp$sitemap
+        self$other       <- tmp$other
       },
   # methods
     # checking bot permissions

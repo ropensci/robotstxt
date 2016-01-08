@@ -1,4 +1,1 @@
-- R6 Documentation
-- going through all functions checking if necessary
-- robotstxt$check does not work
-- testing robotstxt instances more
+

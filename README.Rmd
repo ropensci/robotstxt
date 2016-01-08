@@ -11,22 +11,17 @@ output:
 
 # Preface
 
-**STATUS**
+![](logo/robotstxt.png)
 
-UNDER DEVELOPMENT ... **Getting Finished**
+**STATUS:** UNDER DEVELOPMENT ... **Getting Finished**
 
-
-
-```{r, include=FALSE}
-library(robotstxt)
-```
 
 **Installation and Start**
 
 ```{r, eval=FALSE}
 devtools::install_github("petermeissner/robotstxt")
+library(robotstxt)
 ```
-
 
 
 **Documentation**

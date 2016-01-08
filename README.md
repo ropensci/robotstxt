@@ -4,12 +4,9 @@ Peter Meißner
 
 # Preface
 
-**STATUS**
+![](logo/robotstxt.png)
 
-UNDER DEVELOPMENT ... **Getting Finished**
-
-
-
+**STATUS:** UNDER DEVELOPMENT ... **Getting Finished**
 
 
 **Installation and Start**
@@ -17,8 +14,8 @@ UNDER DEVELOPMENT ... **Getting Finished**
 
 ```r
 devtools::install_github("petermeissner/robotstxt")
+library(robotstxt)
 ```
-
 
 
 **Documentation**
@@ -45,11 +42,11 @@ library(dplyr)
 ## 
 ## Attaching package: 'dplyr'
 ## 
-## The following objects are masked from 'package:stats':
+## Die folgenden Objekte sind maskiert von 'package:stats':
 ## 
 ##     filter, lag
 ## 
-## The following objects are masked from 'package:base':
+## Die folgenden Objekte sind maskiert von 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
 ```
@@ -70,7 +67,10 @@ rt_wikipedia
 ##     bots: Mediapartners-Google* IsraBot Orthogaffe UbiCrawler DOC  ...
 ##     check: function
 ##     clone: function
+##     comments: data.frame
+##     crawl_delay: data.frame
 ##     domain: wikipedia.org
+##     host: data.frame
 ##     initialize: function
 ##     other: data.frame
 ##     permissions: data.frame

@@ -10,6 +10,8 @@ rt_get_fields(txt, regex = "", invert = FALSE)
 \item{txt}{content of the robots.txt file}
 
 \item{regex}{regular expression specify field}
+
+\item{invert}{invert selection made via regex?}
 }
 \description{
 extracting permissions from robots.txt

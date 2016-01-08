@@ -90,6 +90,7 @@ rt_get_fields_worker <- function(txt, type="all", regex=NULL, invert=FALSE){
 #' extracting permissions from robots.txt
 #' @param txt content of the robots.txt file
 #' @param regex regular expression specify field
+#' @param invert invert selection made via regex?
 rt_get_fields <- function(txt, regex="", invert=FALSE){
   txt_parts   <- unlist( stringr::str_split( stringr::str_replace(stringr::str_replace_all(paste0(txt, collapse = "\n"), "#.*?\n",""),"^\n",""), "\n[ \t]*\n" ) )
   useragents  <- lapply(txt_parts, rt_get_useragent)
