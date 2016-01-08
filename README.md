@@ -6,7 +6,6 @@ Peter Meißner
 
 ![](logo/robotstxt.png)
 
-**STATUS:** UNDER DEVELOPMENT ... **Getting Finished**
 
 
 **Installation and Start**
@@ -252,7 +251,11 @@ permissions %>%
 ```
 
 
+# robots.txt resources
 
+- http://www.robotstxt.org/norobots-rfc.txt
+- http://www.robotstxt.org/robotstxt.html
+- https://en.wikipedia.org/wiki/Robots_exclusion_standard
 
 
 
