@@ -2,13 +2,48 @@
 Peter Meißner  
 `r Sys.time()`  
 
-# Preface
-
 ![](logo/robotstxt.png)
 
 
+<table>
+<tr><td>&nbsp;</td></tr>
+<tr>
+<td> Ubuntu build </td>
+<td> <a href="https://travis-ci.org/petermeissner/robotstxt"><img src="https://api.travis-ci.org/petermeissner/robotstxt.svg?branch=master"></a></td>
+</tr>
+<tr><td>Version on CRAN  </td> 
+<td><a href="https://cran.r-project.org/web/packages/robotstxt/index.html"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a></td></tr>
+<tr>
+<td>Downloads from <a href='http://cran.rstudio.com/'>CRAN.RStudio</a>&nbsp;&nbsp;&nbsp;</td>
+<td><img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt"></td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
 
-**Installation and Start**
+
+**Author:** Peter Meißner
+
+**Licence:** MIT
+
+**Description:**
+
+The package provides a class ('R6') and accompanying methods to
+parse and check 'robots.txt' files. Data fields are provided as 
+data frames and vectors. Permissions can be checked by providing
+path character vectors and optional bot names. 
+
+
+
+**Installation and start - stable version**
+
+
+```r
+install.packages("robotstxt")
+library(robotstxt)
+```
+
+
+**Installation and start - development version**
 
 
 ```r
@@ -17,248 +52,54 @@ library(robotstxt)
 ```
 
 
-**Documentation**
+**Robotstxt class documentation**
 
 
 ```r
 ?robotstxt
 ```
 
-
-
-
-# Example Usage 
-
-Loading the package and dplyr/magrittr for neater code  ... 
+**Usage**
 
 
 ```r
 library(robotstxt)
-library(dplyr)
+rtxt <- robotstxt$new(domain="wikipedia.org")
+rtxt$check("/")
 ```
 
 ```
-## 
-## Attaching package: 'dplyr'
-## 
-## Die folgenden Objekte sind maskiert von 'package:stats':
-## 
-##     filter, lag
-## 
-## Die folgenden Objekte sind maskiert von 'package:base':
-## 
-##     intersect, setdiff, setequal, union
+##     / 
+## FALSE
 ```
 
-## The Object Oriented Style
+**Contribution**
 
-Initializing a new instance of the robotstxt class ... 
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms:
 
-```r
-rt_wikipedia <- robotstxt$new(domain="wikipedia.org")
-
-rt_wikipedia
-```
-
-```
-## <robotstxt>
-##   Public:
-##     bots: Mediapartners-Google* IsraBot Orthogaffe UbiCrawler DOC  ...
-##     check: function
-##     clone: function
-##     comments: data.frame
-##     crawl_delay: data.frame
-##     domain: wikipedia.org
-##     host: data.frame
-##     initialize: function
-##     other: data.frame
-##     permissions: data.frame
-##     sitemap: data.frame
-##     text: #
-##     # robots.txt for http://www.wikipedia.org/ and friends ...
-```
-
-
-Having a look a some fields (the data stored inside the object) ... 
-
-... the domain for which the permissions apply ... 
-
-
-```r
-rt_wikipedia$domain
-```
-
-```
-## [1] "wikipedia.org"
-```
-
-... the actual text of the robots.txt file ... 
-
-
-```r
-rt_wikipedia$text %>% 
-  substring(1, 400) 
-```
-
-```
-## #
-## # robots.txt for http://www.wikipedia.org/ and friends
-## #
-## # Please note: There are a lot of pages on this site, and there are
-## # some misbehaved spiders out there that go _way_ too fast. If you're
-## # irresponsible, your access to the site may be blocked.
-## #
-## 
-## # advertising-related bots:
-## User-agent: Mediapartners-Google*
-## Disallow: /
-## 
-## # Wikipedia work bots:
-## User-agent: IsraBot
-## Disallow:
-## 
-## User-agent: Or
-```
-
-... bots mentioned by name ...
-
-
-```r
-rt_wikipedia$bots
-```
-
-```
-##  [1] "Mediapartners-Google*"      "IsraBot"                   
-##  [3] "Orthogaffe"                 "UbiCrawler"                
-##  [5] "DOC"                        "Zao"                       
-##  [7] "sitecheck.internetseer.com" "Zealbot"                   
-##  [9] "MSIECrawler"                "SiteSnagger"               
-## [11] "WebStripper"                "WebCopier"                 
-## [13] "Fetch"                      "OfflineExplorer"           
-## [15] "Teleport"                   "TeleportPro"               
-## [17] "WebZIP"                     "linko"                     
-## [19] "HTTrack"                    "Microsoft.URL.Control"     
-## [21] "Xenu"                       "larbin"                    
-## [23] "libwww"                     "ZyBORG"                    
-## [25] "DownloadNinja"              "fast"                      
-## [27] "wget"                       "grub-client"               
-## [29] "k2spider"                   "NPBot"                     
-## [31] "WebReaper"                  "ia_archiver"               
-## [33] "*"
-```
-
-Checking if some/any bot might access the root path ... 
-
-
-```r
-# checking for access permissions
-rt_wikipedia$check(paths = c("/","api/"), bot = "*")
-```
-
-```
-##     /  api/ 
-## FALSE FALSE
-```
-
-```r
-rt_wikipedia$check(paths = c("/","api/"), bot = "Orthogaffe")
-```
-
-```
-##    / api/ 
-## TRUE TRUE
-```
-
-```r
-rt_wikipedia$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
-```
-
-```
-##     /  api/ 
-## FALSE FALSE
-```
-
-## The Functional Style
-
-Retrieving robots.txt file ... 
-
-
-```r
-rtxt <- 
-  get_robotstxt("wikipedia.org") 
-
-rtxt %>% 
-  substring(1,400)
-```
-
-```
-## #
-## # robots.txt for http://www.wikipedia.org/ and friends
-## #
-## # Please note: There are a lot of pages on this site, and there are
-## # some misbehaved spiders out there that go _way_ too fast. If you're
-## # irresponsible, your access to the site may be blocked.
-## #
-## 
-## # advertising-related bots:
-## User-agent: Mediapartners-Google*
-## Disallow: /
-## 
-## # Wikipedia work bots:
-## User-agent: IsraBot
-## Disallow:
-## 
-## User-agent: Or
-```
-
-
-... parsing robots.txt file more general ... 
-
-
-```r
-parsed_rtxt <- 
-  rtxt %>% 
-  parse_robotstxt() 
-
-names(parsed_rtxt)
-```
-
-```
-## [1] "useragents"  "comments"    "permissions" "crawl_delay" "sitemap"    
-## [6] "host"        "other"
-```
-
-... permissions ... 
-
-
-```r
-permissions <- 
-  parsed_rtxt$permissions
-```
-
-
-... and checking permissions ... 
-
-
-```r
-permissions %>% 
-  paths_allowed(paths=c("/","images/"), bot="*")
-```
-
-```
-##       / images/ 
-##   FALSE   FALSE
-```
-
-
-# robots.txt resources
-
-- http://www.robotstxt.org/norobots-rfc.txt
-- http://www.robotstxt.org/robotstxt.html
-- https://en.wikipedia.org/wiki/Robots_exclusion_standard
-
-
-
+> As contributors and maintainers of this project, we pledge to respect all people who 
+contribute through reporting issues, posting feature requests, updating documentation,
+submitting pull requests or patches, and other activities.
+> 
+> We are committed to making participation in this project a harassment-free experience for
+everyone, regardless of level of experience, gender, gender identity and expression,
+sexual orientation, disability, personal appearance, body size, race, ethnicity, age, or religion.
+> 
+> Examples of unacceptable behavior by participants include the use of sexual language or
+imagery, derogatory comments or personal attacks, trolling, public or private harassment,
+insults, or other unprofessional conduct.
+> 
+> Project maintainers have the right and responsibility to remove, edit, or reject comments,
+commits, code, wiki edits, issues, and other contributions that are not aligned to this 
+Code of Conduct. Project maintainers who do not follow the Code of Conduct may be removed 
+from the project team.
+> 
+> Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by 
+opening an issue or contacting one or more of the project maintainers.
+> 
+> This Code of Conduct is adapted from the Contributor Covenant 
+(http:contributor-covenant.org), version 1.0.0, available at 
+http://contributor-covenant.org/version/1/0/0/
 
 
 

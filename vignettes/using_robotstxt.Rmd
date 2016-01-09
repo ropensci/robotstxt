@@ -1,0 +1,81 @@
+---
+title: "using robotstxt"
+author: "Peter Meissner"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Description 
+
+The package provides a class ('R6') and accompanying methods to
+parse and check 'robots.txt' files. Data fields are provided as 
+data frames and vectors. Permissions can be checked by providing
+path character vectors and optional bot names. 
+    
+
+# Example Usage 
+
+First, let us load the package. In addition we load the dplyr package to be able to use the magrittr pipe operator `%>%` and some easy to read and remember data manipulation functions.
+
+```{r, message=FALSE}
+library(robotstxt)
+library(dplyr)
+```
+
+## object oriented style
+
+The first step is to create an instance of the robotstxt class provided by the package. The instance has to be initiated via providing either domain or the actual text of the robots.txt file. If the only the domain is provided, the robots.txt file will be downloaded automatically. Have a look at `?robotstxt` for descriptions of all data fields and methods as well as their parameters. 
+
+
+```{r}
+rtxt <- robotstxt$new(domain="wikipedia.org")
+```
+
+`rtxt` is of class `robotstxt` that inherits from `R6`.
+
+```{r}
+class(rtxt)
+```
+
+Printing the object let us glance at all data fields and methods in `rtxt` - we have access to the text as well as all common fields. Non-standard fields are collected in `other`.
+
+```{r}
+rtxt
+```
+
+Checking permissions works via `rtxt`'s `check` method by providing one or more paths. If no bot name is provided `"*"` - meaning any bot - is assumed. 
+
+
+```{r}
+# checking for access permissions
+rtxt$check(paths = c("/","api/"), bot = "*")
+rtxt$check(paths = c("/","api/"), bot = "Orthogaffe")
+rtxt$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
+```
+
+
+
+## functional style
+
+While working with the robotstxt class is recommended the checking can be done with functions only as well. In the following we (1) download the robots.txt file; (2) parse it; (3) extract the permissions (4) and check permissions.
+
+```{r}
+rtxt        <- get_robotstxt("wikipedia.org") 
+parsed_rtxt <- parse_robotstxt(rtxt)
+permissions <- parsed_rtxt$permissions
+paths_allowed(permissions, paths=c("/","images/"), bot="*")
+``` 
+
+
+# Robots.txt Specification and Explanations
+
+- http://www.robotstxt.org/norobots-rfc.txt
+- http://www.robotstxt.org/robotstxt.html
+- https://en.wikipedia.org/wiki/Robots_exclusion_standard
+
+
+

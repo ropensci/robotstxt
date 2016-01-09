@@ -53,10 +53,12 @@ or automatically downloaded from domain supplied on initialization}
 }
 }
 \examples{
+\dontrun{
 rt <- robotstxt$new(domain="google.com")
 rt$bots
 rt$permissions
 rt$check( paths = c("/", "forbidden"), bot="*")
+}
 
 }
 \keyword{data}

@@ -58,10 +58,12 @@
 #' }
 #'
 #' @examples
+#' \dontrun{
 #' rt <- robotstxt$new(domain="google.com")
 #' rt$bots
 #' rt$permissions
 #' rt$check( paths = c("/", "forbidden"), bot="*")
+#' }
 #'
 robotstxt <-
   R6::R6Class(

@@ -4,12 +4,10 @@ Title: A 'robots.txt' Parser and Webbot/Webspider/Webcrawler Permissions Checker
 Version: 0.1.0
 Author: Peter Meissner
 Maintainer: Peter Meissner <retep.meissner@gmai.com>
-Description: The package provides a ('R6') class and accompanying methods to
-    parse and check 'robots.txt' files for bot/scraper/spider permissions. This
-    allows to ask the 'robotstxt' object whether or not a particular bot might
-    be allowed to access a particular path on a domain. Furthermore, one can
-    easily check which bots are mentioned and which other fields are mentioned.
-    All data is provided 'data.frames' ready to be processed further.
+Description: Class ('R6') and accompanying methods to
+    parse and check 'robots.txt' files. Data fields are provided as
+    data frames and vectors. Permissions can be checked by providing
+    path character vectors and optional bot names.
 License: MIT + file LICENSE
 LazyData: TRUE
 BugReports: https://github.com/petermeissner/robotstxt/issues
@@ -22,7 +20,6 @@ Suggests:
     knitr,
     rmarkdown,
     dplyr,
-    magrittr,
     testthat
 Depends:
     R (>= 3.0.0)
