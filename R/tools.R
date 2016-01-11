@@ -7,6 +7,9 @@ named_list <- function(...){
 }
 
 #' load robots.txt files saved along with the package
+#' 
+#' load robots.txt files saved along with the package: 
+#' these functions ar very handy for testing (not used otherwise)
 #' @param name name of the robots.txt files, defaults to a random drawn file ;-)
 rt_get_rtxt <- function(name=sample(rt_list_rtxt(),1)){
   if( is.numeric(name) ){
@@ -16,6 +19,9 @@ rt_get_rtxt <- function(name=sample(rt_list_rtxt(),1)){
 }
 
 #' list robots.txt files saved along with the package
+#'
+#' list robots.txt files saved along with the package: 
+#' these functions ar very handy for testing (not used otherwise)
 rt_list_rtxt <- function(){
   list.files(system.file("robotstxts", package = "robotstxt" ))
 }
