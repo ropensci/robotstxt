@@ -21,6 +21,8 @@ Peter Meißner
 </table>
 
 
+**Status:** feature complete, currently under code review by [ropensci](https://github.com/ropensci/onboarding/issues/25)
+
 **Author:** Peter Meißner
 
 **Licence:** MIT
