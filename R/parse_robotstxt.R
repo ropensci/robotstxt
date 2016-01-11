@@ -55,7 +55,7 @@ rt_get_comments <- function(txt){
   txt      <- unlist(stringr::str_split(txt, "\n"))
   clines   <- grep("#", txt)
   ccontent <- stringr::str_extract(txt[clines], "#.*")
-  data.frame(line=clines, comment=ccontent)
+  data.frame(line=clines, comment=ccontent, stringsAsFactors = FALSE)
 }
 
 
@@ -111,9 +111,17 @@ rt_get_fields <- function(txt, regex="", invert=FALSE){
         )
       )
   }
+  # getting df right
   names(df)    <- c("useragent", "field", "value")
   df <- df[,c("field", "useragent", "value")]
   rownames(df) <- NULL
+  # ensuring chracter columns
+  for( i in seq_len(dim(df)[2]) ){
+    if( class(df[,i])=="factor" ){
+      df[,i] <- as.character(df[,i])
+    }
+  }
+  # return
   return(df)
 }
 

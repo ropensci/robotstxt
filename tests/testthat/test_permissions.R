@@ -1,5 +1,7 @@
 # tests for functions responsible for data gathering and transformation
 
+
+# note: get rt_get_rtxt() with devtools::load_all()
 rtxt_asb   <- rt_get_rtxt("allow_single_bot.txt")
 rtxt_dafa  <- rt_get_rtxt("disallow_all_for_all.txt")
 rtxt_dafbb <- rt_get_rtxt("disallow_all_for_BadBot.txt")
