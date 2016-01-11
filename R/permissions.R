@@ -16,7 +16,6 @@ sanitize_path <- function(path){
 #'
 #' @param permission_value the value column of permissions (the paths)
 sanitize_permission_values <- function(permission_value){
-  tmp <- permission_value
   tmp <- sanitize_path(tmp)
   tmp <- stringr::str_replace_all(tmp, "\\?", "\\\\?") # escape questionmarks
   tmp <- stringr::str_replace_all(tmp, "\\*",".*")     # translate '*' to '.*'
@@ -120,7 +119,7 @@ path_allowed <- function(permissions, path="/", bot="*"){
   warning(
     paste0(
       " Help, I do not know what to do :-(",
-      " None of my rules did apply here.",
+      " None of my rules applied here.",
       sep="\n"
     )
   )
