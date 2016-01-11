@@ -107,8 +107,7 @@ rt_get_fields <- function(txt, regex="", invert=FALSE){
         df,
         cbind(
           useragents[[i]][rep(seq_along(useragents[[i]]), length(fields[[i]][,1]))],
-          fields[[i]][rep(seq_along(fields[[i]][,1]), length(useragents[[i]])),],
-          stringsAsFactors=FALSE
+          fields[[i]][rep(seq_along(fields[[i]][,1]), length(useragents[[i]])),]
         )
       )
   }
