@@ -29,7 +29,7 @@ Peter Meißner
 
 **Description:**
 
-The package provides a class ('R6') and accompanying methods to
+The package provides a robotstxt class ('R6') and accompanying methods to
 parse and check 'robots.txt' files. Data fields are provided as 
 data frames and vectors. Permissions can be checked by providing
 path character vectors and optional bot names. 
