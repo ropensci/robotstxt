@@ -12,4 +12,5 @@ sanitize_permission_values(permission_value)
 \description{
 transforming permissions into regular expressions (values)
 }
+\keyword{internal}
 

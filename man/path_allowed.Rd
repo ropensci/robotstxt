@@ -21,4 +21,5 @@ check if a bot has permissions to access page
 \seealso{
 \link{paths_allowed}
 }
+\keyword{internal}
 

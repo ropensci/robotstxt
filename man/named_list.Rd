@@ -12,4 +12,5 @@ named_list(...)
 \description{
 make automatically named list
 }
+\keyword{internal}
 

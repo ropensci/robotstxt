@@ -12,4 +12,5 @@ rt_get_comments(txt)
 \description{
 extrcting comments from robots.txt
 }
+\keyword{internal}
 

@@ -16,4 +16,5 @@ rt_get_fields(txt, regex = "", invert = FALSE)
 \description{
 extracting permissions from robots.txt
 }
+\keyword{internal}
 

@@ -3,6 +3,7 @@
 #' making paths uniform
 #' @param path path to be sanitized
 #' @return sanitized path
+#' @keywords internal
 sanitize_path <- function(path){
   path <- stringr::str_replace(    path, "^ *", "")
   path <- ifelse( !grepl("^/", path),  paste0("/", path), path)
@@ -15,6 +16,7 @@ sanitize_path <- function(path){
 #' transforming permissions into regular expressions (values)
 #'
 #' @param permission_value the value column of permissions (the paths)
+#' @keywords internal
 sanitize_permission_values <- function(permission_value){
   tmp <- sanitize_path(permission_value)
   tmp <- stringr::str_replace_all(tmp, "\\?", "\\\\?") # escape questionmarks
@@ -29,6 +31,7 @@ sanitize_permission_values <- function(permission_value){
 #' transforming permissions into regular expressions (whole permission)
 #'
 #' @param permissions the permissions to be transformed
+#' @keywords internal
 sanitize_permissions <- function(permissions){
   tmp <- permissions
   # epressing Disallow "" as Allow "*"
@@ -50,6 +53,7 @@ sanitize_permissions <- function(permissions){
 #' @param bot name of the bot, defaults to "*"
 #' @seealso \link{paths_allowed}
 #' @param path path for which to check bot's permission, defaults to "/"
+#' @keywords internal
 
 path_allowed <- function(permissions, path="/", bot="*"){
 
@@ -136,6 +140,7 @@ path_allowed <- function(permissions, path="/", bot="*"){
 #' @param paths paths for which to check bot's permission, defaults to "/"
 #' @seealso \link{path_allowed}
 #' @export
+#' @keywords internal
 paths_allowed <- function(permissions, paths="/", bot="*"){
   sapply(paths, path_allowed, permissions=permissions, bot=bot)
 }

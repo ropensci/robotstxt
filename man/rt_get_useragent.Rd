@@ -12,4 +12,5 @@ rt_get_useragent(txt)
 \description{
 extracting HTTP useragents from robots.txt
 }
+\keyword{internal}
 

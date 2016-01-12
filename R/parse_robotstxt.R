@@ -42,6 +42,7 @@ parse_robotstxt <- function(txt){
 
 #' extracting HTTP useragents from robots.txt
 #' @param txt content of the robots.txt file
+#' @keywords internal
 rt_get_useragent <- function(txt){
   tmp  <- stringr::str_extract_all(txt, "[uU]ser-agent:.*")
   stringr::str_replace_all(unique(unlist(tmp)), "[uU].*:| |\n","")
@@ -51,6 +52,7 @@ rt_get_useragent <- function(txt){
 
 #' extrcting comments from robots.txt
 #' @param txt content of the robots.txt file
+#' @keywords internal
 rt_get_comments <- function(txt){
   txt      <- unlist(stringr::str_split(txt, "\n"))
   clines   <- grep("#", txt)
@@ -67,6 +69,7 @@ rt_get_comments <- function(txt){
 #'   fields
 #' @param regex subsetting field names via regular expressions
 #' @param invert field selection
+#' @keywords internal
 rt_get_fields_worker <- function(txt, type="all", regex=NULL, invert=FALSE){
   if( all(txt == "") | all(!grepl(":",txt)) ) return(data.frame(field="", value="")[NULL,])
   txt_vec   <- unlist(stringr::str_split(txt, "\n"))
@@ -91,6 +94,7 @@ rt_get_fields_worker <- function(txt, type="all", regex=NULL, invert=FALSE){
 #' @param txt content of the robots.txt file
 #' @param regex regular expression specify field
 #' @param invert invert selection made via regex?
+#' @keywords internal
 rt_get_fields <- function(txt, regex="", invert=FALSE){
   txt_parts   <- unlist( stringr::str_split( stringr::str_replace(stringr::str_replace_all(paste0(txt, collapse = "\n"), "#.*?\n",""),"^\n",""), "\n[ \t]*\n" ) )
   useragents  <- lapply(txt_parts, rt_get_useragent)

@@ -12,4 +12,5 @@ sanitize_permissions(permissions)
 \description{
 transforming permissions into regular expressions (whole permission)
 }
+\keyword{internal}
 
