@@ -53,6 +53,9 @@ sanitize_permissions <- function(permissions){
 #' @param bot name of the bot, defaults to "*"
 #' @seealso \link{paths_allowed}
 #' @param path path for which to check bot's permission, defaults to "/"
+#' @return TRUE permission granted; FALSE permission denied; NA path_allowed()
+#' cannot determine if path is allowed or not allowed, will result in a warning
+#' as well
 #' @keywords internal
 
 path_allowed <- function(permissions, path="/", bot="*"){

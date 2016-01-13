@@ -15,6 +15,11 @@ granted: Disallow/Allow) and 'value' (path for which permission applies)}
 
 \item{bot}{name of the bot, defaults to "*"}
 }
+\value{
+TRUE permission granted; FALSE permission denied; NA path_allowed()
+cannot determine if path is allowed or not allowed, will result in a warning
+as well
+}
 \description{
 check if a bot has permissions to access page
 }
