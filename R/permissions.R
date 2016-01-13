@@ -122,12 +122,13 @@ path_allowed <- function(permissions, path="/", bot="*"){
   # message and return in case that case is not covered
   warning(
     paste0(
-      " Help, I do not know what to do :-(",
-      " None of my rules applied here.",
+      " robotstxt::path_allowed() says:",
+      " Encountered problems while trying to determine bot permissions, returning NA instead of TRUE/FALSE",
       sep="\n"
     )
   )
-  return( named_list( path, bot, perm_applicable ) )
+  #dev# return( named_list( path, bot, perm_applicable ) )
+  return(NA)
 }
 
 #' check if a bot has permissions to access page
