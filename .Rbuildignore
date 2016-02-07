@@ -7,5 +7,6 @@ README.Rmd
 autotest.Rexec
 ropenscience onboarding.md
 todo.txt
-logo/
+logo/*.*
 
+^cran-comments\.md$
