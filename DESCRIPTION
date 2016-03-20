@@ -1,7 +1,7 @@
 Package: robotstxt
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.1.2
+Version: 0.1.2.90000
 Authors@R: c(person("Peter", "Meissner", role = c("aut", "cre"),
 		     email = "retep.meissner@gmail.com"),
 	      person("Oliver", "Keys", role = "ctb"))
