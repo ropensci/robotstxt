@@ -1,15 +1,34 @@
 #' downloading robots.txt file
 #' @param domain domain from which to download robots.txt file
 #' @export
-get_robotstxt <- function(domain){
-  rtxt <- httr::GET(paste0(domain, "/robots.txt"))
-  if( rtxt$status == 200 ){
-    rtxt <- httr::content(rtxt,  encoding="UTF-8", as="text")
-    class(rtxt) <- c("robotstxt_text", "character")
-  }else{
-    warning("robotstxt: could not get robots txt from domain")
+get_robotstxt <- function(domain, warn=TRUE){
+  request <- httr::GET(paste0(domain, "/robots.txt"))
+  # ok
+  if( request$status < 400 ){
+    rtxt <- httr::content(request,  encoding="UTF-8", as="text")
+  }
+  # not found
+  if( request$status == 404 ){
+    if(warn){
+      warning(paste0(
+        "get_robotstxt(): could not get robots.txt from domain: ",
+        domain,
+        "HTTP status: 404"
+      ))
+    }
     rtxt <- ""
   }
+  # not ok
+  if( !(request$status == 404 | request$status < 400) ){
+    stop(paste0(
+      "get_robotstxt(): could not get robots.txt from domain: ",
+      domain,
+      "; HTTP status: ",
+      request$status
+    ))
+  }
+  # return
+  class(rtxt) <- c("robotstxt_text", "character")
   return(rtxt)
 }
 

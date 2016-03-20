@@ -21,6 +21,17 @@ rtxt_wp    <- rt_get_rtxt("robots_wikipedia.txt")
 context("robotstxt creation")
 
 test_that(
+  "get_robotstxt() can fetch a file", {
+    expect_true(
+      {
+        rt <- get_robotstxt(domain="pmeissner.com")
+        TRUE
+      }
+    )
+  }
+)
+
+test_that(
   "initialisation works well", {
     expect_error( rt <- robotstxt$new() )
     expect_error( rt <- robotstxt$new("") )
