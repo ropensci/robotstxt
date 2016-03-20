@@ -4,7 +4,9 @@ Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.1.2.90000
 Authors@R: c(person("Peter", "Meissner", role = c("aut", "cre"),
 		     email = "retep.meissner@gmail.com"),
-	      person("Oliver", "Keys", role = "ctb"))
+	      person("Oliver", "Keys", role = "ctb"),
+	      person("Rich", "FitzJohn", role = "ctb")
+	      )
 Description: Provides a 'Robotstxt' ('R6') class and accompanying methods to
     parse and check 'robots.txt' files. Data fields are provided as
     data frames and vectors. Permissions can be checked by providing
