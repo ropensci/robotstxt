@@ -4,7 +4,7 @@
 get_robotstxt <- function(domain){
   rtxt <- httr::GET(paste0(domain, "/robots.txt"))
   if( rtxt$status == 200 ){
-    rtxt <- httr::content(rtxt)
+    rtxt <- httr::content(rtxt,  encoding="UTF-8")
     class(rtxt) <- c("robotstxt_text", "character")
   }else{
     warning("robotstxt: could not get robots txt from domain")
