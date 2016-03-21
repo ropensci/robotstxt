@@ -82,16 +82,16 @@ robotstxt <-
       sitemap     =  NA,
       other       =  NA,
   # startup
-      initialize = function(domain, text) {
+      initialize = function(domain=NULL, text=NULL) {
       # check input
-        if (missing(domain)) self$domain <- NA
-        if (!missing(text)){
+        if (is.null(domain)) self$domain <- NA
+        if (!is.null(text)){
           self$text <- text
-          if(!missing(domain)){
+          if(!is.null(domain)){
             self$domain <- domain
           }
         }else{
-          if(!missing(domain)){
+          if(!is.null(domain)){
             self$domain <- domain
             self$text   <- get_robotstxt(domain)
           }else{
