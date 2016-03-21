@@ -23,7 +23,7 @@ Peter Meißner
 
 **Author:** Peter Meißner
 
-**Contributer:** Oliver Keys (code review)
+**Contributer:** Oliver Keys (code review), Rich FitzJohn (code review)
 
 **Licence:** MIT
 
@@ -71,8 +71,8 @@ rtxt$check("/")
 ```
 
 ```
-##     / 
-## FALSE
+##    / 
+## TRUE
 ```
 
 **Contribution**
