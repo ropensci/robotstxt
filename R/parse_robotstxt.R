@@ -1,11 +1,20 @@
+#' get_robotstxt() cache
+rt_cache <- new.env(parent=emptyenv())
+
 #' downloading robots.txt file
 #' @param domain domain from which to download robots.txt file
 #' @export
 get_robotstxt <- function(domain, warn=TRUE){
-  request <- httr::GET(paste0(domain, "/robots.txt"))
+  # get data from cache or do download
+  if( is.null(rt_cache[[domain]]) ){
+    request <- httr::GET(paste0(domain, "/robots.txt"))
+  }else{
+    request <- rt_cache[[domain]]
+  }
   # ok
   if( request$status < 400 ){
     rtxt <- httr::content(request,  encoding="UTF-8", as="text")
+    rt_cache[[domain]] <- request
   }
   # not found
   if( request$status == 404 ){
@@ -17,6 +26,7 @@ get_robotstxt <- function(domain, warn=TRUE){
       ))
     }
     rtxt <- ""
+    rt_cache[[domain]] <- request
   }
   # not ok
   if( !(request$status == 404 | request$status < 400) ){
