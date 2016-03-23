@@ -5,6 +5,10 @@ rt_cache <- new.env(parent=emptyenv())
 #' @param domain domain from which to download robots.txt file
 #' @export
 get_robotstxt <- function(domain, warn=TRUE){
+  # pre checking input
+  if( is.na(domain) ){
+    return(NA)
+  }
   # get data from cache or do download
   if( is.null(rt_cache[[domain]]) ){
     request <- httr::GET(paste0(domain, "/robots.txt"))
@@ -22,7 +26,7 @@ get_robotstxt <- function(domain, warn=TRUE){
       warning(paste0(
         "get_robotstxt(): could not get robots.txt from domain: ",
         domain,
-        "HTTP status: 404"
+        " HTTP status: 404"
       ))
     }
     rtxt <- ""

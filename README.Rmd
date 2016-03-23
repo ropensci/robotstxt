@@ -30,16 +30,14 @@ output:
 
 **Author:** Peter Meißner
 
-**Contributer:** Oliver Keys (code review), Rich FitzJohn (code review)
+**Contributer:** Oliver Keys (code review and improvements), Rich FitzJohn (code review and improvements)
 
 **Licence:** MIT
 
 **Description:**
 
-The package provides a robotstxt class ('R6') and accompanying methods to
-parse and check 'robots.txt' files. Data fields are provided as 
-data frames and vectors. Permissions can be checked by providing
-path character vectors and optional bot names. 
+The robotstxt package provides functions to download and parse robots.txt files. 
+Ultimatly the package makes it easy to check if bots (spiders, scrapers, ...) are allowed to access specific resources on a domain. 
 
 
 
@@ -69,11 +67,22 @@ library(robotstxt)
 
 ```{r}
 library(robotstxt)
-rtxt <- robotstxt$new(domain="wikipedia.org")
-rtxt$check("/")
+
+paths_allowed(
+  paths  = c("/api/rest_v1/?doc", "/w/"), 
+  domain = "wikipedia.org", 
+  bot    = "*"
+)
+
+paths_allowed(
+  paths = c(
+    "https://wikipedia.org/api/rest_v1/?doc", 
+    "https://wikipedia.org/w/"
+  )
+)
 ```
 
-**Contribution - aka the think-twice-be-nice-rule**
+**Contribution - AKA The-Think-Twice-Be-Nice-Rule**
 
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms:
 

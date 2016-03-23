@@ -11,10 +11,7 @@ vignette: >
 
 # Description 
 
-The package provides a robotstxt class ('R6') and accompanying methods to
-parse and check 'robots.txt' files. Data fields are provided as 
-data frames and vectors. Permissions can be checked by providing
-path character vectors and optional bot names. 
+The package provides a simple 'robotstxt' class and accompanying methods to parse and check 'robots.txt' files. Data fields are provided as data frames and vectors. Permissions can be checked by providing path character vectors and optional bot names.
     
     
 # Robots.txt files
@@ -58,24 +55,24 @@ library(dplyr)
 
 ## object oriented style
 
-The first step is to create an instance of the robotstxt class provided by the package. The instance has to be initiated via providing either domain or the actual text of the robots.txt file. If the only the domain is provided, the robots.txt file will be downloaded automatically. Have a look at `?robotstxt` for descriptions of all data fields and methods as well as their parameters. 
+The first step is to create an instance of the robotstxt class provided by the package. The instance has to be initiated via providing either domain or the actual text of the robots.txt file. If only the domain is provided, the robots.txt file will be downloaded automatically. Have a look at `?robotstxt` for descriptions of all data fields and methods as well as their parameters. 
 
 
 ```{r, include=FALSE}
-rtxt <- robotstxt$new(domain="wikipedia.org", text=robotstxt:::rt_get_rtxt("robots_wikipedia.txt"))
+rtxt <- robotstxt(domain="wikipedia.org", text=robotstxt:::rt_get_rtxt("robots_wikipedia.txt"))
 ```
 
 ```{r, eval=FALSE}
-rtxt <- robotstxt$new(domain="wikipedia.org")
+rtxt <- robotstxt(domain="wikipedia.org")
 ```
 
-`rtxt` is of class `robotstxt` that inherits from `R6`.
+`rtxt` is of class `robotstxt`.
 
 ```{r}
 class(rtxt)
 ```
 
-Printing the object let us glance at all data fields and methods in `rtxt` - we have access to the text as well as all common fields. Non-standard fields are collected in `other`.
+Printing the object lets us glance at all data fields and methods in `rtxt` - we have access to the text as well as all common fields. Non-standard fields are collected in `other`.
 
 ```{r}
 rtxt
@@ -95,21 +92,26 @@ rtxt$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
 
 ## functional style
 
-While working with the robotstxt class is recommended the checking can be done with functions only as well. In the following we (1) download the robots.txt file; (2) parse it; (3) extract the permissions (4) and check permissions.
+While working with the robotstxt class is recommended the checking can be done with functions only as well. In the following we (1) download the robots.txt file; (2) parse it and (3) check permissions.
 
 ```{r, include=FALSE}
-rtxt <- robotstxt:::rt_get_rtxt("robots_wikipedia.txt")
+r_text <- robotstxt:::rt_get_rtxt("robots_wikipedia.txt")
 ```
 
 ```{r, eval=FALSE}
-rtxt        <- get_robotstxt("wikipedia.org") 
+r_text        <- get_robotstxt("wikipedia.org") 
 ```
 
+```{r}
+r_parsed <- parse_robotstxt(r_text)
+```
 
 ```{r}
-parsed_rtxt <- parse_robotstxt(rtxt)
-permissions <- parsed_rtxt$permissions
-paths_allowed(permissions, paths=c("/","images/"), bot="*")
+paths_allowed(
+  paths  = c("images/","/search"), 
+  domain = c("wikipedia.org", "google.com"),
+  bot    = "Orthogaffe"
+)
 ``` 
 
 

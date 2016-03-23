@@ -1,13 +1,13 @@
 Package: robotstxt
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.2.0.90000
+Version: 0.3.0.90000
 Authors@R: c(person("Peter", "Meissner", role = c("aut", "cre"),
 		     email = "retep.meissner@gmail.com"),
 	      person("Oliver", "Keys", role = "ctb"),
 	      person("Rich", "FitzJohn", role = "ctb")
 	      )
-Description: Provides a 'Robotstxt' ('R6') class and accompanying methods to
+Description: Provides a simple 'robotstxt' class and accompanying methods to
     parse and check 'robots.txt' files. Data fields are provided as
     data frames and vectors. Permissions can be checked by providing
     path character vectors and optional bot names.
@@ -16,7 +16,6 @@ LazyData: TRUE
 BugReports: https://github.com/petermeissner/robotstxt/issues
 URL: https://github.com/petermeissner/robotstxt
 Imports:
-    R6 (>= 2.1.1),
     stringr (>= 1.0.0),
     httr (>= 1.0.0)
 Suggests:

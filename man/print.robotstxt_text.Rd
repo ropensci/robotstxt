@@ -7,7 +7,7 @@
 \method{print}{robotstxt_text}(x, ...)
 }
 \arguments{
-\item{x}{character vector / robotstxt_text to be printed}
+\item{x}{character vector aka robotstxt$text to be printed}
 
 \item{...}{goes down the sink}
 }

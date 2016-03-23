@@ -33,16 +33,16 @@ test_that(
 
 test_that(
   "initialisation works well", {
-    expect_error( rt <- robotstxt$new() )
-    expect_error( rt <- robotstxt$new("") )
-    expect_true( all(class(robotstxt$new(text=rtxt_she)) %in% c("R6", "robotstxt")) )
+    expect_error( rt <- robotstxt() )
+    expect_error( rt <- robotstxt("") )
+    expect_true( all(class(robotstxt(text=rtxt_she)) %in% c("robotstxt")) )
   }
 )
 
 test_that(
   "robotstxt check method works well", {
-    expect_true( robotstxt$new(text=rtxt_she)$check() )
-    expect_true( robotstxt$new(text=rtxt_she)$check("blah") )
+    expect_true( robotstxt(text=rtxt_she)$check() )
+    expect_true( robotstxt(text=rtxt_she)$check("blah") )
   }
 )
 
@@ -51,7 +51,7 @@ context("robotstxt checking")
 
 test_that(
   "robotstxt check method works well", {
-    expect_true( robotstxt$new(text=rtxt_she)$check() )
-    expect_true( robotstxt$new(text=rtxt_she)$check("blah") )
+    expect_true( robotstxt(text=rtxt_she)$check() )
+    expect_true( robotstxt(text=rtxt_she)$check("blah") )
   }
 )
