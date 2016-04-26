@@ -2,17 +2,26 @@
 % Please edit documentation in R/robotstxt.R
 \name{robotstxt}
 \alias{robotstxt}
-\title{Generate object representations of a robots.txt file}
+\title{Generate a representations of a robots.txt file}
 \usage{
-robotstxt(domain="mydomain.com")
-robotstxt(text="User-agent: *\nDisallow: /")
+robotstxt(domain = NULL, text = NULL)
+}
+\arguments{
+\item{domain}{Domain for which to genarate a representation. If text equals to NULL,
+the function will download the file from server - the default.}
+
+\item{text}{If automatic download of the robots.txt is not prefered, the text can be
+supplied directly.}
 }
 \value{
 Object (list) of class robotstxt with parsed data from a
-  robots.txt file and method(s) for bot permission checking.
+  robots.txt (domain, text, bots, permissions, host, sitemap, other) and one
+  function to (check()) to check resource permissions.
 }
 \description{
-Generate object representations of a robots.txt file
+The function generates a list that entails data resulting from parsing a robots.txt file
+as well as a funtion called check that enables to ask the representation if bot (or
+particular bots) are allowed to access a resource on the domain.
 }
 \section{Fields}{
 
@@ -34,7 +43,15 @@ initialization}
 
 \item{\code{other}}{data.frame of other - none of the above - fields found in
 robots.txt file}
+
+\item{\code{check()}}{Method to check for bot permissions. Defaults to the
+domains root and no bot in particular. check() has two arguments:
+paths and bot. The first is for supplying the paths for which to check
+permissions and the latter to put in the name of the bot.}
 }}
+\section{return values}{
+
+}
 \examples{
 \dontrun{
 rt <- robotstxt(domain="google.com")
@@ -44,5 +61,4 @@ rt$check( paths = c("/", "forbidden"), bot="*")
 }
 
 }
-\keyword{data}
 

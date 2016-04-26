@@ -3,6 +3,8 @@ rt_cache <- new.env(parent=emptyenv())
 
 #' downloading robots.txt file
 #' @param domain domain from which to download robots.txt file
+#' @param warn warn about being unable to download domain/robots.txt because of
+#'   HTTP resposne status 404. If this happens,
 #' @export
 get_robotstxt <- function(domain, warn=TRUE){
   # pre checking input

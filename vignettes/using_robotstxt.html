@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Peter Meissner" />
+
+<meta name="date" content="2016-04-26" />
+
+<title>Using Robotstxt</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+<div class="fluid-row" id="header">
+
+
+<h1 class="title">Using Robotstxt</h1>
+<h4 class="author"><em>Peter Meissner</em></h4>
+<h4 class="date"><em>2016-04-26</em></h4>
+
+</div>
+
+
+<div id="description" class="section level1">
+<h1>Description</h1>
+<p>The package provides a simple ‘robotstxt’ class and accompanying methods to parse and check ‘robots.txt’ files. Data fields are provided as data frames and vectors. Permissions can be checked by providing path character vectors and optional bot names.</p>
+</div>
+<div id="robots.txt-files" class="section level1">
+<h1>Robots.txt files</h1>
+<p>Robots.txt files are a way to kindly ask webbots, spiders, crawlers, wanderers and the like to access or not access certain parts of a webpage. The de facto ‘standard’ never made it beyond a informal <a href="http://www.robotstxt.org/norobots-rfc.txt">“Network Working Group INTERNET DRAFT”</a>. Nonetheless, the use of robots.txt files is widespread (e.g. <a href="https://wikipedia.org/robots.txt" class="uri">https://wikipedia.org/robots.txt</a>, <a href="https://google.com/robots.txt" class="uri">https://google.com/robots.txt</a>) and bots from Google, Yahoo and the like will adhere to the rules defined in robots.txt files - although, their interpretation of those rules might differ.</p>
+<p>As the name of the files already suggests robots.txt files are plain text and always found at the root of a domain. The syntax of the files in essence follows a <code>fieldname: value</code> scheme with optional preceding <code>user-agent: ...</code> lines to indicate the scope of the following rule block. Blocks are separated by blank lines and the omission of a user-agent field (which directly corresponds to the HTTP user-agent field) is seen as referring to all bots. <code>#</code> serves to comment lines and parts of lines. Everything after <code>#</code> until the end of line is regarded a comment. Possible field names are: user-agent, disallow, allow, crawl-delay, sitemap, and host.</p>
+<p>Let us have an example file to get an idea how a robots.txt file might look like. The file below starts with a comment line followed by a line disallowing access to any content – everything that is contained in root (“<code>/</code>”) – for all bots. The next block concerns GoodBot and NiceBot. Those two get the previous permissions lifted by being disallowed nothing. The third block is for PrettyBot. PrettyBot likes shiny stuff and therefor gets a special permission for everything contained in the “<code>/shinystuff/</code>” folder while all other restrictions still hold. In the last block all bots are asked to pause at least 5 seconds between two visits.</p>
+<pre class="robots.txt"><code># this is a comment 
+# a made up example of an robots.txt file
+
+Disallow: /
+
+User-agent: GoodBot # another comment
+User-agent: NiceBot
+Disallow: 
+
+User-agent: PrettyBot
+Allow: /shinystuff/
+
+Crawl-Delay: 5</code></pre>
+<p>For more information have a look at: <a href="http://www.robotstxt.org/norobots-rfc.txt" class="uri">http://www.robotstxt.org/norobots-rfc.txt</a>, where the robots.txt file ‘standard’ is described formally. Valuable introductions can be found at <a href="http://www.robotstxt.org/robotstxt.html" class="uri">http://www.robotstxt.org/robotstxt.html</a> as well as at <a href="https://en.wikipedia.org/wiki/Robots_exclusion_standard" class="uri">https://en.wikipedia.org/wiki/Robots_exclusion_standard</a> - of cause.</p>
+</div>
+<div id="example-usage" class="section level1">
+<h1>Example Usage</h1>
+<p>First, let us load the package. In addition we load the dplyr package to be able to use the magrittr pipe operator <code>%&gt;%</code> and some easy to read and remember data manipulation functions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(robotstxt)
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<div id="object-oriented-style" class="section level2">
+<h2>object oriented style</h2>
+<p>The first step is to create an instance of the robotstxt class provided by the package. The instance has to be initiated via providing either domain or the actual text of the robots.txt file. If only the domain is provided, the robots.txt file will be downloaded automatically. Have a look at <code>?robotstxt</code> for descriptions of all data fields and methods as well as their parameters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rtxt &lt;-<span class="st"> </span><span class="kw">robotstxt</span>(<span class="dt">domain=</span><span class="st">&quot;wikipedia.org&quot;</span>)</code></pre></div>
+<p><code>rtxt</code> is of class <code>robotstxt</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(rtxt)</code></pre></div>
+<pre><code>## [1] &quot;robotstxt&quot;</code></pre>
+<p>Printing the object lets us glance at all data fields and methods in <code>rtxt</code> - we have access to the text as well as all common fields. Non-standard fields are collected in <code>other</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rtxt</code></pre></div>
+<pre><code>## $text
+## [1] &quot;#\n# robots.txt for http://www.wikipedia.org/ and friends\n#\n# Please note: There are a lot of pages on this site, and there are\n# some misbehaved spiders out there that go _way_ too fast. If you're\n# irresponsible, your access to the site may be blocked.\n#\n\n# advertising-related bots:\nUser-agent: Mediapartners-Google*\n\n[... 653 lines omitted ...]&quot;
+## 
+## $domain
+## [1] &quot;wikipedia.org&quot;
+## 
+## $bots
+## [1] &quot;Mediapartners-Google*&quot;       &quot;IsraBot&quot;                    
+## [3] &quot;Orthogaffe&quot;                  &quot;UbiCrawler&quot;                 
+## [5] &quot;DOC&quot;                         &quot;Zao&quot;                        
+## [7] &quot;&quot;                            &quot;[...  28 items omitted ...]&quot;
+## 
+## $comments
+##   line
+## 1    1
+## 2    2
+## 3    3
+## 4    4
+## 5    5
+## 6    6
+## 7     
+## 8     
+##                                                                 comment
+## 1                                                                     #
+## 2                # robots.txt for http://www.wikipedia.org/ and friends
+## 3                                                                     #
+## 4   # Please note: There are a lot of pages on this site, and there are
+## 5 # some misbehaved spiders out there that go _way_ too fast. If you're
+## 6              # irresponsible, your access to the site may be blocked.
+## 7                                                                      
+## 8                                          [...  173 items omitted ...]
+## 
+## $permissions
+##                          field             useragent value
+## 1                     Disallow Mediapartners-Google*     /
+## 2                     Disallow               IsraBot      
+## 3                     Disallow            Orthogaffe      
+## 4                     Disallow            UbiCrawler     /
+## 5                     Disallow                   DOC     /
+## 6                     Disallow                   Zao     /
+## 7                                                         
+## 8 [...  370 items omitted ...]                            
+## 
+## $crawl_delay
+## [1] field     useragent value    
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
+## 
+## $host
+## [1] field     useragent value    
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
+## 
+## $sitemap
+## [1] field     useragent value    
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
+## 
+## $other
+## [1] field     useragent value    
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
+## 
+## $check
+## function (paths = &quot;/&quot;, bot = &quot;*&quot;, permissions = self$permissions) 
+## {
+##     sapply(paths, path_allowed, permissions = permissions, bot = bot)
+## }
+## &lt;environment: 0x1b35af8&gt;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;robotstxt&quot;</code></pre>
+<p>Checking permissions works via <code>rtxt</code>’s <code>check</code> method by providing one or more paths. If no bot name is provided <code>&quot;*&quot;</code> - meaning any bot - is assumed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># checking for access permissions</span>
+rtxt$<span class="kw">check</span>(<span class="dt">paths =</span> <span class="kw">c</span>(<span class="st">&quot;/&quot;</span>,<span class="st">&quot;api/&quot;</span>), <span class="dt">bot =</span> <span class="st">&quot;*&quot;</span>)</code></pre></div>
+<pre><code>##     /  api/ 
+## FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rtxt$<span class="kw">check</span>(<span class="dt">paths =</span> <span class="kw">c</span>(<span class="st">&quot;/&quot;</span>,<span class="st">&quot;api/&quot;</span>), <span class="dt">bot =</span> <span class="st">&quot;Orthogaffe&quot;</span>)</code></pre></div>
+<pre><code>##    / api/ 
+## TRUE TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rtxt$<span class="kw">check</span>(<span class="dt">paths =</span> <span class="kw">c</span>(<span class="st">&quot;/&quot;</span>,<span class="st">&quot;api/&quot;</span>), <span class="dt">bot =</span> <span class="st">&quot;Mediapartners-Google*  &quot;</span>)</code></pre></div>
+<pre><code>##     /  api/ 
+## FALSE FALSE</code></pre>
+</div>
+<div id="functional-style" class="section level2">
+<h2>functional style</h2>
+<p>While working with the robotstxt class is recommended the checking can be done with functions only as well. In the following we (1) download the robots.txt file; (2) parse it and (3) check permissions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_text        &lt;-<span class="st"> </span><span class="kw">get_robotstxt</span>(<span class="st">&quot;wikipedia.org&quot;</span>) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_parsed &lt;-<span class="st"> </span><span class="kw">parse_robotstxt</span>(r_text)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paths_allowed</span>(
+  <span class="dt">paths  =</span> <span class="kw">c</span>(<span class="st">&quot;images/&quot;</span>,<span class="st">&quot;/search&quot;</span>), 
+  <span class="dt">domain =</span> <span class="kw">c</span>(<span class="st">&quot;wikipedia.org&quot;</span>, <span class="st">&quot;google.com&quot;</span>),
+  <span class="dt">bot    =</span> <span class="st">&quot;Orthogaffe&quot;</span>
+)</code></pre></div>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,13 +1,22 @@
 
 
-#' Generate object representations of a robots.txt file
+#' Generate a representations of a robots.txt file
+#'
+#' The function generates a list that entails data resulting from parsing a robots.txt file
+#' as well as a funtion called check that enables to ask the representation if bot (or
+#' particular bots) are allowed to access a resource on the domain.
+#'
+#' @param domain Domain for which to genarate a representation. If text equals to NULL,
+#' the function will download the file from server - the default.
+#' @param text If automatic download of the robots.txt is not prefered, the text can be
+#' supplied directly.
 #'
 #' @export
 #'
-#' @keywords data
 #'
 #' @return Object (list) of class robotstxt with parsed data from a
-#'   robots.txt file and method(s) for bot permission checking.
+#'   robots.txt (domain, text, bots, permissions, host, sitemap, other) and one
+#'   function to (check()) to check resource permissions.
 #'
 #' @field domain character vector holding domain name for which the robots.txt
 #'   file is valid; will be set to NA if not supplied on initialization
@@ -27,8 +36,13 @@
 #' @field other data.frame of other - none of the above - fields found in
 #'   robots.txt file
 #'
-#' @usage robotstxt(domain="mydomain.com")
-#' robotstxt(text="User-agent: *\nDisallow: /")
+#'
+#'
+#' @field check() Method to check for bot permissions. Defaults to the
+#' domains root and no bot in particular. check() has two arguments:
+#' paths and bot. The first is for supplying the paths for which to check
+#' permissions and the latter to put in the name of the bot.
+#'
 #'
 #'
 #' @examples
@@ -70,8 +84,8 @@ robotstxt <- function(domain=NULL, text=NULL) {
   self$other       <- tmp$other
 
   self$check <-
-    function(paths="/", bot="*", permissions=self$permissions){
-      sapply(paths, path_allowed, permissions=permissions, bot=bot)
+    function(paths="/", bot="*"){
+      sapply(paths, path_allowed, permissions=self$permissions, bot=bot)
     }
 
   # return

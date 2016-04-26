@@ -8,6 +8,9 @@ get_robotstxt(domain, warn = TRUE)
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}
+
+\item{warn}{warn about being unable to download domain/robots.txt because of
+HTTP resposne status 404. If this happens,}
 }
 \description{
 downloading robots.txt file
