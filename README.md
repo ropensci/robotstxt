@@ -11,15 +11,15 @@ Peter Meißner
 <td> <a href="https://travis-ci.org/petermeissner/robotstxt"><img src="https://api.travis-ci.org/petermeissner/robotstxt.svg?branch=master"></a></td>
 </tr>
 <tr><td>Version on CRAN  </td> 
-<td><a href="http://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a></td></tr>
+<td><a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a></td></tr>
 <tr>
-<td>Downloads from <a href='http://cran.rstudio.com/'>CRAN.RStudio</a>&nbsp;&nbsp;&nbsp;</td>
+<td>Downloads from <a href='https://cran.rstudio.com/'>CRAN.RStudio</a>&nbsp;&nbsp;&nbsp;</td>
 <td><img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt"></td>
 </tr>
 </table>
 
 
-**Status:** feature complete, currently under code review by [ropensci](https://github.com/ropensci/onboarding/issues/25)
+**Status:** feature complete, part of [ROpenSci](https://github.com/ropenscilabs)
 
 **Author:** Peter Meißner
 
@@ -88,6 +88,28 @@ paths_allowed(
 ```
 ## [1]  TRUE FALSE
 ```
+
+... or use it that way ...
+
+
+```r
+library(robotstxt)
+
+rtxt <- robotstxt(domain = "wikipedia.org")
+rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
+```
+
+```
+## /api/rest_v1/?doc               /w/ 
+##              TRUE             FALSE
+```
+
+
+**More information**
+
+[vignette](http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
+
+
 
 **Contribution - AKA The-Think-Twice-Be-Nice-Rule**
 
