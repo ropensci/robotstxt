@@ -42,6 +42,14 @@ Crawl-Delay: 5
 
 For more information have a look at: http://www.robotstxt.org/norobots-rfc.txt, where the robots.txt file 'standard' is described formally. Valuable introductions can be found at http://www.robotstxt.org/robotstxt.html as well as at https://en.wikipedia.org/wiki/Robots_exclusion_standard - of cause. 
 
+# Fast food usage for the uninterested
+
+```{r, message=FALSE}
+library(robotstxt)
+paths_allowed("http://google.com/")
+paths_allowed("http://google.com/search")
+```
+
 
 
 # Example Usage 
@@ -95,15 +103,16 @@ rtxt$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
 While working with the robotstxt class is recommended the checking can be done with functions only as well. In the following we (1) download the robots.txt file; (2) parse it and (3) check permissions.
 
 ```{r, include=FALSE}
-r_text <- robotstxt:::rt_get_rtxt("robots_wikipedia.txt")
+r_text <- robotstxt:::rt_get_rtxt("robots_new_york_times.txt")
 ```
 
 ```{r, eval=FALSE}
-r_text        <- get_robotstxt("wikipedia.org") 
+r_text        <- get_robotstxt("nytimes.com") 
 ```
 
 ```{r}
 r_parsed <- parse_robotstxt(r_text)
+r_parsed
 ```
 
 ```{r}

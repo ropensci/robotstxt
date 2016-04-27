@@ -11,7 +11,7 @@
 
 <meta name="author" content="Peter Meissner" />
 
-<meta name="date" content="2016-04-26" />
+<meta name="date" content="2016-04-27" />
 
 <title>Using Robotstxt</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title">Using Robotstxt</h1>
 <h4 class="author"><em>Peter Meissner</em></h4>
-<h4 class="date"><em>2016-04-26</em></h4>
+<h4 class="date"><em>2016-04-27</em></h4>
 
 </div>
 
@@ -98,6 +98,14 @@ Allow: /shinystuff/
 
 Crawl-Delay: 5</code></pre>
 <p>For more information have a look at: <a href="http://www.robotstxt.org/norobots-rfc.txt" class="uri">http://www.robotstxt.org/norobots-rfc.txt</a>, where the robots.txt file ‘standard’ is described formally. Valuable introductions can be found at <a href="http://www.robotstxt.org/robotstxt.html" class="uri">http://www.robotstxt.org/robotstxt.html</a> as well as at <a href="https://en.wikipedia.org/wiki/Robots_exclusion_standard" class="uri">https://en.wikipedia.org/wiki/Robots_exclusion_standard</a> - of cause.</p>
+</div>
+<div id="fast-food-usage-for-the-uninterested" class="section level1">
+<h1>Fast food usage for the uninterested</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(robotstxt)
+<span class="kw">paths_allowed</span>(<span class="st">&quot;http://google.com/&quot;</span>)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paths_allowed</span>(<span class="st">&quot;http://google.com/search&quot;</span>)</code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="example-usage" class="section level1">
 <h1>Example Usage</h1>
@@ -173,11 +181,12 @@ Crawl-Delay: 5</code></pre>
 ## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
 ## 
 ## $check
-## function (paths = &quot;/&quot;, bot = &quot;*&quot;, permissions = self$permissions) 
+## function (paths = &quot;/&quot;, bot = &quot;*&quot;) 
 ## {
-##     sapply(paths, path_allowed, permissions = permissions, bot = bot)
+##     sapply(paths, path_allowed, permissions = self$permissions, 
+##         bot = bot)
 ## }
-## &lt;environment: 0x1b35af8&gt;
+## &lt;environment: 0x41238d8&gt;
 ## 
 ## attr(,&quot;class&quot;)
 ## [1] &quot;robotstxt&quot;</code></pre>
@@ -196,8 +205,70 @@ rtxt$<span class="kw">check</span>(<span class="dt">paths =</span> <span class="
 <div id="functional-style" class="section level2">
 <h2>functional style</h2>
 <p>While working with the robotstxt class is recommended the checking can be done with functions only as well. In the following we (1) download the robots.txt file; (2) parse it and (3) check permissions.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_text        &lt;-<span class="st"> </span><span class="kw">get_robotstxt</span>(<span class="st">&quot;wikipedia.org&quot;</span>) </code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_parsed &lt;-<span class="st"> </span><span class="kw">parse_robotstxt</span>(r_text)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_text        &lt;-<span class="st"> </span><span class="kw">get_robotstxt</span>(<span class="st">&quot;nytimes.com&quot;</span>) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r_parsed &lt;-<span class="st"> </span><span class="kw">parse_robotstxt</span>(r_text)
+r_parsed</code></pre></div>
+<pre><code>## $useragents
+## [1] &quot;*&quot;                    &quot;Mediapartners-Google&quot; &quot;AdsBot-Google&quot;       
+## [4] &quot;adidxbot&quot;            
+## 
+## $comments
+## [1] line    comment
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
+## 
+## $permissions
+##       field            useragent                                 value
+## 1     Allow                    *                          /ads/public/
+## 2     Allow                    *             /svc/news/v3/all/pshb.rss
+## 3  Disallow                    *                                 /ads/
+## 4  Disallow                    *                             /adx/bin/
+## 5  Disallow                    *                            /archives/
+## 6  Disallow                    *                                /auth/
+## 7  Disallow                    *                                /cnet/
+## 8  Disallow                    *                             /college/
+## 9  Disallow                    *                            /external/
+## 10 Disallow                    *                      /financialtimes/
+## 11 Disallow                    *                                 /idg/
+## 12 Disallow                    *                             /indexes/
+## 13 Disallow                    *                             /library/
+## 14 Disallow                    *                    /nytimes-partners/
+## 15 Disallow                    * /packages/flash/multimedia/TEMPLATES/
+## 16 Disallow                    *                       /pages/college/
+## 17 Disallow                    *                         /paidcontent/
+## 18 Disallow                    *                            /partners/
+## 19 Disallow                    *                  /restaurants/search*
+## 20 Disallow                    *                             /reuters/
+## 21 Disallow                    *                             /register
+## 22 Disallow                    *                           /thestreet/
+## 23 Disallow                    *                                  /svc
+## 24 Disallow                    *                     /video/embedded/*
+## 25 Disallow                    *                        /web-services/
+## 26 Disallow                    *               /gst/travel/travsearch*
+## 27 Disallow Mediapartners-Google                  /restaurants/search*
+## 28 Disallow        AdsBot-Google                  /restaurants/search*
+## 29 Disallow             adidxbot                  /restaurants/search*
+## 
+## $crawl_delay
+## [1] field     useragent value    
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
+## 
+## $sitemap
+##     field useragent
+## 1 Sitemap         *
+## 2 Sitemap         *
+## 3 Sitemap         *
+##                                                                    value
+## 1 http://spiderbites.nytimes.com/sitemaps/www.nytimes.com/sitemap.xml.gz
+## 2            http://www.nytimes.com/sitemaps/sitemap_news/sitemap.xml.gz
+## 3   http://spiderbites.nytimes.com/sitemaps/sitemap_video/sitemap.xml.gz
+## 
+## $host
+## [1] field     useragent value    
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)
+## 
+## $other
+## [1] field     useragent value    
+## &lt;0 Zeilen&gt; (oder row.names mit Länge 0)</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paths_allowed</span>(
   <span class="dt">paths  =</span> <span class="kw">c</span>(<span class="st">&quot;images/&quot;</span>,<span class="st">&quot;/search&quot;</span>), 
   <span class="dt">domain =</span> <span class="kw">c</span>(<span class="st">&quot;wikipedia.org&quot;</span>, <span class="st">&quot;google.com&quot;</span>),

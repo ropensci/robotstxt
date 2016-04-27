@@ -1,4 +1,5 @@
 Package: robotstxt
+Date: 2016-04-26
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.3.1
@@ -10,14 +11,14 @@ Authors@R: c(
 	      person("Oliver", "Keys", role = "ctb"),
 	      person("Rich", "Fitz John", role = "ctb")
 	      )
-Description: Provides a simple functionality to parse and check
-    'robots.txt' files. Data fields are provided as
-    data frames and vectors. Permissions can be checked by providing
-    path character vectors and optional bot names.
+Description: Provides functions to download and parse 'robots.txt' files.
+        Ultimately the package makes it easy to check if bots
+        (spiders, scrapers, ...) are allowed to access specific
+        resources on a domain.
 License: MIT + file LICENSE
 LazyData: TRUE
-BugReports: https://github.com/petermeissner/robotstxt/issues
-URL: https://github.com/petermeissner/robotstxt
+BugReports: https://github.com/ropenscilabs/robotstxt/issues
+URL: https://github.com/ropenscilabs/robotstxt
 Imports:
     stringr (>= 1.0.0),
     httr (>= 1.0.0)

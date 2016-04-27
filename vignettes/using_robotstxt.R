@@ -1,5 +1,10 @@
 ## ---- message=FALSE------------------------------------------------------
 library(robotstxt)
+paths_allowed("http://google.com/")
+paths_allowed("http://google.com/search")
+
+## ---- message=FALSE------------------------------------------------------
+library(robotstxt)
 library(dplyr)
 
 ## ---- include=FALSE------------------------------------------------------
@@ -21,13 +26,14 @@ rtxt$check(paths = c("/","api/"), bot = "Orthogaffe")
 rtxt$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
 
 ## ---- include=FALSE------------------------------------------------------
-r_text <- robotstxt:::rt_get_rtxt("robots_wikipedia.txt")
+r_text <- robotstxt:::rt_get_rtxt("robots_new_york_times.txt")
 
 ## ---- eval=FALSE---------------------------------------------------------
-#  r_text        <- get_robotstxt("wikipedia.org")
+#  r_text        <- get_robotstxt("nytimes.com")
 
 ## ------------------------------------------------------------------------
 r_parsed <- parse_robotstxt(r_text)
+r_parsed
 
 ## ------------------------------------------------------------------------
 paths_allowed(
