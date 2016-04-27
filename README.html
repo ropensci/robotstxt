@@ -112,6 +112,7 @@ $(document).ready(function () {
 <h4 class="author"><em>Peter Meißner</em></h4>
 <h4 class="date"><em>2016-04-27 19:50:49</em></h4>
 
+
 </div>
 
 
@@ -135,7 +136,7 @@ Version on CRAN
 </tr>
 <tr>
 <td>
-Downloads from <a href="https://cran.rstudio.com/">CRAN.RStudio</a>   
+Downloads from <a href="https://cran.rstudio.com/">CRAN.RStudio</a>
 </td>
 <td>
 <img src="data:image/svg+xml; charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgiIGhlaWdodD0iMjAiPgogIDxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDI9IjAiIHkyPSIxMDAlIj4KICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8bWFzayBpZD0iYSI+CiAgICA8cmVjdCB3aWR0aD0iMTA4IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPgogIDwvbWFzaz4KICA8ZyBtYXNrPSJ1cmwoI2EpIj48cGF0aCBmaWxsPSIjNTU1IiBkPSJNMCAwaDcwdjIwSDB6Ii8+CiAgICA8cGF0aCBmaWxsPSIjMDA3ZWM2IiBkPSJNNzAgMGgzOHYyMEg3MHoiLz4KICAgIDxwYXRoIGZpbGw9InVybCgjYikiIGQ9Ik0wIDBoMTA4djIwSDB6Ii8+CiAgPC9nPgogIDxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiCiAgICAgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLFZlcmRhbmEsR2VuZXZhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiPgogICAgPHRleHQgeD0iMzYiIHk9IjE1IiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIj4KICAgICAgZG93bmxvYWRzCiAgICA8L3RleHQ+CiAgICA8dGV4dCB4PSIzNiIgeT0iMTQiPgogICAgICBkb3dubG9hZHMKICAgIDwvdGV4dD4KICAgIDx0ZXh0IHg9Ijg4IiB5PSIxNSIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyI+CiAgICAgIDQ2NAogICAgPC90ZXh0PgogICAgPHRleHQgeD0iODgiIHk9IjE0Ij4KICAgICAgNDY0CiAgICA8L3RleHQ+CiAgPC9nPgo8L3N2Zz4=">
@@ -160,14 +161,14 @@ library(robotstxt)</code></pre>
 <pre class="r"><code>library(robotstxt)
 
 paths_allowed(
-  paths  = c(&quot;/api/rest_v1/?doc&quot;, &quot;/w/&quot;), 
-  domain = &quot;wikipedia.org&quot;, 
+  paths  = c(&quot;/api/rest_v1/?doc&quot;, &quot;/w/&quot;),
+  domain = &quot;wikipedia.org&quot;,
   bot    = &quot;*&quot;
 )</code></pre>
 <pre><code>## [1]  TRUE FALSE</code></pre>
 <pre class="r"><code>paths_allowed(
   paths = c(
-    &quot;https://wikipedia.org/api/rest_v1/?doc&quot;, 
+    &quot;https://wikipedia.org/api/rest_v1/?doc&quot;,
     &quot;https://wikipedia.org/w/&quot;
   )
 )</code></pre>
@@ -177,7 +178,7 @@ paths_allowed(
 
 rtxt &lt;- robotstxt(domain = &quot;wikipedia.org&quot;)
 rtxt$check(paths = c(&quot;/api/rest_v1/?doc&quot;, &quot;/w/&quot;), bot= &quot;*&quot;)</code></pre>
-<pre><code>## /api/rest_v1/?doc               /w/ 
+<pre><code>## /api/rest_v1/?doc               /w/
 ##              TRUE             FALSE</code></pre>
 <p><strong>More information</strong></p>
 <p><a href="http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html">vignette</a></p>
