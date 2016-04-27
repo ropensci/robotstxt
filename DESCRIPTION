@@ -1,17 +1,17 @@
 Package: robotstxt
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.3.1.90000
+Version: 0.3.1
 Authors@R: c(
         person(
           "Peter", "Meissner", role = c("aut", "cre"),
           email = "retep.meissner@gmail.com"
         ),
 	      person("Oliver", "Keys", role = "ctb"),
-	      person("Rich", "FitzJohn", role = "ctb")
+	      person("Rich", "Fitz John", role = "ctb")
 	      )
-Description: Provides a simple 'robotstxt' class and accompanying methods to
-    parse and check 'robots.txt' files. Data fields are provided as
+Description: Provides a simple functionality to parse and check
+    'robots.txt' files. Data fields are provided as
     data frames and vectors. Permissions can be checked by providing
     path character vectors and optional bot names.
 License: MIT + file LICENSE
