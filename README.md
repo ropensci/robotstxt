@@ -19,7 +19,9 @@ Peter Meißner
 </table>
 
 
+
 **Status:** Feature complete and part of the [ROpenSci](https://github.com/ropenscilabs) network.
+
 
 **Author:** Peter Meißner
 
@@ -47,7 +49,7 @@ library(robotstxt)
 
 
 ```r
-devtools::install_github("petermeissner/robotstxt")
+devtools::install_github("ropenscilabs/robotstxt")
 library(robotstxt)
 ```
 
@@ -140,9 +142,11 @@ opening an issue or contacting one or more of the project maintainers.
 http://contributor-covenant.org/version/1/0/0/
 
 
+## Meta
 
+* Please [report any issues or bugs](https://github.com/ropenscilabs/robotstxt/issues).
+* License: MIT
+* Get citation information for `robotstxt` in R doing `citation(package = 'robotstxt')`
 
-
-
-
+[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
 

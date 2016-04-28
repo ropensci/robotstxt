@@ -1,6 +1,6 @@
 ## Test environments
 
-* Ubuntu 12.04 (on travis-ci: old, current, devel; https://travis-ci.org/petermeissner/robotstxt)
+* Ubuntu 12.04 (on travis-ci: old, current, devel; https://travis-ci.org/ropenscilabs/robotstxt)
 * Ubuntu 14.04 LTS (local, current)
 * win-builder (devel and release)
 
@@ -11,8 +11,20 @@
 
 
 
-## Comments
+## Note: 
 
-There are links in the DESCRIPTION file that will not work at the moment of submission. Those will work however work asap (max 1 day) after the submission is accepted since  GitHub repository will move to to RopenSciLabs and than links shall be fine.
+```
+Found the following (possibly) invalid URLs:
+  URL: https://cran.rstudio.com/
+    From: README.md
+    Status: 200
+    Message: OK
+    CRAN URL not in canonical form
+  A canonical CRAN URL starts with https://cran.r-project.org/
+```
+  
+--> This URL is indeed as intended as it refers to that one particular CRAN mirror and not all CRAN pages in general. 
+
+
 
 

@@ -5,8 +5,8 @@ date: "`r Sys.time()`"
 output: 
   html_document: 
     keep_md: yes
-    number_sections: yes
-    toc: yes
+    number_sections: no
+    toc: no
 ---
 
 ![](logo/robotstxt.png)
@@ -129,9 +129,11 @@ opening an issue or contacting one or more of the project maintainers.
 http://contributor-covenant.org/version/1/0/0/
 
 
+## Meta
 
+* Please [report any issues or bugs](https://github.com/ropenscilabs/robotstxt/issues).
+* License: MIT
+* Get citation information for `robotstxt` in R doing `citation(package = 'robotstxt')`
 
-
-
-
+[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
 
