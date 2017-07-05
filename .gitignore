@@ -3,3 +3,5 @@
 .RData
 inst/doc
 ropenscience onboarding.md
+dev.r
+dev.R
