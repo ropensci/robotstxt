@@ -17,12 +17,28 @@ get_robotstxt <- function(domain, warn=TRUE){
   }else{
     request <- rt_cache[[domain]]
   }
+
   # ok
   if( request$status < 400 ){
     rtxt <- httr::content(request,  encoding="UTF-8", as="text")
-    rt_cache[[domain]] <- request
+
+    # check if robots.txt is parsable
+    if ( is_valid_robotstxt(rtxt) ){
+      rt_cache[[domain]] <- request
+    }else{
+      # give back a digest of the retrieved file
+      message(
+        "\n\n",
+        substring(paste(rtxt, collapse = "\n"), 1, 200),
+        "\n\n"
+      )
+
+      # stop
+      stop("get_robotstxt(): the thing retrieved does not seem to be a valid robots.txt.")
+    }
   }
-  # not found
+
+  # not found - can happen, everything is allowed
   if( request$status == 404 ){
     if(warn){
       warning(paste0(
@@ -34,7 +50,8 @@ get_robotstxt <- function(domain, warn=TRUE){
     rtxt <- ""
     rt_cache[[domain]] <- request
   }
-  # not ok
+
+  # not ok - diverse
   if( !(request$status == 404 | request$status < 400) ){
     stop(paste0(
       "get_robotstxt(): could not get robots.txt from domain: ",

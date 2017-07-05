@@ -3,24 +3,56 @@
 context("useragent extraction")
 
 
-rtxt_asb   <- rt_get_rtxt("allow_single_bot.txt")
-rtxt_dafa  <- rt_get_rtxt("disallow_all_for_all.txt")
-rtxt_dafbb <- rt_get_rtxt("disallow_all_for_BadBot.txt")
-rtxt_dsfa  <- rt_get_rtxt("disallow_some_for_all.txt")
-rtxt_empty <- rt_get_rtxt("empty.txt")
-rtxt_datao <- rt_get_rtxt("disallow_two_at_once.txt")
-rtxt_tcom  <- rt_get_rtxt("testing_comments.txt")
-rtxt_amzn  <- rt_get_rtxt("robots_amazon.txt")
-rtxt_bt    <- rt_get_rtxt("robots_bundestag.txt")
-rtxt_ggl   <- rt_get_rtxt("robots_google.txt")
-rtxt_nyt   <- rt_get_rtxt("robots_new_york_times.txt")
-rtxt_spgl  <- rt_get_rtxt("robots_spiegel.txt")
-rtxt_yh    <- rt_get_rtxt("robots_yahoo.txt")
-rtxt_she   <- rt_get_rtxt("selfhtml_Example.txt")
-rtxt_pm    <- rt_get_rtxt("robots_pmeissner.txt")
-rtxt_wp    <- rt_get_rtxt("robots_wikipedia.txt")
-rtxt_cd    <- rt_get_rtxt("crawl_delay.txt")
-rtxt_host  <- rt_get_rtxt("host.txt")
+rtxt_asb     <- rt_get_rtxt("allow_single_bot.txt")
+rtxt_dafa    <- rt_get_rtxt("disallow_all_for_all.txt")
+rtxt_dafbb   <- rt_get_rtxt("disallow_all_for_BadBot.txt")
+rtxt_dsfa    <- rt_get_rtxt("disallow_some_for_all.txt")
+rtxt_empty   <- rt_get_rtxt("empty.txt")
+rtxt_datao   <- rt_get_rtxt("disallow_two_at_once.txt")
+rtxt_tcom    <- rt_get_rtxt("testing_comments.txt")
+rtxt_amzn    <- rt_get_rtxt("robots_amazon.txt")
+rtxt_bt      <- rt_get_rtxt("robots_bundestag.txt")
+rtxt_ggl     <- rt_get_rtxt("robots_google.txt")
+rtxt_nyt     <- rt_get_rtxt("robots_new_york_times.txt")
+rtxt_spgl    <- rt_get_rtxt("robots_spiegel.txt")
+rtxt_yh      <- rt_get_rtxt("robots_yahoo.txt")
+rtxt_she     <- rt_get_rtxt("selfhtml_Example.txt")
+rtxt_pm      <- rt_get_rtxt("robots_pmeissner.txt")
+rtxt_wp      <- rt_get_rtxt("robots_wikipedia.txt")
+rtxt_cd      <- rt_get_rtxt("crawl_delay.txt")
+rtxt_host    <- rt_get_rtxt("host.txt")
+rtxt_fb_nsp  <- rt_get_rtxt("robots_facebook_unsupported.txt")
+
+test_that(
+  "all robots.txt files are valid", {
+    expect_true( is_valid_robotstxt( rtxt_asb    ) )
+    expect_true( is_valid_robotstxt( rtxt_dafa   ) )
+    expect_true( is_valid_robotstxt( rtxt_dafbb  ) )
+    expect_true( is_valid_robotstxt( rtxt_dsfa   ) )
+    expect_true( is_valid_robotstxt( rtxt_empty  ) )
+    expect_true( is_valid_robotstxt( rtxt_datao  ) )
+    expect_true( is_valid_robotstxt( rtxt_tcom   ) )
+    expect_true( is_valid_robotstxt( rtxt_amzn   ) )
+    expect_true( is_valid_robotstxt( rtxt_bt     ) )
+    expect_true( is_valid_robotstxt( rtxt_ggl    ) )
+    expect_true( is_valid_robotstxt( rtxt_nyt    ) )
+    expect_true( is_valid_robotstxt( rtxt_spgl   ) )
+    expect_true( is_valid_robotstxt( rtxt_yh     ) )
+    expect_true( is_valid_robotstxt( rtxt_she    ) )
+    expect_true( is_valid_robotstxt( rtxt_pm     ) )
+    expect_true( is_valid_robotstxt( rtxt_wp     ) )
+    expect_true( is_valid_robotstxt( rtxt_cd     ) )
+    expect_true( is_valid_robotstxt( rtxt_host   ) )
+    expect_true( is_valid_robotstxt( rtxt_fb_nsp ) )
+  })
+
+
+test_that(
+  "broken robots.txt files are invalid", {
+    expect_false( is_valid_robotstxt( rtxt_fb_nsp ))
+  })
+
+
 
 test_that(
   "all user agents are extracted", {
