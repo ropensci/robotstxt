@@ -25,25 +25,92 @@ rtxt_fb_nsp  <- rt_get_rtxt("robots_facebook_unsupported.txt")
 
 test_that(
   "all robots.txt files are valid", {
-    expect_true( is_valid_robotstxt( rtxt_asb    ) )
-    expect_true( is_valid_robotstxt( rtxt_dafa   ) )
-    expect_true( is_valid_robotstxt( rtxt_dafbb  ) )
-    expect_true( is_valid_robotstxt( rtxt_dsfa   ) )
-    expect_true( is_valid_robotstxt( rtxt_empty  ) )
-    expect_true( is_valid_robotstxt( rtxt_datao  ) )
-    expect_true( is_valid_robotstxt( rtxt_tcom   ) )
-    expect_true( is_valid_robotstxt( rtxt_amzn   ) )
-    expect_true( is_valid_robotstxt( rtxt_bt     ) )
-    expect_true( is_valid_robotstxt( rtxt_ggl    ) )
-    expect_true( is_valid_robotstxt( rtxt_nyt    ) )
-    expect_true( is_valid_robotstxt( rtxt_spgl   ) )
-    expect_true( is_valid_robotstxt( rtxt_yh     ) )
-    expect_true( is_valid_robotstxt( rtxt_she    ) )
-    expect_true( is_valid_robotstxt( rtxt_pm     ) )
-    expect_true( is_valid_robotstxt( rtxt_wp     ) )
-    expect_true( is_valid_robotstxt( rtxt_cd     ) )
-    expect_true( is_valid_robotstxt( rtxt_host   ) )
-    expect_true( is_valid_robotstxt( rtxt_fb_nsp ) )
+    expect_true(
+      is_valid_robotstxt( rtxt_asb    )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_dafa   )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_dafbb  )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_dsfa   )
+    )
+    expect_true(
+      is_valid_robotstxt( rtxt_empty  )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_datao  )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_tcom   )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_amzn   )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_bt     )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_ggl    )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_nyt    )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_spgl   )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_yh     )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_she    )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_pm     )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_wp     )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_cd     )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_host   )
+    )
+
+    expect_true(
+      is_valid_robotstxt(
+        "\n\n\n"
+      )
+    )
+
+    expect_true(
+      is_valid_robotstxt(
+        "       # dings\nbums\n        dings"
+      )
+    )
+
+    expect_false(
+      is_valid_robotstxt( rtxt_fb_nsp )
+    )
   })
 
 

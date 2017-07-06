@@ -4,7 +4,15 @@
 #' @export
 #'
 is_valid_robotstxt <- function(text){
-  grepl("^ *[\\w#]", text)
+  all(
+    # allow :
+      # - spaces followed by #
+      grepl("(^\\s*#)", text)   |
+      # - spaces followed by letter(s) followed by a double dot (somewhere)
+      grepl("(^\\s*\\w.*:)", text) |
+      # - spaces only or empty line
+      grepl("(^\\s*$)", text)
+  )
 }
 
 
