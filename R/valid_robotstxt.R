@@ -4,6 +4,7 @@
 #' @export
 #'
 is_valid_robotstxt <- function(text){
+  text <- unlist(strsplit(text, "\n"))
   all(
     # allow :
       # - spaces followed by #

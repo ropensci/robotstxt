@@ -102,7 +102,7 @@ test_that(
       )
     )
 
-    expect_true(
+    expect_false(
       is_valid_robotstxt(
         "       # dings\nbums\n        dings"
       )
