@@ -12,4 +12,3 @@ remove_domain(x)
 \description{
 function to remove domain from path
 }
-

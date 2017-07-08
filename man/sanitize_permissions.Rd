@@ -13,4 +13,3 @@ sanitize_permissions(permissions)
 transforming permissions into regular expressions (whole permission)
 }
 \keyword{internal}
-

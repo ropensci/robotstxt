@@ -13,4 +13,3 @@ named_list(...)
 make automatically named list
 }
 \keyword{internal}
-

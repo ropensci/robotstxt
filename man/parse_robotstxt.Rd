@@ -15,4 +15,3 @@ a named list with useragents, comments, permissions, sitemap
 \description{
 function parsing robots.txt
 }
-

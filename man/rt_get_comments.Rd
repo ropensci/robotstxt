@@ -13,4 +13,3 @@ rt_get_comments(txt)
 extrcting comments from robots.txt
 }
 \keyword{internal}
-

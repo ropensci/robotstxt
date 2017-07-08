@@ -27,4 +27,3 @@ check if a bot has permissions to access page
 \link{paths_allowed}
 }
 \keyword{internal}
-

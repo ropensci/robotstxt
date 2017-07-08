@@ -67,7 +67,11 @@ The first step is to create an instance of the robotstxt class provided by the p
 
 
 ```{r, include=FALSE}
-rtxt <- robotstxt(domain="wikipedia.org", text=robotstxt:::rt_get_rtxt("robots_wikipedia.txt"))
+rtxt <- 
+  robotstxt(
+    domain = "wikipedia.org", 
+    text   = robotstxt:::rt_get_rtxt("robots_wikipedia.txt")
+  )
 ```
 
 ```{r, eval=FALSE}

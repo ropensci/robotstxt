@@ -12,4 +12,3 @@ guess_domain(x)
 \description{
 function guessing domain from path
 }
-

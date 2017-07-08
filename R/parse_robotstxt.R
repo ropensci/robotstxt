@@ -6,16 +6,26 @@ rt_cache <- new.env(parent=emptyenv())
 #' @param warn warn about being unable to download domain/robots.txt because of
 #'   HTTP resposne status 404. If this happens,
 #' @export
-get_robotstxt <- function(domain, warn=TRUE){
+
+get_robotstxt <-
+  function(
+    domain,
+    warn    = TRUE,
+    force   = FALSE
+  ){
+
   # pre checking input
   if( is.na(domain) ){
     return(NA)
   }
+
   # get data from cache or do download
-  if( is.null(rt_cache[[domain]]) ){
+  if( force ){
     request <- httr::GET(paste0(domain, "/robots.txt"))
-  }else{
+  }else if ( !is.null(rt_cache[[domain]]) ) {
     request <- rt_cache[[domain]]
+  }else if ( is.null(rt_cache[[domain]]) ){
+    request <- httr::GET(paste0(domain, "/robots.txt"))
   }
 
   # ok
@@ -33,8 +43,24 @@ get_robotstxt <- function(domain, warn=TRUE){
         "\n\n"
       )
 
+      # dump file
+      fname_tmp <-
+        tempfile(pattern = "robots_", fileext = ".txt")
+
+      writeLines(
+        text     = rtxt,
+        con      = fname_tmp,
+        useBytes = TRUE
+      )
+
       # stop
-      stop("get_robotstxt(): the thing retrieved does not seem to be a valid robots.txt.")
+      stop(
+        paste(
+          "get_robotstxt(): the thing retrieved does not seem to be a valid robots.txt.",
+          "file dumpend to:",
+          fname_tmp
+        )
+      )
     }
   }
 

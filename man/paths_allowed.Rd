@@ -22,4 +22,3 @@ wrapper to \code{\link{path_allowed}}
 \seealso{
 \link{path_allowed}
 }
-

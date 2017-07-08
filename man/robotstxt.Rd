@@ -49,6 +49,7 @@ domains root and no bot in particular. check() has two arguments:
 paths and bot. The first is for supplying the paths for which to check
 permissions and the latter to put in the name of the bot.}
 }}
+
 \examples{
 \dontrun{
 rt <- robotstxt(domain="google.com")
@@ -58,4 +59,3 @@ rt$check( paths = c("/", "forbidden"), bot="*")
 }
 
 }
-

@@ -16,4 +16,3 @@ sanitized path
 making paths uniform
 }
 \keyword{internal}
-
