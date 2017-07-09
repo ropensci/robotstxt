@@ -1,6 +1,16 @@
 NEWS robotstxt
 ==========================================================================
 
+0.3.3 | 2017-07-08
+--------------------------------------------------------------------------
+
+- fix : non robots.txt files (e.g. html files returned by server instead of 
+the requested robots.txt / facebook.com) would be handled as if it were non 
+existent / empty files 
+- fix : UTF-8 encoded robots.txt with BOM (byte order mark) would break parsing
+although files were otherwise valid robots.txt files
+
+
 
 0.3.3 | 2016-12-10
 --------------------------------------------------------------------------
