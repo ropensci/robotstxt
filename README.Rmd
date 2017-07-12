@@ -9,26 +9,15 @@ output:
     toc: no
 ---
 
-![](logo/robotstxt.png)
+## Meta
 
 
-<table>
-<tr>
-<td> Ubuntu build </td>
-<td> <a href="https://travis-ci.org/ropenscilabs/robotstxt"><img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"></a></td>
-</tr>
-<tr><td>Version on CRAN  </td> 
-<td><a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a></td></tr>
-<tr>
-<td>Downloads from <a href='https://cran.rstudio.com/'>CRAN.RStudio</a>&nbsp;&nbsp;&nbsp;</td>
-<td><img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt"></td>
-</tr>
-</table>
+![](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/robotstxt.png)
+<a href="https://travis-ci.org/ropenscilabs/robotstxt"><img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"></a>
+<a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a>
+<img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
 
-
-
-**Status:** Feature complete and part of the [ROpenSci](https://github.com/ropenscilabs) network.
-
+[![rofooter](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
 
 **Author:** Peter Meißner
 
@@ -41,63 +30,9 @@ output:
 The robotstxt package provides functions to download and parse robots.txt files. 
 Ultimatly the package makes it easy to check if bots (spiders, scrapers, ...) are allowed to access specific resources on a domain. 
 
+**Bugs and Issues:** Please report any issues or bugs to https://github.com/ropenscilabs/robotstxt/issues
 
-
-**Installation and start - stable version**
-
-```{r, eval=FALSE}
-install.packages("robotstxt")
-library(robotstxt)
-```
-
-
-**Installation and start - development version**
-
-```{r, eval=FALSE}
-devtools::install_github("ropenscilabs/robotstxt")
-library(robotstxt)
-```
-
-
-**Robotstxt class documentation**
-
-```{r, eval=FALSE}
-?robotstxt
-```
-
-**Usage**
-
-```{r}
-library(robotstxt)
-
-paths_allowed(
-  paths  = c("/api/rest_v1/?doc", "/w/"), 
-  domain = "wikipedia.org", 
-  bot    = "*"
-)
-
-paths_allowed(
-  paths = c(
-    "https://wikipedia.org/api/rest_v1/?doc", 
-    "https://wikipedia.org/w/"
-  )
-)
-```
-
-... or use it that way ...
-
-```{r}
-library(robotstxt)
-
-rtxt <- robotstxt(domain = "wikipedia.org")
-rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
-```
-
-
-**More information**
-
-[vignette](http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
-
+**Citation:** Get citation information for `robotstxt` via executing `citation(package = 'robotstxt')` within R
 
 
 **Contribution - AKA The-Think-Twice-Be-Nice-Rule**
@@ -129,11 +64,66 @@ opening an issue or contacting one or more of the project maintainers.
 http://contributor-covenant.org/version/1/0/0/
 
 
-## Meta
 
-* Please [report any issues or bugs](https://github.com/ropenscilabs/robotstxt/issues).
-* License: MIT
-* Get citation information for `robotstxt` in R doing `citation(package = 'robotstxt')`
+## Installation
 
-[![rofooter](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+**Installation and start - stable version**
+
+```{r, eval=FALSE}
+install.packages("robotstxt")
+library(robotstxt)
+```
+
+
+**Installation and start - development version**
+
+```{r, eval=FALSE}
+devtools::install_github("ropenscilabs/robotstxt")
+library(robotstxt)
+```
+
+
+
+## Usage
+
+**Robotstxt class documentation**
+
+```{r, eval=FALSE}
+?robotstxt
+```
+
+
+Simple path access right checking ... 
+
+```{r}
+library(robotstxt)
+
+paths_allowed(
+  paths  = c("/api/rest_v1/?doc", "/w/"), 
+  domain = "wikipedia.org", 
+  bot    = "*"
+)
+
+paths_allowed(
+  paths = c(
+    "https://wikipedia.org/api/rest_v1/?doc", 
+    "https://wikipedia.org/w/"
+  )
+)
+```
+
+... or use it that way ...
+
+```{r}
+library(robotstxt)
+
+rtxt <- robotstxt(domain = "wikipedia.org")
+rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
+```
+
+
+## More information
+
+[Have a look at the vignette at http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html ](http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
+
 
