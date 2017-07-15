@@ -4,7 +4,7 @@
 \alias{robotstxt}
 \title{Generate a representations of a robots.txt file}
 \usage{
-robotstxt(domain = NULL, text = NULL)
+robotstxt(domain = NULL, text = NULL, user_agent = NULL)
 }
 \arguments{
 \item{domain}{Domain for which to genarate a representation. If text equals to NULL,

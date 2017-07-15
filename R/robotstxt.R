@@ -53,45 +53,50 @@
 #' rt$check( paths = c("/", "forbidden"), bot="*")
 #' }
 #'
-robotstxt <- function(domain=NULL, text=NULL) {
-  ## check input
-  self <- list()
-  if (is.null(domain)) {
-    self$domain <- NA
-  }
-  if (!is.null(text)){
-    self$text <- text
-    if(!is.null(domain)){
-      self$domain <- domain
+robotstxt <-
+  function(
+    domain     = NULL,
+    text       = NULL,
+    user_agent = NULL
+  ) {
+    ## check input
+    self <- list()
+    if (is.null(domain)) {
+      self$domain <- NA
     }
-  }else{
-    if(!is.null(domain)){
-      self$domain <- domain
-      self$text   <- get_robotstxt(domain)
+    if (!is.null(text)){
+      self$text <- text
+      if(!is.null(domain)){
+        self$domain <- domain
+      }
     }else{
-      stop("robotstxt: I need text to initialize.")
+      if(!is.null(domain)){
+        self$domain <- domain
+        self$text   <- get_robotstxt(domain, user_agent = user_agent)
+      }else{
+        stop("robotstxt: I need text to initialize.")
+      }
     }
+    ## fill fields with default data
+
+    tmp <- parse_robotstxt(self$text)
+    self$bots        <- tmp$useragents
+    self$comments    <- tmp$comments
+    self$permissions <- tmp$permissions
+    self$crawl_delay <- tmp$crawl_delay
+    self$host        <- tmp$host
+    self$sitemap     <- tmp$sitemap
+    self$other       <- tmp$other
+
+    self$check <-
+      function(paths="/", bot="*"){
+        sapply(paths, path_allowed, permissions=self$permissions, bot=bot)
+      }
+
+    # return
+    class(self) <- "robotstxt"
+    return(self)
   }
-  ## fill fields with default data
-
-  tmp <- parse_robotstxt(self$text)
-  self$bots        <- tmp$useragents
-  self$comments    <- tmp$comments
-  self$permissions <- tmp$permissions
-  self$crawl_delay <- tmp$crawl_delay
-  self$host        <- tmp$host
-  self$sitemap     <- tmp$sitemap
-  self$other       <- tmp$other
-
-  self$check <-
-    function(paths="/", bot="*"){
-      sapply(paths, path_allowed, permissions=self$permissions, bot=bot)
-    }
-
-  # return
-  class(self) <- "robotstxt"
-  return(self)
-}
 
 
 #' printing robotstxt_text

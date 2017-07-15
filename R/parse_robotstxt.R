@@ -1,6 +1,35 @@
 #' get_robotstxt() cache
 rt_cache <- new.env(parent=emptyenv())
 
+
+
+#' get_robotstxt() worker function to execut HTTP request
+#'
+#' @inheritParams get_robotstxt
+
+get_robotstxt_http_get <-
+  function(domain, user_agent = NULL){
+    if ( !is.null(user_agent) ) {
+      # with user agent
+      request <-
+        httr::GET(
+          url    = paste0(domain, "/robots.txt"),
+          config =
+            httr::add_headers(
+              "user-agent" = user_agent
+            )
+        )
+    }else{
+      # without user agent
+      request <-
+        httr::GET(
+          url    = paste0(domain, "/robots.txt")
+        )
+    }
+  }
+
+
+
 #' downloading robots.txt file
 #'
 #' @param domain domain from which to download robots.txt file
@@ -8,13 +37,15 @@ rt_cache <- new.env(parent=emptyenv())
 #' @param force if TRUE instead of using possible cached results te function will
 #'              re-download the robotstxt file
 #'   HTTP resposne status 404. If this happens,
+#'
 #' @export
 
 get_robotstxt <-
   function(
     domain,
-    warn    = TRUE,
-    force   = FALSE
+    warn       = TRUE,
+    force      = FALSE,
+    user_agent = NULL
   ){
 
   # pre checking input
@@ -24,11 +55,26 @@ get_robotstxt <-
 
   # get data from cache or do download
   if( force ){
-    request <- httr::GET(paste0(domain, "/robots.txt"))
+
+    request <-
+      get_robotstxt_http_get(
+        domain     = domain,
+        user_agent = user_agent
+      )
+
   }else if ( !is.null(rt_cache[[domain]]) ) {
-    request <- rt_cache[[domain]]
+
+    request <-
+      rt_cache[[domain]]
+
   }else if ( is.null(rt_cache[[domain]]) ){
-    request <- httr::GET(paste0(domain, "/robots.txt"))
+
+    request <-
+      get_robotstxt_http_get(
+        domain     = domain,
+        user_agent = user_agent
+      )
+
   }
 
   # ok
