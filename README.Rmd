@@ -15,7 +15,7 @@ output:
 ![](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/robotstxt.png)
 <a href="https://travis-ci.org/ropenscilabs/robotstxt"><img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"></a>
 <a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a>
-<img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
+<img src="https://cranlogs.r-pkg.org/badges/robotstxt">
 
 [![rofooter](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
 

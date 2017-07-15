@@ -1,7 +1,13 @@
 NEWS robotstxt
 ==========================================================================
 
-0.3.3 | 2017-07-08
+0.4.0 | 2017-07-14
+--------------------------------------------------------------------------
+
+- user_agent parameter added to tobotstxt() and paths_allowed to allow for user defined HTTP user-agent send when retrieving robots.txt file from domain
+
+
+0.3.4 | 2017-07-08
 --------------------------------------------------------------------------
 
 - fix : non robots.txt files (e.g. html files returned by server instead of 
