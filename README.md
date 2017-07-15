@@ -7,7 +7,7 @@ Peter Meißner
 
 ![](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/robotstxt.png)
 <a href="https://travis-ci.org/ropenscilabs/robotstxt"><img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"></a>
-<a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a>
+<a href="https://cran.r-project.org/package=robotstxt"><img src="https://www.r-pkg.org/badges/version/robotstxt"></a>
 <img src="https://cranlogs.r-pkg.org/badges/robotstxt">
 
 [![rofooter](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
@@ -53,7 +53,7 @@ from the project team.
 opening an issue or contacting one or more of the project maintainers.
 > 
 > This Code of Conduct is adapted from the Contributor Covenant 
-(http:contributor-covenant.org), version 1.0.0, available at 
+(http://contributor-covenant.org), version 1.0.0, available at 
 http://contributor-covenant.org/version/1/0/0/
 
 
@@ -137,6 +137,6 @@ rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
 
 ## More information
 
-[Have a look at the vignette at http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html ](http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
+[Have a look at the vignette at https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html ](http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
 
 
