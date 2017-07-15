@@ -4,7 +4,8 @@
 \alias{paths_allowed}
 \title{check if a bot has permissions to access page(s)}
 \usage{
-paths_allowed(paths = "/", domain = "auto", bot = "*")
+paths_allowed(paths = "/", domain = "auto", bot = "*",
+  user_agent = NULL)
 }
 \arguments{
 \item{paths}{paths for which to check bot's permission, defaults to "/"}
@@ -15,6 +16,9 @@ argument. Note however, that these are educated guesses which might utterly
 fail. To be on the save side, provide appropriate domains manually.}
 
 \item{bot}{name of the bot, defaults to "*"}
+
+\item{user_agent}{HTTP user-agent string to be used to retireve robots.txt file
+from domain}
 }
 \description{
 wrapper to \code{\link{path_allowed}}

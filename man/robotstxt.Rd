@@ -12,6 +12,9 @@ the function will download the file from server - the default.}
 
 \item{text}{If automatic download of the robots.txt is not prefered, the text can be
 supplied directly.}
+
+\item{user_agent}{HTTP user-agent string to be used to retireve robots.txt file
+from domain}
 }
 \value{
 Object (list) of class robotstxt with parsed data from a

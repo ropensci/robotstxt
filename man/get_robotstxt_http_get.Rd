@@ -8,6 +8,9 @@ get_robotstxt_http_get(domain, user_agent = NULL)
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}
+
+\item{user_agent}{HTTP user-agent string to be used to retireve robots.txt file
+from domain}
 }
 \description{
 get_robotstxt() worker function to execut HTTP request

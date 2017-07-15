@@ -10,6 +10,7 @@
 #' the function will download the file from server - the default.
 #' @param text If automatic download of the robots.txt is not prefered, the text can be
 #' supplied directly.
+#' @inheritParams get_robotstxt
 #'
 #' @export
 #'

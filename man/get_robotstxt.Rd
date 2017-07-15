@@ -12,8 +12,11 @@ get_robotstxt(domain, warn = TRUE, force = FALSE, user_agent = NULL)
 \item{warn}{warn about being unable to download domain/robots.txt because of}
 
 \item{force}{if TRUE instead of using possible cached results te function will
-           re-download the robotstxt file
+re-download the robotstxt file
 HTTP resposne status 404. If this happens,}
+
+\item{user_agent}{HTTP user-agent string to be used to retireve robots.txt file
+from domain}
 }
 \description{
 downloading robots.txt file
