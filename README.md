@@ -137,6 +137,6 @@ rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
 
 ## More information
 
-[Have a look at the vignette at https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html ](http://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
+[Have a look at the vignette at https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html ](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
 
 
