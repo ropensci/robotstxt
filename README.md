@@ -9,8 +9,8 @@ Peter Meißner
 <a href="https://travis-ci.org/ropenscilabs/robotstxt"><img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"></a>
 <a href="https://cran.r-project.org/package=robotstxt"><img src="https://www.r-pkg.org/badges/version/robotstxt"></a>
 <img src="https://cranlogs.r-pkg.org/badges/robotstxt">
+[![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25)
 
-[![rofooter](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
 
 **Author:** Peter Meißner
 
@@ -140,3 +140,4 @@ rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
 [Have a look at the vignette at https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html ](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
 
 
+[![ropensci\_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
