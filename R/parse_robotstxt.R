@@ -224,7 +224,24 @@ rt_get_fields_worker <- function(txt, type="all", regex=NULL, invert=FALSE){
 #' @param invert invert selection made via regex?
 #' @keywords internal
 rt_get_fields <- function(txt, regex="", invert=FALSE){
-  txt_parts   <- unlist( stringr::str_split( stringr::str_replace(stringr::str_replace_all(paste0(txt, collapse = "\n"), "#.*?\n",""),"^\n",""), "\n[ \t]*\n" ) )
+  txt_parts   <-
+    unlist(
+      stringr::str_split(
+          stringr::str_replace(
+            stringr::str_replace_all(
+              paste0(
+                txt,
+                collapse = "\n"
+              ),
+              "#.*?\n",
+              ""
+            ),
+            "^\n",
+            ""
+          ),
+        "\n[ \t]*\n"
+      )
+    )
   useragents  <- lapply(txt_parts, rt_get_useragent)
   for(i in seq_along(useragents)){
     if( length(useragents[[i]])==0 ){
