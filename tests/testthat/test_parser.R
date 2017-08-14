@@ -22,6 +22,8 @@ rtxt_wp      <- rt_get_rtxt("robots_wikipedia.txt")
 rtxt_cd      <- rt_get_rtxt("crawl_delay.txt")
 rtxt_host    <- rt_get_rtxt("host.txt")
 rtxt_fb_nsp  <- rt_get_rtxt("robots_facebook_unsupported.txt")
+rtxt_cdc     <- rt_get_rtxt("robots_cdc.txt")
+rtxt_cdc2    <- paste(rt_get_rtxt("robots_cdc2.txt"), collapse = "\r\n")
 
 test_that(
   "all robots.txt files are valid", {
@@ -111,6 +113,10 @@ test_that(
     expect_false(
       is_valid_robotstxt( rtxt_fb_nsp )
     )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_cdc )
+    )
   })
 
 
@@ -191,6 +197,20 @@ test_that(
   }
 )
 
+
+context("cdc gets parsed correctly")
+
+test_that(
+  "cdc gets parsed correctly", {
+    expect_true(
+      nrow(parse_robotstxt(rtxt_cdc)$permissions) == 23
+    )
+
+    expect_true(
+      nrow(parse_robotstxt(rtxt_cdc2)$permissions) == 23
+    )
+  }
+)
 
 
 
