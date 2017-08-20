@@ -1,5 +1,5 @@
 #' get_robotstxt() cache
-rt_cache <- new.env(parent=emptyenv())
+rt_cache <- new.env( parent = emptyenv() )
 
 
 
@@ -249,33 +249,43 @@ rt_get_fields_worker <- function(txt, type="all", regex=NULL, invert=FALSE){
 #' @param regex regular expression specify field
 #' @param invert invert selection made via regex?
 #' @keywords internal
-rt_get_fields <- function(txt, regex="", invert=FALSE){
-  txt_parts   <-
-    unlist(
-      stringr::str_split(
-          stringr::str_replace(
-            stringr::str_replace_all(
-              paste0(
-                txt,
-                collapse = "\n"
-              ),
-              "#.*?\n",
-              ""
-            ),
-            "^\n",
-            ""
-          ),
-        "\n[ \t]*\n"
-      )
+rt_get_fields <- function(txt, regex = "", invert = FALSE){
+
+  # split into text-parts to do all processing on
+  txt_parts <-
+    txt %>%
+    stringr::str_replace_all("\r\n", "\n") %>%
+    paste0(collapse = "\n") %>%
+    stringr::str_replace_all( pattern = "#.*?\n", replacement = "") %>%
+    stringr::str_replace(pattern = "^\n", replacement = "") %>%
+    stringr::str_split("\n[ \t]*\n") %>%
+    unlist()
+
+
+  # get user agents per text-part
+  useragents  <-
+    lapply(
+      X   = txt_parts,
+      FUN = rt_get_useragent
     )
-  useragents  <- lapply(txt_parts, rt_get_useragent)
+
   for(i in seq_along(useragents)){
-    if( length(useragents[[i]])==0 ){
+    if( length(useragents[[i]]) == 0 ){
       useragents[[i]] <- "*"
     }
   }
-  fields      <- lapply(txt_parts, rt_get_fields_worker, regex=regex, invert=invert)
-  df          <- data.frame()
+
+  # get fields per part
+  fields  <-
+    lapply(
+      X      = txt_parts,
+      FUN    = rt_get_fields_worker,
+      regex  = regex,
+      invert = invert
+    )
+
+  # put together user-agents and fields per text-part
+  df <- data.frame()
   for ( i in seq_along(txt_parts) ){
     df <-
       rbind(
@@ -286,16 +296,19 @@ rt_get_fields <- function(txt, regex="", invert=FALSE){
         )
       )
   }
+
   # getting df right
   names(df)    <- c("useragent", "field", "value")
   df <- df[,c("field", "useragent", "value")]
   rownames(df) <- NULL
+
   # ensuring chracter columns
   for( i in seq_len(dim(df)[2]) ){
-    if( class(df[,i])=="factor" ){
+    if( class(df[,i]) == "factor" ){
       df[,i] <- as.character(df[,i])
     }
   }
+
   # return
   return(df)
 }

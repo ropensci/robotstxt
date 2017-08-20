@@ -1,8 +1,8 @@
 Package: robotstxt
-Date: 2017-07-15
+Date: 2017-08-20
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: c(
         person(
           "Peter", "Meissner", role = c("aut", "cre"),
@@ -13,7 +13,7 @@ Authors@R: c(
 	      )
 Description: Provides functions to download and parse 'robots.txt' files.
         Ultimately the package makes it easy to check if bots
-        (spiders, scrapers, ...) are allowed to access specific
+        (spiders, crawler, scrapers, ...) are allowed to access specific
         resources on a domain.
 License: MIT + file LICENSE
 LazyData: TRUE
@@ -21,7 +21,8 @@ BugReports: https://github.com/ropenscilabs/robotstxt/issues
 URL: https://github.com/ropenscilabs/robotstxt
 Imports:
     stringr (>= 1.0.0),
-    httr (>= 1.0.0)
+    httr (>= 1.0.0),
+    magrittr
 Suggests:
     knitr,
     rmarkdown,

@@ -2,8 +2,10 @@
 
 S3method(print,robotstxt)
 S3method(print,robotstxt_text)
+export("%>%")
 export(get_robotstxt)
 export(is_valid_robotstxt)
 export(parse_robotstxt)
 export(paths_allowed)
 export(robotstxt)
+importFrom(magrittr,"%>%")

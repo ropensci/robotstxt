@@ -1,11 +1,22 @@
+
 library(robotstxt)
 
-user_agent <-
-  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
 
-robotstxt("facebook.com", user_agent = user_agent)
+txt <- get_robotstxt("www.cdc.gov")
+
+txt <- get_robotstxt("wikipedia.org")
+
+paths_allowed("/asthma/asthma_stats/default.htm", "www.cdc.gov")
 
 
-paths_allowed("/", "https://facebook.com/", bot = "*")
+rtxt <-
+  robotstxt(
+    domain     = "www.cdc.gov"
+  )
 
-paths_allowed("/", "https://facebook.com/", bot = "*", user_agent = user_agent)
+rtxt$text
+rtxt$permissions
+
+
+
+
