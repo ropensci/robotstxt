@@ -199,22 +199,48 @@ rt_get_comments <- function(txt){
 #' @param invert field selection
 #' @keywords internal
 rt_get_fields_worker <- function(txt, type="all", regex=NULL, invert=FALSE){
-  if( all(txt == "") | all(!grepl(":",txt)) ) return(data.frame(field="", value="")[NULL,])
-  txt_vec   <- unlist(stringr::str_split(txt, "\n"))
+
+  # handle empty file or no fields at all
+  # (--> return empty data.frame)
+  if( all(txt == "") | all(!grepl(":",txt)) ){
+    return(data.frame(field="", value="")[NULL,])
+  }
+
+  # split lines int ovector elements
+  txt_vec   <- unlist(stringr::str_split(txt, "\r*\n"))
+
+  # filter for fields ( ^= not a comment)
   fields    <- grep("(^[ \t]{0,2}[^#]\\w.*)", txt_vec, value=TRUE)
-  fields    <- data.frame(do.call(rbind, stringr::str_split(fields, ":", n=2)), stringsAsFactors = FALSE)
+
+  # split by ":" to get field_name, field_vlue pairs
+  fields    <-
+    data.frame(
+      do.call(
+        rbind,
+        stringr::str_split(fields, ":", n=2)
+      ),
+      stringsAsFactors = FALSE
+    )
   names(fields) <- c("field", "value")
+
+  # some post processing and cleaning
   fields$value <- stringr::str_trim(fields$value)
   fields$field <- stringr::str_trim(fields$field)
-  # subset by regex
+
+  # subset fields by regex
   if ( !is.null(regex) ){
     fields <- fields[ grep(regex, fields$field, invert=invert, ignore.case=TRUE) ,]
   }
+
+  # subset by type
   if ( all(type == "all") ){
-    return(fields)
+    # do nothing
   }else{
-    return( fields[ tolower(fields$field) %in% tolower(type) ,] )
+    fields <- fields[ tolower(fields$field) %in% tolower(type) ,]
   }
+
+  # return
+  return(fields)
 }
 
 
