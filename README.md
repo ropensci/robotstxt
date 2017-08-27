@@ -1,22 +1,38 @@
 
-Meta
-----
+A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
+-------------------------------------------------------------------------
 
-![](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/robotstxt.png) <a href="https://travis-ci.org/ropenscilabs/robotstxt"><img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"></a> <a href="https://cran.r-project.org/package=robotstxt"><img src="https://www.r-pkg.org/badges/version/robotstxt"></a> <img src="https://cranlogs.r-pkg.org/badges/robotstxt"> [![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25)
+**Status**
 
-**Author:** Peter Meißner
+*lines of R code:* 455, *lines of test code:* 361
 
-**Contributer:** Oliver Keys (code review and improvements), Rich FitzJohn (code review and improvements)
+<a href="https://travis-ci.org/petermeissner/robotstxt"> <img src="https://api.travis-ci.org/petermeissner/robotstxt.svg?branch=master"> <a/> <a href="https://cran.r-project.org/package=robotstxt"> <img src="http://www.r-pkg.org/badges/version/robotstxt"> </a> [![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25) [![codecov](https://codecov.io/gh/petermeissner/robotstxt/branch/master/graph/badge.svg)](https://codecov.io/gh/petermeissner/robotstxt/tree/master/R) <img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt"> <img src="http://cranlogs.r-pkg.org/badges/robotstxt">
 
-**Licence:** MIT
+[![ropensci\_footer](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
 
-**Description:**
+**Development version**
 
-The robotstxt package provides functions to download and parse robots.txt files. Ultimatly the package makes it easy to check if bots (spiders, scrapers, ...) are allowed to access specific resources on a domain.
+0.4.1 - 2017-08-20 / 04:29:23
 
-**Bugs and Issues:** Please report any issues or bugs to <https://github.com/ropenscilabs/robotstxt/issues>
+**Description**
 
-**Citation:** Get citation information for `robotstxt` via executing `citation(package = 'robotstxt')` within R
+Provides functions to download and parse 'robots.txt' files. Ultimately the package makes it easy to check if bots (spiders, crawler, scrapers, ...) are allowed to access specific resources on a domain.
+
+**License**
+
+MIT + file LICENSE <br>Peter Meissner \[aut, cre\], Oliver Keys \[ctb\], Rich Fitz John \[ctb\]
+
+**Citation**
+
+``` r
+citation("robotstxt")
+```
+
+**BibTex for citing**
+
+``` r
+toBibtex(citation("robotstxt"))
+```
 
 **Contribution - AKA The-Think-Twice-Be-Nice-Rule**
 
@@ -70,20 +86,16 @@ paths_allowed(
   domain = "wikipedia.org", 
   bot    = "*"
 )
-```
+## [1]  TRUE FALSE
 
-    ## [1]  TRUE FALSE
-
-``` r
 paths_allowed(
   paths = c(
     "https://wikipedia.org/api/rest_v1/?doc", 
     "https://wikipedia.org/w/"
   )
 )
+## [1]  TRUE FALSE
 ```
-
-    ## [1]  TRUE FALSE
 
 ... or use it that way ...
 
@@ -92,14 +104,11 @@ library(robotstxt)
 
 rtxt <- robotstxt(domain = "wikipedia.org")
 rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
+## /api/rest_v1/?doc               /w/ 
+##              TRUE             FALSE
 ```
-
-    ## /api/rest_v1/?doc               /w/ 
-    ##              TRUE             FALSE
 
 More information
 ----------------
 
 [Have a look at the vignette at https://cran.r-project.org/package=robotstxt/vignettes/using\_robotstxt.html](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
-
-[![ropensci\_footer](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)

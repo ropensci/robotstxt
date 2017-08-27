@@ -4,7 +4,7 @@ NEWS robotstxt
 0.4.1 | 2017-08-20
 --------------------------------------------------------------------------
 
-- fix : parsing would go bonkers for robots.txt of cdc.gov (e.g. combining all robots with all permissions)
+- fix : parsing would go bonkers for robots.txt of cdc.gov (e.g. combining all robots with all permissions) due to errornous handling of carriage return character
 
 
 
