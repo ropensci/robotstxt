@@ -11,7 +11,7 @@
 #' @keywords internal
 
 path_allowed <- function(permissions, path="/", bot="*"){
-  # checking and initializetion
+  # checking and initialization
   stopifnot(length(bot)==1)
   if( is.null(bot) | bot=="" | is.na(bot) ) bot <- "*"
   perm_sanitized <- sanitize_permissions(permissions)

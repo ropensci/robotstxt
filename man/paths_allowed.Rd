@@ -17,7 +17,7 @@ fail. To be on the save side, provide appropriate domains manually.}
 
 \item{bot}{name of the bot, defaults to "*"}
 
-\item{user_agent}{HTTP user-agent string to be used to retireve robots.txt file
+\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
 from domain}
 }
 \description{

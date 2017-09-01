@@ -2,7 +2,7 @@
 % Please edit documentation in R/rt_get_comments.R
 \name{rt_get_comments}
 \alias{rt_get_comments}
-\title{extrcting comments from robots.txt}
+\title{extracting comments from robots.txt}
 \usage{
 rt_get_comments(txt)
 }
@@ -10,6 +10,6 @@ rt_get_comments(txt)
 \item{txt}{content of the robots.txt file}
 }
 \description{
-extrcting comments from robots.txt
+extracting comments from robots.txt
 }
 \keyword{internal}

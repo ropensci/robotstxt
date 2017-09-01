@@ -2,10 +2,10 @@
 #'
 #' @param domain domain from which to download robots.txt file
 #' @param warn warn about being unable to download domain/robots.txt because of
-#' @param force if TRUE instead of using possible cached results te function will
+#' @param force if TRUE instead of using possible cached results the function will
 #'              re-download the robotstxt file
-#'              HTTP resposne status 404. If this happens,
-#' @param user_agent HTTP user-agent string to be used to retireve robots.txt file
+#'              HTTP response status 404. If this happens,
+#' @param user_agent HTTP user-agent string to be used to retrieve robots.txt file
 #'   from domain
 #'
 #' @export

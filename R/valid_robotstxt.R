@@ -1,6 +1,6 @@
-#' function that checks if file is valid / parseable robots.txt file
+#' function that checks if file is valid / parsable robots.txt file
 #'
-#' @param text content of a robots.txt file rovides as character vector
+#' @param text content of a robots.txt file provides as character vector
 #' @export
 #'
 is_valid_robotstxt <- function(text){

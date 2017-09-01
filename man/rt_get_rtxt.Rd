@@ -11,6 +11,6 @@ rt_get_rtxt(name = sample(rt_list_rtxt(), 1))
 }
 \description{
 load robots.txt files saved along with the package:
-these functions ar very handy for testing (not used otherwise)
+these functions are very handy for testing (not used otherwise)
 }
 \keyword{internal}

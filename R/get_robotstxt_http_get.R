@@ -1,5 +1,5 @@
 
-#' get_robotstxt() worker function to execut HTTP request
+#' get_robotstxt() worker function to execute HTTP request
 #'
 #' @inheritParams get_robotstxt
 

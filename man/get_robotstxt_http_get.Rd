@@ -2,16 +2,16 @@
 % Please edit documentation in R/get_robotstxt_http_get.R
 \name{get_robotstxt_http_get}
 \alias{get_robotstxt_http_get}
-\title{get_robotstxt() worker function to execut HTTP request}
+\title{get_robotstxt() worker function to execute HTTP request}
 \usage{
 get_robotstxt_http_get(domain, user_agent = NULL)
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}
 
-\item{user_agent}{HTTP user-agent string to be used to retireve robots.txt file
+\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
 from domain}
 }
 \description{
-get_robotstxt() worker function to execut HTTP request
+get_robotstxt() worker function to execute HTTP request
 }

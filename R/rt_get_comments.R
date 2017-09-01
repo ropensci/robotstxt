@@ -1,5 +1,5 @@
 
-#' extrcting comments from robots.txt
+#' extracting comments from robots.txt
 #' @param txt content of the robots.txt file
 #' @keywords internal
 rt_get_comments <- function(txt){

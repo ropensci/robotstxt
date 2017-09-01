@@ -2,13 +2,13 @@
 % Please edit documentation in R/valid_robotstxt.R
 \name{is_valid_robotstxt}
 \alias{is_valid_robotstxt}
-\title{function that checks if file is valid / parseable robots.txt file}
+\title{function that checks if file is valid / parsable robots.txt file}
 \usage{
 is_valid_robotstxt(text)
 }
 \arguments{
-\item{text}{content of a robots.txt file rovides as character vector}
+\item{text}{content of a robots.txt file provides as character vector}
 }
 \description{
-function that checks if file is valid / parseable robots.txt file
+function that checks if file is valid / parsable robots.txt file
 }
