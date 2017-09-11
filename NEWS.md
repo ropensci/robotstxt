@@ -1,31 +1,27 @@
 NEWS robotstxt
 ==========================================================================
 
+
 0.4.1 | 2017-08-20
 --------------------------------------------------------------------------
 
-- restructure : put each function in separate file
-- fix : parsing would go bonkers for robots.txt of cdc.gov (e.g. combining all robots with all permissions) due to errornous handling of carriage return character
-
+- **restructure** : put each function in separate file
+- **fix** : parsing would go bonkers for robots.txt of cdc.gov (e.g. combining all robots with all permissions) due to errornous handling of carriage return character (reported by @hrbrmstr - thanks)
 
 
 
 0.4.0 | 2017-07-14
 --------------------------------------------------------------------------
 
-- user_agent parameter added to tobotstxt() and paths_allowed to allow for user defined HTTP user-agent send when retrieving robots.txt file from domain
-
+- **user_agent** parameter **added** to tobotstxt() and paths_allowed to allow for user defined HTTP user-agent send when retrieving robots.txt file from domain
 
 
 
 0.3.4 | 2017-07-08
 --------------------------------------------------------------------------
 
-- fix : non robots.txt files (e.g. html files returned by server instead of 
-the requested robots.txt / facebook.com) would be handled as if it were non 
-existent / empty files 
-- fix : UTF-8 encoded robots.txt with BOM (byte order mark) would break parsing
-although files were otherwise valid robots.txt files
+- **fix** : non robots.txt files (e.g. html files returned by server instead of the requested robots.txt / facebook.com) would be handled as if it were non existent / empty files (reported by @simonmunzert - thanks)
+- **fix** : UTF-8 encoded robots.txt with BOM (byte order mark) would break parsing although files were otherwise valid robots.txt files
 
 
 
