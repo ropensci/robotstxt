@@ -5,7 +5,8 @@
 \title{check if a bot has permissions to access page(s)}
 \usage{
 paths_allowed(paths = "/", domain = "auto", bot = "*",
-  user_agent = NULL)
+  user_agent = NULL, check_method = c("robotstxt", "spiderbar"),
+  warn = TRUE, force = FALSE)
 }
 \arguments{
 \item{paths}{paths for which to check bot's permission, defaults to "/"}
@@ -19,6 +20,15 @@ fail. To be on the save side, provide appropriate domains manually.}
 
 \item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
 from domain}
+
+\item{check_method}{which method to use for checking -- either robotstxt for
+the package's own method or spiderbar for using spiderbar::can_fetch}
+
+\item{warn}{warn about being unable to download domain/robots.txt because of}
+
+\item{force}{if TRUE instead of using possible cached results the function will
+re-download the robotstxt file
+HTTP response status 404. If this happens,}
 }
 \description{
 wrapper to \code{\link{path_allowed}}

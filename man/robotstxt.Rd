@@ -4,7 +4,8 @@
 \alias{robotstxt}
 \title{Generate a representations of a robots.txt file}
 \usage{
-robotstxt(domain = NULL, text = NULL, user_agent = NULL)
+robotstxt(domain = NULL, text = NULL, user_agent = NULL, warn = TRUE,
+  force = FALSE)
 }
 \arguments{
 \item{domain}{Domain for which to generate a representation. If text equals to NULL,
@@ -15,6 +16,12 @@ supplied directly.}
 
 \item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
 from domain}
+
+\item{warn}{warn about being unable to download domain/robots.txt because of}
+
+\item{force}{if TRUE instead of using possible cached results the function will
+re-download the robotstxt file
+HTTP response status 404. If this happens,}
 }
 \value{
 Object (list) of class robotstxt with parsed data from a

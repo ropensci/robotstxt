@@ -27,7 +27,7 @@ path_allowed <- function(permissions, path="/", bot="*"){
   if( dim(perm_applicable)[1] > 0 ){
     perm_applicable <-
       perm_applicable[
-        sapply(perm_applicable$value, grepl, x=path),
+        sapply(perm_applicable$value, grepl, x = path),
         ]
   }
 
