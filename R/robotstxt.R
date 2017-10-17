@@ -56,26 +56,45 @@ robotstxt <-
   function(
     domain     = NULL,
     text       = NULL,
-    user_agent = NULL
+    user_agent = NULL,
+    warn       = TRUE,
+    force      = FALSE
   ) {
+
     ## check input
     self <- list()
+
     if (is.null(domain)) {
       self$domain <- NA
     }
+
     if (!is.null(text)){
+
       self$text <- text
       if(!is.null(domain)){
         self$domain <- domain
       }
+
     }else{
+
       if(!is.null(domain)){
+
         self$domain <- domain
-        self$text   <- get_robotstxt(domain, user_agent = user_agent)
+        self$text   <-
+          get_robotstxt(
+            domain     = domain,
+            user_agent = user_agent,
+            warn       = warn,
+            force      = force
+          )
+
       }else{
+
         stop("robotstxt: I need text to initialize.")
+
       }
     }
+
     ## fill fields with default data
 
     tmp <- parse_robotstxt(self$text)

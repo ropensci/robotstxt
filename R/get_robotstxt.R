@@ -58,13 +58,6 @@ get_robotstxt <-
       if ( is_valid_robotstxt(rtxt) ){
         rt_cache[[domain]] <- request
       }else{
-        # give back a digest of the retrieved file
-        message(
-          "\n\n",
-          substring(paste(rtxt, collapse = "\n"), 1, 200),
-          "\n\n"
-        )
-
         # dump file
         fname_tmp <-
           tempfile(pattern = "robots_", fileext = ".txt")
@@ -75,14 +68,25 @@ get_robotstxt <-
           useBytes = TRUE
         )
 
-        # stop
-        stop(
-          paste(
-            "get_robotstxt(): the thing retrieved does not seem to be a valid robots.txt.",
-            "file dumpend to:",
-            fname_tmp
+        # give back a digest of the retrieved file
+        if(warn){
+          message(
+            "\n\n",
+            "[domain] ", domain, " --> ", fname_tmp,
+            "\n\n",
+            substring(paste(rtxt, collapse = "\n"), 1, 200),"\n", "[...]",
+            "\n\n"
           )
-        )
+        }
+
+
+        # found file but could not parse it - can happen, everything is allowed
+        # --> treated as if there was no file
+          warning(paste0(
+            "get_robotstxt(): ",  domain, "; Not valid robots.txt."
+          ))
+        rtxt <- ""
+        rt_cache[[domain]] <- request
       }
     }
 
@@ -90,9 +94,7 @@ get_robotstxt <-
     if( request$status == 404 ){
       if(warn){
         warning(paste0(
-          "get_robotstxt(): could not get robots.txt from domain: ",
-          domain,
-          " HTTP status: 404"
+          "get_robotstxt(): ",  domain, "; HTTP status: ",  request$status
         ))
       }
       rtxt <- ""
@@ -102,10 +104,7 @@ get_robotstxt <-
     # not ok - diverse
     if( !(request$status == 404 | request$status < 400) ){
       stop(paste0(
-        "get_robotstxt(): could not get robots.txt from domain: ",
-        domain,
-        "; HTTP status: ",
-        request$status
+        "get_robotstxt(): ",  domain, "; HTTP status: ",  request$status
       ))
     }
     # return
