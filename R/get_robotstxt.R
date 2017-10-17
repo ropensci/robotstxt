@@ -13,9 +13,10 @@
 get_robotstxt <-
   function(
     domain,
-    warn       = TRUE,
-    force      = FALSE,
-    user_agent = NULL
+    warn           = TRUE,
+    force          = FALSE,
+    user_agent     = NULL,
+    ssl_verifypeer = c(1,0)
   ){
 
     # pre checking input
@@ -28,8 +29,9 @@ get_robotstxt <-
 
       request <-
         get_robotstxt_http_get(
-          domain     = domain,
-          user_agent = user_agent
+          domain         = domain,
+          user_agent     = user_agent,
+          ssl_verifypeer = ssl_verifypeer[1]
         )
 
     }else if ( !is.null(rt_cache[[domain]]) ) {
@@ -42,7 +44,8 @@ get_robotstxt <-
       request <-
         get_robotstxt_http_get(
           domain     = domain,
-          user_agent = user_agent
+          user_agent = user_agent,
+          ssl_verifypeer = ssl_verifypeer[1]
         )
 
     }
