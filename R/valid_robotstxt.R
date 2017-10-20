@@ -14,9 +14,9 @@ is_valid_robotstxt <- function(text){
         useBytes = TRUE
       )   |
       # - spaces followed by letter(s) followed by a double dot (somewhere)
-      grepl("^(\xef\xbb\xbf)*(\\s*\\w.*:)", text) |
+      grepl("^(\xef\xbb\xbf)*(\\s*\\w.*:)", text, useBytes = TRUE) |
       # - spaces only or empty line
-      grepl("^(\xef\xbb\xbf)*(\\s)*$", text)
+      grepl("^(\xef\xbb\xbf)*(\\s)*$", text, useBytes = TRUE)
   )
 }
 
