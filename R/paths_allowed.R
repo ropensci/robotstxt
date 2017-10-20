@@ -7,23 +7,30 @@
 #'   fail. To be on the save side, provide appropriate domains manually.
 #' @param bot name of the bot, defaults to "*"
 #' @param paths paths for which to check bot's permission, defaults to "/"
-#' @param check_method which method to use for checking -- either robotstxt for
-#'                     the package's own method or spiderbar for using spiderbar::can_fetch
+#' @param check_method which method to use for checking -- either
+#'                     "robotstxt" for the package's own method or "spiderbar"
+#'                     for using spiderbar::can_fetch
+#' @param robotstxt_list either NULL -- the default -- or a list of character
+#'                       vectors with one vector per path to check
 #'
 #' @inheritParams get_robotstxt
+#' @inheritParams get_robotstxts
 #'
 #' @seealso \link{path_allowed}
 #'
 #' @export
 paths_allowed <-
   function(
-    paths        = "/",
-    domain       = "auto",
-    bot          = "*",
-    user_agent   = NULL,
-    check_method = c("spiderbar", "robotstxt"),
-    warn         = TRUE,
-    force        = FALSE
+    paths          = "/",
+    domain         = "auto",
+    bot            = "*",
+    user_agent     = sessionInfo()$R.version$version.string,
+    check_method   = c("spiderbar", "robotstxt"),
+    warn           = TRUE,
+    force          = FALSE,
+    ssl_verifypeer = c(1,0),
+    use_futures    = TRUE,
+    robotstxt_list = NULL
   ){
 
     # process inputs
@@ -32,29 +39,54 @@ paths_allowed <-
       paths  <- remove_domain(paths)
     }
 
-    if( length(unique(domain))==1 ){
-      domain <- domain[1]
+    # get robots.txt files
+    if( is.null(robotstxt_list) ){
+      robotstxt_list <-
+        get_robotstxts(
+          domain,
+          warn           = warn,
+          force          = force,
+          user_agent     = user_agent,
+          ssl_verifypeer = ssl_verifypeer,
+          use_futures    = use_futures
+        )
+      names(robotstxt_list) <- domain
     }
-
 
     # check paths
     res <-
       if ( check_method[1] == "spiderbar"){
 
         paths_allowed_worker_spiderbar(
-          user_agent = user_agent,
-          domain     = domain,
-          bot        = bot,
-          paths      = paths
+          domain         = domain,
+          bot            = bot,
+          paths          = paths,
+          robotstxt_list = robotstxt_list
         )
 
       } else {
 
+        if( use_futures ){
+          permissions_list <-
+            future::future_lapply(
+              robotstxt_list,
+              function(x){robotstxt(text=x)$permissions}
+            )
+
+        }else{
+          permissions_list <-
+            lapply(
+              robotstxt_list,
+              function(x){robotstxt(text=x)$permissions}
+            )
+
+        }
+
         paths_allowed_worker_robotstxt(
-          user_agent = user_agent,
-          domain     = domain,
-          bot        = bot,
-          paths      = paths
+          domain           = domain,
+          bot              = bot,
+          paths            = paths,
+          permissions_list = permissions_list
         )
 
       }
@@ -65,157 +97,26 @@ paths_allowed <-
   }
 
 
-#' paths_allowed_worker for robotstxt flavor
-#'
-#' @inheritParams paths_allowed
-#'
-
-paths_allowed_worker_robotstxt <-
-  function(
-    user_agent,
-    domain,
-    bot,
-    paths
-  ){
-    # get permissions
-    permissions <-
-      if ( length(user_agent) == 0 ) {
-
-        mapply(
-
-          FUN =
-            function(domain, user_agent){
-              robotstxt(
-                domain     = domain,
-                warn       = TRUE,
-                force      = FALSE
-              )$permissions
-            },
-
-          domain     = domain,
-
-          SIMPLIFY   = FALSE
-        )
-
-      }else{
-
-        mapply(
-
-          FUN =
-            function(domain, user_agent){
-              robotstxt(
-                domain     = domain,
-                user_agent = user_agent,
-                warn       = TRUE,
-                force      = FALSE
-              )$permissions
-            },
-
-          domain     = domain,
-          user_agent = user_agent,
-
-          SIMPLIFY   = FALSE
-        )
-
-      }
-
-
-    # apply permission checker to permission data
-    worker <-
-      function(path, permissions, bot, domain){
-        if( is.na(domain) ){
-          return(NA)
-        }else{
-          path_allowed(
-            permissions = permissions,
-            path        = path,
-            bot         = bot
-          )
-        }
-      }
-
-    tmp <-
-      mapply(
-        worker,
-        path        = paths,
-        permissions = permissions,
-        bot         = bot,
-        domain      = domain
-      )
-    names(tmp) <- NULL
-
-    # return
-    return(tmp)
-  }
 
 
 
-#' paths_allowed_worker spiderbar flavor
-#'
-#' @inheritParams paths_allowed
-#'
-paths_allowed_worker_spiderbar <-
-  function(
-    user_agent,
-    domain,
-    bot,
-    paths
-  ){
 
-    browser()
 
-    permissions <-
-      if ( length(user_agent) == 0 ) {
 
-        mapply(
 
-          FUN =
-            function(domain, user_agent){
-              robotstxt(
-                domain     = domain,
-                warn       = TRUE,
-                force      = FALSE
-              )$permissions
-            },
 
-          domain     = domain,
 
-          SIMPLIFY   = FALSE
-        )
 
-      }else{
 
-        mapply(
 
-          FUN =
-            function(domain, user_agent){
-              robotstxt(
-                domain     = domain,
-                user_agent = user_agent,
-                warn       = TRUE,
-                force      = FALSE
-              )$permissions
-            },
 
-          domain     = domain,
-          user_agent = user_agent,
 
-          SIMPLIFY   = FALSE
-        )
 
-      }
 
-    rbt_text <-
-      get_robotstxt(
-        domain     = domain[1],
-        user_agent = user_agent
-      )
 
-    spiderbar::can_fetch(
-      obj        = spiderbar::robxp(rbt_text),
-      path       = paths[1],
-      user_agent = bot
-    )
-  }
+
+
+
+
 
 

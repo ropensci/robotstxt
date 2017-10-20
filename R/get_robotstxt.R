@@ -15,7 +15,7 @@ get_robotstxt <-
     domain,
     warn           = TRUE,
     force          = FALSE,
-    user_agent     = NULL,
+    user_agent     = sessionInfo()$R.version$version.string,
     ssl_verifypeer = c(1,0)
   ){
 

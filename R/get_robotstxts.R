@@ -15,7 +15,7 @@ get_robotstxts <-
     domain,
     warn           = TRUE,
     force          = FALSE,
-    user_agent     = NULL,
+    user_agent     = sessionInfo()$R.version$version.string,
     ssl_verifypeer = c(1,0),
     use_futures    = FALSE
   ){
@@ -54,9 +54,21 @@ get_robotstxts <-
 
 
     # prepare execution of get_robotstxt()
-    apply_fun <- if ( isTRUE(use_futures) ) { future::future_lapply }else{ lapply }
+    apply_fun <-
+      if ( isTRUE(use_futures) ) {
+        future::future_lapply
+      } else {
+        lapply
+      }
+
     to_be_applied_fun <-
       function(x){
+
+        message(
+          paste("\r", x$domain, "                     "),
+          appendLF = FALSE
+        )
+
         get_robotstxt(
           domain         = x$domain,
           warn           = x$warn,
@@ -64,6 +76,7 @@ get_robotstxts <-
           user_agent     = x$user_agent,
           ssl_verifypeer = x$ssl_verifypeer
         )
+
       }
 
     # execute get_robotstxt to parameter grid
@@ -72,6 +85,8 @@ get_robotstxts <-
         parameter_list,
         FUN = to_be_applied_fun
       )
+    names(rtxt_list) <- domain
+    message("\n")
 
     # return
     return(rtxt_list)

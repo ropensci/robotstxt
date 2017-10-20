@@ -6,7 +6,7 @@
 get_robotstxt_http_get <-
   function(
     domain,
-    user_agent     = NULL,
+    user_agent     = sessionInfo()$R.version$version.string,
     ssl_verifypeer = 1
   ){
     if ( !is.null(user_agent) ) {

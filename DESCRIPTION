@@ -1,5 +1,5 @@
 Package: robotstxt
-Date: 2017-10-17
+Date: 2017-10-20
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.5.0
@@ -23,6 +23,7 @@ Imports:
     stringr (>= 1.0.0),
     httr (>= 1.0.0),
     spiderbar (>= 0.2.0),
+    future (>= 1.6.2),
     magrittr
 Suggests:
     knitr,

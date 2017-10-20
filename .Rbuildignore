@@ -13,3 +13,4 @@ _old_.travis.yml
 ^cran-comments\.md$
 ^\.travis\.yml$
 ^codecov\.yml$
+benchmarks

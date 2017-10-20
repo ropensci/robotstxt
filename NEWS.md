@@ -4,9 +4,13 @@ NEWS robotstxt
 0.5.0 | 2017-10-07
 --------------------------------------------------------------------------
 
-- include fast spiderbar functions 
-- robotstxt now assumes it knows how to parse --> if it cannot parse it assumes that it got no valid robots.txt file meaning that there are no restrictions
-
+- **feature** : use futures (from package future) to speed up retrieval and parsing
+- **feature** : now there is a `get_robotstxts()` function wich is a 'vectorized' version of `get_robotstxt()`
+- **feature** : `paths_allowed()` now allows checking via either robotstxt parsed robots.txt files or via functionality provided by the spiderbar package (the latter should be faster by approximatly factor 10)
+- **feature** : various functions now have a ssl_verifypeer option (analog to CURL option https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html) which might help with robots.txt file retrieval in some cases
+- **change** : user_agent for robots.txt file retrieval will now default to: `sessionInfo()$R.version$version.string` 
+- **change** : robotstxt now assumes it knows how to parse --> if it cannot parse it assumes that it got no valid robots.txt file meaning that there are no restrictions
+- **fix** : valid_robotstxt would not accept some actual valid robotstxt files
 
 
 
@@ -21,7 +25,7 @@ NEWS robotstxt
 0.4.0 | 2017-07-14
 --------------------------------------------------------------------------
 
-- **user_agent** parameter **added** to tobotstxt() and paths_allowed to allow for user defined HTTP user-agent send when retrieving robots.txt file from domain
+- **user_agent** parameter **added** to robotstxt() and paths_allowed to allow for user defined HTTP user-agent send when retrieving robots.txt file from domain
 
 
 
