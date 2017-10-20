@@ -43,8 +43,8 @@ get_robotstxt <-
 
       request <-
         get_robotstxt_http_get(
-          domain     = domain,
-          user_agent = user_agent,
+          domain         = domain,
+          user_agent     = user_agent,
           ssl_verifypeer = ssl_verifypeer[1]
         )
 
@@ -69,7 +69,7 @@ get_robotstxt <-
         )
 
         # give back a digest of the retrieved file
-        if(warn){
+        if( warn ){
           message(
             "\n\n",
             "[domain] ", domain, " --> ", fname_tmp,
