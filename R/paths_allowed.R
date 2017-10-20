@@ -21,7 +21,7 @@ paths_allowed <-
     domain       = "auto",
     bot          = "*",
     user_agent   = NULL,
-    check_method = c("robotstxt", "spiderbar"),
+    check_method = c("spiderbar", "robotstxt"),
     warn         = TRUE,
     force        = FALSE
   ){
@@ -40,18 +40,23 @@ paths_allowed <-
     # check paths
     res <-
       if ( check_method[1] == "spiderbar"){
+
         paths_allowed_worker_spiderbar(
           user_agent = user_agent,
           domain     = domain,
-          bot        = bot
+          bot        = bot,
+          paths      = paths
         )
+
       } else {
+
         paths_allowed_worker_robotstxt(
           user_agent = user_agent,
           domain     = domain,
           bot        = bot,
           paths      = paths
         )
+
       }
 
 
@@ -62,9 +67,8 @@ paths_allowed <-
 
 #' paths_allowed_worker for robotstxt flavor
 #'
-#' @param user_agent
-#' @param domain
-#' @param bot
+#' @inheritParams paths_allowed
+#'
 
 paths_allowed_worker_robotstxt <-
   function(
@@ -148,20 +152,70 @@ paths_allowed_worker_robotstxt <-
 
 #' paths_allowed_worker spiderbar flavor
 #'
-#' @param user_agent
-#' @param domain
-#' @param bot
-#'
+#' @inheritParams paths_allowed
 #'
 paths_allowed_worker_spiderbar <-
   function(
     user_agent,
     domain,
-    bot
+    bot,
+    paths
   ){
 
+    browser()
 
+    permissions <-
+      if ( length(user_agent) == 0 ) {
 
+        mapply(
+
+          FUN =
+            function(domain, user_agent){
+              robotstxt(
+                domain     = domain,
+                warn       = TRUE,
+                force      = FALSE
+              )$permissions
+            },
+
+          domain     = domain,
+
+          SIMPLIFY   = FALSE
+        )
+
+      }else{
+
+        mapply(
+
+          FUN =
+            function(domain, user_agent){
+              robotstxt(
+                domain     = domain,
+                user_agent = user_agent,
+                warn       = TRUE,
+                force      = FALSE
+              )$permissions
+            },
+
+          domain     = domain,
+          user_agent = user_agent,
+
+          SIMPLIFY   = FALSE
+        )
+
+      }
+
+    rbt_text <-
+      get_robotstxt(
+        domain     = domain[1],
+        user_agent = user_agent
+      )
+
+    spiderbar::can_fetch(
+      obj        = spiderbar::robxp(rbt_text),
+      path       = paths[1],
+      user_agent = bot
+    )
   }
 
 

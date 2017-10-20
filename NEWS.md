@@ -1,6 +1,14 @@
 NEWS robotstxt
 ==========================================================================
 
+0.5.0 | 2017-10-07
+--------------------------------------------------------------------------
+
+- include fast spiderbar functions 
+- robotstxt now assumes it knows how to parse --> if it cannot parse it assumes that it got no valid robots.txt file meaning that there are no restrictions
+
+
+
 
 0.4.1 | 2017-08-20
 --------------------------------------------------------------------------

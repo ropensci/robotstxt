@@ -5,7 +5,7 @@
 \title{check if a bot has permissions to access page(s)}
 \usage{
 paths_allowed(paths = "/", domain = "auto", bot = "*",
-  user_agent = NULL, check_method = c("robotstxt", "spiderbar"),
+  user_agent = NULL, check_method = c("spiderbar", "robotstxt"),
   warn = TRUE, force = FALSE)
 }
 \arguments{

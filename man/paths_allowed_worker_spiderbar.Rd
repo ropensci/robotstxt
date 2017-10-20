@@ -4,10 +4,20 @@
 \alias{paths_allowed_worker_spiderbar}
 \title{paths_allowed_worker spiderbar flavor}
 \usage{
-paths_allowed_worker_spiderbar(user_agent, domain, bot)
+paths_allowed_worker_spiderbar(user_agent, domain, bot, paths)
 }
 \arguments{
-\item{bot}{}
+\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
+from domain}
+
+\item{domain}{Domain for which paths should be checked. Defaults to "auto".
+If set to "auto" function will try to guess the domain by parsing the paths
+argument. Note however, that these are educated guesses which might utterly
+fail. To be on the save side, provide appropriate domains manually.}
+
+\item{bot}{name of the bot, defaults to "*"}
+
+\item{paths}{paths for which to check bot's permission, defaults to "/"}
 }
 \description{
 paths_allowed_worker spiderbar flavor

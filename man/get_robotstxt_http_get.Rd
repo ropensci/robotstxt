@@ -4,7 +4,7 @@
 \alias{get_robotstxt_http_get}
 \title{get_robotstxt() worker function to execute HTTP request}
 \usage{
-get_robotstxt_http_get(domain, user_agent = NULL)
+get_robotstxt_http_get(domain, user_agent = NULL, ssl_verifypeer = 1)
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}

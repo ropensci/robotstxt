@@ -4,7 +4,8 @@
 \alias{get_robotstxt}
 \title{downloading robots.txt file}
 \usage{
-get_robotstxt(domain, warn = TRUE, force = FALSE, user_agent = NULL)
+get_robotstxt(domain, warn = TRUE, force = FALSE, user_agent = NULL,
+  ssl_verifypeer = c(1, 0))
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}
