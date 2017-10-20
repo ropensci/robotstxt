@@ -49,7 +49,7 @@ length.cpp   <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.cpp,  value = T
 <img src="http://www.r-pkg.org/badges/version/robotstxt">
 </a>
 [![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25)
-[![Coverage Status](https://img.shields.io/codecov/c/github/ropenscilabs/robotstxt/master.svg)](https://codecov.io/github/ropenscilabs/robotstxt?branch=master)
+<!-- [![Coverage Status](https://img.shields.io/codecov/c/github/ropenscilabs/robotstxt/master.svg)](https://codecov.io/github/ropenscilabs/robotstxt?branch=master) -->
 <img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
 <img src="http://cranlogs.r-pkg.org/badges/robotstxt">
 

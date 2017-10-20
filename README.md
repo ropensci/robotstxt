@@ -4,15 +4,15 @@ A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 
 **Status**
 
-*lines of R code:* 455, *lines of test code:* 361
+*lines of R code:* 592, *lines of test code:* 361
 
-<a href="https://travis-ci.org/ropenscilabs/robotstxt"> <img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"> <a/> <a href="https://cran.r-project.org/package=robotstxt"> <img src="http://www.r-pkg.org/badges/version/robotstxt"> </a> [![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25) [![Coverage Status](https://img.shields.io/codecov/c/github/ropenscilabs/robotstxt/master.svg)](https://codecov.io/github/ropenscilabs/robotstxt?branch=master) <img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt"> <img src="http://cranlogs.r-pkg.org/badges/robotstxt">
+<a href="https://travis-ci.org/ropenscilabs/robotstxt"> <img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master"> <a/> <a href="https://cran.r-project.org/package=robotstxt"> <img src="http://www.r-pkg.org/badges/version/robotstxt"> </a> [![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25) <!-- [![Coverage Status](https://img.shields.io/codecov/c/github/ropenscilabs/robotstxt/master.svg)](https://codecov.io/github/ropenscilabs/robotstxt?branch=master) --> <img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt"> <img src="http://cranlogs.r-pkg.org/badges/robotstxt">
 
 [![ropensci\_footer](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
 
 **Development version**
 
-0.4.1 - 2017-08-27 / 08:42:33
+0.5.0 - 2017-10-20 / 22:20:05
 
 **Description**
 
@@ -86,6 +86,8 @@ paths_allowed(
   domain = "wikipedia.org", 
   bot    = "*"
 )
+## 
+ wikipedia.org
 ## [1]  TRUE FALSE
 
 paths_allowed(
@@ -94,6 +96,9 @@ paths_allowed(
     "https://wikipedia.org/w/"
   )
 )
+## 
+ wikipedia.org                      
+ wikipedia.org
 ## [1]  TRUE FALSE
 ```
 

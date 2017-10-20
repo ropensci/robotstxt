@@ -14,14 +14,14 @@ the function will download the file from server - the default.}
 \item{text}{If automatic download of the robots.txt is not preferred, the text can be
 supplied directly.}
 
-\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
-from domain}
+\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt
+file from domain}
 
 \item{warn}{warn about being unable to download domain/robots.txt because of}
 
-\item{force}{if TRUE instead of using possible cached results the function will
-re-download the robotstxt file
-HTTP response status 404. If this happens,}
+\item{force}{if TRUE instead of using possible cached results the function
+will re-download the robotstxt file HTTP response status 404. If this
+happens,}
 }
 \value{
 Object (list) of class robotstxt with parsed data from a

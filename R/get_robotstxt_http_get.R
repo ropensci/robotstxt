@@ -2,11 +2,15 @@
 #' get_robotstxt() worker function to execute HTTP request
 #'
 #' @inheritParams get_robotstxt
+#' @param ssl_verifypeer analog to CURL option
+#'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
+#'   -- and might help with robots.txt file retrieval in some cases
+#'
 
 get_robotstxt_http_get <-
   function(
     domain,
-    user_agent     = sessionInfo()$R.version$version.string,
+    user_agent     = utils::sessionInfo()$R.version$version.string,
     ssl_verifypeer = 1
   ){
     if ( !is.null(user_agent) ) {

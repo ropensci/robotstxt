@@ -7,7 +7,9 @@
 #'                    pages and vignettes of package future on how to set up
 #'                    plans for future execution because the robotstxt package
 #'                    does not do it on its own.
-#'
+#' @param ssl_verifypeer analog to CURL option
+#'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
+#'   -- and might help with robots.txt file retrieval in some cases              #'
 #' @export
 #'
 get_robotstxts <-
@@ -15,7 +17,7 @@ get_robotstxts <-
     domain,
     warn           = TRUE,
     force          = FALSE,
-    user_agent     = sessionInfo()$R.version$version.string,
+    user_agent     = utils::sessionInfo()$R.version$version.string,
     ssl_verifypeer = c(1,0),
     use_futures    = FALSE
   ){

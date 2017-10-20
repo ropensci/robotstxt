@@ -24,7 +24,8 @@ Imports:
     httr (>= 1.0.0),
     spiderbar (>= 0.2.0),
     future (>= 1.6.2),
-    magrittr
+    magrittr,
+    utils
 Suggests:
     knitr,
     rmarkdown,

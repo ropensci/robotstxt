@@ -2,11 +2,15 @@
 #'
 #' @param domain domain from which to download robots.txt file
 #' @param warn warn about being unable to download domain/robots.txt because of
-#' @param force if TRUE instead of using possible cached results the function will
-#'              re-download the robotstxt file
-#'              HTTP response status 404. If this happens,
-#' @param user_agent HTTP user-agent string to be used to retrieve robots.txt file
-#'   from domain
+#' @param force if TRUE instead of using possible cached results the function
+#'   will re-download the robotstxt file HTTP response status 404. If this
+#'   happens,
+#' @param user_agent HTTP user-agent string to be used to retrieve robots.txt
+#'   file from domain
+#'
+#' @param ssl_verifypeer analog to CURL option
+#'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
+#'   might help with robots.txt file retrieval in some cases
 #'
 #' @export
 
@@ -15,7 +19,7 @@ get_robotstxt <-
     domain,
     warn           = TRUE,
     force          = FALSE,
-    user_agent     = sessionInfo()$R.version$version.string,
+    user_agent     = utils::sessionInfo()$R.version$version.string,
     ssl_verifypeer = c(1,0)
   ){
 

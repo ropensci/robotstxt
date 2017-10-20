@@ -4,13 +4,19 @@
 \alias{get_robotstxt_http_get}
 \title{get_robotstxt() worker function to execute HTTP request}
 \usage{
-get_robotstxt_http_get(domain, user_agent = NULL, ssl_verifypeer = 1)
+get_robotstxt_http_get(domain,
+  user_agent = utils::sessionInfo()$R.version$version.string,
+  ssl_verifypeer = 1)
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}
 
-\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
-from domain}
+\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt
+file from domain}
+
+\item{ssl_verifypeer}{analog to CURL option
+\url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
+-- and might help with robots.txt file retrieval in some cases}
 }
 \description{
 get_robotstxt() worker function to execute HTTP request

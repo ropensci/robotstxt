@@ -4,7 +4,8 @@
 \alias{get_robotstxts}
 \title{function to get multiple robotstxt files}
 \usage{
-get_robotstxts(domain, warn = TRUE, force = FALSE, user_agent = NULL,
+get_robotstxts(domain, warn = TRUE, force = FALSE,
+  user_agent = utils::sessionInfo()$R.version$version.string,
   ssl_verifypeer = c(1, 0), use_futures = FALSE)
 }
 \arguments{
@@ -12,12 +13,16 @@ get_robotstxts(domain, warn = TRUE, force = FALSE, user_agent = NULL,
 
 \item{warn}{warn about being unable to download domain/robots.txt because of}
 
-\item{force}{if TRUE instead of using possible cached results the function will
-re-download the robotstxt file
-HTTP response status 404. If this happens,}
+\item{force}{if TRUE instead of using possible cached results the function
+will re-download the robotstxt file HTTP response status 404. If this
+happens,}
 
-\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt file
-from domain}
+\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt
+file from domain}
+
+\item{ssl_verifypeer}{analog to CURL option
+\url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
+-- and might help with robots.txt file retrieval in some cases              #'}
 
 \item{use_futures}{Should future::future_lapply be used for possible
 parallel/async retrieval or not. Note: check out help

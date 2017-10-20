@@ -1,7 +1,7 @@
 #' paths_allowed_worker for robotstxt flavor
 #'
 #' @inheritParams paths_allowed
-#'
+#' @param permissions_list list of permissions from robotstxt objects
 
 paths_allowed_worker_robotstxt <-
   function(

@@ -24,7 +24,7 @@ paths_allowed <-
     paths          = "/",
     domain         = "auto",
     bot            = "*",
-    user_agent     = sessionInfo()$R.version$version.string,
+    user_agent     = utils::sessionInfo()$R.version$version.string,
     check_method   = c("spiderbar", "robotstxt"),
     warn           = TRUE,
     force          = FALSE,

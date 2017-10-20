@@ -15,6 +15,8 @@ fail. To be on the save side, provide appropriate domains manually.}
 \item{bot}{name of the bot, defaults to "*"}
 
 \item{paths}{paths for which to check bot's permission, defaults to "/"}
+
+\item{permissions_list}{list of permissions from robotstxt objects}
 }
 \description{
 paths_allowed_worker for robotstxt flavor
