@@ -46,7 +46,11 @@ get_robotstxts <-
         )
     }
 
-    parameter_list <- lapply(split(parameter, row.names(parameter)), as.list)
+    parameter_list <-
+      lapply(
+        split(parameter, seq_len(nrow(parameter))),
+        as.list
+      )
 
 
     # prepare execution of get_robotstxt()
