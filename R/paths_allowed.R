@@ -39,6 +39,10 @@ paths_allowed <-
       paths  <- remove_domain(paths)
     }
 
+    if( is.na(domain) & !is.null(robotstxt_list) ){
+      domain <- "auto"
+    }
+
     # get robots.txt files
     if( is.null(robotstxt_list) ){
       robotstxt_list <-
