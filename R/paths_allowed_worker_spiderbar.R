@@ -12,6 +12,7 @@ paths_allowed_worker_spiderbar <-
     robotstxt_list
   ){
 
+
     # process inputs
     robotstxts <-
       unlist(lapply(robotstxt_list, paste, collapse="\n"))
