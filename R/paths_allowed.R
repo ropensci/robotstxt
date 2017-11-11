@@ -9,7 +9,11 @@
 #' @param paths paths for which to check bot's permission, defaults to "/"
 #' @param check_method which method to use for checking -- either
 #'                     "robotstxt" for the package's own method or "spiderbar"
-#'                     for using spiderbar::can_fetch
+#'                     for using spiderbar::can_fetch; note that at the current
+#'                     state spiderbar is considered less accurate: the spiderbar
+#'                     algorithm will only take into consideration rules for *
+#'                     or a particular bot but does not merge rules together
+#'                     (see: \code{paste0(system.file("robotstxts", package = "robotstxt"),"/selfhtml_Example.txt")})
 #' @param robotstxt_list either NULL -- the default -- or a list of character
 #'                       vectors with one vector per path to check
 #'
@@ -25,7 +29,7 @@ paths_allowed <-
     domain         = "auto",
     bot            = "*",
     user_agent     = utils::sessionInfo()$R.version$version.string,
-    check_method   = c("spiderbar", "robotstxt"),
+    check_method   = c("robotstxt", "spiderbar"),
     warn           = TRUE,
     force          = FALSE,
     ssl_verifypeer = c(1,0),

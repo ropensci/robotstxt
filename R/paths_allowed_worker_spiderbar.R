@@ -24,12 +24,30 @@ paths_allowed_worker_spiderbar <-
         if( is.na(domain) ){
           return(NA)
         }else{
-          spiderbar::can_fetch(
-            obj        = spiderbar::robxp(robotstxt),
-            path       = path,
-            user_agent = bot
-          )
+          rtxt_obj <- spiderbar::robxp(robotstxt)
+
+          bot_can_fetch <-
+            spiderbar::can_fetch(
+              obj        = rtxt_obj,
+              path       = path,
+              user_agent = bot
+            )
+
+          # star_can_fetch <-
+          #   spiderbar::can_fetch(
+          #     obj        = rtxt_obj,
+          #     path       = path,
+          #     user_agent = "*"
+          #   )
+
+          # return
+          # if ( star_can_fetch == FALSE ) {
+          #   return(FALSE)
+          # }else{
+          #   return(bot_can_fetch)
+          # }
         }
+        return(bot_can_fetch)
       }
 
     tmp <-
@@ -40,6 +58,7 @@ paths_allowed_worker_spiderbar <-
         bot         = bot,
         domain      = domain
       )
+
     names(tmp) <- NULL
 
     # return

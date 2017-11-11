@@ -33,23 +33,41 @@ context("paths_allowed()")
 
 ## fails because of spiderbar
 
-# for ( i in seq_len(nrow(options_grid)) ) {
-#   test_that(
-#     "simple check", {
-#       expect_false(
-#         paths_allowed(
-#           robotstxt_list = list(rtxt_she),
-#           paths          = "/temp/",
-#           bot            = "mein-robot",
-#           check_method   = options_grid$check_method[i],
-#           use_futures    = options_grid$use_futures[i]
-#         )
-#       )
-#     }
-#   )
-# }
+for ( i in seq_len(nrow(options_grid)) ) {
+  test_that(
+    "simple check", {
+      if( options_grid$check_method[i] == "spiderbar" ){
+        cat("\n- will not run test for spiderbar - will fail - known issue\n")
+      }else{
+        expect_false(
+          paths_allowed(
+            robotstxt_list = list(rtxt_she),
+            paths          = "/temp/",
+            bot            = "mein-robot",
+            check_method   = options_grid$check_method[i],
+            use_futures    = options_grid$use_futures[i]
+          )
+        )
+      }
+    }
+  )
+}
 
-
+for ( i in seq_len(nrow(options_grid)) ) {
+  test_that(
+    "simple check", {
+      expect_false(
+        paths_allowed(
+          robotstxt_list = list(rtxt_she),
+          paths          = "/temp/",
+          bot            = "*",
+          check_method   = options_grid$check_method[i],
+          use_futures    = options_grid$use_futures[i]
+        )
+      )
+    }
+  )
+}
 
 
 test_that(

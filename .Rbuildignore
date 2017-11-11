@@ -14,3 +14,4 @@ _old_.travis.yml
 ^\.travis\.yml$
 ^codecov\.yml$
 benchmarks
+misc/*
