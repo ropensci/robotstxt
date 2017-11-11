@@ -1,9 +1,16 @@
 NEWS robotstxt
 ==========================================================================
 
+0.5.1 | 2017-11-11
+
+- **change** : spiderbar is now non-default second (experimental) check method
+- **fix** : there were warnings in case of multiple domain guessing
+
+
 0.5.0 | 2017-10-07
 --------------------------------------------------------------------------
 
+- **feature** : spiderbar's can_fetch() was added, now one can choose which check method to use for checking access rights 
 - **feature** : use futures (from package future) to speed up retrieval and parsing
 - **feature** : now there is a `get_robotstxts()` function wich is a 'vectorized' version of `get_robotstxt()`
 - **feature** : `paths_allowed()` now allows checking via either robotstxt parsed robots.txt files or via functionality provided by the spiderbar package (the latter should be faster by approximatly factor 10)
