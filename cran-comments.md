@@ -2,9 +2,11 @@
 
 - Ubuntu precise (12.04.5 LTS) (on travis-ci: old, current, devel; https://travis-ci.org/ropenscilabs/robotstxt) --> ok
 
-- Win10 64 - current 3.4.1 : locally, with 1 warning abaout qpdf missing - which should be fine though --> ok
+- Ubuntu 16.04 --> ok
 
-- win-builder - devel : --> ok
+- Win10 lokal with R current --> ok 
+
+- win-builder - devel : -
 
 
 ## R CMD check results

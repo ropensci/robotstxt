@@ -17,7 +17,10 @@ rt_get_rtxt <- function(name=sample(rt_list_rtxt(),1)){
   if( is.numeric(name) ){
     name <- rt_list_rtxt()[name]
   }
-  readLines( system.file( paste0("robotstxts/",name), package = "robotstxt" ), warn = FALSE)
+  readLines(
+    system.file( paste0("robotstxts/",name), package = "robotstxt" ),
+    warn = FALSE
+  )
 }
 
 #' list robots.txt files saved along with the package

@@ -73,7 +73,6 @@ test_that(
     })
 
     expect_silent({
-      rt_get_rtxt(0)
       rt_get_rtxt(1)
       rt_get_rtxt("robots_wikipedia.txt")
       rt_get_rtxt()
