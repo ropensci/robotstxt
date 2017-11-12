@@ -1,10 +1,21 @@
 NEWS robotstxt
 ==========================================================================
 
+
+0.5.2 | 2017-11-12
+--------------------------------------------------------------------------
+
+- **fix** : rt_get_rtxt() would break on Windows due trying to readLines() from folder
+
+
+
+
 0.5.1 | 2017-11-11
+--------------------------------------------------------------------------
 
 - **change** : spiderbar is now non-default second (experimental) check method
 - **fix** : there were warnings in case of multiple domain guessing
+
 
 
 0.5.0 | 2017-10-07
