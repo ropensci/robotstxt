@@ -56,7 +56,12 @@ get_robotstxt <-
 
     # ok
     if( request$status < 400 ){
-      rtxt <- httr::content(request,  encoding="UTF-8", as="text")
+      rtxt <-
+        httr::content(
+          request,
+          encoding="UTF-8",
+          as="text"
+        )
 
       # check if robots.txt is parsable
       if ( is_valid_robotstxt(rtxt) ){

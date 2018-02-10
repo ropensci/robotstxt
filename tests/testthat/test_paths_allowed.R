@@ -23,8 +23,9 @@ rtxt_wp    <- rt_get_rtxt("robots_wikipedia.txt")
 
 options_grid <-
   expand.grid(
-    check_method = c("robotstxt", "spiderbar"),
-    use_futures  = c(TRUE, FALSE)
+    check_method     = c("spiderbar"),
+    use_futures      = c(TRUE, FALSE),
+    stringsAsFactors = FALSE
   )
 
 
@@ -36,10 +37,7 @@ context("paths_allowed()")
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
-      if( options_grid$check_method[i] == "spiderbar" ){
-        cat("\n- will not run test for spiderbar - will fail - known issue\n")
-      }else{
-        expect_false(
+        expect_true(
           paths_allowed(
             robotstxt_list = list(rtxt_she),
             paths          = "/temp/",
@@ -48,7 +46,6 @@ for ( i in seq_len(nrow(options_grid)) ) {
             use_futures    = options_grid$use_futures[i]
           )
         )
-      }
     }
   )
 }
@@ -176,7 +173,7 @@ test_that(
       )
     }
 
-    # expect_false(path_allowed(permissions_asb,  path="images"))
+    # expect_false(paths_allowed(permissions_asb,  path="images"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -192,7 +189,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="/images"))
+    # expect_false(paths_allowed(permissions_asb,  path="/images"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -208,7 +205,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="/images/"))
+    # expect_false(paths_allowed(permissions_asb,  path="/images/"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -224,7 +221,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="images/"))
+    # expect_false(paths_allowed(permissions_asb,  path="images/"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -240,7 +237,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="images/dings"))
+    # expect_false(paths_allowed(permissions_asb,  path="images/dings"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -256,7 +253,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="*"))
+    # expect_false(paths_allowed(permissions_asb,  path="*"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -273,7 +270,7 @@ test_that(
       )
     }
     #
-    # expect_false(path_allowed(permissions_asb,  path="images", bot="harald"))
+    # expect_false(paths_allowed(permissions_asb,  path="images", bot="harald"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -289,7 +286,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="/images", bot="*"))
+    # expect_false(paths_allowed(permissions_asb,  path="/images", bot="*"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -305,7 +302,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="/images/", "*er"))
+    # expect_false(paths_allowed(permissions_asb,  path="/images/", "*er"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -321,7 +318,7 @@ test_that(
         }
       )
     }
-    # expect_false(path_allowed(permissions_asb,  path="*", bot="erwin"))
+    # expect_false(paths_allowed(permissions_asb,  path="*", bot="erwin"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -338,7 +335,7 @@ test_that(
       )
     }
     #
-    # expect_true(path_allowed(permissions_asb,  path="images", bot="Google"))
+    # expect_true(paths_allowed(permissions_asb,  path="images", bot="Google"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -354,7 +351,7 @@ test_that(
         }
       )
     }
-    # expect_true(path_allowed(permissions_asb,  path="/images", bot="Google"))
+    # expect_true(paths_allowed(permissions_asb,  path="/images", bot="Google"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -371,7 +368,7 @@ test_that(
       )
     }
 
-    # expect_true(path_allowed(permissions_asb,  path="/images/", bot="Google"))
+    # expect_true(paths_allowed(permissions_asb,  path="/images/", bot="Google"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -389,7 +386,7 @@ test_that(
     }
 
 
-    # expect_true(path_allowed(permissions_asb,  path="images/", bot="Google"))
+    # expect_true(paths_allowed(permissions_asb,  path="images/", bot="Google"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -405,7 +402,7 @@ test_that(
         }
       )
     }
-    # expect_true(path_allowed(permissions_asb,  path="images/dings", bot="Google"))
+    # expect_true(paths_allowed(permissions_asb,  path="images/dings", bot="Google"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -421,7 +418,7 @@ test_that(
         }
       )
     }
-    # expect_true(path_allowed(permissions_asb,  path="*", bot="Google"))
+    # expect_true(paths_allowed(permissions_asb,  path="*", bot="Google"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
         "simple check", {
@@ -443,7 +440,7 @@ test_that(
 
 # test_that(
 #   "dissallow all for all", {
-#     expect_false(path_allowed(permissions_dafa, path="", bot="mybot"))
+#     expect_false(paths_allowed(permissions_dafa, path="", bot="mybot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -459,7 +456,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafa, path="/imgages", bot="mybot"))
+#     expect_false(paths_allowed(permissions_dafa, path="/imgages", bot="mybot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -475,7 +472,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafa, path="index.html", bot="mybot"))
+#     expect_false(paths_allowed(permissions_dafa, path="index.html", bot="mybot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -491,7 +488,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafa, path="*", bot="mybot"))
+#     expect_false(paths_allowed(permissions_dafa, path="*", bot="mybot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -508,7 +505,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
   )
 }
 #
-#     expect_false(path_allowed(permissions_dafa, path=""))
+#     expect_false(paths_allowed(permissions_dafa, path=""))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -524,7 +521,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafa, path="/imgages"))
+#     expect_false(paths_allowed(permissions_dafa, path="/imgages"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -539,7 +536,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafa, path="index.html"))
+#     expect_false(paths_allowed(permissions_dafa, path="index.html"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -555,7 +552,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafa, path="*"))
+#     expect_false(paths_allowed(permissions_dafa, path="*"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -576,7 +573,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
 #
 # test_that(
 #   "dissallow all for BadBot", {
-#     expect_false(path_allowed(permissions_dafbb, path="", bot="BadBot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="", bot="BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -592,7 +589,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="/imgages", bot="BadBot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="/imgages", bot="BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -608,7 +605,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="index.html", bot="BadBot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="index.html", bot="BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -624,7 +621,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="*", bot="BadBot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="*", bot="BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -641,7 +638,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
   )
 }
 #
-#     expect_true(path_allowed(permissions_dafbb, path=""))
+#     expect_true(paths_allowed(permissions_dafbb, path=""))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -656,7 +653,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_dafbb, path="/imgages"))
+#     expect_true(paths_allowed(permissions_dafbb, path="/imgages"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -671,7 +668,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_dafbb, path="index.html"))
+#     expect_true(paths_allowed(permissions_dafbb, path="index.html"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -686,7 +683,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_dafbb, path="*"))
+#     expect_true(paths_allowed(permissions_dafbb, path="*"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -707,7 +704,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
 #
 # test_that(
 #   "case of Bot naME dOeS not matter", {
-#     expect_false(path_allowed(permissions_dafbb, path="", bot="badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="", bot="badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -723,7 +720,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="/imgages", bot="badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="/imgages", bot="badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -739,7 +736,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="index.html", bot="badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="index.html", bot="badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -755,7 +752,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="*", bot="badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="*", bot="badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -772,7 +769,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
   )
 }
 #
-#     expect_false(path_allowed(permissions_dafbb, path="", bot="Badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="", bot="Badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -788,7 +785,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="/imgages", bot="Badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="/imgages", bot="Badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -804,7 +801,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="index.html", bot="Badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="index.html", bot="Badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -820,7 +817,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_false(path_allowed(permissions_dafbb, path="*", bot="Badbot"))
+#     expect_false(paths_allowed(permissions_dafbb, path="*", bot="Badbot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -842,7 +839,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
 #
 # test_that(
 #   "empty file leads to all allowed for all", {
-#     expect_true(path_allowed(permissions_empty, path=""))
+#     expect_true(paths_allowed(permissions_empty, path=""))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -857,7 +854,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_empty, path="/"))
+#     expect_true(paths_allowed(permissions_empty, path="/"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -872,7 +869,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_empty, path="/imgages"))
+#     expect_true(paths_allowed(permissions_empty, path="/imgages"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -887,7 +884,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_empty, path="index.html"))
+#     expect_true(paths_allowed(permissions_empty, path="index.html"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -904,7 +901,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
   )
 }
 #
-#     expect_true(path_allowed(permissions_empty, path="", bot = "BadBot"))
+#     expect_true(paths_allowed(permissions_empty, path="", bot = "BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -920,7 +917,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_empty, path="/", bot = "BadBot"))
+#     expect_true(paths_allowed(permissions_empty, path="/", bot = "BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -936,7 +933,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_empty, path="/imgages", bot = "BadBot"))
+#     expect_true(paths_allowed(permissions_empty, path="/imgages", bot = "BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {
@@ -952,7 +949,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
     }
   )
 }
-#     expect_true(path_allowed(permissions_empty, path="index.html", bot = "BadBot"))
+#     expect_true(paths_allowed(permissions_empty, path="index.html", bot = "BadBot"))
 for ( i in seq_len(nrow(options_grid)) ) {
   test_that(
     "simple check", {

@@ -55,3 +55,4 @@ test_that(
     expect_true( robotstxt(text=rtxt_she)$check("blah") )
   }
 )
+

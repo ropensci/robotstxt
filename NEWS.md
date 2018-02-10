@@ -2,6 +2,14 @@ NEWS robotstxt
 ==========================================================================
 
 
+0.6.0 | 2018-02-10
+--------------------------------------------------------------------------
+
+- **change/fix** check function paths_allowed() would not return correct result in some edge cases, indicating that spiderbar/rep-cpp check method is more reliable and shall be the default and only  method: [see 1](https://github.com/ropenscilabs/robotstxt/issues/22), [see 2](https://github.com/hrbrmstr/spiderbar/issues/2), [see 3](https://github.com/seomoz/rep-cpp/issues/33)
+
+
+
+
 0.5.2 | 2017-11-12
 --------------------------------------------------------------------------
 

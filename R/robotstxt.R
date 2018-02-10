@@ -105,10 +105,15 @@ robotstxt <-
     self$host        <- tmp$host
     self$sitemap     <- tmp$sitemap
     self$other       <- tmp$other
+    self$robexclobj  <- spiderbar::robxp(self$text)
 
     self$check <-
       function(paths="/", bot="*"){
-        sapply(paths, path_allowed, permissions=self$permissions, bot=bot)
+        spiderbar::can_fetch(
+          obj        = self$robexclobj,
+          path       = paths,
+          user_agent = bot
+        )
       }
 
     # return

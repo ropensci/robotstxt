@@ -6,7 +6,7 @@
 \usage{
 paths_allowed(paths = "/", domain = "auto", bot = "*",
   user_agent = utils::sessionInfo()$R.version$version.string,
-  check_method = c("robotstxt", "spiderbar"), warn = TRUE, force = FALSE,
+  check_method = c("spiderbar"), warn = TRUE, force = FALSE,
   ssl_verifypeer = c(1, 0), use_futures = TRUE, robotstxt_list = NULL)
 }
 \arguments{
@@ -22,13 +22,7 @@ fail. To be on the save side, provide appropriate domains manually.}
 \item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt
 file from domain}
 
-\item{check_method}{which method to use for checking -- either
-"robotstxt" for the package's own method or "spiderbar"
-for using spiderbar::can_fetch; note that at the current
-state spiderbar is considered less accurate: the spiderbar
-algorithm will only take into consideration rules for *
-or a particular bot but does not merge rules together
-(see: \code{paste0(system.file("robotstxts", package = "robotstxt"),"/selfhtml_Example.txt")})}
+\item{check_method}{at the moment only kept for backward compatibility reasons - do not use parameter anymore --> will let the function simply use the default}
 
 \item{warn}{warn about being unable to download domain/robots.txt because of}
 
@@ -50,8 +44,5 @@ does not do it on its own.}
 vectors with one vector per path to check}
 }
 \description{
-wrapper to \code{\link{path_allowed}}
-}
-\seealso{
-\link{path_allowed}
+check if a bot has permissions to access page(s)
 }

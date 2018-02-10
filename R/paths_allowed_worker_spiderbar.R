@@ -32,20 +32,6 @@ paths_allowed_worker_spiderbar <-
               path       = path,
               user_agent = bot
             )
-
-          # star_can_fetch <-
-          #   spiderbar::can_fetch(
-          #     obj        = rtxt_obj,
-          #     path       = path,
-          #     user_agent = "*"
-          #   )
-
-          # return
-          # if ( star_can_fetch == FALSE ) {
-          #   return(FALSE)
-          # }else{
-          #   return(bot_can_fetch)
-          # }
         }
         return(bot_can_fetch)
       }
