@@ -1,8 +1,6 @@
 ## Test environments
 
-- Ubuntu precise (12.04.5 LTS) (on travis-ci: old, current, devel; https://travis-ci.org/ropenscilabs/robotstxt) --> OK
-
-- Ubuntu 16.04 --> OK
+- Ubuntu precise (14.04.5 LTS) (on travis-ci: old, current, devel; https://travis-ci.org/ropenscilabs/robotstxt) --> OK
 
 - Win10 lokal with R current --> OK
 
