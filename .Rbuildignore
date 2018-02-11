@@ -9,9 +9,9 @@ ropenscience onboarding.md
 todo.txt
 logo/*.*
 _old_.travis.yml
-
 ^cran-comments\.md$
 ^\.travis\.yml$
 ^codecov\.yml$
 benchmarks
 misc/*
+revdep/*.*
