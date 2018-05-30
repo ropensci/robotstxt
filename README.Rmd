@@ -54,6 +54,8 @@ length.cpp   <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.cpp,  value = T
 </a>
 <img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
 <img src="http://cranlogs.r-pkg.org/badges/robotstxt">
+ [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+
 
 [![ropensci\_footer](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
 
