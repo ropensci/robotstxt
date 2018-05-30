@@ -38,26 +38,30 @@ length.cpp   <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.cpp,  value = T
 
 
 
+[![ropensci\_footer](https://raw.githubusercontent.com/ropensci/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
+
+
+
 **Status**
+
 
 *lines of R code:* `r length.R`, *lines of test code:* `r length.tests`
 
-<a href="https://travis-ci.org/ropenscilabs/robotstxt">
-<img src="https://api.travis-ci.org/ropenscilabs/robotstxt.svg?branch=master">
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25)
+
+<a href="https://travis-ci.org/ropensci/robotstxt">
+<img src="https://api.travis-ci.org/ropensci/robotstxt.svg?branch=master">
 <a/>
 <a href="https://cran.r-project.org/package=robotstxt">
 <img src="http://www.r-pkg.org/badges/version/robotstxt">
 </a>
-[![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25)
-<a href="https://codecov.io/gh/ropenscilabs/robotstxt">
-  <img src="https://codecov.io/gh/ropenscilabs/robotstxt/branch/master/graph/badge.svg" alt="Codecov" />
+
+<a href="https://codecov.io/gh/ropensci/robotstxt">
+  <img src="https://codecov.io/gh/ropensci/robotstxt/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
 <img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
 <img src="http://cranlogs.r-pkg.org/badges/robotstxt">
- [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-
-
-[![ropensci\_footer](https://raw.githubusercontent.com/ropenscilabs/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
 
 
 
@@ -161,7 +165,7 @@ library(robotstxt)
 **Installation and start - development version**
 
 ```{r, eval=FALSE}
-devtools::install_github("ropenscilabs/robotstxt")
+devtools::install_github("ropensci/robotstxt")
 library(robotstxt)
 ```
 

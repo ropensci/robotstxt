@@ -1,8 +1,8 @@
 Package: robotstxt
-Date: 2018-02-10
+Date: 2018-05-30
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.6.0
+Version: 0.6.1
 Authors@R: c(
         person(
           "Peter", "Meissner", role = c("aut", "cre"),
@@ -17,8 +17,8 @@ Description: Provides functions to download and parse 'robots.txt' files.
         resources on a domain.
 License: MIT + file LICENSE
 LazyData: TRUE
-BugReports: https://github.com/ropenscilabs/robotstxt/issues
-URL: https://github.com/ropenscilabs/robotstxt
+BugReports: https://github.com/ropensci/robotstxt/issues
+URL: https://github.com/ropensci/robotstxt
 Imports:
     stringr (>= 1.0.0),
     httr (>= 1.0.0),
