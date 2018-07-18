@@ -24,6 +24,7 @@ Imports:
     httr (>= 1.0.0),
     spiderbar (>= 0.2.0),
     future (>= 1.6.2),
+    future.apply (>= 1.0.0),
     magrittr,
     utils
 Suggests:

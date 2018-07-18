@@ -59,7 +59,7 @@ get_robotstxt <-
       rtxt <-
         httr::content(
           request,
-          encoding="UTF-8",
+          #encoding="UTF-8",
           as="text"
         )
 

@@ -58,7 +58,7 @@ get_robotstxts <-
     # prepare execution of get_robotstxt()
     apply_fun <-
       if ( isTRUE(use_futures) ) {
-        future::future_lapply
+        future.apply::future_lapply
       } else {
         lapply
       }
