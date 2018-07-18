@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 493, *lines of test code:* 1133
+*lines of R code:* 492, *lines of test code:* 1133
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -24,7 +24,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 
 **Development version**
 
-0.6.1 - 2018-02-10 / 23:06:12
+0.6.2 - 2018-07-18 / 18:57:26
 
 **Description**
 
@@ -119,8 +119,7 @@ paths_allowed(
   domain = "wikipedia.org", 
   bot    = "*"
 )
-## Warning: The implementation of future_lapply() in the 'future' package has been deprecated. Please use the one
-## in the 'future.apply' package instead.
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type 'NULL'
 ## 
  wikipedia.org
 ## [1]  TRUE FALSE
@@ -131,8 +130,7 @@ paths_allowed(
     "https://wikipedia.org/w/"
   )
 )
-## Warning: The implementation of future_lapply() in the 'future' package has been deprecated. Please use the one
-## in the 'future.apply' package instead.
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type 'NULL'
 ## 
  wikipedia.org                      
  wikipedia.org
