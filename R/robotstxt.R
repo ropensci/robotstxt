@@ -41,7 +41,7 @@
 #' domains root and no bot in particular. check() has two arguments:
 #' paths and bot. The first is for supplying the paths for which to check
 #' permissions and the latter to put in the name of the bot.
-#'
+#' Please, note that path to a folder should end with a trailing slash ("/").
 #'
 #'
 #' @examples

@@ -4,8 +4,8 @@
 \alias{robotstxt}
 \title{Generate a representations of a robots.txt file}
 \usage{
-robotstxt(domain = NULL, text = NULL, user_agent = NULL, warn = TRUE,
-  force = FALSE)
+robotstxt(domain = NULL, text = NULL, user_agent = NULL,
+  warn = TRUE, force = FALSE)
 }
 \arguments{
 \item{domain}{Domain for which to generate a representation. If text equals to NULL,
@@ -57,7 +57,8 @@ robots.txt file}
 \item{\code{check()}}{Method to check for bot permissions. Defaults to the
 domains root and no bot in particular. check() has two arguments:
 paths and bot. The first is for supplying the paths for which to check
-permissions and the latter to put in the name of the bot.}
+permissions and the latter to put in the name of the bot.
+Please, note that path to a folder should end with a trailing slash ("/").}
 }}
 
 \examples{

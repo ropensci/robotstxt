@@ -7,10 +7,11 @@
 paths_allowed(paths = "/", domain = "auto", bot = "*",
   user_agent = utils::sessionInfo()$R.version$version.string,
   check_method = c("spiderbar"), warn = TRUE, force = FALSE,
-  ssl_verifypeer = c(1, 0), use_futures = TRUE, robotstxt_list = NULL)
+  ssl_verifypeer = c(1, 0), use_futures = TRUE,
+  robotstxt_list = NULL)
 }
 \arguments{
-\item{paths}{paths for which to check bot's permission, defaults to "/"}
+\item{paths}{paths for which to check bot's permission, defaults to "/". Please, note that path to a folder should end with a trailing slash ("/").}
 
 \item{domain}{Domain for which paths should be checked. Defaults to "auto".
 If set to "auto" function will try to guess the domain by parsing the paths
