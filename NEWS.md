@@ -3,6 +3,14 @@ NEWS robotstxt
 
 
 
+0.6.3 | 2018-09-03
+--------------------------------------------------------------------------
+
+- **minor** : added comment to help files specifying use of trailing slash in paths pointing to folders in `paths_allowed` and `robotstxt`.
+
+
+
+
 0.6.2 | 2018-07-18
 --------------------------------------------------------------------------
 
