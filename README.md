@@ -24,7 +24,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 
 **Development version**
 
-0.6.2 - 2018-07-18 / 18:57:26
+0.6.3 - 2018-09-03 / 20:32:27
 
 **Description**
 
@@ -119,7 +119,6 @@ paths_allowed(
   domain = "wikipedia.org", 
   bot    = "*"
 )
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type 'NULL'
 ## 
  wikipedia.org
 ## [1]  TRUE FALSE
@@ -130,7 +129,6 @@ paths_allowed(
     "https://wikipedia.org/w/"
   )
 )
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type 'NULL'
 ## 
  wikipedia.org                      
  wikipedia.org

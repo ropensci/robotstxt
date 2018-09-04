@@ -37,3 +37,4 @@ Depends:
     R (>= 3.0.0)
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
+Encoding: UTF-8
