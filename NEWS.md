@@ -3,6 +3,14 @@ NEWS robotstxt
 
 
 
+
+0.6.3 | 2018-09-14
+--------------------------------------------------------------------------
+
+- **minor** : introduced parameter encoding to `get_robotstxt()` that defaults to "UTF-8" which does the content function anyways - but now it will not complain about it
+
+
+
 0.6.3 | 2018-09-03
 --------------------------------------------------------------------------
 

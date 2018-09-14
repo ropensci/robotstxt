@@ -11,6 +11,7 @@
 #' @param ssl_verifypeer analog to CURL option
 #'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
 #'   might help with robots.txt file retrieval in some cases
+#' @param encoding Encoding of the robots.txt file.
 #'
 #' @export
 
@@ -20,7 +21,8 @@ get_robotstxt <-
     warn           = TRUE,
     force          = FALSE,
     user_agent     = utils::sessionInfo()$R.version$version.string,
-    ssl_verifypeer = c(1,0)
+    ssl_verifypeer = c(1,0),
+    encoding       = "UTF-8"
   ){
 
     # pre checking input
@@ -59,8 +61,8 @@ get_robotstxt <-
       rtxt <-
         httr::content(
           request,
-          #encoding="UTF-8",
-          as="text"
+          encoding = encoding,
+          as       = "text"
         )
 
       # check if robots.txt is parsable
