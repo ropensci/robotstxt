@@ -6,3 +6,5 @@ ropenscience onboarding.md
 dev.r
 dev.R
 revdep/*
+vignettes/using_robotstxt.R
+vignettes/using_robotstxt.html
