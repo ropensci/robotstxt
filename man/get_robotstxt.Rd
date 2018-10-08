@@ -6,7 +6,7 @@
 \usage{
 get_robotstxt(domain, warn = TRUE, force = FALSE,
   user_agent = utils::sessionInfo()$R.version$version.string,
-  ssl_verifypeer = c(1, 0))
+  ssl_verifypeer = c(1, 0), encoding = "UTF-8")
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}
@@ -23,6 +23,8 @@ file from domain}
 \item{ssl_verifypeer}{analog to CURL option
 \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
 might help with robots.txt file retrieval in some cases}
+
+\item{encoding}{Encoding of the robots.txt file.}
 }
 \description{
 downloading robots.txt file
