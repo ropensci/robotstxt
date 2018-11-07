@@ -5,26 +5,23 @@
 
 **Status**
 
-*lines of R code:* 492, *lines of test code:* 1133
+*lines of R code:* 494, *lines of test code:* 1133
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25)
-
-<a href="https://travis-ci.org/ropensci/robotstxt">
-<img src="https://api.travis-ci.org/ropensci/robotstxt.svg?branch=master">
-<a/> <a href="https://cran.r-project.org/package=robotstxt">
-<img src="http://www.r-pkg.org/badges/version/robotstxt"> </a>
-
-<a href="https://codecov.io/gh/ropensci/robotstxt">
-<img src="https://codecov.io/gh/ropensci/robotstxt/branch/master/graph/badge.svg" alt="Codecov" />
-</a> <img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
+<a href="https://travis-ci.org/ropensci/robotstxt"><img src="https://api.travis-ci.org/ropensci/robotstxt.svg?branch=master"><a/>
+<a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a>
+[![cran
+checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.org/web/checks/check_results_reshape.html)
+<a href="https://codecov.io/gh/ropensci/robotstxt"><img src="https://codecov.io/gh/ropensci/robotstxt/branch/master/graph/badge.svg" alt="Codecov" /></a>
+<img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
 <img src="http://cranlogs.r-pkg.org/badges/robotstxt">
 
 **Development version**
 
-0.6.3 - 2018-09-03 / 20:32:27
+0.6.4 - 2018-09-14 / 20:27:10
 
 **Description**
 

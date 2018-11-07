@@ -8,12 +8,6 @@ NEWS robotstxt
 --------------------------------------------------------------------------
 
 - **minor** : introduced parameter encoding to `get_robotstxt()` that defaults to "UTF-8" which does the content function anyways - but now it will not complain about it
-
-
-
-0.6.3 | 2018-09-03
---------------------------------------------------------------------------
-
 - **minor** : added comment to help files specifying use of trailing slash in paths pointing to folders in `paths_allowed` and `robotstxt`.
 
 
