@@ -8,7 +8,14 @@ paths_allowed(paths = "/", domain = "auto", bot = "*",
   user_agent = utils::sessionInfo()$R.version$version.string,
   check_method = c("spiderbar"), warn = TRUE, force = FALSE,
   ssl_verifypeer = c(1, 0), use_futures = TRUE,
-  robotstxt_list = NULL)
+  robotstxt_list = NULL,
+  rt_request_handler = robotstxt::rt_request_hanlder,
+  on_server_error = c("disallow", "error", "do_not_cache"),
+  on_client_error = c("allow", "warn", "cache"),
+  on_not_found = c("allow", "warn", "cache"), on_redirect = c("allow",
+  "warn", "cache"), on_domain_change = c("allow", "warn", "cache"),
+  on_file_type_mismatch = c("allow", "warn", "cache"),
+  on_suspect_content = c("allow", "warn", "cache"))
 }
 \arguments{
 \item{paths}{paths for which to check bot's permission, defaults to "/". Please, note that path to a folder should end with a trailing slash ("/").}

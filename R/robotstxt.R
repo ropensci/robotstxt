@@ -54,11 +54,14 @@
 #'
 robotstxt <-
   function(
-    domain     = NULL,
-    text       = NULL,
-    user_agent = NULL,
-    warn       = TRUE,
-    force      = FALSE
+    domain                = NULL,
+    text                  = NULL,
+    user_agent            = NULL,
+    warn                  = TRUE,
+    force                 = FALSE,
+    on_redirect           = "error",
+    on_file_type_mismatch = "error",
+    on_httr_response      = function(httr_get_result){httr::content(httr_get_result)}
   ) {
 
     ## check input

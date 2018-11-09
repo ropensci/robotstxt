@@ -32,4 +32,7 @@ get_robotstxt_http_get <-
           httr::config(ssl_verifypeer = ssl_verifypeer)
         )
     }
+
+    # return
+    request
   }

@@ -5,7 +5,10 @@
 \title{Generate a representations of a robots.txt file}
 \usage{
 robotstxt(domain = NULL, text = NULL, user_agent = NULL,
-  warn = TRUE, force = FALSE)
+  warn = TRUE, force = FALSE, on_redirect = "error",
+  on_file_type_mismatch = "error",
+  on_httr_response = function(httr_get_result) {    
+  httr::content(httr_get_result) })
 }
 \arguments{
 \item{domain}{Domain for which to generate a representation. If text equals to NULL,
