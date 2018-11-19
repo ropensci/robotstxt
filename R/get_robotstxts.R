@@ -20,7 +20,7 @@ get_robotstxts <-
     user_agent            = utils::sessionInfo()$R.version$version.string,
     ssl_verifypeer        = c(1,0),
     use_futures           = FALSE,
-    rt_request_handler    = robotstxt::rt_request_hanlder,
+    rt_request_handler    = robotstxt::rt_request_handler,
     on_server_error       = c("disallow", "error", "do_not_cache"),
     on_client_error       = c("allow",    "warn",  "cache"),
     on_not_found          = c("allow",    "warn",  "cache"),

@@ -28,7 +28,7 @@ paths_allowed <-
     ssl_verifypeer        = c(1,0),
     use_futures           = TRUE,
     robotstxt_list        = NULL,
-    rt_request_handler    = robotstxt::rt_request_hanlder,
+    rt_request_handler    = robotstxt::rt_request_handler,
     on_server_error       = c("disallow", "error", "do_not_cache"),
     on_client_error       = c("allow",    "warn",  "cache"),
     on_not_found          = c("allow",    "warn",  "cache"),
