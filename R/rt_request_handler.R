@@ -155,7 +155,7 @@ rt_request_handler <-
           request = request,
           handler = on_domain_change,
           res     = res,
-          info    = list(status_code = request$status_code)
+          info    = list(orig_url = request$request$url, url = request$url)
         )
     }
 
@@ -169,7 +169,7 @@ rt_request_handler <-
           request = request,
           handler = on_file_type_mismatch,
           res     = res,
-          info    = list(status_code = request$status_code)
+          info    = list(content_type = request$headers$`content-type`)
         )
     }
 
@@ -184,7 +184,7 @@ rt_request_handler <-
           request = request,
           handler = on_suspect_content,
           res     = res,
-          info    = list(status_code = request$status_code)
+          info    = list(parsable = parsable, content_suspect = content_suspect)
         )
     }
 

@@ -18,5 +18,7 @@ env:
     - RVERSION=oldrel
     - RVERSION=release
     - RVERSION=devel
+    - rpkg_use_internet_for_testing=TRUE
+    - rpkg_use_internet_for_testing=FALSE
 
 

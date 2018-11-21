@@ -36,7 +36,7 @@ request_handler_handler <-
 
 
       # problems handling
-      res[[ deparse(substitute(handler)) ]] <- info
+      res$problems[[ deparse(substitute(handler)) ]] <- info
 
 
       # rtxt handling

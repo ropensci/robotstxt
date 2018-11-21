@@ -52,12 +52,12 @@ paths_allowed <-
     if( is.null(robotstxt_list) ){
       robotstxt_list <-
         get_robotstxts(
-          domain,
-          warn           = warn,
-          force          = force,
-          user_agent     = user_agent,
-          ssl_verifypeer = ssl_verifypeer,
-          use_futures    = use_futures,
+          domain                = domain,
+          warn                  = warn,
+          force                 = force,
+          user_agent            = user_agent,
+          ssl_verifypeer        = ssl_verifypeer,
+          use_futures           = use_futures,
           rt_request_handler    = rt_request_handler,
           on_server_error       = on_server_error,
           on_client_error       = on_client_error,

@@ -24,7 +24,7 @@ get_robotstxt <-
     ssl_verifypeer            = c(1,0),
     encoding                  = "UTF-8",
     rt_request_handler        = robotstxt::rt_request_handler,
-    rt_robotstxt_http_getter  = robotstxt::get_robotstxt_http_get(),
+    rt_robotstxt_http_getter  = robotstxt::get_robotstxt_http_get,
     on_server_error           = c("disallow", "error", "do_not_cache"),
     on_client_error           = c("allow",    "warn",  "cache"),
     on_not_found              = c("allow",    "warn",  "cache"),
@@ -43,7 +43,7 @@ get_robotstxt <-
     if( force ){
 
       request <-
-        get_robotstxt_http_get(
+        rt_robotstxt_http_getter(
           domain         = domain,
           user_agent     = user_agent,
           ssl_verifypeer = ssl_verifypeer[1]
@@ -57,7 +57,7 @@ get_robotstxt <-
     }else if ( is.null(rt_cache[[domain]]) ){
 
       request <-
-        get_robotstxt_http_get(
+        rt_robotstxt_http_getter(
           domain         = domain,
           user_agent     = user_agent,
           ssl_verifypeer = ssl_verifypeer[1]

@@ -6,6 +6,8 @@
 #'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
 #'   -- and might help with robots.txt file retrieval in some cases
 #'
+#' @export
+#'
 
 get_robotstxt_http_get <-
   function(
