@@ -24,7 +24,12 @@ http_domain_changed <-
       )
 
     # new domains
-    new_domains <- urltools::domain(location)
+    if ( length(location) > 0 ){
+      new_domains <- urltools::domain(location)
+    } else {
+      new_domains <- orig_domain
+    }
+
 
     # check domains in location against original domain
     any( !is.na(new_domains) & new_domains != orig_domain )
