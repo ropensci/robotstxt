@@ -4,6 +4,23 @@
 #' @param ... goes down the sink
 #' @export
 print.robotstxt_text <- function(x, ...){
-  cat(x)
+
+  # rpint part of the robots.txt file
+  cat("[robots.txt]\n--------------------------------------\n\n")
+  tmp <- unlist(strsplit(x, "\n"))
+  cat(tmp[seq_len(min(length(tmp), 50))], sep ="\n")
+  cat("\n\n\n")
+  if(length(tmp) > 50){
+    cat("[...]\n\n")
+  }
+
+  # print problems
+  problems <- attr(x, "problems")
+  if ( length(problems) > 0){
+    cat("[problems]\n--------------------------------------\n\n")
+    cat(capture.output(print(problems)), sep="\n")
+  }
+
+  # return
   invisible(x)
 }
