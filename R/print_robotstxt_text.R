@@ -18,7 +18,7 @@ print.robotstxt_text <- function(x, ...){
   problems <- attr(x, "problems")
   if ( length(problems) > 0){
     cat("[problems]\n--------------------------------------\n\n")
-    cat(capture.output(print(problems)), sep="\n")
+    cat(utils::capture.output(print(problems)), sep="\n")
   }
 
   # return

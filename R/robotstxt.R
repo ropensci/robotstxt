@@ -59,9 +59,13 @@ robotstxt <-
     user_agent            = NULL,
     warn                  = TRUE,
     force                 = FALSE,
-    on_redirect           = "error",
-    on_file_type_mismatch = "error",
-    on_httr_response      = function(httr_get_result){httr::content(httr_get_result)}
+    on_server_error       = c("disallow", "error", "do_not_cache"),
+    on_client_error       = c("allow",    "warn",  "cache"),
+    on_not_found          = c("allow",    "warn",  "cache"),
+    on_redirect           = c("allow",    "warn",  "cache"),
+    on_domain_change      = c("allow",    "warn",  "cache"),
+    on_file_type_mismatch = c("allow",    "warn",  "cache"),
+    on_suspect_content    = c("allow",    "warn",  "cache")
   ) {
 
     ## check input
@@ -88,7 +92,14 @@ robotstxt <-
             domain     = domain,
             user_agent = user_agent,
             warn       = warn,
-            force      = force
+            force      = force,
+            on_server_error       = on_server_error       ,
+            on_client_error       = on_client_error       ,
+            on_not_found          = on_not_found          ,
+            on_redirect           = on_redirect           ,
+            on_domain_change      = on_domain_change      ,
+            on_file_type_mismatch = on_file_type_mismatch ,
+            on_suspect_content    = on_suspect_content
           )
 
       }else{

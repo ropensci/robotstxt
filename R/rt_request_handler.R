@@ -29,7 +29,10 @@
 #'   something else than a robots.txt file (usually a JSON, XML or HTML)
 #'
 #'
-#'
+#' @param warn deprecated! this will still work but is replaced by new
+#'     mechanism specified in handler functions
+#' @param encoding The text encoding to assume if no encoding is provided in the
+#'   headers of the response
 #'
 #' @return a list with three items following the following schema: \cr \code{
 #'   list( rtxt = "", problems = list( "redirect" = list( status_code = 301 ),
@@ -51,6 +54,15 @@ rt_request_handler <-
     warn                  = TRUE,
     encoding              = "UTF-8"
   ){
+
+    # suppress warnings
+    if ( warn == TRUE) {
+      # do nothing
+    } else {
+      warn <- function(...){
+        # do nothing at all because user said so
+      }
+    }
 
     # storage for output
     res <-

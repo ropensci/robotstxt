@@ -49,8 +49,8 @@ For more information have a look at: http://www.robotstxt.org/norobots-rfc.txt, 
 
 ```{r, message=FALSE}
 library(robotstxt)
-paths_allowed("http://google.com/")
-paths_allowed("http://google.com/search")
+paths_allowed("https://www.google.com/")
+paths_allowed("http://www.google.com/search")
 ```
 
 

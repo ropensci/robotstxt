@@ -11,6 +11,13 @@
 #' @param ssl_verifypeer analog to CURL option
 #'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
 #'   might help with robots.txt file retrieval in some cases
+#' @param rt_robotstxt_http_getter function that executes HTTP request
+#' @param rt_request_handler handler function that handles request according to
+#'     the event handlers specified
+#'
+#'
+#' @inheritParams rt_request_handler
+#'
 #' @param encoding Encoding of the robots.txt file.
 #'
 #' @export

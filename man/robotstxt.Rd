@@ -5,10 +5,13 @@
 \title{Generate a representations of a robots.txt file}
 \usage{
 robotstxt(domain = NULL, text = NULL, user_agent = NULL,
-  warn = TRUE, force = FALSE, on_redirect = "error",
-  on_file_type_mismatch = "error",
-  on_httr_response = function(httr_get_result) {    
-  httr::content(httr_get_result) })
+  warn = TRUE, force = FALSE, on_server_error = c("disallow",
+  "error", "do_not_cache"), on_client_error = c("allow", "warn",
+  "cache"), on_not_found = c("allow", "warn", "cache"),
+  on_redirect = c("allow", "warn", "cache"),
+  on_domain_change = c("allow", "warn", "cache"),
+  on_file_type_mismatch = c("allow", "warn", "cache"),
+  on_suspect_content = c("allow", "warn", "cache"))
 }
 \arguments{
 \item{domain}{Domain for which to generate a representation. If text equals to NULL,
@@ -25,6 +28,24 @@ file from domain}
 \item{force}{if TRUE instead of using possible cached results the function
 will re-download the robotstxt file HTTP response status 404. If this
 happens,}
+
+\item{on_server_error}{request state handler for any 5xx status}
+
+\item{on_client_error}{request state handler for any 4xx HTTP status that is
+not 404}
+
+\item{on_not_found}{request state handler for HTTP status 404}
+
+\item{on_redirect}{request state handler for any 3xx HTTP status}
+
+\item{on_domain_change}{request state handler for any 3xx HTTP status where
+domain did change as well}
+
+\item{on_file_type_mismatch}{request state handler for content type other
+than 'text/plain'}
+
+\item{on_suspect_content}{request state handler for content that seems to be
+something else than a robots.txt file (usually a JSON, XML or HTML)}
 }
 \value{
 Object (list) of class robotstxt with parsed data from a

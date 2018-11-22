@@ -29,13 +29,34 @@ file from domain}
 
 \item{ssl_verifypeer}{analog to CURL option
 \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
--- and might help with robots.txt file retrieval in some cases              #'}
+-- and might help with robots.txt file retrieval in some cases}
 
 \item{use_futures}{Should future::future_lapply be used for possible
 parallel/async retrieval or not. Note: check out help
 pages and vignettes of package future on how to set up
 plans for future execution because the robotstxt package
 does not do it on its own.}
+
+\item{rt_request_handler}{handler function that handles request according to
+the event handlers specified}
+
+\item{on_server_error}{request state handler for any 5xx status}
+
+\item{on_client_error}{request state handler for any 4xx HTTP status that is
+not 404}
+
+\item{on_not_found}{request state handler for HTTP status 404}
+
+\item{on_redirect}{request state handler for any 3xx HTTP status}
+
+\item{on_domain_change}{request state handler for any 3xx HTTP status where
+domain did change as well}
+
+\item{on_file_type_mismatch}{request state handler for content type other
+than 'text/plain'}
+
+\item{on_suspect_content}{request state handler for content that seems to be
+something else than a robots.txt file (usually a JSON, XML or HTML)}
 }
 \description{
 function to get multiple robotstxt files

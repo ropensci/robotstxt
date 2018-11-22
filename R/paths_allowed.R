@@ -11,6 +11,8 @@
 #' @param robotstxt_list either NULL -- the default -- or a list of character
 #'                       vectors with one vector per path to check
 #'
+#' @inheritParams rt_request_handler
+#'
 #' @inheritParams get_robotstxt
 #' @inheritParams get_robotstxts
 #'

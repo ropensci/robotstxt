@@ -32,7 +32,8 @@ file from domain}
 
 \item{check_method}{at the moment only kept for backward compatibility reasons - do not use parameter anymore --> will let the function simply use the default}
 
-\item{warn}{warn about being unable to download domain/robots.txt because of}
+\item{warn}{deprecated! this will still work but is replaced by new
+mechanism specified in handler functions}
 
 \item{force}{if TRUE instead of using possible cached results the function
 will re-download the robotstxt file HTTP response status 404. If this
@@ -50,6 +51,27 @@ does not do it on its own.}
 
 \item{robotstxt_list}{either NULL -- the default -- or a list of character
 vectors with one vector per path to check}
+
+\item{rt_request_handler}{handler function that handles request according to
+the event handlers specified}
+
+\item{on_server_error}{request state handler for any 5xx status}
+
+\item{on_client_error}{request state handler for any 4xx HTTP status that is
+not 404}
+
+\item{on_not_found}{request state handler for HTTP status 404}
+
+\item{on_redirect}{request state handler for any 3xx HTTP status}
+
+\item{on_domain_change}{request state handler for any 3xx HTTP status where
+domain did change as well}
+
+\item{on_file_type_mismatch}{request state handler for content type other
+than 'text/plain'}
+
+\item{on_suspect_content}{request state handler for content that seems to be
+something else than a robots.txt file (usually a JSON, XML or HTML)}
 }
 \description{
 check if a bot has permissions to access page(s)
