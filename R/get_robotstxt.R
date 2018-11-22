@@ -82,8 +82,8 @@ get_robotstxt <-
     rtxt <- res$rtxt
 
     # return
-    class(rtxt)                  <- c("robotstxt_text", "character")
     attributes(rtxt) <- list(problems = res$problems, cached = res$cache)
+    class(rtxt)                  <- c("robotstxt_text", "character")
     return(rtxt)
   }
 
