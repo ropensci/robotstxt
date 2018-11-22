@@ -6,21 +6,22 @@
 #'
 is_suspect_robotstxt <- function(text){
 
-  # check for html
-  if( grep(x = text[1], pattern = "^\\s*<!doctype ", ignore.case = TRUE) ){
-    return(TRUE)
-  }
+  if ( length(text) > 0 ){
+    # check for html
+    if( grepl(x = text[1], pattern = "^\\s*<!doctype ", ignore.case = TRUE) ){
+      return(TRUE)
+    }
 
-  # check for xml
-  if( grep(x = text[1], pattern = "^\\s*<?xml ", ignore.case = TRUE) ){
-    return(TRUE)
-  }
+    # check for xml
+    if( grepl(x = text[1], pattern = "^\\s*<?xml ", ignore.case = TRUE) ){
+      return(TRUE)
+    }
 
-  # check for json
-  if( grep(x = text[1], pattern = "^\\s*{", ignore.case = TRUE) ){
-    return(TRUE)
+    # check for json
+    if( grepl(x = text[1], pattern = "^\\s*\\{", ignore.case = TRUE) ){
+      return(TRUE)
+    }
   }
-
 
   # return default
   return(FALSE)
