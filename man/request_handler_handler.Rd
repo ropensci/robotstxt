@@ -4,7 +4,8 @@
 \alias{request_handler_handler}
 \title{request_handler_handler}
 \usage{
-request_handler_handler(request, handler, res, info = TRUE)
+request_handler_handler(request, handler, res, info = TRUE,
+  warn = TRUE)
 }
 \arguments{
 \item{request}{the request object returned by call to httr::GET()}
@@ -13,7 +14,9 @@ request_handler_handler(request, handler, res, info = TRUE)
 
 \item{res}{a list a list with elements '[handler names], ...', 'rtxt', and 'cache'}
 
-\item{info}{???}
+\item{info}{info to add to problems list}
+
+\item{warn}{if FALSE warnings and messages are suppressed}
 }
 \value{
 a list with elements '[handler name]', 'rtxt', and 'cache'
