@@ -173,7 +173,13 @@ rt_request_handler <-
           request = request,
           handler = on_domain_change,
           res     = res,
-          info    = list(orig_url = request$request$url, url = request$url)
+          info    =
+            list(
+              orig_url = request$request$url,
+              last_url = request$url,
+              orig_domain = urltools::domain(request$request$url),
+              last_url    = urltools::domain(request$url)
+            )
         )
     }
 
