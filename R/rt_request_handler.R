@@ -55,15 +55,6 @@ rt_request_handler <-
     encoding              = "UTF-8"
   ){
 
-    # suppress warnings
-    if ( warn == TRUE) {
-      # do nothing
-    } else {
-      warn <- function(...){
-        # do nothing at all because user said so
-      }
-    }
-
     # storage for output
     res <-
       list(
@@ -107,7 +98,8 @@ rt_request_handler <-
           request = request,
           handler = on_server_error,
           res     = res,
-          info    = list(status_code = request$status_code)
+          info    = list(status_code = request$status_code),
+          warn    = warn
         )
     }
 
@@ -121,7 +113,8 @@ rt_request_handler <-
           request = request,
           handler = on_not_found,
           res     = res,
-          info    = list(status_code = request$status_code)
+          info    = list(status_code = request$status_code),
+          warn    = warn
         )
     }
 
@@ -138,7 +131,8 @@ rt_request_handler <-
           request = request,
           handler = on_client_error,
           res     = res,
-          info    = list(status_code = request$status_code)
+          info    = list(status_code = request$status_code),
+          warn    = warn
         )
     }
 
@@ -162,7 +156,20 @@ rt_request_handler <-
           request = request,
           handler = on_redirect,
           res     = res,
-          info    = list(status_code = request$status_code)
+          info    =
+            {
+              tmp <- list()
+              for ( i in seq_along(request$all_headers)){
+                tmp[[length(tmp)+1]] <-
+                  list(
+                    status   = request$all_headers[[i]]$status,
+                    location = request$all_headers[[i]]$headers$location
+                  )
+              }
+              tmp
+            }
+            ,
+          warn    = warn
         )
     }
 
@@ -179,7 +186,8 @@ rt_request_handler <-
               last_url = request$url,
               orig_domain = urltools::domain(request$request$url),
               last_url    = urltools::domain(request$url)
-            )
+            ),
+          warn    = warn
         )
     }
 
@@ -193,7 +201,8 @@ rt_request_handler <-
           request = request,
           handler = on_file_type_mismatch,
           res     = res,
-          info    = list(content_type = request$headers$`content-type`)
+          info    = list(content_type = request$headers$`content-type`),
+          warn    = warn
         )
     }
 
@@ -208,7 +217,8 @@ rt_request_handler <-
           request = request,
           handler = on_suspect_content,
           res     = res,
-          info    = list(parsable = parsable, content_suspect = content_suspect)
+          info    = list(parsable = parsable, content_suspect = content_suspect),
+          warn    = warn
         )
     }
 
