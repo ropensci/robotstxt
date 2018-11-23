@@ -79,7 +79,7 @@ rt_request_handler <-
       grepl("charset", null_to_defeault(request$headers$`content-type`, ""))
 
 
-    if ( encoding_supplied == TRUE ){
+    if ( encoding_supplied == TRUE ) {
       rtxt_not_handled <-
         httr::content(
           request,
@@ -147,7 +147,16 @@ rt_request_handler <-
     redirected <-
       http_was_redirected(request)
 
-    if ( redirected == TRUE ){
+    ## domain change
+    domain_change <-
+      http_domain_changed(request)
+
+    ## subdomain changed to www
+    subdomain_changed_to_www <-
+      subdomain_changed_to_www(request)
+
+
+    if ( redirected == TRUE & !subdomain_changed_to_www ){
       res <-
         request_handler_handler(
           request = request,
@@ -157,11 +166,8 @@ rt_request_handler <-
         )
     }
 
-    ## domain change
-    domain_change <-
-      http_domain_changed(request)
 
-    if ( domain_change == TRUE ){
+    if ( domain_change == TRUE & !subdomain_changed_to_www ){
       res <-
         request_handler_handler(
           request = request,
