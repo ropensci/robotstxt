@@ -5,13 +5,14 @@
 #' @param request the request object returned by call to httr::GET()
 #' @param handler the handler either a character string entailing various options or a function producing a specific list, see return.
 #' @param res a list a list with elements '[handler names], ...', 'rtxt', and 'cache'
-#' @param info ???
+#' @param info info to add to problems list
+#' @param warn if FALSE warnings and messages are suppressed
 #'
 #' @return a list with elements '[handler name]', 'rtxt', and 'cache'
 #' @export
 #'
 request_handler_handler <-
-  function(request, handler, res, info = TRUE){
+  function(request, handler, res, info = TRUE, warn = TRUE){
     # use handler function or simply go through options bit by bit
     if ( is.function(handler) ){
 
@@ -24,11 +25,11 @@ request_handler_handler <-
 
         stop(paste0("Event: ", deparse(substitute(handler))))
 
-      } else if ( "warn" %in% handler ) {
+      } else if ( "warn" %in% handler & warn == TRUE) {
 
         warning(paste0("Event: ", deparse(substitute(handler))))
 
-      } else if ( "message" %in% handler ) {
+      } else if ( "message" %in% handler  & warn == TRUE) {
 
         message(paste0("Event: ", deparse(substitute(handler))))
 
