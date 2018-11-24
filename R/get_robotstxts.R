@@ -19,19 +19,20 @@
 get_robotstxts <-
   function(
     domain,
-    warn                  = TRUE,
-    force                 = FALSE,
-    user_agent            = utils::sessionInfo()$R.version$version.string,
-    ssl_verifypeer        = c(1,0),
-    use_futures           = FALSE,
-    rt_request_handler    = robotstxt::rt_request_handler,
-    on_server_error       = c("disallow", "error", "do_not_cache"),
-    on_client_error       = c("allow",    "warn",  "cache"),
-    on_not_found          = c("allow",    "warn",  "cache"),
-    on_redirect           = c("allow",    "warn",  "cache"),
-    on_domain_change      = c("allow",    "warn",  "cache"),
-    on_file_type_mismatch = c("allow",    "warn",  "cache"),
-    on_suspect_content    = c("allow",    "warn",  "cache")
+    warn                      = TRUE,
+    force                     = FALSE,
+    user_agent                = utils::sessionInfo()$R.version$version.string,
+    ssl_verifypeer            = c(1,0),
+    use_futures               = FALSE,
+    rt_request_handler        = robotstxt::rt_request_handler,
+    rt_robotstxt_http_getter  = robotstxt::get_robotstxt_http_get,
+    on_server_error           = c("disallow", "error", "do_not_cache"),
+    on_client_error           = c("allow",    "warn",  "cache"),
+    on_not_found              = c("allow",    "warn",  "cache"),
+    on_redirect               = c("allow",    "warn",  "cache"),
+    on_domain_change          = c("allow",    "warn",  "cache"),
+    on_file_type_mismatch     = c("allow",    "warn",  "cache"),
+    on_suspect_content        = c("allow",    "warn",  "cache")
   ){
 
 
@@ -84,19 +85,20 @@ get_robotstxts <-
         )
 
         get_robotstxt(
-          domain                = x$domain,
-          warn                  = x$warn,
-          force                 = x$force,
-          user_agent            = x$user_agent,
-          ssl_verifypeer        = x$ssl_verifypeer,
-          rt_request_handler    = rt_request_handler,
-          on_server_error       = on_server_error,
-          on_client_error       = on_client_error,
-          on_not_found          = on_not_found,
-          on_redirect           = on_redirect,
-          on_domain_change      = on_domain_change,
-          on_file_type_mismatch = on_file_type_mismatch,
-          on_suspect_content    = on_suspect_content
+          domain                    = x$domain,
+          warn                      = x$warn,
+          force                     = x$force,
+          user_agent                = x$user_agent,
+          ssl_verifypeer            = x$ssl_verifypeer,
+          rt_request_handler        = rt_request_handler,
+          rt_robotstxt_http_getter  = rt_robotstxt_http_getter,
+          on_server_error           = on_server_error,
+          on_client_error           = on_client_error,
+          on_not_found              = on_not_found,
+          on_redirect               = on_redirect,
+          on_domain_change          = on_domain_change,
+          on_file_type_mismatch     = on_file_type_mismatch,
+          on_suspect_content        = on_suspect_content
         )
 
       }

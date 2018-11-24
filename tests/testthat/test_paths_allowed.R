@@ -969,3 +969,93 @@ for ( i in seq_len(nrow(options_grid)) ) {
 # )
 #
 #
+
+
+
+
+
+
+
+
+test_that("paths_allowed() works also with 'downloaded' robots.txt files",{
+
+  expect_message({
+    domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
+    paths_allowed(
+      paths                    = "https://github.io/index.html",
+      rt_robotstxt_http_getter = function(...){domain_change},
+      warn = FALSE
+    )
+  })
+
+  expect_warning({
+    domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
+    paths_allowed(
+      paths                    = "https://github.io/index.html",
+      rt_robotstxt_http_getter = function(...){domain_change}
+    )
+  })
+
+  expect_true({
+    domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
+    paths_allowed(
+      paths                    = "https://github.io/index.html",
+      rt_robotstxt_http_getter = function(...){domain_change},
+      warn = FALSE
+    )
+  })
+
+  expect_true({
+    domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
+    res <-
+      paths_allowed(
+      paths  = c("index.html", "dings/bums/trallalla"),
+      domain = "github.io",
+      rt_robotstxt_http_getter = function(...){domain_change},
+      warn = FALSE
+    )
+    all(res)
+  })
+
+  expect_true({
+    domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
+    res <-
+      paths_allowed(
+      paths  = c("https://github.io/index.html", "https://github.io/index.html"),
+      rt_robotstxt_http_getter = function(...){domain_change},
+      warn = FALSE
+    )
+    all(res)
+  })
+
+
+  expect_true({
+    http_ok <- readRDS(system.file("http_requests/http_ok_1.rds", package = "robotstxt"))
+    res <-
+      paths_allowed(
+        paths  = c("https://google.com/?", "https://google.com/search/about"),
+        rt_robotstxt_http_getter = function(...){http_ok}
+      )
+    all(res == c(FALSE, TRUE))
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

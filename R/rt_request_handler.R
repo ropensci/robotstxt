@@ -29,8 +29,7 @@
 #'   something else than a robots.txt file (usually a JSON, XML or HTML)
 #'
 #'
-#' @param warn deprecated! this will still work but is replaced by new
-#'     mechanism specified in handler functions
+#' @param warn suppress warnings
 #' @param encoding The text encoding to assume if no encoding is provided in the
 #'   headers of the response
 #'

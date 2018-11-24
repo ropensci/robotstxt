@@ -8,6 +8,7 @@ get_robotstxts(domain, warn = TRUE, force = FALSE,
   user_agent = utils::sessionInfo()$R.version$version.string,
   ssl_verifypeer = c(1, 0), use_futures = FALSE,
   rt_request_handler = robotstxt::rt_request_handler,
+  rt_robotstxt_http_getter = robotstxt::get_robotstxt_http_get,
   on_server_error = c("disallow", "error", "do_not_cache"),
   on_client_error = c("allow", "warn", "cache"),
   on_not_found = c("allow", "warn", "cache"), on_redirect = c("allow",
@@ -39,6 +40,8 @@ does not do it on its own.}
 
 \item{rt_request_handler}{handler function that handles request according to
 the event handlers specified}
+
+\item{rt_robotstxt_http_getter}{function that executes HTTP request}
 
 \item{on_server_error}{request state handler for any 5xx status}
 
