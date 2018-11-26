@@ -32,11 +32,6 @@ reduce <- function(f, x, init, ...) {
 #' applied.
 #' @param ... named lists
 #' @importFrom utils modifyList
-#' @examples
-#' l1 <- list(a=1,b=list(x=1,y=1))
-#' l2 <- list(a=2,b=list(z=2))
-#' l3 <- list(a=2,b=list(x=3))
-#' list.merge(l1,l2,l3)
 list_merge <- function(...) {
   lists <- list(...)
   if (any(vapply(lists, function(x) is.null(names(x)), logical(1L))))

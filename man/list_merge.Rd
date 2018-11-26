@@ -23,12 +23,6 @@ all versions of settings in release order of these versions. The
 result is an fully updated settings with all later modifications
 applied.
 }
-\examples{
-l1 <- list(a=1,b=list(x=1,y=1))
-l2 <- list(a=2,b=list(z=2))
-l3 <- list(a=2,b=list(x=3))
-list.merge(l1,l2,l3)
-}
 \author{
 Kun Ren <mail@renkun.me>
 
