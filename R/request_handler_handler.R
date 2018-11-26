@@ -16,47 +16,52 @@ request_handler_handler <-
     # use handler function or simply go through options bit by bit
     if ( is.function(handler) ){
 
-      return(handler(request))
+      return(handler(request, handler, res, info, warn))
 
     } else {
 
-      # error handling
-      if ( "error" %in% handler ) {
+      # signaling
+      if ( handler$signal %in% "error" ) {
 
         stop(paste0("Event: ", deparse(substitute(handler))))
 
-      } else if ( "warn" %in% handler & warn == TRUE) {
+      } else if (  handler$signal %in% "warning" & warn == TRUE) {
 
         warning(paste0("Event: ", deparse(substitute(handler))))
 
-      } else if ( "message" %in% handler  & warn == TRUE) {
+      } else if (  handler$signal %in% "message"   & warn == TRUE) {
 
         message(paste0("Event: ", deparse(substitute(handler))))
 
       }
 
 
-      # problems handling
+      # problems logging
       res$problems[[ deparse(substitute(handler)) ]] <- info
 
 
       # rtxt handling
-      if ( "allow" %in% handler ) {
-        res$rtxt <-
-          "# robots.txt file created by robotstxt::rt_request_handler()\nUser-agent: *\nAllow: /\n"
-      } else if ( "disallow" %in% handler ) {
-        res$rtxt <-
-          "# robots.txt file created by robotstxt::rt_request_handler()\nUser-agent: *\nDisallow: /\n"
-      } else if ( "ignore" %in% handler ){
+      if ( is.null(handler$over_write_file_with) ) {
         # do nothing
+      } else {
+        if ( res$priority < handler$priority){
+          res$priority <- handler$priority
+          res$rtxt     <- handler$over_write_file_with
+        }
+
       }
 
-
       # cache handling
-      if ( "cache" %in% handler ) {
-        res$cache <- TRUE
-      } else if ( "do_not_cache" %in% handler ) {
-        res$cache <- FALSE
+      if ( handler$cache %in% TRUE ) {
+        if ( res$priority < handler$priority){
+          res$priority <- handler$priority
+          res$cache <- TRUE
+        }
+      } else if ( handler$cache %in% FALSE ) {
+        if ( res$priority < handler$priority){
+          res$priority <- handler$priority
+          res$cache <- FALSE
+        }
       }
     }
 

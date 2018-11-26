@@ -8,9 +8,13 @@ Authors@R: c(
           "Peter", "Meissner", role = c("aut", "cre"),
           email = "retep.meissner@gmail.com"
         ),
-	      person("Oliver", "Keys", role = "ctb"),
-	      person("Rich", "Fitz John", role = "ctb")
-	      )
+        person(
+            "Kun", "Ren", email = "mail@renkun.me", role = c("aut", "cph"),
+            comment = "Author and copyright holder of list_merge.R."
+        ),
+	    person("Oliver", "Keys", role = "ctb"),
+	    person("Rich", "Fitz John", role = "ctb")
+	  )
 Description: Provides functions to download and parse 'robots.txt' files.
         Ultimately the package makes it easy to check if bots
         (spiders, crawler, scrapers, ...) are allowed to access specific

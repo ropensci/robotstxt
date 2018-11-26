@@ -59,13 +59,13 @@ robotstxt <-
     user_agent            = NULL,
     warn                  = TRUE,
     force                 = FALSE,
-    on_server_error       = c("disallow", "error", "do_not_cache"),
-    on_client_error       = c("allow",    "warn",  "cache"),
-    on_not_found          = c("allow",    "warn",  "cache"),
-    on_redirect           = c("allow",    "warn",  "cache"),
-    on_domain_change      = c("allow",    "warn",  "cache"),
-    on_file_type_mismatch = c("allow",    "warn",  "cache"),
-    on_suspect_content    = c("allow",    "warn",  "cache")
+    on_server_error       = on_server_error_default,
+    on_client_error       = on_client_error_default,
+    on_not_found          = on_not_found_default,
+    on_redirect           = on_redirect_default,
+    on_domain_change      = on_domain_change_default,
+    on_file_type_mismatch = on_file_type_mismatch_default,
+    on_suspect_content    = on_suspect_content_default
   ) {
 
     ## check input

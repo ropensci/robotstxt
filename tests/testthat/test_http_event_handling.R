@@ -95,3 +95,97 @@ test_that("all ok", {
     }
   })
 })
+
+
+
+
+test_that("client error", {
+  expect_warning({
+    http_client_error <- readRDS(system.file("http_requests/http_client_error.rds", package = "robotstxt"))
+    get_robotstxt(
+      "httpbin.org",
+      rt_robotstxt_http_getter = function(...){http_client_error}
+    )
+  })
+
+  expect_true({
+    http_client_error <- readRDS(system.file("http_requests/http_client_error.rds", package = "robotstxt"))
+    res <-
+      get_robotstxt(
+      "httpbin.org",
+      rt_robotstxt_http_getter = function(...){http_client_error},
+      warn = FALSE
+    )
+    problems <- attr(res, "problems")
+    problems$on_client_error$status_code == 400
+  })
+
+  expect_true({
+    http_client_error <- readRDS(system.file("http_requests/http_client_error.rds", package = "robotstxt"))
+    res <-
+    paths_allowed(
+        paths = c("", "/", "here/I/stand/chopping/lops"),
+        domain = "httpbin.org",
+        rt_robotstxt_http_getter = function(...){http_client_error},
+        warn = FALSE
+      )
+    all(res)
+  })
+})
+
+
+test_that("server error", {
+  expect_error({
+    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
+    get_robotstxt(
+      "httpbin.org",
+      rt_robotstxt_http_getter = function(...){http_server_error}
+    )
+  })
+
+  expect_warning({
+    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
+    res <-
+      get_robotstxt(
+        "httpbin.org",
+        rt_robotstxt_http_getter = function(...){http_server_error},
+        on_server_error = list(signal = "warning")
+      )
+  })
+
+  expect_true({
+    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
+    res <-
+      get_robotstxt(
+        domain = "httpbin.org",
+        rt_robotstxt_http_getter = function(...){http_server_error},
+        on_server_error =
+          list(
+            overwrite = "User-agent: *\nDisallow: /",
+            signal    = "warning",
+            cache     = FALSE
+          )
+      )
+    all(!res)
+  })
+
+  expect_true({
+    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
+    res <-
+      paths_allowed(
+        paths = c("", "/", "here/I/stand/chopping/lops"),
+        domain = "httpbin.org",
+        rt_robotstxt_http_getter = function(...){http_server_error},
+        on_server_error = c("disallow", "warning", "cache")
+      )
+    all(!res)
+  })
+})
+
+
+
+
+
+
+
+
