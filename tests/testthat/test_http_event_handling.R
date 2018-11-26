@@ -156,27 +156,12 @@ test_that("server error", {
   expect_true({
     http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
     res <-
-      get_robotstxt(
-        domain = "httpbin.org",
-        rt_robotstxt_http_getter = function(...){http_server_error},
-        on_server_error =
-          list(
-            overwrite = "User-agent: *\nDisallow: /",
-            signal    = "warning",
-            cache     = FALSE
-          )
-      )
-    all(!res)
-  })
-
-  expect_true({
-    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
-    res <-
       paths_allowed(
         paths = c("", "/", "here/I/stand/chopping/lops"),
         domain = "httpbin.org",
         rt_robotstxt_http_getter = function(...){http_server_error},
-        on_server_error = c("disallow", "warning", "cache")
+        on_server_error = list(signal = "nothing"),
+        warn            = FALSE
       )
     all(!res)
   })
