@@ -54,11 +54,18 @@
 #'
 robotstxt <-
   function(
-    domain     = NULL,
-    text       = NULL,
-    user_agent = NULL,
-    warn       = TRUE,
-    force      = FALSE
+    domain                = NULL,
+    text                  = NULL,
+    user_agent            = NULL,
+    warn                  = TRUE,
+    force                 = FALSE,
+    on_server_error       = on_server_error_default,
+    on_client_error       = on_client_error_default,
+    on_not_found          = on_not_found_default,
+    on_redirect           = on_redirect_default,
+    on_domain_change      = on_domain_change_default,
+    on_file_type_mismatch = on_file_type_mismatch_default,
+    on_suspect_content    = on_suspect_content_default
   ) {
 
     ## check input
@@ -85,7 +92,14 @@ robotstxt <-
             domain     = domain,
             user_agent = user_agent,
             warn       = warn,
-            force      = force
+            force      = force,
+            on_server_error       = on_server_error       ,
+            on_client_error       = on_client_error       ,
+            on_not_found          = on_not_found          ,
+            on_redirect           = on_redirect           ,
+            on_domain_change      = on_domain_change      ,
+            on_file_type_mismatch = on_file_type_mismatch ,
+            on_suspect_content    = on_suspect_content
           )
 
       }else{

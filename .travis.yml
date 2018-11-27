@@ -15,8 +15,12 @@ notifications:
 
 env:
   matrix:
-    - RVERSION=oldrel
-    - RVERSION=release
+    - RVERSION=oldrel rpkg_use_internet_for_testing=TRUE
+    - RVERSION=oldrel rpkg_use_internet_for_testing=FALSE
+    - RVERSION=release rpkg_use_internet_for_testing=TRUE
+    - RVERSION=release rpkg_use_internet_for_testing=FALSE
     - RVERSION=devel
+
+
 
 

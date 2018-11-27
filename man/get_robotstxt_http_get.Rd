@@ -9,10 +9,9 @@ get_robotstxt_http_get(domain,
   ssl_verifypeer = 1)
 }
 \arguments{
-\item{domain}{domain from which to download robots.txt file}
+\item{domain}{the domain to get tobots.txt. file for}
 
-\item{user_agent}{HTTP user-agent string to be used to retrieve robots.txt
-file from domain}
+\item{user_agent}{the user agent to use for HTTP request header}
 
 \item{ssl_verifypeer}{analog to CURL option
 \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}

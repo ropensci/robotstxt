@@ -11,6 +11,13 @@
 #' @param ssl_verifypeer analog to CURL option
 #'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
 #'   might help with robots.txt file retrieval in some cases
+#' @param rt_robotstxt_http_getter function that executes HTTP request
+#' @param rt_request_handler handler function that handles request according to
+#'     the event handlers specified
+#'
+#'
+#' @inheritParams rt_request_handler
+#'
 #' @param encoding Encoding of the robots.txt file.
 #'
 #' @export
@@ -18,11 +25,20 @@
 get_robotstxt <-
   function(
     domain,
-    warn           = TRUE,
-    force          = FALSE,
-    user_agent     = utils::sessionInfo()$R.version$version.string,
-    ssl_verifypeer = c(1,0),
-    encoding       = "UTF-8"
+    warn                      = TRUE,
+    force                     = FALSE,
+    user_agent                = utils::sessionInfo()$R.version$version.string,
+    ssl_verifypeer            = c(1,0),
+    encoding                  = "UTF-8",
+    rt_request_handler        = robotstxt::rt_request_handler,
+    rt_robotstxt_http_getter  = robotstxt::get_robotstxt_http_get,
+    on_server_error           = on_server_error_default,
+    on_client_error           = on_client_error_default,
+    on_not_found              = on_not_found_default,
+    on_redirect               = on_redirect_default,
+    on_domain_change          = on_domain_change_default,
+    on_file_type_mismatch     = on_file_type_mismatch_default,
+    on_suspect_content        = on_suspect_content_default
   ){
 
     # pre checking input
@@ -34,7 +50,7 @@ get_robotstxt <-
     if( force ){
 
       request <-
-        get_robotstxt_http_get(
+        rt_robotstxt_http_getter(
           domain         = domain,
           user_agent     = user_agent,
           ssl_verifypeer = ssl_verifypeer[1]
@@ -48,7 +64,7 @@ get_robotstxt <-
     }else if ( is.null(rt_cache[[domain]]) ){
 
       request <-
-        get_robotstxt_http_get(
+        rt_robotstxt_http_getter(
           domain         = domain,
           user_agent     = user_agent,
           ssl_verifypeer = ssl_verifypeer[1]
@@ -56,70 +72,25 @@ get_robotstxt <-
 
     }
 
-    # ok
-    if( request$status < 400 ){
-      rtxt <-
-        httr::content(
-          request,
-          encoding = encoding,
-          as       = "text"
-        )
 
-      # check if robots.txt is parsable
-      if ( is_valid_robotstxt(rtxt) ){
-        rt_cache[[domain]] <- request
-      }else{
-        # dump file
-        fname_tmp <-
-          tempfile(pattern = "robots_", fileext = ".txt")
+    # handle request
+    res  <-
+      rt_request_handler(
+        request          = request,
+        on_redirect      = on_redirect,
+        on_domain_change = on_domain_change,
+        on_not_found     = on_not_found,
+        on_client_error  = on_client_error,
+        on_server_error  = on_server_error,
+        warn             = warn,
+        encoding         = encoding
+      )
 
-        writeLines(
-          text     = rtxt,
-          con      = fname_tmp,
-          useBytes = TRUE
-        )
+    rtxt <- res$rtxt
 
-        # give back a digest of the retrieved file
-        if( warn ){
-          message(
-            "\n\n",
-            "[domain] ", domain, " --> ", fname_tmp,
-            "\n\n",
-            substring(paste(rtxt, collapse = "\n"), 1, 200),"\n", "[...]",
-            "\n\n"
-          )
-        }
-
-
-        # found file but could not parse it - can happen, everything is allowed
-        # --> treated as if there was no file
-          warning(paste0(
-            "get_robotstxt(): ",  domain, "; Not valid robots.txt."
-          ))
-        rtxt <- ""
-        rt_cache[[domain]] <- request
-      }
-    }
-
-    # not found - can happen, everything is allowed
-    if( request$status == 404 ){
-      if(warn){
-        warning(paste0(
-          "get_robotstxt(): ",  domain, "; HTTP status: ",  request$status
-        ))
-      }
-      rtxt <- ""
-      rt_cache[[domain]] <- request
-    }
-
-    # not ok - diverse
-    if( !(request$status == 404 | request$status < 400) ){
-      stop(paste0(
-        "get_robotstxt(): ",  domain, "; HTTP status: ",  request$status
-      ))
-    }
     # return
-    class(rtxt) <- c("robotstxt_text", "character")
+    attributes(rtxt) <- list(problems = res$problems, cached = res$cache)
+    class(rtxt)                  <- c("robotstxt_text", "character")
     return(rtxt)
   }
 

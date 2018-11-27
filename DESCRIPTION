@@ -1,16 +1,20 @@
 Package: robotstxt
-Date: 2018-09-14
+Date: 2018-11-26
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.6.4
+Version: 0.7.0.9999
 Authors@R: c(
         person(
           "Peter", "Meissner", role = c("aut", "cre"),
           email = "retep.meissner@gmail.com"
         ),
-	      person("Oliver", "Keys", role = "ctb"),
-	      person("Rich", "Fitz John", role = "ctb")
-	      )
+        person(
+            "Kun", "Ren", email = "mail@renkun.me", role = c("aut", "cph"),
+            comment = "Author and copyright holder of list_merge.R."
+        ),
+	    person("Oliver", "Keys", role = "ctb"),
+	    person("Rich", "Fitz John", role = "ctb")
+	  )
 Description: Provides functions to download and parse 'robots.txt' files.
         Ultimately the package makes it easy to check if bots
         (spiders, crawler, scrapers, ...) are allowed to access specific
@@ -26,7 +30,8 @@ Imports:
     future (>= 1.6.2),
     future.apply (>= 1.0.0),
     magrittr,
-    utils
+    utils,
+    urltools (>= 1.7.1)
 Suggests:
     knitr,
     rmarkdown,
@@ -36,5 +41,5 @@ Suggests:
 Depends:
     R (>= 3.0.0)
 VignetteBuilder: knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Encoding: UTF-8
