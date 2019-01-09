@@ -56,3 +56,63 @@ test_that(
   }
 )
 
+
+context("robotstxt parsing multi agent records without newline")
+
+test_that(
+  "robotstxt parsing multi agent records without newline", {
+    expect_true({
+      rbtx <- spiderbar::robxp("
+User-agent: *
+Disallow: /*/print$
+# Don't allow indexing of user needs pages
+Disallow: /info/*
+Sitemap: https://www.gov.uk/sitemap.xml
+# https://ahrefs.com/robot/ crawls the site frequently
+User-agent: dooby
+User-agent: AhrefsBot
+Crawl-delay: 10
+# https://www.deepcrawl.com/bot/ makes lots of requests. Ideally
+# we'd slow it down rather than blocking it but it doesn't mention
+# whether or not it supports crawl-delay.
+User-agent: deepcrawl
+Disallow: /
+# Complaints of 429 'Too many requests' seem to be coming from SharePoint servers
+# (https://social.msdn.microsoft.com/Forums/en-US/3ea268ed-58a6-4166-ab40-d3f4fc55fef4)
+# The robot doesn't recognise its User-Agent string, see the MS support article:
+# https://support.microsoft.com/en-us/help/3019711/the-sharepoint-server-crawler-ignores-directives-in-robots-txt
+User-agent: MS Search 6.0 Robot
+Disallow: /
+"
+      )
+      sum(spiderbar::crawl_delays(rbtx)$crawl_delay==10)==2
+    })
+
+    expect_true({
+      robot <- robotstxt(text = "
+User-agent: *
+Disallow: /*/print$
+# Don't allow indexing of user needs pages
+Disallow: /info/*
+Sitemap: https://www.gov.uk/sitemap.xml
+# https://ahrefs.com/robot/ crawls the site frequently
+User-agent: dooby
+User-agent: AhrefsBot
+Crawl-delay: 10
+# https://www.deepcrawl.com/bot/ makes lots of requests. Ideally
+# we'd slow it down rather than blocking it but it doesn't mention
+# whether or not it supports crawl-delay.
+User-agent: deepcrawl
+Disallow: /
+# Complaints of 429 'Too many requests' seem to be coming from SharePoint servers
+# (https://social.msdn.microsoft.com/Forums/en-US/3ea268ed-58a6-4166-ab40-d3f4fc55fef4)
+# The robot doesn't recognise its User-Agent string, see the MS support article:
+# https://support.microsoft.com/en-us/help/3019711/the-sharepoint-server-crawler-ignores-directives-in-robots-txt
+User-agent: MS Search 6.0 Robot
+Disallow: /
+")
+      nrow(robot$crawl_delay) == 2
+    })
+  }
+)
+

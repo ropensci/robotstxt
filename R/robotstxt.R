@@ -112,6 +112,7 @@ robotstxt <-
     ## fill fields with default data
 
     tmp <- parse_robotstxt(self$text)
+    self$robexclobj  <- spiderbar::robxp(self$text)
     self$bots        <- tmp$useragents
     self$comments    <- tmp$comments
     self$permissions <- tmp$permissions
@@ -119,7 +120,6 @@ robotstxt <-
     self$host        <- tmp$host
     self$sitemap     <- tmp$sitemap
     self$other       <- tmp$other
-    self$robexclobj  <- spiderbar::robxp(self$text)
 
     self$check <-
       function(paths="/", bot="*"){

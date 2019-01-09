@@ -3,6 +3,19 @@ NEWS robotstxt
 
 
 
+0.7.0 | 2018-11-27
+--------------------------------------------------------------------------
+
+- **major** : introducing http handler to allow for better interpretation of robots.txt files in case of certain events: redirects, server error, client error, suspicous content, ...
+
+
+
+0.6.4 | 2018-09-14
+--------------------------------------------------------------------------
+
+- **minor** : pass through of parameter for content encoding 
+
+
 
 0.6.3 | 2018-09-14
 --------------------------------------------------------------------------
