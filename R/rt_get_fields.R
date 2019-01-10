@@ -13,9 +13,9 @@ rt_get_fields <- function(txt, regex = "", invert = FALSE){
     paste0(collapse = "\n") %>%
     stringr::str_replace_all( pattern = "#.*?\n", replacement = "") %>%
     stringr::str_replace_all(pattern = "(\nUser.+)", replacement = "\n\\1") %>%
-    stringr::str_replace_all(pattern = "\n", replacement = "~§~/%\n") %>%
-    stringr::str_replace_all(pattern = "(User.+?~§~/%\n)~§~/%\n(User.+?)", replacement = "\\1\\2") %>%
-    stringr::str_replace_all(pattern = "~§~/%", replacement = "") %>%
+    stringr::str_replace_all(pattern = "\n", replacement = "/%~~~/%\n") %>%
+    stringr::str_replace_all(pattern = "(User.+?/%~~~/%\n)/%~~~/%\n(User.+?)", replacement = "\\1\\2") %>%
+    stringr::str_replace_all(pattern = "/%~~~/%", replacement = "") %>%
     stringr::str_replace(pattern = "^\n", replacement = "") %>%
     stringr::str_split("\n[ \t]*\n") %>%
     unlist()

@@ -1,6 +1,13 @@
 NEWS robotstxt
 ==========================================================================
 
+0.7.1 | 2018-01-09
+--------------------------------------------------------------------------
+
+- **minor** : modifying robots.txt parser to be more robust against different formatting of robots.txt files -- fixed https://github.com/ropensci/robotstxt/issues/48
+
+
+
 
 
 0.7.0 | 2018-11-27
