@@ -4,7 +4,7 @@
 #' @param domain Domain for which paths should be checked. Defaults to "auto".
 #'   If set to "auto" function will try to guess the domain by parsing the paths
 #'   argument. Note however, that these are educated guesses which might utterly
-#'   fail. To be on the save side, provide appropriate domains manually.
+#'   fail. To be on the safe side, provide appropriate domains manually.
 #' @param bot name of the bot, defaults to "*"
 #' @param paths paths for which to check bot's permission, defaults to "/". Please, note that path to a folder should end with a trailing slash ("/").
 #' @param check_method at the moment only kept for backward compatibility reasons - do not use parameter anymore --> will let the function simply use the default
