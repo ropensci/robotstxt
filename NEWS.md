@@ -1,6 +1,15 @@
 NEWS robotstxt
 ==========================================================================
 
+
+
+0.7.2 | 2020-05-04
+--------------------------------------------------------------------------
+
+- **minor** : changes in dependencies were introducing errors when no scheme/protocoll was provided in URL -- fixed https://github.com/ropensci/robotstxt/issues/50
+
+
+
 0.7.1 | 2018-01-09
 --------------------------------------------------------------------------
 

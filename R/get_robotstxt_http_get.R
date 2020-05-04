@@ -17,11 +17,14 @@ get_robotstxt_http_get <-
     user_agent     = utils::sessionInfo()$R.version$version.string,
     ssl_verifypeer = 1
   ){
+    # generate url
+    url <- fix_url(paste0(domain, "/robots.txt"))
+
     if ( !is.null(user_agent) ) {
       # with user agent
       request <-
         httr::GET(
-          url    = paste0(domain, "/robots.txt"),
+          url    = url,
           config =
             httr::add_headers(
               "user-agent" = user_agent
@@ -32,7 +35,7 @@ get_robotstxt_http_get <-
       # without user agent
       request <-
         httr::GET(
-          url    = paste0(domain, "/robots.txt"),
+          url = url,
           httr::config(ssl_verifypeer = ssl_verifypeer)
         )
     }

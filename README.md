@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 494, *lines of test code:* 1133
+*lines of R code:* 858, *lines of test code:* 1466
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.6.4 - 2018-09-14 / 20:27:10
+0.7.1 - 2019-01-10 / 21:28:44
 
 **Description**
 
@@ -31,7 +31,8 @@ the package makes it easy to check if bots (spiders, crawler, scrapers,
 
 **License**
 
-MIT + file LICENSE <br>Peter Meissner \[aut, cre\], Oliver Keys \[ctb\],
+MIT + file LICENSE <br>Peter Meissner \[aut, cre\], Kun Ren \[aut, cph\]
+(Author and copyright holder of list\_merge.R.), Oliver Keys \[ctb\],
 Rich Fitz John \[ctb\]
 
 **Citation**
@@ -116,9 +117,11 @@ paths_allowed(
   domain = "wikipedia.org", 
   bot    = "*"
 )
+## wikipedia.org
+## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_redirect
+## Warning in request_handler_handler(request = request, handler = on_domain_change, : Event: on_domain_change
 ## 
- wikipedia.org
-## [1]  TRUE FALSE
+## [1] TRUE TRUE
 
 paths_allowed(
   paths = c(
@@ -126,10 +129,16 @@ paths_allowed(
     "https://wikipedia.org/w/"
   )
 )
+## wikipedia.org
+## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_redirect
+
+## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_domain_change
+## wikipedia.org
+## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_redirect
+
+## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_domain_change
 ## 
- wikipedia.org                      
- wikipedia.org
-## [1]  TRUE FALSE
+## [1] TRUE TRUE
 ```
 
 … or use it that way …
@@ -138,8 +147,10 @@ paths_allowed(
 library(robotstxt)
 
 rtxt <- robotstxt(domain = "wikipedia.org")
+## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_redirect
+## Warning in request_handler_handler(request = request, handler = on_domain_change, : Event: on_domain_change
 rtxt$check(paths = c("/api/rest_v1/?doc", "/w/"), bot= "*")
-## [1]  TRUE FALSE
+## [1] TRUE TRUE
 ```
 
 ## More information
