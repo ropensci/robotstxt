@@ -22,7 +22,7 @@ Description: Provides functions to download and parse 'robots.txt' files.
 License: MIT + file LICENSE
 LazyData: TRUE
 BugReports: https://github.com/ropensci/robotstxt/issues
-URL: https://github.com/ropensci/robotstxt
+URL: https://docs.ropensci.org/robotstxt, https://github.com/ropensci/robotstxt
 Imports:
     stringr (>= 1.0.0),
     httr (>= 1.0.0),
