@@ -4,8 +4,7 @@
 \alias{request_handler_handler}
 \title{request_handler_handler}
 \usage{
-request_handler_handler(request, handler, res, info = TRUE,
-  warn = TRUE)
+request_handler_handler(request, handler, res, info = TRUE, warn = TRUE)
 }
 \arguments{
 \item{request}{the request object returned by call to httr::GET()}

@@ -12,16 +12,34 @@
 \alias{on_file_type_mismatch_default}
 \alias{on_suspect_content_default}
 \title{rt_request_handler}
-\format{An object of class \code{list} of length 4.}
+\format{
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+}
 \usage{
-rt_request_handler(request, on_server_error = on_server_error_default,
+rt_request_handler(
+  request,
+  on_server_error = on_server_error_default,
   on_client_error = on_client_error_default,
   on_not_found = on_not_found_default,
   on_redirect = on_redirect_default,
   on_domain_change = on_domain_change_default,
   on_file_type_mismatch = on_file_type_mismatch_default,
-  on_suspect_content = on_suspect_content_default, warn = TRUE,
-  encoding = "UTF-8")
+  on_suspect_content = on_suspect_content_default,
+  warn = TRUE,
+  encoding = "UTF-8"
+)
 
 on_server_error_default
 

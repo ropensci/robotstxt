@@ -4,9 +4,11 @@
 \alias{get_robotstxt_http_get}
 \title{get_robotstxt() worker function to execute HTTP request}
 \usage{
-get_robotstxt_http_get(domain,
+get_robotstxt_http_get(
+  domain,
   user_agent = utils::sessionInfo()$R.version$version.string,
-  ssl_verifypeer = 1)
+  ssl_verifypeer = 1
+)
 }
 \arguments{
 \item{domain}{the domain to get tobots.txt. file for}

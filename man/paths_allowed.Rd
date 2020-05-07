@@ -4,10 +4,16 @@
 \alias{paths_allowed}
 \title{check if a bot has permissions to access page(s)}
 \usage{
-paths_allowed(paths = "/", domain = "auto", bot = "*",
+paths_allowed(
+  paths = "/",
+  domain = "auto",
+  bot = "*",
   user_agent = utils::sessionInfo()$R.version$version.string,
-  check_method = c("spiderbar"), warn = TRUE, force = FALSE,
-  ssl_verifypeer = c(1, 0), use_futures = TRUE,
+  check_method = c("spiderbar"),
+  warn = TRUE,
+  force = FALSE,
+  ssl_verifypeer = c(1, 0),
+  use_futures = TRUE,
   robotstxt_list = NULL,
   rt_request_handler = robotstxt::rt_request_handler,
   rt_robotstxt_http_getter = robotstxt::get_robotstxt_http_get,
@@ -17,7 +23,8 @@ paths_allowed(paths = "/", domain = "auto", bot = "*",
   on_redirect = on_redirect_default,
   on_domain_change = on_domain_change_default,
   on_file_type_mismatch = on_file_type_mismatch_default,
-  on_suspect_content = on_suspect_content_default)
+  on_suspect_content = on_suspect_content_default
+)
 }
 \arguments{
 \item{paths}{paths for which to check bot's permission, defaults to "/". Please, note that path to a folder should end with a trailing slash ("/").}
@@ -25,7 +32,7 @@ paths_allowed(paths = "/", domain = "auto", bot = "*",
 \item{domain}{Domain for which paths should be checked. Defaults to "auto".
 If set to "auto" function will try to guess the domain by parsing the paths
 argument. Note however, that these are educated guesses which might utterly
-fail. To be on the save side, provide appropriate domains manually.}
+fail. To be on the safe side, provide appropriate domains manually.}
 
 \item{bot}{name of the bot, defaults to "*"}
 

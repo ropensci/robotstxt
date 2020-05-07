@@ -4,9 +4,13 @@
 \alias{get_robotstxts}
 \title{function to get multiple robotstxt files}
 \usage{
-get_robotstxts(domain, warn = TRUE, force = FALSE,
+get_robotstxts(
+  domain,
+  warn = TRUE,
+  force = FALSE,
   user_agent = utils::sessionInfo()$R.version$version.string,
-  ssl_verifypeer = c(1, 0), use_futures = FALSE,
+  ssl_verifypeer = c(1, 0),
+  use_futures = FALSE,
   rt_request_handler = robotstxt::rt_request_handler,
   rt_robotstxt_http_getter = robotstxt::get_robotstxt_http_get,
   on_server_error = on_server_error_default,
@@ -15,7 +19,8 @@ get_robotstxts(domain, warn = TRUE, force = FALSE,
   on_redirect = on_redirect_default,
   on_domain_change = on_domain_change_default,
   on_file_type_mismatch = on_file_type_mismatch_default,
-  on_suspect_content = on_suspect_content_default)
+  on_suspect_content = on_suspect_content_default
+)
 }
 \arguments{
 \item{domain}{domain from which to download robots.txt file}

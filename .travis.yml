@@ -13,6 +13,10 @@ notifications:
     on_success: retep.meissner@gmail.com
     on_failure: retep.meissner@gmail.com
 
+os:
+  - linux
+  - osx
+
 env:
   matrix:
     - RVERSION=oldrel rpkg_use_internet_for_testing=TRUE
