@@ -76,6 +76,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_pm),
+              domain         = "test.de",
               paths          = "images",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -92,6 +93,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_pm),
+              domain         = "test.de",
               paths          = "/images",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -109,6 +111,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_pm),
+              domain         = "test.de",
               paths          = "/images/",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -125,6 +128,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_pm),
+              domain         = "test.de",
               paths          = "images/",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -141,6 +145,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_pm),
+              domain         = "test.de",
               paths          = "/images/dings",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -163,6 +168,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -180,6 +186,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -196,6 +203,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "/images",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -212,6 +220,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "/images/",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -228,6 +237,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images/",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -244,6 +254,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images/dings",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -277,6 +288,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images",
               bot            = "harald",
               check_method   = options_grid$check_method[i],
@@ -293,6 +305,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "/images",
               bot            = "*",
               check_method   = options_grid$check_method[i],
@@ -309,6 +322,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "/images/",
               bot            = "*er",
               check_method   = options_grid$check_method[i],
@@ -325,6 +339,7 @@ test_that(
           expect_false(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "*",
               bot            = "erwin",
               check_method   = options_grid$check_method[i],
@@ -342,6 +357,7 @@ test_that(
           expect_true(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images",
               bot            = "Google",
               check_method   = options_grid$check_method[i],
@@ -358,6 +374,7 @@ test_that(
           expect_true(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "/images",
               bot            = "Google",
               check_method   = options_grid$check_method[i],
@@ -375,6 +392,7 @@ test_that(
           expect_true(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               path           ="/images/",
               bot            ="Google",
               check_method   = options_grid$check_method[i],
@@ -393,6 +411,7 @@ test_that(
           expect_true(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images",
               bot            = "Google",
               check_method   = options_grid$check_method[i],
@@ -409,6 +428,7 @@ test_that(
           expect_true(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
+              domain         = "test.de",
               paths          = "images/dings",
               bot            = "Google",
               check_method   = options_grid$check_method[i],
@@ -426,6 +446,7 @@ test_that(
             paths_allowed(
               robotstxt_list = list(rtxt_asb),
               paths          = "*",
+              domain         = "test.de",
               bot            = "Google",
               check_method   = options_grid$check_method[i],
               use_futures    = options_grid$use_futures[i]
@@ -448,6 +469,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafa),
           paths          = "",
+          domain         = "test.de",
           bot            = "mybot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -464,6 +486,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafa),
           paths          = "/images",
+          domain         = "test.de",
           bot            = "mybot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -480,6 +503,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_asb),
           paths          = "index.html",
+          domain         = "test.de",
           bot            = "mybot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -496,6 +520,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafa),
           paths          = "*",
+          domain         = "test.de",
           bot            = "mybot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -513,6 +538,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafa),
           paths          = "",
+          domain         = "test.de",
           bot            = "*",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -529,6 +555,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_asb),
           paths          = "/images",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -545,6 +572,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
           robotstxt_list = list(rtxt_dafa),
           paths          = "index.html",
           bot            = "*",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -560,6 +588,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafa),
           paths          = "*",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -582,6 +611,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
           robotstxt_list = list(rtxt_dafbb),
           paths          = "*",
           bot            = "BadBot",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -598,6 +628,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
           robotstxt_list = list(rtxt_dafbb),
           paths          = "/images",
           bot            = "BadBot",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -614,6 +645,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
           robotstxt_list = list(rtxt_dafbb),
           paths          = "index.html",
           bot            = "BadBot",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -630,6 +662,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
           robotstxt_list = list(rtxt_dafbb),
           paths          = "*",
           bot            = "BadBot",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -646,6 +679,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -661,6 +695,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "/images",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -676,6 +711,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "index.html",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -691,6 +727,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "*",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -712,6 +749,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "",
+          domain         = "test.de",
           bot            = "badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -728,6 +766,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "/images",
+          domain         = "test.de",
           bot            = "badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -744,6 +783,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "index.html",
+          domain         = "test.de",
           bot            = "badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -760,6 +800,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "*",
+          domain         = "test.de",
           bot            = "badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -777,6 +818,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "",
+          domain         = "test.de",
           bot            = "Badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -793,6 +835,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "/images",
+          domain         = "test.de",
           bot            = "Badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -809,6 +852,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "index.html",
+          domain         = "test.de",
           bot            = "Badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -825,6 +869,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_dafbb),
           paths          = "*",
+          domain         = "test.de",
           bot            = "Badbot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -847,6 +892,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -862,6 +908,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "/",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -877,6 +924,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "/images",
+          domain         = "test.de",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
         )
@@ -892,6 +940,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "index.html",
+          domain         = "test.de",
           bot            = "*",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -909,6 +958,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "",
+          domain         = "test.de",
           bot            = "BadBot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -925,6 +975,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "/",
+          domain         = "test.de",
           bot            = "BadBot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -941,6 +992,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "/images",
+          domain         = "test.de",
           bot            = "BadBot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]
@@ -957,6 +1009,7 @@ for ( i in seq_len(nrow(options_grid)) ) {
         paths_allowed(
           robotstxt_list = list(rtxt_empty),
           paths          = "index.html",
+          domain         = "test.de",
           bot            = "BadBot",
           check_method   = options_grid$check_method[i],
           use_futures    = options_grid$use_futures[i]

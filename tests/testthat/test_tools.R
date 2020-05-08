@@ -84,3 +84,23 @@ test_that(
 )
 
 
+test_that(
+  "guess domain works", {
+
+    expect_true({
+      is.na(guess_domain(""))
+    })
+
+    expect_true({
+      guess_domain("google.com") == "google.com"
+    })
+
+    expect_true({
+      guess_domain("www.google.com") == "www.google.com"
+    })
+
+
+  }
+)
+
+
