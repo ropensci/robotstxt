@@ -57,7 +57,7 @@ robotstxt <-
     domain                = NULL,
     text                  = NULL,
     user_agent            = NULL,
-    warn                  = TRUE,
+    warn                  = getOption("robotstxt_warn", TRUE),
     force                 = FALSE,
     on_server_error       = on_server_error_default,
     on_client_error       = on_client_error_default,

@@ -54,7 +54,7 @@ rt_request_handler <-
     encoding              = "UTF-8"
   ){
 
-    # apply options to defsaults
+    # apply options to defaults
     on_server_error       <- list_merge(on_server_error_default, on_server_error)
     on_client_error       <- list_merge(on_client_error_default, on_client_error)
     on_not_found          <- list_merge(on_not_found_default, on_not_found)

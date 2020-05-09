@@ -10,7 +10,7 @@ paths_allowed(
   bot = "*",
   user_agent = utils::sessionInfo()$R.version$version.string,
   check_method = c("spiderbar"),
-  warn = TRUE,
+  warn = getOption("robotstxt_warn", TRUE),
   force = FALSE,
   ssl_verifypeer = c(1, 0),
   use_futures = TRUE,

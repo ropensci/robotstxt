@@ -1,4 +1,12 @@
 
+#' storage for http request response objects
+#'
+#' @rdname get_robotstxt_http_get
+#'
+#' @export
+rt_last_http         <- new.env()
+rt_last_http$request <- list()
+
 #' get_robotstxt() worker function to execute HTTP request
 #'
 #'
@@ -39,6 +47,10 @@ get_robotstxt_http_get <-
           httr::config(ssl_verifypeer = ssl_verifypeer)
         )
     }
+
+
+    # store in storage
+    rt_last_http$request <- request
 
     # return
     request
