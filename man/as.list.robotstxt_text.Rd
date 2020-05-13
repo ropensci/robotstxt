@@ -4,10 +4,16 @@
 \alias{as.list.robotstxt_text}
 \title{Method as.list() for class robotstxt_text}
 \usage{
-\method{as.list}{robotstxt_text}(x)
+\method{as.list}{robotstxt_text}(x, ...)
 }
 \arguments{
 \item{x}{class robotstxt_text object to be transformed into list}
+
+\item{...}{
+  Arguments passed on to \code{\link[base:as.list]{base::as.list}}
+  \describe{
+    \item{\code{}}{}
+  }}
 }
 \description{
 Method as.list() for class robotstxt_text

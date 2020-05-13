@@ -3,10 +3,12 @@
 #' Method as.list() for class robotstxt_text
 #'
 #' @param x class robotstxt_text object to be transformed into list
-#'
+#' @inheritDotParams base::as.list
 #' @export
+#'
+#'
 as.list.robotstxt_text <-
-  function(x){
+  function(x, ...){
     res <- list()
 
     res$content   <- httr::content(attr(x, "request"), encoding = "UTF-8")

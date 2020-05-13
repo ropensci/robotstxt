@@ -3,12 +3,16 @@
 
 #' parse_url
 #'
-#' @param url
+#' @param url url to parse into its components
 #'
 #' @return data.frame with columns protocol, domain, path
 #'
+#'
+#' @keywords internal
+#'
 #' @examples
 #'
+#' \dontrun{
 #' url <-
 #' c(
 #'   "google.com",
@@ -20,6 +24,7 @@
 #' )
 #'
 #' parse_url(url)
+#' }
 #'
 parse_url <- function(url){
   match <-

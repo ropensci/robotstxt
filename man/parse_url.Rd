@@ -7,7 +7,7 @@
 parse_url(url)
 }
 \arguments{
-\item{url}{}
+\item{url}{url to parse into its components}
 }
 \value{
 data.frame with columns protocol, domain, path
@@ -17,6 +17,7 @@ parse_url
 }
 \examples{
 
+\dontrun{
 url <-
 c(
   "google.com",
@@ -28,5 +29,7 @@ c(
 )
 
 parse_url(url)
+}
 
 }
+\keyword{internal}
