@@ -25,6 +25,8 @@ print.robotstxt_text <- function(x, ...){
     cat(names(attributes(x)), sep=", ")
   }
 
+  cat("\n")
+
   # return
   invisible(x)
 }
