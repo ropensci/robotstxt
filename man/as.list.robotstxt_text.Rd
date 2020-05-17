@@ -9,11 +9,7 @@
 \arguments{
 \item{x}{class robotstxt_text object to be transformed into list}
 
-\item{...}{
-  Arguments passed on to \code{\link[base:as.list]{base::as.list}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{further arguments (inherited from \code{base::as.list()})}
 }
 \description{
 Method as.list() for class robotstxt_text

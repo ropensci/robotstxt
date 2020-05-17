@@ -3,7 +3,7 @@
 #' Method as.list() for class robotstxt_text
 #'
 #' @param x class robotstxt_text object to be transformed into list
-#' @inheritDotParams base::as.list
+#' @param ... further arguments (inherited from \code{base::as.list()})
 #' @export
 #'
 #'
