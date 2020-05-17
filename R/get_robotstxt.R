@@ -25,7 +25,7 @@
 get_robotstxt <-
   function(
     domain,
-    warn                      = TRUE,
+    warn                      = getOption("robotstxt_warn", TRUE),
     force                     = FALSE,
     user_agent                = utils::sessionInfo()$R.version$version.string,
     ssl_verifypeer            = c(1,0),
