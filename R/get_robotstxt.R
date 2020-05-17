@@ -30,6 +30,7 @@ get_robotstxt <-
     user_agent                = utils::sessionInfo()$R.version$version.string,
     ssl_verifypeer            = c(1,0),
     encoding                  = "UTF-8",
+    verbose                   = FALSE,
     rt_request_handler        = robotstxt::rt_request_handler,
     rt_robotstxt_http_getter  = robotstxt::get_robotstxt_http_get,
     on_server_error           = on_server_error_default,
@@ -56,12 +57,20 @@ get_robotstxt <-
           ssl_verifypeer = ssl_verifypeer[1]
         )
 
-    }else if ( !is.null(rt_cache[[domain]]) ) {
+      if ( verbose == TRUE ){
+        message("rt_robotstxt_http_getter: force http get")
+      }
+
+    } else if ( !is.null(rt_cache[[domain]]) ) {
 
       request <-
         rt_cache[[domain]]
 
-    }else if ( is.null(rt_cache[[domain]]) ){
+      if ( verbose == TRUE ){
+        message("rt_robotstxt_http_getter: cached http get")
+      }
+
+    } else if ( is.null(rt_cache[[domain]]) ){
 
       request <-
         rt_robotstxt_http_getter(
@@ -69,6 +78,10 @@ get_robotstxt <-
           user_agent     = user_agent,
           ssl_verifypeer = ssl_verifypeer[1]
         )
+
+      if ( verbose == TRUE ){
+        message("rt_robotstxt_http_getter: normal http get")
+      }
 
     }
 
@@ -85,6 +98,10 @@ get_robotstxt <-
         warn             = warn,
         encoding         = encoding
       )
+
+    if ( length(res$cache) == 0 || res$cache == TRUE ){
+      rt_cache[[domain]] <- request
+    }
 
     rtxt <- res$rtxt
 
