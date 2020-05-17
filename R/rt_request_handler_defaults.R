@@ -36,7 +36,7 @@ on_not_found_default <-
 #' @export
 on_redirect_default <-
   list(
-    over_write_file_with = "User-agent: *\nAllow: /",
+    #over_write_file_with = "User-agent: *\nAllow: /",
     signal               = "warning",
     cache                = TRUE,
     priority             = 3
