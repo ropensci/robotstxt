@@ -21,5 +21,5 @@ request_handler_handler(request, handler, res, info = TRUE, warn = TRUE)
 a list with elements '[handler name]', 'rtxt', and 'cache'
 }
 \description{
-Helper function to handle robotstxt hanlders.
+Helper function to handle robotstxt handlers.
 }

@@ -1,6 +1,6 @@
 #' request_handler_handler
 #'
-#' Helper function to handle robotstxt hanlders.
+#' Helper function to handle robotstxt handlers.
 #'
 #' @param request the request object returned by call to httr::GET()
 #' @param handler the handler either a character string entailing various options or a function producing a specific list, see return.
@@ -21,7 +21,9 @@ request_handler_handler <-
     } else {
 
       # signaling
-      if ( handler$signal %in% "error" ) {
+      if ( length(handler$signal) == 0 ){
+        # do nothing
+      } else if ( handler$signal %in% "error" ) {
 
         stop(paste0("Event: ", deparse(substitute(handler))))
 
@@ -46,7 +48,11 @@ request_handler_handler <-
       } else {
         if ( res$priority < handler$priority){
           res$priority <- handler$priority
-          res$rtxt     <- handler$over_write_file_with
+          res$rtxt     <-
+            paste0(
+              "# robots.txt overwrite by: ", deparse(substitute(handler)), "\n\n",
+              paste0(handler$over_write_file_with, collapse = "\n")
+            )
         }
 
       }
@@ -54,7 +60,6 @@ request_handler_handler <-
       # cache handling
       if ( handler$cache %in% TRUE ) {
         if ( res$priority < handler$priority){
-          res$priority <- handler$priority
           res$cache <- TRUE
         }
       } else if ( handler$cache %in% FALSE ) {

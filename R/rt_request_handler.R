@@ -159,7 +159,7 @@ rt_request_handler <-
       subdomain_changed_to_www(request)
 
 
-    if ( redirected == TRUE & !subdomain_changed_to_www ){
+    if ( redirected == TRUE ){
       res <-
         request_handler_handler(
           request = request,
@@ -180,25 +180,23 @@ rt_request_handler <-
             ,
           warn    = warn
         )
+
+      if ( domain_change == TRUE & subdomain_changed_to_www == FALSE ){
+        res <-
+          request_handler_handler(
+            request = request,
+            handler = on_domain_change,
+            res     = res,
+            info    = "domain change",
+            warn    = warn
+          )
+      } else {
+        # do nothing more
+      }
     }
 
 
-    if ( domain_change == TRUE & !subdomain_changed_to_www ){
-      res <-
-        request_handler_handler(
-          request = request,
-          handler = on_domain_change,
-          res     = res,
-          info    =
-            list(
-              orig_url = request$request$url,
-              last_url = request$url,
-              orig_domain = urltools::domain(request$request$url),
-              last_url    = urltools::domain(request$url)
-            ),
-          warn    = warn
-        )
-    }
+
 
     ## file type mismatch
     file_type_mismatch <-
@@ -232,7 +230,7 @@ rt_request_handler <-
     }
 
     ## default robotstxt if not handled otherwise
-    if( is.null(res$rtxt) ){
+    if ( is.null(res$rtxt) ){
       res$rtxt <- rtxt_not_handled
     }
 
