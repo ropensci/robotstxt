@@ -18,7 +18,8 @@ print.robotstxt_text <- function(x, ...){
   problems <- attr(x, "problems")
   if ( length(problems) > 0){
     cat("[events]\n--------------------------------------\n\n")
-    cat(attr(x, "request")$url, "\n\n")
+    cat("requested:  ", attr(x, "request")$request$url, "\n")
+    cat("downloaded: ", attr(x, "request")$url, "\n\n")
     cat(utils::capture.output(print(problems)), sep="\n")
     cat("[attributes]\n--------------------------------------\n\n")
     cat(names(attributes(x)), sep=", ")
