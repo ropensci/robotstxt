@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.3 - 2020-05-16 / 21:18:07
+0.7.3 - 2020-05-17 / 07:30:51
 
 **Description**
 
@@ -32,8 +32,9 @@ the package makes it easy to check if bots (spiders, crawler, scrapers,
 **License**
 
 MIT + file LICENSE <br>Peter Meissner \[aut, cre\], Kun Ren \[aut, cph\]
-(Author and copyright holder of list\_merge.R.), Oliver Keys \[ctb\],
-Rich Fitz John \[ctb\]
+(Author and copyright holder of list\_merge.R.), Oliver Keys \[ctb\]
+(original release code review), Rich Fitz John \[ctb\] (original release
+code review)
 
 **Citation**
 
@@ -120,7 +121,7 @@ paths_allowed(
   bot    = "*"
 )
 ##  wikipedia.org
-## [1] TRUE TRUE
+## [1]  TRUE FALSE
 
 paths_allowed(
   paths = c(
@@ -129,7 +130,7 @@ paths_allowed(
   )
 )
 ##  wikipedia.org                       wikipedia.org
-## [1] TRUE TRUE
+## [1]  TRUE FALSE
 ```
 
 … or (the object oriented way) …
@@ -145,7 +146,7 @@ rtxt$check(
   paths = c("/api/rest_v1/?doc", "/w/"), 
   bot   = "*"
 )
-## [1] TRUE TRUE
+## [1]  TRUE FALSE
 ```
 
 ### Retrieval
@@ -349,14 +350,11 @@ on_not_found_default
 
 ``` r
 on_redirect_default
-## $signal
-## [1] "warning"
-## 
 ## $cache
 ## [1] TRUE
 ## 
 ## $priority
-## [1] 3
+## [1] 5
 ```
 
   - `on_domain_change` :
@@ -492,9 +490,7 @@ The warnings in the following example can be turned of in three ways:
 library(robotstxt)
 
 paths_allowed("petermeissner.de")
-## petermeissner.de
-## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_redirect
-## 
+##  petermeissner.de
 ## [1] TRUE
 ```
 
@@ -552,7 +548,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-17 06:00
+##   Date: 2020-05-17 07:39
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -594,7 +590,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-17 06:00
+##   Date: 2020-05-17 07:39
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -647,7 +643,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sun, 17 May 2020 06:00:57 GMT"
+## [1] "Sun, 17 May 2020 07:39:10 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -677,7 +673,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sun, 17 May 2020 06:00:57 GMT"
+## [1] "Sun, 17 May 2020 07:39:10 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -736,7 +732,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-17 06:00
+##   Date: 2020-05-17 07:39
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
