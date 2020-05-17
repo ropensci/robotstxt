@@ -15,7 +15,7 @@ paths_allowed(
   ssl_verifypeer = c(1, 0),
   use_futures = TRUE,
   robotstxt_list = NULL,
-  verbose = verbose,
+  verbose = FALSE,
   rt_request_handler = robotstxt::rt_request_handler,
   rt_robotstxt_http_getter = robotstxt::get_robotstxt_http_get,
   on_server_error = on_server_error_default,
@@ -60,6 +60,8 @@ does not do it on its own.}
 
 \item{robotstxt_list}{either NULL -- the default -- or a list of character
 vectors with one vector per path to check}
+
+\item{verbose}{make function print out more information}
 
 \item{rt_request_handler}{handler function that handles request according to
 the event handlers specified}

@@ -15,6 +15,8 @@
 #' @param rt_request_handler handler function that handles request according to
 #'     the event handlers specified
 #'
+#' @param verbose make function print out more information
+#'
 #'
 #' @inheritParams rt_request_handler
 #'

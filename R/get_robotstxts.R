@@ -46,6 +46,7 @@ get_robotstxts <-
           warn             = warn[1],
           force            = force[1],
           ssl_verifypeer   = ssl_verifypeer[1],
+          verbose          = verbose,
           stringsAsFactors = FALSE
         )
 
@@ -58,6 +59,7 @@ get_robotstxts <-
           warn             = warn[1],
           force            = force[1],
           ssl_verifypeer   = ssl_verifypeer[1],
+          verbose          = verbose,
           stringsAsFactors = FALSE
         )
     }
@@ -91,9 +93,9 @@ get_robotstxts <-
           force                     = x$force,
           user_agent                = x$user_agent,
           ssl_verifypeer            = x$ssl_verifypeer,
+          verbose                   = x$verbose,
           rt_request_handler        = rt_request_handler,
           rt_robotstxt_http_getter  = rt_robotstxt_http_getter,
-          verbose                   = verbose,
           on_server_error           = on_server_error,
           on_client_error           = on_client_error,
           on_not_found              = on_not_found,

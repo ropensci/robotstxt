@@ -41,6 +41,8 @@ might help with robots.txt file retrieval in some cases}
 
 \item{encoding}{Encoding of the robots.txt file.}
 
+\item{verbose}{make function print out more information}
+
 \item{rt_request_handler}{handler function that handles request according to
 the event handlers specified}
 

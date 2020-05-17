@@ -30,7 +30,7 @@ paths_allowed <-
     ssl_verifypeer            = c(1,0),
     use_futures               = TRUE,
     robotstxt_list            = NULL,
-    verbose                   = verbose,
+    verbose                   = FALSE,
     rt_request_handler        = robotstxt::rt_request_handler,
     rt_robotstxt_http_getter  = robotstxt::get_robotstxt_http_get,
     on_server_error       = on_server_error_default,

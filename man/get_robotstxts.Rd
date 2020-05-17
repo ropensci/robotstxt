@@ -45,6 +45,8 @@ pages and vignettes of package future on how to set up
 plans for future execution because the robotstxt package
 does not do it on its own.}
 
+\item{verbose}{make function print out more information}
+
 \item{rt_request_handler}{handler function that handles request according to
 the event handlers specified}
 
