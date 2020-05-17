@@ -19,12 +19,10 @@ notifications:
 
 os:
   - linux
-  - osx
-
+  
 env:
   matrix:
     - rpkg_use_internet_for_testing=TRUE
-    - rpkg_use_internet_for_testing=FALSE
 
 
 
