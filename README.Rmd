@@ -215,7 +215,7 @@ rtxt$check(
 Retrieving the robots.txt file for a domain: 
 
 ```{r}
-# retrival
+# retrieval
 rt <- 
   get_robotstxt("petermeissner.de")
 
@@ -278,6 +278,7 @@ Handler rules are lists with the following items:
 The package knows the following rules with the following defaults: 
 
 - `on_server_error       ` : 
+- given a server error - the server is unable to serve a file - we assume that something is terrible wrong and forbid all paths for the time being but do not cache the result so that we might get an updated file later on
 
 ```{r}
 on_server_error_default
@@ -285,36 +286,45 @@ on_server_error_default
 
 
 - `on_client_error       ` : 
+- client errors encompass all HTTP status 4xx status codes except 404 which is handled directly
+- despite the fact that there are a lot of codes that might indicate that the client has to take action (authentication, billing, ... see: https://de.wikipedia.org/wiki/HTTP-Statuscode) in the case of retrieving robots.txt with simple GET request things should just work and any client error is treated as if there is no file available and thus scraping is generally allowed
 
 ```{r}
 on_client_error_default
 ```
 
 - `on_not_found          ` : 
+- HTTP status code 404 has its own handler but is treated the same ways other client errors: if there is no file available and thus scraping is generally allowed
+
 
 ```{r}
 on_not_found_default
 ```
 
 - `on_redirect           ` : 
+- redirects are ok - often redirects redirect from HTTP schema to HTTPS - robotstxt will use whatever content it has been redirected to
 
 ```{r}
 on_redirect_default
 ```
 
 - `on_domain_change      ` : 
+- domain changes are handled as if the robots.txt file did not exist and thus scraping is generally allowed
 
 ```{r}
 on_domain_change_default
 ```
 
 - `on_file_type_mismatch ` : 
+- if {robotstxt} gets content with content type other than text it probably is not a robotstxt file, this situation is handled as if no file was provided and thus scraping is generally allowed
 
 ```{r}
 on_file_type_mismatch_default
 ```
 
 - `on_suspect_content    ` :
+- if {robotstxt} cannot parse it probably is not a robotstxt file, this situation is handled as if no file was provided and thus scraping is generally allowed
+
 
 ```{r}
 on_suspect_content_default

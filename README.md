@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.3 - 2020-05-09 / 12:00:24
+0.7.3 - 2020-05-16 / 21:18:07
 
 **Description**
 
@@ -153,25 +153,24 @@ rtxt$check(
 Retrieving the robots.txt file for a domain:
 
 ``` r
-# retrival
+# retrieval
 rt <- 
   get_robotstxt("petermeissner.de")
-## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_redirect
 
 # printing
 rt
 ## [robots.txt]
 ## --------------------------------------
 ## 
-## User-agent: *
-## Allow: /
+## # just do it - punk
 ## 
 ## 
 ## 
 ## [events]
 ## --------------------------------------
 ## 
-## https://petermeissner.de/robots.txt 
+## requested:   http://petermeissner.de/robots.txt 
+## downloaded:  https://petermeissner.de/robots.txt 
 ## 
 ## $on_redirect
 ## $on_redirect[[1]]
@@ -194,7 +193,7 @@ rt
 ## [attributes]
 ## --------------------------------------
 ## 
-## problems, request, class
+## problems, cached, request, class
 ```
 
 ### Interpretation
@@ -270,6 +269,10 @@ Handler rules are lists with the following items:
 The package knows the following rules with the following defaults:
 
   - `on_server_error` :
+  - given a server error - the server is unable to serve a file - we
+    assume that something is terrible wrong and forbid all paths for the
+    time being but do not cache the result so that we might get an
+    updated file later on
 
 <!-- end list -->
 
@@ -289,6 +292,14 @@ on_server_error_default
 ```
 
   - `on_client_error` :
+  - client errors encompass all HTTP status 4xx status codes except 404
+    which is handled directly
+  - despite the fact that there are a lot of codes that might indicate
+    that the client has to take action (authentication, billing, … see:
+    <https://de.wikipedia.org/wiki/HTTP-Statuscode>) in the case of
+    retrieving robots.txt with simple GET request things should just
+    work and any client error is treated as if there is no file
+    available and thus scraping is generally allowed
 
 <!-- end list -->
 
@@ -308,6 +319,9 @@ on_client_error_default
 ```
 
   - `on_not_found` :
+  - HTTP status code 404 has its own handler but is treated the same
+    ways other client errors: if there is no file available and thus
+    scraping is generally allowed
 
 <!-- end list -->
 
@@ -327,14 +341,14 @@ on_not_found_default
 ```
 
   - `on_redirect` :
+  - redirects are ok - often redirects redirect from HTTP schema to
+    HTTPS - robotstxt will use whatever content it has been redirected
+    to
 
 <!-- end list -->
 
 ``` r
 on_redirect_default
-## $over_write_file_with
-## [1] "User-agent: *\nAllow: /"
-## 
 ## $signal
 ## [1] "warning"
 ## 
@@ -346,6 +360,8 @@ on_redirect_default
 ```
 
   - `on_domain_change` :
+  - domain changes are handled as if the robots.txt file did not exist
+    and thus scraping is generally allowed
 
 <!-- end list -->
 
@@ -365,6 +381,9 @@ on_domain_change_default
 ```
 
   - `on_file_type_mismatch` :
+  - if {robotstxt} gets content with content type other than text it
+    probably is not a robotstxt file, this situation is handled as if no
+    file was provided and thus scraping is generally allowed
 
 <!-- end list -->
 
@@ -384,6 +403,9 @@ on_file_type_mismatch_default
 ```
 
   - `on_suspect_content` :
+  - if {robotstxt} cannot parse it probably is not a robotstxt file,
+    this situation is handled as if no file was provided and thus
+    scraping is generally allowed
 
 <!-- end list -->
 
@@ -517,14 +539,12 @@ The robots.txt files retrieved are basically mere character vectors:
 ``` r
 rt <- 
   get_robotstxt("petermeissner.de")
-## Warning in request_handler_handler(request = request, handler = on_redirect, : Event: on_redirect
 
 as.character(rt)
-## [1] "User-agent: *\nAllow: /"
+## [1] "# just do it - punk\n"
 
 cat(rt)
-## User-agent: *
-## Allow: /
+## # just do it - punk
 ```
 
 The last HTTP request is stored in an object
@@ -532,7 +552,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-09 12:31
+##   Date: 2020-05-17 06:00
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -543,7 +563,7 @@ But they also have some additional information stored as attributes.
 
 ``` r
 names(attributes(rt))
-## [1] "problems" "request"  "class"
+## [1] "problems" "cached"   "request"  "class"
 ```
 
 Events that might change the interpretation of the rules found in the
@@ -574,7 +594,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-09 12:31
+##   Date: 2020-05-17 06:00
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -627,7 +647,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sat, 09 May 2020 12:31:11 GMT"
+## [1] "Sun, 17 May 2020 06:00:57 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -657,7 +677,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sat, 09 May 2020 12:31:11 GMT"
+## [1] "Sun, 17 May 2020 06:00:57 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -692,7 +712,7 @@ as.list(rt)
 ## [1] "# just do it - punk\n"
 ## 
 ## $robotstxt
-## [1] "User-agent: *\nAllow: /"
+## [1] "# just do it - punk\n"
 ## 
 ## $problems
 ## $problems$on_redirect
@@ -716,7 +736,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-09 12:31
+##   Date: 2020-05-17 06:00
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
