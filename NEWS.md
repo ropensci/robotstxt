@@ -11,6 +11,7 @@ NEWS robotstxt
 - add request data as attribute to robots.txt
 - add `as.list()` method for robots.txt
 - adding several paragrpahs to the README file
+- finishing handlers - quality check, documentation
 
 
 

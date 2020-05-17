@@ -1,5 +1,5 @@
 Package: robotstxt
-Date: 2020-05-02
+Date: 2020-05-17
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.7.3
@@ -12,8 +12,8 @@ Authors@R: c(
             "Kun", "Ren", email = "mail@renkun.me", role = c("aut", "cph"),
             comment = "Author and copyright holder of list_merge.R."
         ),
-	    person("Oliver", "Keys", role = "ctb"),
-	    person("Rich", "Fitz John", role = "ctb")
+	    person("Oliver", "Keys", role = "ctb", comment = "original release code review"),
+	    person("Rich", "Fitz John", role = "ctb", comment = "original release code review")
 	  )
 Description: Provides functions to download and parse 'robots.txt' files.
         Ultimately the package makes it easy to check if bots
