@@ -9,6 +9,7 @@
 \alias{on_not_found_default}
 \alias{on_redirect_default}
 \alias{on_domain_change_default}
+\alias{on_sub_domain_change_default}
 \alias{on_file_type_mismatch_default}
 \alias{on_suspect_content_default}
 \title{rt_request_handler}
@@ -20,6 +21,8 @@ An object of class \code{list} of length 4.
 An object of class \code{list} of length 4.
 
 An object of class \code{list} of length 2.
+
+An object of class \code{list} of length 3.
 
 An object of class \code{list} of length 2.
 
@@ -35,6 +38,7 @@ rt_request_handler(
   on_not_found = on_not_found_default,
   on_redirect = on_redirect_default,
   on_domain_change = on_domain_change_default,
+  on_sub_domain_change = on_sub_domain_change_default,
   on_file_type_mismatch = on_file_type_mismatch_default,
   on_suspect_content = on_suspect_content_default,
   warn = TRUE,
@@ -50,6 +54,8 @@ on_not_found_default
 on_redirect_default
 
 on_domain_change_default
+
+on_sub_domain_change_default
 
 on_file_type_mismatch_default
 
@@ -69,6 +75,9 @@ not 404}
 
 \item{on_domain_change}{request state handler for any 3xx HTTP status where
 domain did change as well}
+
+\item{on_sub_domain_change}{request state handler for any 3xx HTTP status where
+domain did change but only to www-sub_domain}
 
 \item{on_file_type_mismatch}{request state handler for content type other
 than 'text/plain'}

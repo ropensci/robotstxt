@@ -22,6 +22,9 @@
 #' @param on_domain_change request state handler for any 3xx HTTP status where
 #'   domain did change as well
 #'
+#' @param on_sub_domain_change request state handler for any 3xx HTTP status where
+#'   domain did change but only to www-sub_domain
+#'
 #' @param on_file_type_mismatch request state handler for content type other
 #'   than 'text/plain'
 #'
@@ -48,6 +51,7 @@ rt_request_handler <-
     on_not_found          = on_not_found_default,
     on_redirect           = on_redirect_default,
     on_domain_change      = on_domain_change_default,
+    on_sub_domain_change  = on_sub_domain_change_default,
     on_file_type_mismatch = on_file_type_mismatch_default,
     on_suspect_content    = on_suspect_content_default,
     warn                  = TRUE,
@@ -155,8 +159,8 @@ rt_request_handler <-
       http_domain_changed(request)
 
     ## subdomain changed to www
-    subdomain_changed_to_www <-
-      subdomain_changed_to_www(request)
+    subdomain_changed <-
+      http_subdomain_changed(request)
 
 
     if ( redirected == TRUE ){
@@ -181,7 +185,7 @@ rt_request_handler <-
           warn    = warn
         )
 
-      if ( domain_change == TRUE & subdomain_changed_to_www == FALSE ){
+      if ( domain_change == TRUE && subdomain_changed == TRUE ){
         res <-
           request_handler_handler(
             request = request,
@@ -190,8 +194,15 @@ rt_request_handler <-
             info    = "domain change",
             warn    = warn
           )
-      } else {
-        # do nothing more
+      } else if ( domain_change == TRUE ) {
+        res <-
+          request_handler_handler(
+            request = request,
+            handler = on_sub_domain_change,
+            res     = res,
+            info    = "subdomain change",
+            warn    = warn
+          )
       }
     }
 

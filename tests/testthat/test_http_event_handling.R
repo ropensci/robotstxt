@@ -1,21 +1,56 @@
 context("HTTP evenet handling")
 
 test_that("www redirects are handled silently", {
-  expect_silent({
-    www_redirect <- readRDS(system.file("http_requests/http_redirect_www.rds", package = "robotstxt"))
-    get_robotstxt(
-      "http://google.com",
-      rt_robotstxt_http_getter = function(...){www_redirect}
-    )
+  expect_true({
+    request <- readRDS(system.file("http_requests/http_redirect_www.rds", package = "robotstxt"))
+    rt <-
+      get_robotstxt(
+        "www.petermeissner.de",
+        rt_robotstxt_http_getter = function(...){request},
+        warn = FALSE
+      )
+
+    !("on_domain_change" %in% names(attr(rt, "problems"))) &&
+      !("on_subdomain_change" %in% names(attr(rt, "problems")))
   })
 })
+
+
+test_that("on_redirect detected", {
+  expect_true({
+    domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
+    rt <-
+      get_robotstxt(
+        "http://google.com",
+        rt_robotstxt_http_getter = function(...){domain_change},
+        warn = FALSE
+      )
+    "on_redirect" %in% names(attr(rt, "problems"))
+  })
+})
+
+test_that("on_domain_change_detected", {
+  expect_true({
+    domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
+    rt <-
+      get_robotstxt(
+        "github.io",
+        rt_robotstxt_http_getter = function(...){domain_change},
+        warn = FALSE
+      )
+    "on_domain_change" %in% names(attr(rt, "problems"))
+  })
+})
+
+
 
 test_that("non www redirects are handled non silently", {
   expect_warning({
     domain_change <- readRDS(system.file("http_requests/http_domain_change.rds", package = "robotstxt"))
     get_robotstxt(
       "http://google.com",
-      rt_robotstxt_http_getter = function(...){domain_change}
+      rt_robotstxt_http_getter = function(...){domain_change},
+      warn = TRUE
     )
   })
 })
@@ -112,10 +147,10 @@ test_that("client error", {
     http_client_error <- readRDS(system.file("http_requests/http_client_error.rds", package = "robotstxt"))
     res <-
       get_robotstxt(
-      "httpbin.org",
-      rt_robotstxt_http_getter = function(...){http_client_error},
-      warn = FALSE
-    )
+        "httpbin.org",
+        rt_robotstxt_http_getter = function(...){http_client_error},
+        warn = FALSE
+      )
     problems <- attr(res, "problems")
     problems$on_client_error$status_code == 400
   })
@@ -123,7 +158,7 @@ test_that("client error", {
   expect_true({
     http_client_error <- readRDS(system.file("http_requests/http_client_error.rds", package = "robotstxt"))
     res <-
-    paths_allowed(
+      paths_allowed(
         paths = c("", "/", "here/I/stand/chopping/lops"),
         domain = "httpbin.org",
         rt_robotstxt_http_getter = function(...){http_client_error},
@@ -135,33 +170,38 @@ test_that("client error", {
 
 
 test_that("server error", {
+  http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
+  f                 <- function(...){http_server_error}
+
   expect_error({
-    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
-    get_robotstxt(
-      "httpbin.org",
-      rt_robotstxt_http_getter = function(...){http_server_error}
-    )
+    rt <-
+      get_robotstxt(
+        "httpbin.org",
+        rt_robotstxt_http_getter = f,
+        warn  = FALSE,
+        force = TRUE
+      )
   })
 
   expect_warning({
-    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
     res <-
       get_robotstxt(
         "httpbin.org",
-        rt_robotstxt_http_getter = function(...){http_server_error},
-        on_server_error = list(signal = "warning")
+        rt_robotstxt_http_getter = f,
+        on_server_error          = list(signal = "warning"),
+        force                    = TRUE
       )
   })
 
   expect_true({
-    http_server_error <- readRDS(system.file("http_requests/http_server_error.rds", package = "robotstxt"))
     res <-
       paths_allowed(
-        paths = c("", "/", "here/I/stand/chopping/lops"),
-        domain = "httpbin.org",
-        rt_robotstxt_http_getter = function(...){http_server_error},
-        on_server_error = list(signal = "nothing"),
-        warn            = FALSE
+        paths                    = c("", "/", "here/I/stand/chopping/lops"),
+        domain                   = "httpbin.org",
+        rt_robotstxt_http_getter = f,
+        on_server_error          = list(signal = "nothing"),
+        warn                     = FALSE,
+        force                    = TRUE
       )
     all(!res)
   })

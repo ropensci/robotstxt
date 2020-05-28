@@ -30,7 +30,7 @@ parse_url <- function(url){
   match <-
     stringr::str_match(url, "(^\\w+://)?([\\w.]+)?(/.*)?")[, -1, drop = FALSE]
 
-  df        <- as.data.frame(match)
+  df        <- as.data.frame(match, stringsAsFactors = FALSE)
   names(df) <- c("protocol", "domain", "path")
   df$path[ is.na(df$path) ] <- ""
 

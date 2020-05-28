@@ -27,9 +27,9 @@ cat("##", tmp$Title)
 filelist.R   <- list.files("R", recursive = TRUE, pattern="\\.R$", ignore.case = TRUE, full.names = TRUE)
 filelist.tests   <- list.files("tests", recursive = TRUE, pattern="\\.R$", ignore.case = TRUE, full.names = TRUE)
 filelist.cpp <- list.files("src", recursive = TRUE, pattern="\\.cpp$", ignore.case = TRUE, full.names = TRUE)
-lines.R      <- unlist(lapply(filelist.R, readLines))
-lines.tests  <- unlist(lapply(filelist.tests, readLines))
-lines.cpp    <- unlist(lapply(filelist.cpp, readLines))
+lines.R      <- unlist(lapply(filelist.R, readLines, warn = FALSE))
+lines.tests  <- unlist(lapply(filelist.tests, readLines, warn = FALSE))
+lines.cpp    <- unlist(lapply(filelist.cpp, readLines, warn = FALSE))
 length.R     <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.R,  value = TRUE, invert = TRUE))
 length.tests <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.tests,  value = TRUE, invert = TRUE))
 length.cpp   <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.cpp,  value = TRUE, invert = TRUE))
@@ -217,7 +217,7 @@ Retrieving the robots.txt file for a domain:
 ```{r}
 # retrieval
 rt <- 
-  get_robotstxt("petermeissner.de")
+  get_robotstxt("https://petermeissner.de")
 
 # printing
 rt
@@ -520,7 +520,8 @@ function parameter `froce = TRUE` will force the package to re-retrieve the
 robots.txt file. 
 
 ```{r}
-paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE)
+paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE, verbose = TRUE)
+paths_allowed("petermeissner.de/I_want_to_scrape_this_now",verbose = TRUE)
 ```
 
 

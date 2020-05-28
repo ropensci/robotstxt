@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 897, *lines of test code:* 1583
+*lines of R code:* 951, *lines of test code:* 1616
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.3 - 2020-05-17 / 07:30:51
+0.7.3 - 2020-05-28 / 13:24:57
 
 **Description**
 
@@ -156,7 +156,7 @@ Retrieving the robots.txt file for a domain:
 ``` r
 # retrieval
 rt <- 
-  get_robotstxt("petermeissner.de")
+  get_robotstxt("https://petermeissner.de")
 
 # printing
 rt
@@ -164,37 +164,6 @@ rt
 ## --------------------------------------
 ## 
 ## # just do it - punk
-## 
-## 
-## 
-## [events]
-## --------------------------------------
-## 
-## requested:   http://petermeissner.de/robots.txt 
-## downloaded:  https://petermeissner.de/robots.txt 
-## 
-## $on_redirect
-## $on_redirect[[1]]
-## $on_redirect[[1]]$status
-## [1] 301
-## 
-## $on_redirect[[1]]$location
-## [1] "https://petermeissner.de/robots.txt"
-## 
-## 
-## $on_redirect[[2]]
-## $on_redirect[[2]]$status
-## [1] 200
-## 
-## $on_redirect[[2]]$location
-## NULL
-## 
-## 
-## 
-## [attributes]
-## --------------------------------------
-## 
-## problems, cached, request, class
 ```
 
 ### Interpretation
@@ -354,7 +323,7 @@ on_redirect_default
 ## [1] TRUE
 ## 
 ## $priority
-## [1] 5
+## [1] 3
 ```
 
   - `on_domain_change` :
@@ -365,9 +334,6 @@ on_redirect_default
 
 ``` r
 on_domain_change_default
-## $over_write_file_with
-## [1] "User-agent: *\nAllow: /"
-## 
 ## $signal
 ## [1] "warning"
 ## 
@@ -397,7 +363,7 @@ on_file_type_mismatch_default
 ## [1] TRUE
 ## 
 ## $priority
-## [1] 1
+## [1] 6
 ```
 
   - `on_suspect_content` :
@@ -419,7 +385,7 @@ on_suspect_content_default
 ## [1] TRUE
 ## 
 ## $priority
-## [1] 2
+## [1] 7
 ```
 
 ### Design Map for Event/State Handling
@@ -548,7 +514,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-17 07:39
+##   Date: 2020-05-28 13:30
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -590,7 +556,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-17 07:39
+##   Date: 2020-05-28 13:30
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -627,7 +593,7 @@ rt_req$request
 ## * httpget: TRUE
 ## Headers:
 ## * Accept: application/json, text/xml, application/xml, */*
-## * user-agent: R version 4.0.0 (2020-04-24)
+## * user-agent: R version 3.6.3 (2020-02-29)
 
 # response headers
 rt_req$all_headers
@@ -643,7 +609,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sun, 17 May 2020 07:39:10 GMT"
+## [1] "Thu, 28 May 2020 13:30:38 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -673,7 +639,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sun, 17 May 2020 07:39:10 GMT"
+## [1] "Thu, 28 May 2020 13:30:38 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -732,7 +698,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-17 07:39
+##   Date: 2020-05-28 13:30
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -747,8 +713,11 @@ function parameter `froce = TRUE` will force the package to re-retrieve
 the robots.txt file.
 
 ``` r
-paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE)
-##  petermeissner.de
+paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE, verbose = TRUE)
+##  petermeissner.de                      rt_robotstxt_http_getter: force http get
+## [1] TRUE
+paths_allowed("petermeissner.de/I_want_to_scrape_this_now",verbose = TRUE)
+##  petermeissner.de                      rt_robotstxt_http_getter: cached http get
 ## [1] TRUE
 ```
 

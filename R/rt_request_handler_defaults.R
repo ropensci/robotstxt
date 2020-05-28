@@ -48,11 +48,21 @@ on_redirect_default <-
 on_domain_change_default <-
   list(
     # over_write_file_with = "User-agent: *\nAllow: /",
-    # signal               = "warning",
+    signal               = "warning",
     cache                = TRUE,
     priority             = 4
   )
 
+#' @docType data
+#' @rdname rt_request_handler
+#' @export
+on_sub_domain_change_default <-
+  list(
+    # over_write_file_with = "User-agent: *\nAllow: /",
+    # signal               = "warning",
+    cache                = TRUE,
+    priority             = 5
+  )
 
 
 #' @docType data
@@ -63,7 +73,7 @@ on_file_type_mismatch_default <-
     over_write_file_with = "User-agent: *\nAllow: /",
     signal               = "warning",
     cache                = TRUE,
-    priority             = 5
+    priority             = 6
   )
 
 #' @docType data
@@ -74,5 +84,5 @@ on_suspect_content_default <-
     over_write_file_with = "User-agent: *\nAllow: /",
     signal               = "warning",
     cache                = TRUE,
-    priority             = 6
+    priority             = 7
   )

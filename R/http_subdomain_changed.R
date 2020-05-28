@@ -1,4 +1,4 @@
-#' http_domain_changed
+#' http_subdomain_changed
 #'
 #' @param response an httr response object, e.g. from a call to httr::GET()
 #'
@@ -6,12 +6,13 @@
 #'     happened during the HTTP request
 #'
 #'
-http_domain_changed <-
+http_subdomain_changed <-
   function(response){
 
     # get domain of original HTTP request
     orig_domain <- guess_domain(response$request$url)
     orig_domain <- stringr::str_replace(orig_domain, "www\\.", "")
+
 
     # extract location headers
     location <-
@@ -28,21 +29,20 @@ http_domain_changed <-
     location        <- stringr::str_replace(location, "www\\.", "")
     location_domain <- guess_domain(location)
 
+
+
     # if there is no location header nothing has changed
-    #
     if ( length(location) > 0 ) {
-      return(
-        !(
-          stringr::str_detect(
-            string = guess_domain(location_domain),
-            pattern =
-              stringr::regex(
-                stringr::str_replace_all(orig_domain, "\\.", "\\\\."),
-                ignore_case = TRUE
-              )
-          )
+      orig_domain_regex <-
+        stringr::regex(
+          pattern     = paste0("^", stringr::str_replace_all(orig_domain, "\\.", "\\\\."), "$"),
+          ignore_case = TRUE
         )
+
+      return(
+        !( stringr::str_detect(pattern = orig_domain_regex, string = location_domain) )
       )
+
     } else {
       return(FALSE)
     }

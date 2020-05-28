@@ -81,6 +81,8 @@ get_robotstxt <-
           ssl_verifypeer = ssl_verifypeer[1]
         )
 
+      rt_cache[[domain]] <- request
+
       if ( verbose == TRUE ){
         message("rt_robotstxt_http_getter: normal http get")
       }
