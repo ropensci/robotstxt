@@ -1,6 +1,10 @@
 # Sample .travis.yml for R projects
 
 language: r
+r:
+  - oldrel
+  - release
+  - devel
 warnings_are_errors: true
 sudo: false
 cache: packages
@@ -15,16 +19,10 @@ notifications:
 
 os:
   - linux
-  - osx
-
+  
 env:
   matrix:
-    - RVERSION=oldrel rpkg_use_internet_for_testing=TRUE
-    - RVERSION=oldrel rpkg_use_internet_for_testing=FALSE
-    - RVERSION=release rpkg_use_internet_for_testing=TRUE
-    - RVERSION=release rpkg_use_internet_for_testing=FALSE
-    - RVERSION=devel
-
+    - rpkg_use_internet_for_testing=TRUE
 
 
 
