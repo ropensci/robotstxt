@@ -4,14 +4,15 @@ NEWS robotstxt
 
 
 
-0.7.3 | 2020-05-17
+0.7.3 | 2020-05-29
 --------------------------------------------------------------------------
 
 - **minor** : improve printing of robots.txt
 - add request data as attribute to robots.txt
 - add `as.list()` method for robots.txt
 - adding several paragrpahs to the README file
-- finishing handlers - quality check, documentation
+- **major** : finishing handlers - quality check, documentation
+- **fix** : Partial matching warnings #51 - reported by @mine-cetinkaya-rundel
 
 
 

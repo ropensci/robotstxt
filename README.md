@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.3 - 2020-05-28 / 13:24:57
+0.7.3 - 2020-05-29 / 20:44:09
 
 **Description**
 
@@ -514,7 +514,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-28 13:30
+##   Date: 2020-05-29 21:06
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -556,7 +556,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-28 13:30
+##   Date: 2020-05-29 21:06
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -609,7 +609,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Thu, 28 May 2020 13:30:38 GMT"
+## [1] "Fri, 29 May 2020 21:06:39 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -639,7 +639,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Thu, 28 May 2020 13:30:38 GMT"
+## [1] "Fri, 29 May 2020 21:06:39 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -698,7 +698,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-05-28 13:30
+##   Date: 2020-05-29 21:06
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B

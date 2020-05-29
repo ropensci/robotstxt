@@ -1,5 +1,5 @@
 Package: robotstxt
-Date: 2020-05-28
+Date: 2020-05-29
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.7.3

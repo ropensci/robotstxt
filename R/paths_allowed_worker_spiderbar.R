@@ -24,7 +24,7 @@ paths_allowed_worker_spiderbar <-
         if( is.na(domain) ){
           return(NA)
         }else{
-          rtxt_obj <- spiderbar::robxp(robotstxt)
+          rtxt_obj <- spiderbar::robxp(x = robotstxt)
 
           bot_can_fetch <-
             spiderbar::can_fetch(
@@ -38,7 +38,7 @@ paths_allowed_worker_spiderbar <-
 
     tmp <-
       mapply(
-        worker,
+        FUN         = worker,
         path        = paths,
         robotstxt   = robotstxts,
         bot         = bot,
