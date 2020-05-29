@@ -30,8 +30,7 @@ Imports:
     future (>= 1.6.2),
     future.apply (>= 1.0.0),
     magrittr,
-    utils,
-    urltools (>= 1.7.1)
+    utils
 Suggests:
     knitr,
     rmarkdown,

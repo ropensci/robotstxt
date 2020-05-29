@@ -24,7 +24,7 @@ http_domain_changed <-
             }
         )
       )
-    location        <- tail(location, 1)
+    location        <- utils::tail(location, 1)
     location        <- stringr::str_replace(location, "www\\.", "")
     location_domain <- guess_domain(location)
 
