@@ -16,3 +16,4 @@ benchmarks
 misc/*
 revdep/*.*
 ^revdep$
+^CRAN-RELEASE$

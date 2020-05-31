@@ -1,3 +1,34 @@
+This is a re-submission.
+
+## Your comments
+
+
+Thanks, we see:
+
+  File 'LICENSE':
+     Peter Meissner 2018 (c)
+     - package author and maintainer
+
+     Kun Ren 2018 (c)
+     - author of list_merge.R copied from
+https://github.com/renkun-ken/rlist
+
+
+But you nned liens starting
+
+YEAR:
+COPYRIGHT HOLDERS:
+
+Please fix and resubmit.
+
+
+
+## My comments
+
+Thanks, done.
+
+
+
 
 ## Test environments
 
