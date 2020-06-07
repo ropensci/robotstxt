@@ -2,6 +2,11 @@ NEWS robotstxt
 ==========================================================================
 
 
+0.7.5 | 2020-06-07
+--------------------------------------------------------------------------
+
+- **fix** passing through more parameters from robotstxt() to get_robotstxt() - reported and implemented by @dmi3kno
+
 
 
 0.7.3 | 2020-05-29
