@@ -10,6 +10,7 @@ robotstxt(
   user_agent = NULL,
   warn = getOption("robotstxt_warn", TRUE),
   force = FALSE,
+  verbose = FALSE,
   on_server_error = on_server_error_default,
   on_client_error = on_client_error_default,
   on_not_found = on_not_found_default,
@@ -34,6 +35,8 @@ file from domain}
 \item{force}{if TRUE instead of using possible cached results the function
 will re-download the robotstxt file HTTP response status 404. If this
 happens,}
+
+\item{verbose}{make function print out more information}
 
 \item{on_server_error}{request state handler for any 5xx status}
 
