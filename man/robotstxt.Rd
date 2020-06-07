@@ -10,6 +10,9 @@ robotstxt(
   user_agent = NULL,
   warn = getOption("robotstxt_warn", TRUE),
   force = FALSE,
+  ssl_verifypeer = c(1, 0),
+  encoding = "UTF-8",
+  verbose = FALSE,
   on_server_error = on_server_error_default,
   on_client_error = on_client_error_default,
   on_not_found = on_not_found_default,
@@ -34,6 +37,14 @@ file from domain}
 \item{force}{if TRUE instead of using possible cached results the function
 will re-download the robotstxt file HTTP response status 404. If this
 happens,}
+
+\item{ssl_verifypeer}{analog to CURL option
+\url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
+might help with robots.txt file retrieval in some cases}
+
+\item{encoding}{Encoding of the robots.txt file.}
+
+\item{verbose}{make function print out more information}
 
 \item{on_server_error}{request state handler for any 5xx status}
 

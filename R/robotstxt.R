@@ -59,6 +59,9 @@ robotstxt <-
     user_agent            = NULL,
     warn                  = getOption("robotstxt_warn", TRUE),
     force                 = FALSE,
+    ssl_verifypeer        = c(1,0),
+    encoding              = "UTF-8",
+    verbose               = FALSE,
     on_server_error       = on_server_error_default,
     on_client_error       = on_client_error_default,
     on_not_found          = on_not_found_default,
@@ -89,10 +92,13 @@ robotstxt <-
         self$domain <- domain
         self$text   <-
           get_robotstxt(
-            domain     = domain,
-            user_agent = user_agent,
-            warn       = warn,
-            force      = force,
+            domain                = domain,
+            warn                  = warn,
+            force                 = force,
+            user_agent            = user_agent,
+            ssl_verifypeer        = ssl_verifypeer,
+            encoding              = encoding,
+            verbose               = verbose,
             on_server_error       = on_server_error       ,
             on_client_error       = on_client_error       ,
             on_not_found          = on_not_found          ,
