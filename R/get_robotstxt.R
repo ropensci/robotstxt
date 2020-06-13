@@ -65,8 +65,12 @@ get_robotstxt <-
 
     } else if ( !is.null(rt_cache[[domain]]) ) {
 
+      # get cache content
       request <-
         rt_cache[[domain]]
+
+      # mark content as cached
+      request$rt_from_cache <- TRUE
 
       if ( verbose == TRUE ){
         message("rt_robotstxt_http_getter: cached http get")
@@ -74,12 +78,16 @@ get_robotstxt <-
 
     } else if ( is.null(rt_cache[[domain]]) ){
 
+      # retrieve http content
       request <-
         rt_robotstxt_http_getter(
           domain         = domain,
           user_agent     = user_agent,
           ssl_verifypeer = ssl_verifypeer[1]
         )
+
+      # mark content as not cached
+      request$rt_from_cache <- FALSE
 
       rt_cache[[domain]] <- request
 
@@ -103,15 +111,27 @@ get_robotstxt <-
         encoding         = encoding
       )
 
+    # check if cache has to be emptied if
     if ( length(res$cache) == 0 || res$cache == TRUE ){
       rt_cache[[domain]] <- request
+    } else {
+      rt_cache[[domain]] <- NULL
     }
 
+
+    # collect info and return
     rtxt <- res$rtxt
 
-    # return
-    attributes(rtxt) <- list(problems = res$problems, cached = res$cache, request = request)
-    class(rtxt)                  <- c("robotstxt_text", "character")
+    attributes(rtxt) <-
+      list(
+        problems = res$problems,
+        cached   = request$rt_from_cache,
+        request  = request
+      )
+
+    class(rtxt) <-
+      c("robotstxt_text", "character")
+
     return(rtxt)
   }
 
