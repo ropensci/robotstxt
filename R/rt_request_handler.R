@@ -211,7 +211,7 @@ rt_request_handler <-
 
     ## file type mismatch
     file_type_mismatch <-
-      !(grepl("text/plain", null_to_defeault(request$headers$`content-type`)))
+      !(grepl("text/plain", null_to_defeault(request$headers$`content-type`, "")))
 
     if ( file_type_mismatch == TRUE ){
       res <-
