@@ -5,9 +5,7 @@
 \alias{rt_last_http}
 \alias{get_robotstxt_http_get}
 \title{storage for http request response objects}
-\format{
-An object of class \code{environment} of length 1.
-}
+\format{An object of class \code{environment} of length 1.}
 \usage{
 rt_last_http
 

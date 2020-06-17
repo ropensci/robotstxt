@@ -1,8 +1,8 @@
 Package: robotstxt
-Date: 2020-06-13
+Date: 2020-06-17
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.7.6
+Version: 0.7.7
 Authors@R: c(
         person(
           "Peter", "Meissner", role = c("aut", "cre"),
