@@ -99,6 +99,13 @@ test_that(
       guess_domain("www.google.com") == "www.google.com"
     })
 
+    expect_true({
+      guess_domain("www.domain-with-hyphen.tld") == "www.domain-with-hyphen.tld"
+    })
+
+    expect_true({
+      guess_domain("tld-domain.tld") == "tld-domain.tld"
+    })
 
   }
 )
