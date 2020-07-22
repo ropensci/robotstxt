@@ -24,6 +24,7 @@ rtxt_host    <- rt_get_rtxt("host.txt")
 rtxt_fb_nsp  <- rt_get_rtxt("robots_facebook_unsupported.txt")
 rtxt_cdc     <- rt_get_rtxt("robots_cdc.txt")
 rtxt_cdc2    <- paste(rt_get_rtxt("robots_cdc2.txt"), collapse = "\r\n")
+rtxt_rbloggers     <- rt_get_rtxt("rbloggers.txt")
 
 test_that(
   "all robots.txt files are valid", {
@@ -211,6 +212,31 @@ test_that(
     )
   }
 )
+
+
+
+
+
+
+context("can handle varIOUs cases for robots.txt fields")
+
+test_that(
+  "can handle varIOUs cases for robots.txt fields - issue #55", {
+    expect_true({
+      cd <- parse_robotstxt(rtxt_rbloggers)$crawl_delay
+      sum(cd$useragent == "AhrefsBot") == 1
+    })
+  }
+)
+
+
+
+
+
+
+
+
+
 
 
 

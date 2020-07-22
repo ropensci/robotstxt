@@ -11,13 +11,33 @@ rt_get_fields <- function(txt, regex = "", invert = FALSE){
     txt %>%
     stringr::str_replace_all("\r\n", "\n") %>%
     paste0(collapse = "\n") %>%
-    stringr::str_replace_all( pattern = "#.*?\n", replacement = "") %>%
-    stringr::str_replace_all(pattern = "(\nUser.+)", replacement = "\n\\1") %>%
-    stringr::str_replace_all(pattern = "\n", replacement = "/%~~~/%\n") %>%
-    stringr::str_replace_all(pattern = "(User.+?/%~~~/%\n)/%~~~/%\n(User.+?)", replacement = "\\1\\2") %>%
-    stringr::str_replace_all(pattern = "/%~~~/%", replacement = "") %>%
-    stringr::str_replace(pattern = "^\n", replacement = "") %>%
-    stringr::str_split("\n[ \t]*\n") %>%
+    stringr::str_replace_all(
+      pattern     = "#.*?\n",
+      replacement = ""
+    ) %>%
+    stringr::str_replace_all(
+      pattern     = stringr::regex("(\nUser.+)", ignore_case = TRUE),
+      replacement = "\n\\1"
+    ) %>%
+    stringr::str_replace_all(
+      pattern     = "\n",
+      replacement = "/%~~~/%\n"
+    ) %>%
+    stringr::str_replace_all(
+      pattern     = stringr::regex("(User.+?/%~~~/%\n)/%~~~/%\n(User.+?)", ignore_case = TRUE),
+      replacement = "\\1\\2"
+    ) %>%
+    stringr::str_replace_all(
+      pattern     = "/%~~~/%",
+      replacement = ""
+    ) %>%
+    stringr::str_replace(
+      pattern     = "^\n",
+      replacement = ""
+    ) %>%
+    stringr::str_split(
+      pattern = "\n[ \t]*\n"
+    ) %>%
     unlist()
 
 

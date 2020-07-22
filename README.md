@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 967, *lines of test code:* 1616
+*lines of R code:* 999, *lines of test code:* 1632
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.7 - 2020-06-17 / 20:03:26
+0.7.8 - 2020-07-22 / 11:19:28
 
 **Description**
 
@@ -514,7 +514,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-06-17 20:10
+##   Date: 2020-07-22 11:20
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -556,7 +556,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-06-17 20:10
+##   Date: 2020-07-22 11:20
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -593,7 +593,7 @@ rt_req$request
 ## * httpget: TRUE
 ## Headers:
 ## * Accept: application/json, text/xml, application/xml, */*
-## * user-agent: R version 3.6.1 (2019-07-05)
+## * user-agent: R version 3.6.3 (2020-02-29)
 
 # response headers
 rt_req$all_headers
@@ -609,7 +609,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Wed, 17 Jun 2020 20:10:25 GMT"
+## [1] "Wed, 22 Jul 2020 11:20:30 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -639,7 +639,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Wed, 17 Jun 2020 20:10:25 GMT"
+## [1] "Wed, 22 Jul 2020 11:20:30 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -698,7 +698,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-06-17 20:10
+##   Date: 2020-07-22 11:20
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -710,8 +710,7 @@ as.list(rt)
 The retrieval of robots.txt files is cached on a per R-session basis.
 Restarting an R-session will invalidate the cache. Also using the the
 function parameter `froce = TRUE` will force the package to re-retrieve
-the robots.txt
-file.
+the robots.txt file.
 
 ``` r
 paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE, verbose = TRUE)
@@ -724,5 +723,10 @@ paths_allowed("petermeissner.de/I_want_to_scrape_this_now",verbose = TRUE)
 
 ## More information
 
-[Have a look at the vignette at
-https://cran.r-project.org/package=robotstxt/vignettes/using\_robotstxt.html](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
+  - [Have a look at the vignette at
+    https://cran.r-project.org/package=robotstxt/vignettes/using\_robotstxt.html](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
+  - [Google on
+    robots.txt](https://developers.google.com/search/reference/robots_txt?hl=en)
+  - <https://wiki.selfhtml.org/wiki/Grundlagen/Robots.txt>
+  - <https://support.google.com/webmasters/answer/6062608?hl=en>
+  - <https://www.robotstxt.org/robotstxt.html>

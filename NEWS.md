@@ -8,6 +8,9 @@ NEWS robotstxt
 --------------------------------------------------------------------------
 
 - fix problem with domain name extraction - reported by @gittaca, https://github.com/ropensci/robotstxt/issues/57
+- fix problem with vArYING CasE in robots.txt field names - reported by @steffilazerte, https://github.com/ropensci/robotstxt/issues/55
+
+
 
 
 0.7.7 | 2020-06-17
