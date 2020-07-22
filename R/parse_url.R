@@ -21,6 +21,7 @@
 #'   "http://google.com",
 #'   "https://google.com",
 #'   "sub.domain.whatever.de"
+#'   "s-u-b.dom-ain.what-ever.de"
 #' )
 #'
 #' parse_url(url)
@@ -28,7 +29,12 @@
 #'
 parse_url <- function(url){
   match <-
-    stringr::str_match(url, "(^\\w+://)?([\\w.-]+)?(/.*)?")[, -1, drop = FALSE]
+    stringr::str_match(
+      string  = url,
+      pattern = "(^\\w+://)?([^/]+)?(/.*)?"
+    )
+
+  match <- match[, -1, drop = FALSE]
 
   df        <- as.data.frame(match, stringsAsFactors = FALSE)
   names(df) <- c("protocol", "domain", "path")

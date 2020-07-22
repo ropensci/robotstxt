@@ -26,6 +26,7 @@ c(
   "http://google.com",
   "https://google.com",
   "sub.domain.whatever.de"
+  "s-u-b.dom-ain.what-ever.de"
 )
 
 parse_url(url)

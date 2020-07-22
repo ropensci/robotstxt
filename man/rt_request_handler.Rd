@@ -13,7 +13,23 @@
 \alias{on_file_type_mismatch_default}
 \alias{on_suspect_content_default}
 \title{rt_request_handler}
-\format{An object of class \code{list} of length 4.}
+\format{
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 2.
+
+An object of class \code{list} of length 3.
+
+An object of class \code{list} of length 2.
+
+An object of class \code{list} of length 4.
+
+An object of class \code{list} of length 4.
+}
 \usage{
 rt_request_handler(
   request,

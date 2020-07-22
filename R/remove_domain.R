@@ -7,7 +7,7 @@ remove_domain <- function(x){
       if( is.na(x) ){
         return(x)
       }else{
-        stringr::str_replace(x, paste0("^.*", guess_domain(x)), "")
+        stringr::str_replace(x, paste0("^.*", "\\Q", guess_domain(x), "\\E"), "")
       }
     }
   ))

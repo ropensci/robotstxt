@@ -264,6 +264,7 @@ test_that(
         }
       )
     }
+
     # expect_false(paths_allowed(permissions_asb,  path="*"))
     for ( i in seq_len(nrow(options_grid)) ) {
       test_that(
@@ -280,6 +281,7 @@ test_that(
         }
       )
     }
+
     #
     # expect_false(paths_allowed(permissions_asb,  path="images", bot="harald"))
     for ( i in seq_len(nrow(options_grid)) ) {
