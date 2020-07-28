@@ -528,6 +528,7 @@ paths_allowed("petermeissner.de/I_want_to_scrape_this_now",verbose = TRUE)
 
 ## More information
 
+- https://www.robotstxt.org/norobots-rfc.txt
 - [Have a look at the vignette at https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html ](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
 - [Google on robots.txt](https://developers.google.com/search/reference/robots_txt?hl=en)
 - https://wiki.selfhtml.org/wiki/Grundlagen/Robots.txt
