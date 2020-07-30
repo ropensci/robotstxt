@@ -6,7 +6,7 @@
 
 - Win10 lokal with R 3.6.3 --> OK
 - win-builder   - devel    --> OK
-- win-builder   - old      --> OK
+- win-builder   - release  --> OK
 
 
 ## R CMD check results
