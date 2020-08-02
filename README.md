@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 999, *lines of test code:* 1644
+*lines of R code:* 1007, *lines of test code:* 1746
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.8 - 2020-07-28 / 20:06:44
+0.7.9 - 2020-08-02 / 20:06:39
 
 **Description**
 
@@ -514,7 +514,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-07-30 18:30
+##   Date: 2020-08-02 20:07
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -556,7 +556,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-07-30 18:30
+##   Date: 2020-08-02 20:07
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -609,7 +609,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Thu, 30 Jul 2020 18:30:24 GMT"
+## [1] "Sun, 02 Aug 2020 20:07:59 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -639,7 +639,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Thu, 30 Jul 2020 18:30:24 GMT"
+## [1] "Sun, 02 Aug 2020 20:07:59 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -648,13 +648,13 @@ rt_req$all_headers
 ## [1] "20"
 ## 
 ## $`last-modified`
-## [1] "Wed, 09 Oct 2019 19:07:02 GMT"
+## [1] "Fri, 31 Jul 2020 06:00:37 GMT"
 ## 
 ## $connection
 ## [1] "keep-alive"
 ## 
 ## $etag
-## [1] "\"5d9e2fd6-14\""
+## [1] "\"5f23b385-14\""
 ## 
 ## $`accept-ranges`
 ## [1] "bytes"
@@ -698,7 +698,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-07-30 18:30
+##   Date: 2020-08-02 20:07
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B

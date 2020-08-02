@@ -2,6 +2,13 @@ NEWS robotstxt
 ==========================================================================
 
 
+0.7.9 | 2020-08-02
+
+--------------------------------------------------------------------------
+
+- fix problem is_valid_robotstxt() - robots.txt validity check was to lax - reported by @gittaca, https://github.com/ropensci/robotstxt/issues/58
+
+
 
 0.7.8 | 2020-07-22
 

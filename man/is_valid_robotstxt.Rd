@@ -4,10 +4,12 @@
 \alias{is_valid_robotstxt}
 \title{function that checks if file is valid / parsable robots.txt file}
 \usage{
-is_valid_robotstxt(text)
+is_valid_robotstxt(text, check_strickt_ascii = FALSE)
 }
 \arguments{
 \item{text}{content of a robots.txt file provides as character vector}
+
+\item{check_strickt_ascii}{whether or not to check if content does adhere to the specification of RFC to use plain text aka ASCII}
 }
 \description{
 function that checks if file is valid / parsable robots.txt file
