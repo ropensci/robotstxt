@@ -24,6 +24,7 @@ rtxt_fb_nsp  <- rt_get_rtxt("robots_facebook_unsupported.txt")
 rtxt_cdc     <- rt_get_rtxt("robots_cdc.txt")
 rtxt_cdc2    <- paste(rt_get_rtxt("robots_cdc2.txt"), collapse = "\r\n")
 rtxt_rbloggers     <- rt_get_rtxt("rbloggers.txt")
+rtxt_ct      <- rt_get_rtxt("robots_commented_token.txt")
 
 
 
@@ -122,6 +123,10 @@ test_that(
 
     expect_true(
       is_valid_robotstxt( rtxt_cdc )
+    )
+
+    expect_true(
+      is_valid_robotstxt( rtxt_ct )
     )
   })
 
@@ -366,6 +371,15 @@ test_that(
   }
 )
 
+context("Commented-out tokens get parsed correctly")
+
+test_that(
+  "Commented-out tokens get ignored", {
+    expect_true(
+      nrow(parse_robotstxt(rtxt_ct)$permissions) == 1
+    )
+  }
+)
 
 
 

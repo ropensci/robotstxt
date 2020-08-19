@@ -1,0 +1,7 @@
+User-agent: bot_1
+Disallow: /path_1
+
+# User-agent: bot_2
+# Disallow: /path_2
+
+# Sitemap: /sitemap.php
