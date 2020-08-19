@@ -2,29 +2,29 @@
 
 
 
-rtxt_asb     <- rt_get_rtxt("allow_single_bot.txt")
-rtxt_dafa    <- rt_get_rtxt("disallow_all_for_all.txt")
-rtxt_dafbb   <- rt_get_rtxt("disallow_all_for_BadBot.txt")
-rtxt_dsfa    <- rt_get_rtxt("disallow_some_for_all.txt")
-rtxt_empty   <- rt_get_rtxt("empty.txt")
-rtxt_datao   <- rt_get_rtxt("disallow_two_at_once.txt")
-rtxt_tcom    <- rt_get_rtxt("testing_comments.txt")
-rtxt_amzn    <- rt_get_rtxt("robots_amazon.txt")
-rtxt_bt      <- rt_get_rtxt("robots_bundestag.txt")
-rtxt_ggl     <- rt_get_rtxt("robots_google.txt")
-rtxt_nyt     <- rt_get_rtxt("robots_new_york_times.txt")
-rtxt_spgl    <- rt_get_rtxt("robots_spiegel.txt")
-rtxt_yh      <- rt_get_rtxt("robots_yahoo.txt")
-rtxt_she     <- rt_get_rtxt("selfhtml_Example.txt")
-rtxt_pm      <- rt_get_rtxt("robots_pmeissner.txt")
-rtxt_wp      <- rt_get_rtxt("robots_wikipedia.txt")
-rtxt_cd      <- rt_get_rtxt("crawl_delay.txt")
-rtxt_host    <- rt_get_rtxt("host.txt")
-rtxt_fb_nsp  <- rt_get_rtxt("robots_facebook_unsupported.txt")
-rtxt_cdc     <- rt_get_rtxt("robots_cdc.txt")
-rtxt_cdc2    <- paste(rt_get_rtxt("robots_cdc2.txt"), collapse = "\r\n")
-rtxt_rbloggers     <- rt_get_rtxt("rbloggers.txt")
-rtxt_ct      <- rt_get_rtxt("robots_commented_token.txt")
+rtxt_asb        <- rt_get_rtxt("allow_single_bot.txt")
+rtxt_dafa       <- rt_get_rtxt("disallow_all_for_all.txt")
+rtxt_dafbb      <- rt_get_rtxt("disallow_all_for_BadBot.txt")
+rtxt_dsfa       <- rt_get_rtxt("disallow_some_for_all.txt")
+rtxt_empty      <- rt_get_rtxt("empty.txt")
+rtxt_datao      <- rt_get_rtxt("disallow_two_at_once.txt")
+rtxt_tcom       <- rt_get_rtxt("testing_comments.txt")
+rtxt_amzn       <- rt_get_rtxt("robots_amazon.txt")
+rtxt_bt         <- rt_get_rtxt("robots_bundestag.txt")
+rtxt_ggl        <- rt_get_rtxt("robots_google.txt")
+rtxt_nyt        <- rt_get_rtxt("robots_new_york_times.txt")
+rtxt_spgl       <- rt_get_rtxt("robots_spiegel.txt")
+rtxt_yh         <- rt_get_rtxt("robots_yahoo.txt")
+rtxt_she        <- rt_get_rtxt("selfhtml_Example.txt")
+rtxt_pm         <- rt_get_rtxt("robots_pmeissner.txt")
+rtxt_wp         <- rt_get_rtxt("robots_wikipedia.txt")
+rtxt_cd         <- rt_get_rtxt("crawl_delay.txt")
+rtxt_host       <- rt_get_rtxt("host.txt")
+rtxt_fb_nsp     <- rt_get_rtxt("robots_facebook_unsupported.txt")
+rtxt_cdc        <- rt_get_rtxt("robots_cdc.txt")
+rtxt_cdc2       <- paste(rt_get_rtxt("robots_cdc2.txt"), collapse = "\r\n")
+rtxt_rbloggers  <- rt_get_rtxt("rbloggers.txt")
+rtxt_ct         <- rt_get_rtxt("robots_commented_token.txt")
 
 
 
@@ -371,19 +371,6 @@ test_that(
   }
 )
 
-context("Commented-out tokens get parsed correctly")
-
-test_that(
-  "Commented-out tokens get ignored", {
-    expect_true(
-      nrow(parse_robotstxt(rtxt_ct)$permissions) == 1
-    )
-  }
-)
-
-
-
-
 
 context("can handle varIOUs cases for robots.txt fields")
 
@@ -399,6 +386,19 @@ test_that(
 
 
 
+
+
+
+
+context("Commented-out tokens get parsed correctly")
+
+test_that(
+  "Commented-out tokens get ignored", {
+    expect_true(
+      nrow(parse_robotstxt(rtxt_ct)$permissions) == 1
+    )
+  }
+)
 
 
 

@@ -12,7 +12,7 @@ rt_get_fields <- function(txt, regex = "", invert = FALSE){
     stringr::str_replace_all("\r\n", "\n") %>%
     paste0(collapse = "\n") %>%
     stringr::str_replace_all(
-      pattern     = "#.*?\n",
+      pattern     = "#.*?(\n|$)",
       replacement = ""
     ) %>%
     stringr::str_replace_all(
@@ -53,6 +53,7 @@ rt_get_fields <- function(txt, regex = "", invert = FALSE){
       useragents[[i]] <- "*"
     }
   }
+
 
   # get fields per part
   fields  <-
