@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 1007, *lines of test code:* 1746
+*lines of R code:* 1007, *lines of test code:* 1758
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.9 - 2020-08-02 / 20:06:39
+0.7.10 - 2020-08-19 / 20:06:12
 
 **Description**
 
@@ -514,7 +514,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-08-02 20:07
+##   Date: 2020-08-19 20:15
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -556,7 +556,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-08-02 20:07
+##   Date: 2020-08-19 20:15
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -609,7 +609,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sun, 02 Aug 2020 20:07:59 GMT"
+## [1] "Wed, 19 Aug 2020 20:15:17 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -639,7 +639,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sun, 02 Aug 2020 20:07:59 GMT"
+## [1] "Wed, 19 Aug 2020 20:15:17 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -698,7 +698,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-08-02 20:07
+##   Date: 2020-08-19 20:15
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -710,7 +710,8 @@ as.list(rt)
 The retrieval of robots.txt files is cached on a per R-session basis.
 Restarting an R-session will invalidate the cache. Also using the the
 function parameter `froce = TRUE` will force the package to re-retrieve
-the robots.txt file.
+the robots.txt
+file.
 
 ``` r
 paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE, verbose = TRUE)

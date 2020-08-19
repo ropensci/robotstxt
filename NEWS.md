@@ -2,16 +2,25 @@ NEWS robotstxt
 ==========================================================================
 
 
-0.7.9 | 2020-08-02
+0.7.10 | 2020-08-19
+--------------------------------------------------------------------------
 
+- fix problem in parse_robotstxt() - comment in last line of robots.txt file would lead to errornous parsing - reported by @gittaca, https://github.com/ropensci/robotstxt/pull/59 and https://github.com/ropensci/robotstxt/issues/60
+
+
+
+
+
+0.7.9 | 2020-08-02
 --------------------------------------------------------------------------
 
 - fix problem is_valid_robotstxt() - robots.txt validity check was to lax - reported by @gittaca, https://github.com/ropensci/robotstxt/issues/58
 
 
 
-0.7.8 | 2020-07-22
 
+
+0.7.8 | 2020-07-22
 --------------------------------------------------------------------------
 
 - fix problem with domain name extraction - reported by @gittaca, https://github.com/ropensci/robotstxt/issues/57
@@ -20,10 +29,13 @@ NEWS robotstxt
 
 
 
+
 0.7.7 | 2020-06-17
 --------------------------------------------------------------------------
 
 - fix problem in rt_request_handler - reported by @MHWauben https://github.com/dmi3kno/polite/issues/28 - patch by @dmi3kno
+
+
 
 
 
@@ -42,6 +54,8 @@ NEWS robotstxt
 
 
 
+
+
 0.7.3 | 2020-05-29
 --------------------------------------------------------------------------
 
@@ -54,10 +68,14 @@ NEWS robotstxt
 
 
 
+
+
 0.7.2 | 2020-05-04
 --------------------------------------------------------------------------
 
 - **minor** : changes in dependencies were introducing errors when no scheme/protocoll was provided in URL -- fixed https://github.com/ropensci/robotstxt/issues/50
+
+
 
 
 
