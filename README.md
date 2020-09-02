@@ -9,8 +9,8 @@
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/onboarding/issues/25)
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://repostatus.org/)
+[![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/software-review/issues/25)
 <a href="https://travis-ci.org/ropensci/robotstxt"><img src="https://api.travis-ci.org/ropensci/robotstxt.svg?branch=master"><a/>
 <a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a>
 [![cran
@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.10 - 2020-08-19 / 20:06:12
+0.7.11 - 2020-08-19 / 20:39:24
 
 **Description**
 
@@ -514,7 +514,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-08-19 20:15
+##   Date: 2020-09-02 20:05
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -556,7 +556,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-08-19 20:15
+##   Date: 2020-09-02 20:05
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -609,7 +609,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Wed, 19 Aug 2020 20:15:17 GMT"
+## [1] "Wed, 02 Sep 2020 20:05:20 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -639,7 +639,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Wed, 19 Aug 2020 20:15:17 GMT"
+## [1] "Wed, 02 Sep 2020 20:05:20 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -648,13 +648,13 @@ rt_req$all_headers
 ## [1] "20"
 ## 
 ## $`last-modified`
-## [1] "Fri, 31 Jul 2020 06:00:37 GMT"
+## [1] "Sun, 23 Aug 2020 19:46:43 GMT"
 ## 
 ## $connection
 ## [1] "keep-alive"
 ## 
 ## $etag
-## [1] "\"5f23b385-14\""
+## [1] "\"5f42c7a3-14\""
 ## 
 ## $`accept-ranges`
 ## [1] "bytes"
@@ -698,7 +698,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-08-19 20:15
+##   Date: 2020-09-02 20:05
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -710,8 +710,7 @@ as.list(rt)
 The retrieval of robots.txt files is cached on a per R-session basis.
 Restarting an R-session will invalidate the cache. Also using the the
 function parameter `froce = TRUE` will force the package to re-retrieve
-the robots.txt
-file.
+the robots.txt file.
 
 ``` r
 paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE, verbose = TRUE)

@@ -17,3 +17,5 @@ misc/*
 revdep/*.*
 ^revdep$
 ^CRAN-RELEASE$
+^doc$
+^Meta$

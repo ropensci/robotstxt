@@ -12,3 +12,5 @@ CRAN-RELEASE
 robotstxt_*.tar.gz
 revdepcheck/
 
+doc
+Meta
