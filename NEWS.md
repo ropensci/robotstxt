@@ -2,10 +2,16 @@ NEWS robotstxt
 ==========================================================================
 
 
+0.7.13 | 2020-09-03
+--------------------------------------------------------------------------
+
+- CRAN compliance - prevent URL forwarding (HTTP 301): add www to URLs
+
+
 0.7.12 | 2020-09-03
 --------------------------------------------------------------------------
 
-- CRAN compliance - prevent URL forwarding (HTTP 301); add trailing slashes to URLs
+- CRAN compliance - prevent URL forwarding (HTTP 301): add trailing slashes to URLs
 
 
 

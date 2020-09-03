@@ -21,7 +21,7 @@ checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.
 
 **Development version**
 
-0.7.12 - 2020-08-19 / 20:39:24
+0.7.13 - 2020-08-19 / 20:39:24
 
 **Description**
 
@@ -81,8 +81,8 @@ terms:
 > project maintainers.
 > 
 > This Code of Conduct is adapted from the Contributor Covenant
-> (<https://contributor-covenant.org/>), version 1.0.0, available at
-> <https://contributor-covenant.org/version/1/0/0/>
+> (<https://www.contributor-covenant.org/>), version 1.0.0, available at
+> <https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/>
 
 ## Installation
 
@@ -514,7 +514,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-09-03 06:55
+##   Date: 2020-09-03 19:05
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -556,7 +556,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-09-03 06:55
+##   Date: 2020-09-03 19:05
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -609,7 +609,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Thu, 03 Sep 2020 06:55:58 GMT"
+## [1] "Thu, 03 Sep 2020 19:05:45 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -639,7 +639,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Thu, 03 Sep 2020 06:55:58 GMT"
+## [1] "Thu, 03 Sep 2020 19:05:45 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -648,13 +648,13 @@ rt_req$all_headers
 ## [1] "20"
 ## 
 ## $`last-modified`
-## [1] "Thu, 03 Sep 2020 06:49:35 GMT"
+## [1] "Thu, 03 Sep 2020 15:33:01 GMT"
 ## 
 ## $connection
 ## [1] "keep-alive"
 ## 
 ## $etag
-## [1] "\"5f5091ff-14\""
+## [1] "\"5f510cad-14\""
 ## 
 ## $`accept-ranges`
 ## [1] "bytes"
@@ -698,7 +698,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2020-09-03 06:55
+##   Date: 2020-09-03 19:05
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
