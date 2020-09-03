@@ -2,11 +2,18 @@ NEWS robotstxt
 ==========================================================================
 
 
+0.7.12 | 2020-09-03
+--------------------------------------------------------------------------
+
+- CRAN compliance - prevent URL forwarding (HTTP 301); add trailing slashes to URLs
+
+
 
 0.7.11 | 2020-09-02
 --------------------------------------------------------------------------
 
 - CRAN compliance - LICENCE file wording; prevent URL forwarding (HTTP 301)
+
 
 
 

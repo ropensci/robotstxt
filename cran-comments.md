@@ -4,48 +4,32 @@ This is a re-submission.
 
 Thanks, we see:
 
-   COPYRIGHT HOLDERS: Peter Meissner
-
-     YEAR: 2018
-     COPYRIGHT HOLDERS: Kun Ren
-
-Pls write "COPYRIGHT HOLDER"
-
-
-
-
    Found the following (possibly) invalid URLs:
-     URL: http://www.repostatus.org/#active (moved to
-https://www.repostatus.org/)
+     URL: http://contributor-covenant.org (moved to
+https://www.contributor-covenant.org/)
        From: README.md
        Status: 200
        Message: OK
-     URL: https://github.com/ropensci/onboarding/issues/25 (moved to
-https://github.com/ropensci/software-review/issues/25)
+     URL: http://contributor-covenant.org/version/1/0/0/ (moved to
+https://www.contributor-covenant.org/version/1/0/0/)
        From: README.md
        Status: 200
        Message: OK
-     URL: https://google.com/robots.txt (moved to
-https://www.google.com/robots.txt)
-       From: inst/doc/using_robotstxt.html
-       Status: 200
-       Message: OK
-     URL: https://wikipedia.org/robots.txt (moved to
-https://en.wikipedia.org/robots.txt)
-       From: inst/doc/using_robotstxt.html
+     URL: https://repostatus.org/ (moved to https://www.repostatus.org/)
+       From: README.md
        Status: 200
        Message: OK
 
+Please change http --> https and add the trailing slash.
 
-Please change change http --> https and follow moved content.
+Please fix and resubmit.
 
 
 
 
 ## My actions
 
-1) I changed LICENSE file accordingly.
-2) I changed all URLs accordingly. 
+1) I changed all URLs accordingly. 
 
 
 

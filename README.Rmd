@@ -47,7 +47,7 @@ length.cpp   <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.cpp,  value = T
 
 *lines of R code:* `r length.R`, *lines of test code:* `r length.tests`
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://repostatus.org/)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
 [![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/software-review/issues/25)
 <a href="https://travis-ci.org/ropensci/robotstxt"><img src="https://api.travis-ci.org/ropensci/robotstxt.svg?branch=master"><a/>
 <a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a>
@@ -140,8 +140,8 @@ from the project team.
 opening an issue or contacting one or more of the project maintainers.
 > 
 > This Code of Conduct is adapted from the Contributor Covenant 
-(http://contributor-covenant.org), version 1.0.0, available at 
-http://contributor-covenant.org/version/1/0/0/
+(https://contributor-covenant.org/), version 1.0.0, available at 
+https://contributor-covenant.org/version/1/0/0/
 
 
 
