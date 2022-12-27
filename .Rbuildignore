@@ -19,3 +19,4 @@ revdep/*.*
 ^CRAN-RELEASE$
 ^doc$
 ^Meta$
+^\.github$
