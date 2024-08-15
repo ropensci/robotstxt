@@ -27,31 +27,22 @@ get_robotstxt_http_get <-
   ){
     # generate url
     url <- fix_url(paste0(domain, "/robots.txt"))
+    config <- httr::config(ssl_verifypeer = ssl_verifypeer)
 
     if ( !is.null(user_agent) ) {
       # with user agent
-      request <-
-        httr::GET(
-          url    = url,
-          config =
-            httr::add_headers(
-              "user-agent" = user_agent
-            ),
-          httr::config(ssl_verifypeer = ssl_verifypeer)
-        )
-    }else{
-      # without user agent
-      request <-
-        httr::GET(
-          url = url,
-          httr::config(ssl_verifypeer = ssl_verifypeer)
-        )
+      config <- c(httr::add_headers("user-agent" = user_agent), config)
     }
 
+    request <- try(httr::GET(url = url, config = config), silent = FALSE)
 
+    if(inherits(request, "try-error")){
+      message(sprintf("Unable to retrieve a response from the URL '%s'.\nPlease check the URL and try again, or ensure that the server is accessible.", url))
+      return(NULL)
+    }
     # store in storage
     rt_last_http$request <- request
 
     # return
-    request
+    return(request)
   }

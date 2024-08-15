@@ -97,6 +97,8 @@ get_robotstxt <-
 
     }
 
+    if(is.null(request))
+      return(invisible(NULL))
 
     # handle request
     res  <-
