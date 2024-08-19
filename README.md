@@ -14,9 +14,9 @@ Permissions Checker
 [![R-CMD-check](https://github.com/ropensci/robotstxt/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/robotstxt/actions/workflows/R-CMD-check.yaml)
 [![Peer
 Reviewed](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/software-review/issues/25)
-[![Total
-Downloads](https://cranlogs.r-pkg.org/badges/robotstxt)](https://cran.r-project.org/web/packages/robotstxt/index.html)
 [![Monthly
+Downloads](https://cranlogs.r-pkg.org/badges/robotstxt)](https://cran.r-project.org/web/packages/robotstxt/index.html)
+[![Total
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/robotstxt)](https://cran.r-project.org/web/packages/robotstxt/index.html)
 [![Cran
 Checks](https://badges.cranchecks.info/summary/robotstxt.svg)](https://cran.r-project.org/web/checks/check_results_robotstxt.html)
@@ -525,7 +525,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-19 23:31
+##   Date: 2024-08-19 23:48
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -567,7 +567,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-19 23:31
+##   Date: 2024-08-19 23:48
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -623,7 +623,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Mon, 19 Aug 2024 23:31:18 GMT"
+## [1] "Mon, 19 Aug 2024 23:48:37 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -653,7 +653,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Mon, 19 Aug 2024 23:31:18 GMT"
+## [1] "Mon, 19 Aug 2024 23:48:38 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -712,7 +712,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-19 23:31
+##   Date: 2024-08-19 23:48
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
