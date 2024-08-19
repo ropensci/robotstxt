@@ -47,17 +47,15 @@ length.cpp   <- length(grep("(^\\s*$)|(^\\s*#)|(^\\s*//)", lines.cpp,  value = T
 
 *lines of R code:* `r length.R`, *lines of test code:* `r length.tests`
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
-[![](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/software-review/issues/25)
-<a href="https://travis-ci.org/ropensci/robotstxt"><img src="https://api.travis-ci.org/ropensci/robotstxt.svg?branch=master"><a/>
-<a href="https://cran.r-project.org/package=robotstxt"><img src="http://www.r-pkg.org/badges/version/robotstxt"></a>
-[![cran checks](https://cranchecks.info/badges/summary/reshape)](https://cran.r-project.org/web/checks/check_results_reshape.html)
-<a href="https://codecov.io/gh/ropensci/robotstxt"><img src="https://codecov.io/gh/ropensci/robotstxt/branch/master/graph/badge.svg" alt="Codecov" /></a>
-<img src="http://cranlogs.r-pkg.org/badges/grand-total/robotstxt">
-<img src="http://cranlogs.r-pkg.org/badges/robotstxt">
 
-
-
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ropensci/robotstxt/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/robotstxt/actions/workflows/R-CMD-check.yaml)
+[![Peer Reviewed](https://badges.ropensci.org/25_status.svg)](https://github.com/ropensci/software-review/issues/25)
+[![Total Downloads](https://cranlogs.r-pkg.org/badges/robotstxt)](https://cran.r-project.org/web/packages/robotstxt/index.html)
+[![Monthly Downloads](https://cranlogs.r-pkg.org/badges/grand-total/robotstxt)](https://cran.r-project.org/web/packages/robotstxt/index.html)
+[![Cran Checks](https://badges.cranchecks.info/summary/robotstxt.svg)](https://cran.r-project.org/web/checks/check_results_robotstxt.html)
+[![Lifecycle: Stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+<!-- badges: end -->
 
 
 **Development version**
