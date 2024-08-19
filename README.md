@@ -19,7 +19,7 @@ Downloads](https://cranlogs.r-pkg.org/badges/robotstxt)](https://cran.r-project.
 [![Monthly
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/robotstxt)](https://cran.r-project.org/web/packages/robotstxt/index.html)
 [![Cran
-Checks](https://cranchecks.info/badges/summary/robotstxt)](https://cran.r-project.org/web/checks/check_results_robotstxt.html)
+Checks](https://badges.cranchecks.info/summary/robotstxt.svg)](https://cran.r-project.org/web/checks/check_results_robotstxt.html)
 [![Lifecycle:
 Stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
