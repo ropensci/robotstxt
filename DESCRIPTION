@@ -40,7 +40,8 @@ Suggests:
     rmarkdown,
     dplyr,
     testthat,
-    covr
+    covr,
+    curl
 Depends:
     R (>= 3.0.0)
 VignetteBuilder: knitr

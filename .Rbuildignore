@@ -20,3 +20,4 @@ revdep/*.*
 ^doc$
 ^Meta$
 ^\.github$
+vignettes/*.Rmd
