@@ -11,127 +11,265 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+# Description
 
-# Description 
+The package provides a simple ‘robotstxt’ class and accompanying methods
+to parse and check ‘robots.txt’ files. Data fields are provided as data
+frames and vectors. Permissions can be checked by providing path
+character vectors and optional bot names.
 
-The package provides a simple 'robotstxt' class and accompanying methods to parse and check 'robots.txt' files. Data fields are provided as data frames and vectors. Permissions can be checked by providing path character vectors and optional bot names.
-    
-    
 # Robots.txt files
 
-Robots.txt files are a way to kindly ask webbots, spiders, crawlers, wanderers and the like to access or not access certain parts of a webpage. The de facto  'standard' never made it beyond a informal ["Network Working Group INTERNET DRAFT"](http://www.robotstxt.org/norobots-rfc.txt). Nonetheless, the use of  robots.txt files is widespread (e.g. https://en.wikipedia.org/robots.txt, https://www.google.com/robots.txt) and bots from Google, Yahoo and the like will adhere to the rules defined in robots.txt files - although, their interpretation of those rules might differ (e.g. [rules for googlebot ](https://developers.google.com/search/reference/robots_txt)). 
+Robots.txt files are a way to kindly ask webbots, spiders, crawlers,
+wanderers and the like to access or not access certain parts of a
+webpage. The de facto ‘standard’ never made it beyond a informal
+[“Network Working Group INTERNET
+DRAFT”](http://www.robotstxt.org/norobots-rfc.txt). Nonetheless, the use
+of robots.txt files is widespread
+(e.g. <https://en.wikipedia.org/robots.txt>,
+<https://www.google.com/robots.txt>) and bots from Google, Yahoo and the
+like will adhere to the rules defined in robots.txt files - although,
+their interpretation of those rules might differ (e.g. [rules for
+googlebot](https://developers.google.com/search/reference/robots_txt)).
 
-As the name of the files already suggests robots.txt files are plain text and always found at the root of a domain. The syntax of the files in essence follows a `fieldname: value` scheme with optional preceding `user-agent: ...` lines to indicate the scope of the following rule block. Blocks are separated by blank lines and the omission of a user-agent field (which directly corresponds to the HTTP user-agent field) is seen as referring to all bots. `#` serves to comment lines and parts of lines. Everything after `#` until the end of line is regarded a comment. Possible field names are: user-agent, disallow, allow, crawl-delay, sitemap, and host. 
+As the name of the files already suggests robots.txt files are plain
+text and always found at the root of a domain. The syntax of the files
+in essence follows a `fieldname: value` scheme with optional preceding
+`user-agent: ...` lines to indicate the scope of the following rule
+block. Blocks are separated by blank lines and the omission of a
+user-agent field (which directly corresponds to the HTTP user-agent
+field) is seen as referring to all bots. `#` serves to comment lines and
+parts of lines. Everything after `#` until the end of line is regarded a
+comment. Possible field names are: user-agent, disallow, allow,
+crawl-delay, sitemap, and host.
 
+Let us have an example file to get an idea how a robots.txt file might
+look like. The file below starts with a comment line followed by a line
+disallowing access to any content – everything that is contained in root
+(“`/`”) – for all bots. The next block concerns GoodBot and NiceBot.
+Those two get the previous permissions lifted by being disallowed
+nothing. The third block is for PrettyBot. PrettyBot likes shiny stuff
+and therefor gets a special permission for everything contained in the
+“`/shinystuff/`” folder while all other restrictions still hold. In the
+last block all bots are asked to pause at least 5 seconds between two
+visits.
 
-Let us have an example file to get an idea how a robots.txt file might look like. The file below starts with a comment line followed by a line disallowing access to any content -- everything that is contained in root ("`/`") -- for all bots. The next block concerns GoodBot and NiceBot. Those two get the previous permissions lifted by being disallowed nothing. The third block is for PrettyBot. PrettyBot likes shiny stuff and therefor gets a special permission for everything contained in the "`/shinystuff/`" folder while all other restrictions still hold. In the last block all bots are asked to pause at least 5 seconds between two visits. 
+    # this is a comment 
+    # a made up example of an robots.txt file
 
+    Disallow: /
 
-```robots.txt
-# this is a comment 
-# a made up example of an robots.txt file
+    User-agent: GoodBot # another comment
+    User-agent: NiceBot
+    Disallow: 
 
-Disallow: /
+    User-agent: PrettyBot
+    Allow: /shinystuff/
 
-User-agent: GoodBot # another comment
-User-agent: NiceBot
-Disallow: 
+    Crawl-Delay: 5
 
-User-agent: PrettyBot
-Allow: /shinystuff/
-
-Crawl-Delay: 5
-```
-
-For more information have a look at: http://www.robotstxt.org/norobots-rfc.txt, where the robots.txt file 'standard' is described formally. Valuable introductions can be found at http://www.robotstxt.org/robotstxt.html as well as at https://en.wikipedia.org/wiki/Robots_exclusion_standard - of cause. 
+For more information have a look at:
+<http://www.robotstxt.org/norobots-rfc.txt>, where the robots.txt file
+‘standard’ is described formally. Valuable introductions can be found at
+<http://www.robotstxt.org/robotstxt.html> as well as at
+<https://en.wikipedia.org/wiki/Robots_exclusion_standard> - of cause.
 
 # Fast food usage for the uninterested
 
-```{r, message=FALSE}
-library(robotstxt)
-paths_allowed("http://google.com/")
-paths_allowed("http://google.com/search")
-```
+    library(robotstxt)
+    paths_allowed("http://google.com/")
 
+    ## [1] TRUE
 
+    paths_allowed("http://google.com/search")
 
-# Example Usage 
+    ## [1] FALSE
 
-First, let us load the package. In addition we load the dplyr package to be able to use the magrittr pipe operator `%>%` and some easy to read and remember data manipulation functions.
+# Example Usage
 
-```{r, message=FALSE}
-library(robotstxt)
-library(dplyr)
-```
+First, let us load the package. In addition we load the dplyr package to
+be able to use the magrittr pipe operator `%>%` and some easy to read
+and remember data manipulation functions.
+
+    library(robotstxt)
+    library(dplyr)
 
 ## object oriented style
 
-The first step is to create an instance of the robotstxt class provided by the package. The instance has to be initiated via providing either domain or the actual text of the robots.txt file. If only the domain is provided, the robots.txt file will be downloaded automatically. Have a look at `?robotstxt` for descriptions of all data fields and methods as well as their parameters. 
+The first step is to create an instance of the robotstxt class provided
+by the package. The instance has to be initiated via providing either
+domain or the actual text of the robots.txt file. If only the domain is
+provided, the robots.txt file will be downloaded automatically. Have a
+look at `?robotstxt` for descriptions of all data fields and methods as
+well as their parameters.
 
-
-```{r, include=FALSE}
-rtxt <- 
-  robotstxt(
-    domain = "wikipedia.org", 
-    text   = robotstxt:::rt_get_rtxt("robots_wikipedia.txt")
-  )
-```
-
-```{r, eval=FALSE}
-rtxt <- robotstxt(domain="wikipedia.org")
-```
+    rtxt <- robotstxt(domain="wikipedia.org")
 
 `rtxt` is of class `robotstxt`.
 
-```{r}
-class(rtxt)
-```
+    class(rtxt)
 
-Printing the object lets us glance at all data fields and methods in `rtxt` - we have access to the text as well as all common fields. Non-standard fields are collected in `other`.
+    ## [1] "robotstxt"
 
-```{r}
-rtxt
-```
+Printing the object lets us glance at all data fields and methods in
+`rtxt` - we have access to the text as well as all common fields.
+Non-standard fields are collected in `other`.
 
-Checking permissions works via `rtxt`'s `check` method by providing one or more paths. If no bot name is provided `"*"` - meaning any bot - is assumed. 
+    rtxt
 
+    ## $text
+    ## [1] "#\n# robots.txt for http://www.wikipedia.org/ and friends\n#\n# Please note: There are a lot of pages on this site, and there are\n# some misbehaved spiders out there that go _way_ too fast. If you're\n# irresponsible, your access to the site may be blocked.\n#\n\n# advertising-related bots:\nUser-agent: Mediapartners-Google*\n\n[... 653 lines omitted ...]"
+    ## 
+    ## $domain
+    ## [1] "wikipedia.org"
+    ## 
+    ## $robexclobj
+    ## <Robots Exclusion Protocol Object>
+    ## $bots
+    ## [1] "Mediapartners-Google*"       "IsraBot"                     "Orthogaffe"                  "UbiCrawler"                 
+    ## [5] "DOC"                         "Zao"                         ""                            "[...  28 items omitted ...]"
+    ## 
+    ## $comments
+    ##   line                                                               comment
+    ## 1    1                                                                     #
+    ## 2    2                # robots.txt for http://www.wikipedia.org/ and friends
+    ## 3    3                                                                     #
+    ## 4    4   # Please note: There are a lot of pages on this site, and there are
+    ## 5    5 # some misbehaved spiders out there that go _way_ too fast. If you're
+    ## 6    6              # irresponsible, your access to the site may be blocked.
+    ## 7                                                                           
+    ## 8                                               [...  173 items omitted ...]
+    ## 
+    ## $permissions
+    ##                          field             useragent value
+    ## 1                     Disallow Mediapartners-Google*     /
+    ## 2                     Disallow               IsraBot      
+    ## 3                     Disallow            Orthogaffe      
+    ## 4                     Disallow            UbiCrawler     /
+    ## 5                     Disallow                   DOC     /
+    ## 6                     Disallow                   Zao     /
+    ## 7                                                         
+    ## 8 [...  370 items omitted ...]                            
+    ## 
+    ## $crawl_delay
+    ## [1] field     useragent value    
+    ## <0 rows> (or 0-length row.names)
+    ## 
+    ## $host
+    ## [1] field     useragent value    
+    ## <0 rows> (or 0-length row.names)
+    ## 
+    ## $sitemap
+    ## [1] field     useragent value    
+    ## <0 rows> (or 0-length row.names)
+    ## 
+    ## $other
+    ## [1] field     useragent value    
+    ## <0 rows> (or 0-length row.names)
+    ## 
+    ## $check
+    ## function (paths = "/", bot = "*") 
+    ## {
+    ##     spiderbar::can_fetch(obj = self$robexclobj, path = paths, 
+    ##         user_agent = bot)
+    ## }
+    ## <bytecode: 0x12f9629b0>
+    ## <environment: 0x12f965c10>
+    ## 
+    ## attr(,"class")
+    ## [1] "robotstxt"
 
-```{r}
-# checking for access permissions
-rtxt$check(paths = c("/","api/"), bot = "*")
-rtxt$check(paths = c("/","api/"), bot = "Orthogaffe")
-rtxt$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
-```
+Checking permissions works via `rtxt`’s `check` method by providing one
+or more paths. If no bot name is provided `"*"` - meaning any bot - is
+assumed.
 
+    # checking for access permissions
+    rtxt$check(paths = c("/","api/"), bot = "*")
 
+    ## [1]  TRUE FALSE
+
+    rtxt$check(paths = c("/","api/"), bot = "Orthogaffe")
+
+    ## [1] TRUE TRUE
+
+    rtxt$check(paths = c("/","api/"), bot = "Mediapartners-Google*  ")
+
+    ## [1]  TRUE FALSE
 
 ## functional style
 
-While working with the robotstxt class is recommended the checking can be done with functions only as well. In the following we (1) download the robots.txt file; (2) parse it and (3) check permissions.
+While working with the robotstxt class is recommended the checking can
+be done with functions only as well. In the following we (1) download
+the robots.txt file; (2) parse it and (3) check permissions.
 
-```{r, include=FALSE}
-r_text <- robotstxt:::rt_get_rtxt("robots_new_york_times.txt")
-```
+    r_text        <- get_robotstxt("nytimes.com") 
 
-```{r, eval=FALSE}
-r_text        <- get_robotstxt("nytimes.com") 
-```
+    r_parsed <- parse_robotstxt(r_text)
+    r_parsed
 
-```{r}
-r_parsed <- parse_robotstxt(r_text)
-r_parsed
-```
+    ## $useragents
+    ## [1] "*"                    "Mediapartners-Google" "AdsBot-Google"        "adidxbot"            
+    ## 
+    ## $comments
+    ## [1] line    comment
+    ## <0 rows> (or 0-length row.names)
+    ## 
+    ## $permissions
+    ##       field            useragent                                 value
+    ## 1     Allow                    *                          /ads/public/
+    ## 2     Allow                    *             /svc/news/v3/all/pshb.rss
+    ## 3  Disallow                    *                                 /ads/
+    ## 4  Disallow                    *                             /adx/bin/
+    ## 5  Disallow                    *                            /archives/
+    ## 6  Disallow                    *                                /auth/
+    ## 7  Disallow                    *                                /cnet/
+    ## 8  Disallow                    *                             /college/
+    ## 9  Disallow                    *                            /external/
+    ## 10 Disallow                    *                      /financialtimes/
+    ## 11 Disallow                    *                                 /idg/
+    ## 12 Disallow                    *                             /indexes/
+    ## 13 Disallow                    *                             /library/
+    ## 14 Disallow                    *                    /nytimes-partners/
+    ## 15 Disallow                    * /packages/flash/multimedia/TEMPLATES/
+    ## 16 Disallow                    *                       /pages/college/
+    ## 17 Disallow                    *                         /paidcontent/
+    ## 18 Disallow                    *                            /partners/
+    ## 19 Disallow                    *                  /restaurants/search*
+    ## 20 Disallow                    *                             /reuters/
+    ## 21 Disallow                    *                             /register
+    ## 22 Disallow                    *                           /thestreet/
+    ## 23 Disallow                    *                                  /svc
+    ## 24 Disallow                    *                     /video/embedded/*
+    ## 25 Disallow                    *                        /web-services/
+    ## 26 Disallow                    *               /gst/travel/travsearch*
+    ## 27 Disallow Mediapartners-Google                  /restaurants/search*
+    ## 28 Disallow        AdsBot-Google                  /restaurants/search*
+    ## 29 Disallow             adidxbot                  /restaurants/search*
+    ## 
+    ## $crawl_delay
+    ## [1] field     useragent value    
+    ## <0 rows> (or 0-length row.names)
+    ## 
+    ## $sitemap
+    ##     field useragent                                                                  value
+    ## 1 Sitemap         * http://spiderbites.nytimes.com/sitemaps/www.nytimes.com/sitemap.xml.gz
+    ## 2 Sitemap         *            http://www.nytimes.com/sitemaps/sitemap_news/sitemap.xml.gz
+    ## 3 Sitemap         *   http://spiderbites.nytimes.com/sitemaps/sitemap_video/sitemap.xml.gz
+    ## 
+    ## $host
+    ## [1] field     useragent value    
+    ## <0 rows> (or 0-length row.names)
+    ## 
+    ## $other
+    ## [1] field     useragent value    
+    ## <0 rows> (or 0-length row.names)
 
-```{r}
-paths_allowed(
-  paths  = c("images/","/search"), 
-  domain = c("wikipedia.org", "google.com"),
-  bot    = "Orthogaffe"
-)
-``` 
+    paths_allowed(
+      paths  = c("images/","/search"), 
+      domain = c("wikipedia.org", "google.com"),
+      bot    = "Orthogaffe"
+    )
 
+    ##  wikipedia.org                       google.com
 
-
-
-
-
+    ## [1]  TRUE FALSE
