@@ -84,7 +84,7 @@ rt_get_fields <- function(txt, regex = "", invert = FALSE){
 
   # ensuring chracter columns
   for( i in seq_len(dim(df)[2]) ){
-    if( class(df[,i]) == "factor" ){
+    if( is.factor(df[,i]) ){
       df[,i] <- as.character(df[,i])
     }
   }

@@ -1,17 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-dev.r
 README.html
 README.Rmd
-.travis.yml
-autotest.Rexec
-ropenscience onboarding.md
-todo.txt
+README.md
 logo/*.*
-_old_.travis.yml
-^cran-comments\.md$
-^\.travis\.yml$
-^codecov\.yml$
 benchmarks
 misc/*
 revdep/*.*
@@ -21,3 +13,4 @@ revdep/*.*
 ^Meta$
 ^\.github$
 ^CRAN-SUBMISSION$
+^cran-comments\.md$
