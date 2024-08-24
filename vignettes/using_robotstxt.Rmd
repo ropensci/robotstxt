@@ -13,7 +13,7 @@ vignette: >
 ---
 # Description
 
-1 The package provides a simple ‘robotstxt’ class and accompanying methods
+The package provides a simple ‘robotstxt’ class and accompanying methods
 to parse and check ‘robots.txt’ files. Data fields are provided as data
 frames and vectors. Permissions can be checked by providing path
 character vectors and optional bot names.
