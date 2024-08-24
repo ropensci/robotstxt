@@ -1,3 +1,4 @@
 library(testthat)
-test_check("robotstxt")
-
+if(curl::has_internet()){
+  test_check("robotstxt")
+}

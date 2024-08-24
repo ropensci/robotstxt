@@ -8,6 +8,7 @@ dev.R
 revdep/*
 vignettes/using_robotstxt.R
 vignettes/using_robotstxt.html
+vignettes/*.Rmd
 CRAN-RELEASE
 robotstxt_*.tar.gz
 revdepcheck/
