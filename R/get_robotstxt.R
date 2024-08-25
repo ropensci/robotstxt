@@ -8,9 +8,8 @@
 #' @param user_agent HTTP user-agent string to be used to retrieve robots.txt
 #'   file from domain
 #'
-#' @param ssl_verifypeer analog to CURL option
-#'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
-#'   might help with robots.txt file retrieval in some cases
+#' @param ssl_verifypeer either 1 (default) or 0, if 0 it disables SSL peer verification, which
+#'   might help with robots.txt file retrieval
 #' @param rt_robotstxt_http_getter function that executes HTTP request
 #' @param rt_request_handler handler function that handles request according to
 #'     the event handlers specified

@@ -9,11 +9,8 @@ rt_last_http$request <- list()
 
 #' get_robotstxt() worker function to execute HTTP request
 #'
-#'
-#' @param ssl_verifypeer analog to CURL option
-#'   \url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
-#'   -- and might help with robots.txt file retrieval in some cases
-#'
+#' @param ssl_verifypeer either 1 (default) or 0, if 0 it disables SSL peer verification, which
+#'   might help with robots.txt file retrieval
 #' @param domain the domain to get tobots.txt. file for
 #' @param user_agent the user agent to use for HTTP request header
 #'

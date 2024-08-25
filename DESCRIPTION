@@ -1,5 +1,5 @@
 Package: robotstxt
-Date: 2024-08-24
+Date: 2024-08-25
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.7.15
@@ -24,7 +24,6 @@ Description: Provides functions to download and parse 'robots.txt' files.
         (spiders, crawler, scrapers, ...) are allowed to access specific
         resources on a domain.
 License: MIT + file LICENSE
-LazyData: TRUE
 BugReports: https://github.com/ropensci/robotstxt/issues
 URL: https://docs.ropensci.org/robotstxt/, https://github.com/ropensci/robotstxt
 Imports:

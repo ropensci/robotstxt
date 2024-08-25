@@ -38,9 +38,8 @@ file from domain}
 will re-download the robotstxt file HTTP response status 404. If this
 happens,}
 
-\item{ssl_verifypeer}{analog to CURL option
-\url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html} -- and
-might help with robots.txt file retrieval in some cases}
+\item{ssl_verifypeer}{either 1 (default) or 0, if 0 it disables SSL peer verification, which
+might help with robots.txt file retrieval}
 
 \item{encoding}{Encoding of the robots.txt file.}
 

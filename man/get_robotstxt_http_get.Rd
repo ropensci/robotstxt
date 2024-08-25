@@ -22,9 +22,8 @@ get_robotstxt_http_get(
 
 \item{user_agent}{the user agent to use for HTTP request header}
 
-\item{ssl_verifypeer}{analog to CURL option
-\url{https://curl.haxx.se/libcurl/c/CURLOPT_SSL_VERIFYPEER.html}
--- and might help with robots.txt file retrieval in some cases}
+\item{ssl_verifypeer}{either 1 (default) or 0, if 0 it disables SSL peer verification, which
+might help with robots.txt file retrieval}
 }
 \description{
 storage for http request response objects
