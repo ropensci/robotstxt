@@ -1,13 +1,5 @@
 
-## A ‘robots.txt’ Parser and ‘Webbot’/‘Spider’/‘Crawler’
-
-Permissions Checker
-
-[![ropensci\_footer](https://raw.githubusercontent.com/ropensci/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
-
-**Status**
-
-*lines of R code:* 1007, *lines of test code:* 1758
+# robotstxt <img src="man/figures/logo.jpeg" align="right" height="139" alt="Hand-drawn robot inside a hex sticker"/>
 
 <!-- badges: start -->
 
@@ -24,116 +16,82 @@ Checks](https://badges.cranchecks.info/summary/robotstxt.svg)](https://cran.r-pr
 Stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
-**Development version**
-
-0.7.13 - 2024-08-19 / 23:13:05
-
-**Description**
-
-Provides functions to download and parse ‘robots.txt’ files. Ultimately
-the package makes it easy to check if bots (spiders, crawler, scrapers,
-…) are allowed to access specific resources on a domain.
-
-**License**
-
-MIT + file LICENSE <br>Peter Meissner \[aut, cre\], Kun Ren \[aut, cph\]
-(Author and copyright holder of list\_merge.R.), Oliver Keys \[ctb\]
-(original release code review), Rich Fitz John \[ctb\] (original release
-code review)
-
-**Citation**
-
-``` r
-citation("robotstxt")
-```
-
-**BibTex for citing**
-
-``` r
-toBibtex(citation("robotstxt"))
-```
-
-**Contribution - AKA The-Think-Twice-Be-Nice-Rule**
-
-Please note that this project is released with a Contributor Code of
-Conduct. By participating in this project you agree to abide by its
-terms:
-
-> As contributors and maintainers of this project, we pledge to respect
-> all people who contribute through reporting issues, posting feature
-> requests, updating documentation, submitting pull requests or patches,
-> and other activities.
-> 
-> We are committed to making participation in this project a
-> harassment-free experience for everyone, regardless of level of
-> experience, gender, gender identity and expression, sexual
-> orientation, disability, personal appearance, body size, race,
-> ethnicity, age, or religion.
-> 
-> Examples of unacceptable behavior by participants include the use of
-> sexual language or imagery, derogatory comments or personal attacks,
-> trolling, public or private harassment, insults, or other
-> unprofessional conduct.
-> 
-> Project maintainers have the right and responsibility to remove, edit,
-> or reject comments, commits, code, wiki edits, issues, and other
-> contributions that are not aligned to this Code of Conduct. Project
-> maintainers who do not follow the Code of Conduct may be removed from
-> the project team.
-> 
-> Instances of abusive, harassing, or otherwise unacceptable behavior
-> may be reported by opening an issue or contacting one or more of the
-> project maintainers.
-> 
-> This Code of Conduct is adapted from the Contributor Covenant
-> (<https://www.contributor-covenant.org/>), version 1.0.0, available at
-> <https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/>
+A ‘robots.txt’ Parser and ‘Webbot’/‘Spider’/‘Crawler’ Permissions
+Checker.Provides functions to download and parse ‘robots.txt’ files.
+Ultimately the package makes it easy to check if bots (spiders, crawler,
+scrapers, …) are allowed to access specific resources on a domain.
 
 ## Installation
 
-**Installation and start - stable version**
+Install from CRAN using
 
 ``` r
 install.packages("robotstxt")
-library(robotstxt)
 ```
 
-**Installation and start - development version**
+Or install the development version:
 
 ``` r
 devtools::install_github("ropensci/robotstxt")
-library(robotstxt)
 ```
+
+## License
+
+MIT + file LICENSE <br>c( person( “Pedro”, “Baltazar”, role = c(“aut”,
+“cre”), email = “<pedrobtz@gmail.com>” ), person( “Peter”, “Meissner”,
+role = c(“aut”), email = “<retep.meissner@gmail.com>” ), person( “Kun”,
+“Ren”, email = “<mail@renkun.me>”, role = c(“aut”, “cph”), comment =
+“Author and copyright holder of list_merge.R.” ), person(“Oliver”,
+“Keys”, role = “ctb”, comment = “original release code review”),
+person(“Rich”, “Fitz John”, role = “ctb”, comment = “original release
+code review”) )
+
+## Citation
+
+    To cite package 'robotstxt' in publications use:
+
+      Baltazar P, Meissner P, Ren K (2024). _robotstxt: A 'robots.txt' Parser and
+      'Webbot'/'Spider'/'Crawler' Permissions Checker_. R package version 0.7.15,
+      https://github.com/ropensci/robotstxt, <https://docs.ropensci.org/robotstxt/>.
+
+    A BibTeX entry for LaTeX users is
+
+      @Manual{,
+        title = {robotstxt: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker},
+        author = {Pedro Baltazar and Peter Meissner and Kun Ren},
+        year = {2024},
+        note = {R package version 0.7.15, https://github.com/ropensci/robotstxt},
+        url = {https://docs.ropensci.org/robotstxt/},
+      }
 
 ## Usage
 
-**Robotstxt class documentation**
+Review the [package index
+reference](https://docs.ropensci.org/robotstxt/reference/index.html) or
+use
 
 ``` r
 ?robotstxt
 ```
 
+for documentation.
+
 Simple path access right checking (the functional way) …
 
 ``` r
-library(robotstxt)
 options(robotstxt_warn = FALSE)
 
-
 paths_allowed(
-  paths  = c("/api/rest_v1/?doc", "/w/"), 
-  domain = "wikipedia.org", 
+  paths  = c("/api/rest_v1/?doc", "/w/"),
+  domain = "wikipedia.org",
   bot    = "*"
 )
 ##  wikipedia.org
 ## [1]  TRUE FALSE
-```
-
-``` r
 
 paths_allowed(
   paths = c(
-    "https://wikipedia.org/api/rest_v1/?doc", 
+    "https://wikipedia.org/api/rest_v1/?doc",
     "https://wikipedia.org/w/"
   )
 )
@@ -144,14 +102,12 @@ paths_allowed(
 … or (the object oriented way) …
 
 ``` r
-library(robotstxt)
 options(robotstxt_warn = FALSE)
 
-rtxt <- 
-  robotstxt(domain = "wikipedia.org")
+rtxt <- robotstxt(domain = "wikipedia.org")
 
 rtxt$check(
-  paths = c("/api/rest_v1/?doc", "/w/"), 
+  paths = c("/api/rest_v1/?doc", "/w/"),
   bot   = "*"
 )
 ## [1]  TRUE FALSE
@@ -163,8 +119,7 @@ Retrieving the robots.txt file for a domain:
 
 ``` r
 # retrieval
-rt <- 
-  get_robotstxt("https://petermeissner.de")
+rt <- get_robotstxt("https://petermeissner.de")
 
 # printing
 rt
@@ -188,18 +143,17 @@ edges.
 
 Some interpretation problems:
 
-  - finding no robots.txt file at the server (e.g. HTTP status code 404)
-    implies that everything is allowed
-  - subdomains should have there own robots.txt file if not it is
-    assumed that everything is allowed
-  - redirects involving protocol changes - e.g. upgrading from http to
-    https - are followed and considered no domain or subdomain change -
-    so whatever is found at the end of the redirect is considered to be
-    the robots.txt file for the original domain
-  - redirects from subdomain www to the doamin is considered no domain
-    change - so whatever is found at the end of the redirect is
-    considered to be the robots.txt file for the subdomain originally
-    requested
+- finding no robots.txt file at the server (e.g. HTTP status code 404)
+  implies that everything is allowed
+- subdomains should have there own robots.txt file if not it is assumed
+  that everything is allowed
+- redirects involving protocol changes - e.g. upgrading from http to
+  https - are followed and considered no domain or subdomain change - so
+  whatever is found at the end of the redirect is considered to be the
+  robots.txt file for the original domain
+- redirects from subdomain www to the domain is considered no domain
+  change - so whatever is found at the end of the redirect is considered
+  to be the robots.txt file for the subdomain originally requested
 
 ### Event Handling
 
@@ -215,13 +169,13 @@ in its content. If an event/state happened the event handlers are passed
 on to the `request_handler_handler()` along for problem resolution and
 collecting robots.txt file transformations:
 
-  - rule priorities decide if rules are applied given the current state
-    priority
-  - if rules specify signals those are emitted (e.g. error, message,
-    warning)
-  - often rules imply overwriting the raw content with a suitable
-    interpretation given the circumstances the file was (or was not)
-    retrieved
+- rule priorities decide if rules are applied given the current state
+  priority
+- if rules specify signals those are emitted (e.g. error, message,
+  warning)
+- often rules imply overwriting the raw content with a suitable
+  interpretation given the circumstances the file was (or was not)
+  retrieved
 
 Event handler rules can either consist of 4 items or can be functions -
 the former being the usual case and that used throughout the package
@@ -230,48 +184,46 @@ passing along handler rules or handler functions.
 
 Handler rules are lists with the following items:
 
-  - `over_write_file_with`: if the rule is triggered and has higher
-    priority than those rules applied beforehand (i.e. the new priority
-    has an higher value than the old priority) than the robots.txt file
-    retrieved will be overwritten by this character vector
-  - `signal`: might be `"message"`, `"warning"`, or `"error"` and will
-    use the signal function to signal the event/state just handled.
-    Signaling a warning or a message might be suppressed by setting the
-    function paramter `warn = FALSE`.
-  - `cache` should the package be allowed to cache the results of the
-    retrieval or not
-  - `priority` the priority of the rule specified as numeric value,
-    rules with higher priority will be allowed to overwrite robots.txt
-    file content changed by rules with lower priority
+- `over_write_file_with`: if the rule is triggered and has higher
+  priority than those rules applied beforehand (i.e. the new priority
+  has an higher value than the old priority) then the robots.txt file
+  retrieved will be overwritten by this character vector
+- `signal`: might be `"message"`, `"warning"`, or `"error"` and will use
+  the signal function to signal the event/state just handled. Signaling
+  a warning or a message might be suppressed by setting the function
+  paramter `warn = FALSE`.
+- `cache` should the package be allowed to cache the results of the
+  retrieval or not
+- `priority` the priority of the rule specified as numeric value, rules
+  with higher priority will be allowed to overwrite robots.txt file
+  content changed by rules with lower priority
 
 The package knows the following rules with the following defaults:
 
-  - `on_server_error` :
+- `on_server_error` :
   - given a server error - the server is unable to serve a file - we
     assume that something is terrible wrong and forbid all paths for the
     time being but do not cache the result so that we might get an
     updated file later on
 
-<!-- end list -->
-
-``` r
-on_server_error_default
-## $over_write_file_with
-## [1] "User-agent: *\nDisallow: /"
-## 
-## $signal
-## [1] "error"
-## 
-## $cache
-## [1] FALSE
-## 
-## $priority
-## [1] 20
-```
-
-  - `on_client_error` :
+    ``` r
+    on_server_error_default
+    ## $over_write_file_with
+    ## [1] "User-agent: *\nDisallow: /"
+    ## 
+    ## $signal
+    ## [1] "error"
+    ## 
+    ## $cache
+    ## [1] FALSE
+    ## 
+    ## $priority
+    ## [1] 20
+    ```
+- `on_client_error` :
   - client errors encompass all HTTP status 4xx status codes except 404
     which is handled directly
+
   - despite the fact that there are a lot of codes that might indicate
     that the client has to take action (authentication, billing, … see:
     <https://de.wikipedia.org/wiki/HTTP-Statuscode>) in the case of
@@ -279,122 +231,105 @@ on_server_error_default
     work and any client error is treated as if there is no file
     available and thus scraping is generally allowed
 
-<!-- end list -->
-
-``` r
-on_client_error_default
-## $over_write_file_with
-## [1] "User-agent: *\nAllow: /"
-## 
-## $signal
-## [1] "warning"
-## 
-## $cache
-## [1] TRUE
-## 
-## $priority
-## [1] 19
-```
-
-  - `on_not_found` :
+    ``` r
+    on_client_error_default
+    ## $over_write_file_with
+    ## [1] "User-agent: *\nAllow: /"
+    ## 
+    ## $signal
+    ## [1] "warning"
+    ## 
+    ## $cache
+    ## [1] TRUE
+    ## 
+    ## $priority
+    ## [1] 19
+    ```
+- `on_not_found` :
   - HTTP status code 404 has its own handler but is treated the same
     ways other client errors: if there is no file available and thus
     scraping is generally allowed
 
-<!-- end list -->
-
-``` r
-on_not_found_default
-## $over_write_file_with
-## [1] "User-agent: *\nAllow: /"
-## 
-## $signal
-## [1] "warning"
-## 
-## $cache
-## [1] TRUE
-## 
-## $priority
-## [1] 1
-```
-
-  - `on_redirect` :
+    ``` r
+    on_not_found_default
+    ## $over_write_file_with
+    ## [1] "User-agent: *\nAllow: /"
+    ## 
+    ## $signal
+    ## [1] "warning"
+    ## 
+    ## $cache
+    ## [1] TRUE
+    ## 
+    ## $priority
+    ## [1] 1
+    ```
+- `on_redirect` :
   - redirects are ok - often redirects redirect from HTTP schema to
-    HTTPS - robotstxt will use whatever content it has been redirected
+    HTTPS - {robotstxt} will use whatever content it has been redirected
     to
 
-<!-- end list -->
-
-``` r
-on_redirect_default
-## $cache
-## [1] TRUE
-## 
-## $priority
-## [1] 3
-```
-
-  - `on_domain_change` :
+    ``` r
+    on_redirect_default
+    ## $cache
+    ## [1] TRUE
+    ## 
+    ## $priority
+    ## [1] 3
+    ```
+- `on_domain_change` :
   - domain changes are handled as if the robots.txt file did not exist
     and thus scraping is generally allowed
 
-<!-- end list -->
-
-``` r
-on_domain_change_default
-## $signal
-## [1] "warning"
-## 
-## $cache
-## [1] TRUE
-## 
-## $priority
-## [1] 4
-```
-
-  - `on_file_type_mismatch` :
+    ``` r
+    on_domain_change_default
+    ## $signal
+    ## [1] "warning"
+    ## 
+    ## $cache
+    ## [1] TRUE
+    ## 
+    ## $priority
+    ## [1] 4
+    ```
+- `on_file_type_mismatch` :
   - if {robotstxt} gets content with content type other than text it
     probably is not a robotstxt file, this situation is handled as if no
     file was provided and thus scraping is generally allowed
 
-<!-- end list -->
-
-``` r
-on_file_type_mismatch_default
-## $over_write_file_with
-## [1] "User-agent: *\nAllow: /"
-## 
-## $signal
-## [1] "warning"
-## 
-## $cache
-## [1] TRUE
-## 
-## $priority
-## [1] 6
-```
-
-  - `on_suspect_content` :
+    ``` r
+    on_file_type_mismatch_default
+    ## $over_write_file_with
+    ## [1] "User-agent: *\nAllow: /"
+    ## 
+    ## $signal
+    ## [1] "warning"
+    ## 
+    ## $cache
+    ## [1] TRUE
+    ## 
+    ## $priority
+    ## [1] 6
+    ```
+- `on_suspect_content` :
   - if {robotstxt} cannot parse it probably is not a robotstxt file,
     this situation is handled as if no file was provided and thus
     scraping is generally allowed
 
-<!-- end list -->
-
-``` r
-on_suspect_content_default
-## $over_write_file_with
-## [1] "User-agent: *\nAllow: /"
-## 
-## $signal
-## [1] "warning"
-## 
-## $cache
-## [1] TRUE
-## 
-## $priority
-## [1] 7
-```
+    ``` r
+    on_suspect_content_default
+    ## $over_write_file_with
+    ## [1] "User-agent: *\nAllow: /"
+    ## 
+    ## $signal
+    ## [1] "warning"
+    ## 
+    ## $cache
+    ## [1] TRUE
+    ## 
+    ## $priority
+    ## [1] 7
+    ```
 
 ### Design Map for Event/State Handling
 
@@ -408,42 +343,42 @@ the interpretation of permissions granted.
 
 **Features and Problems handled:**
 
-  - now handles corner cases of retrieving robots.txt files
-  - e.g. if no robots.txt file is available this basically means “you
-    can scrape it all”
-  - but there are further corner cases (what if there is a server error,
-    what if redirection takes place, what is redirection takes place to
-    different domains, what if a file is returned but it is not
-    parsable, or is of format HTML or JSON, …)
+- now handles corner cases of retrieving robots.txt files
+- e.g. if no robots.txt file is available this basically means “you can
+  scrape it all”
+- but there are further corner cases (what if there is a server error,
+  what if redirection takes place, what if redirection takes place to
+  different domains, what if a file is returned but it is not parsable,
+  or is of format HTML or JSON, …)
 
 **Design Decisions**
 
 1.  the whole HTTP request-response-chain is checked for certain
     event/state types
-      - server error
-      - client error
-      - file not found (404)
-      - redirection
-      - redirection to another domain
+    - server error
+    - client error
+    - file not found (404)
+    - redirection
+    - redirection to another domain
 2.  the content returned by the HTTP is checked against
-      - mime type / file type specification mismatch
-      - suspicious content (file content does seem to be JSON, HTML, or
-        XML instead of robots.txt)
+    - mime type / file type specification mismatch
+    - suspicious content (file content does seem to be JSON, HTML, or
+      XML instead of robots.txt)
 3.  state/event handler define how these states and events are handled
 4.  a handler handler executes the rules defined in individual handlers
 5.  handler can be overwritten
 6.  handler defaults are defined that they should always do the right
     thing
 7.  handler can …
-      - overwrite the content of a robots.txt file (e.g. allow/disallow
-        all)
-      - modify how problems should be signaled: error, warning, message,
-        none
-      - if robots.txt file retrieval should be cached or not
+    - overwrite the content of a robots.txt file (e.g. allow/disallow
+      all)
+    - modify how problems should be signaled: error, warning, message,
+      none
+    - if robots.txt file retrieval should be cached or not
 8.  problems (no matter how they were handled) are attached to the
     robots.txt’s as attributes, allowing for …
-      - transparency
-      - reacting post-mortem to the problems that occured
+    - transparency
+    - reacting post-mortem to the problems that occured
 9.  all handler (even the actual execution of the HTTP-request) can be
     overwritten at runtime to inject user defined behaviour beforehand
 
@@ -452,54 +387,25 @@ the interpretation of permissions granted.
 By default all functions retrieving robots.txt files will warn if there
 are
 
-  - any HTTP events happening while retrieving the file (e.g. redirects)
-    or
-  - the content of the file does not seem to be a valid robots.txt file.
+- any HTTP events happening while retrieving the file (e.g. redirects)
+  or
+- the content of the file does not seem to be a valid robots.txt file.
 
-The warnings in the following example can be turned of in three ways:
-
-(example)
+Warnings can be turned off in several ways:
 
 ``` r
-library(robotstxt)
-
-paths_allowed("petermeissner.de")
-##  petermeissner.de
-## [1] TRUE
-```
-
-(solution 1)
-
-``` r
-library(robotstxt)
-
 suppressWarnings({
-  paths_allowed("petermeissner.de")
+  paths_allowed("PATH_WITH_WARNING")
 })
-##  petermeissner.de
-## [1] TRUE
 ```
 
-(solution 2)
-
 ``` r
-library(robotstxt)
-
-paths_allowed("petermeissner.de", warn = FALSE)
-##  petermeissner.de
-## [1] TRUE
+paths_allowed("PATH_WITH_WARNING", warn = FALSE)
 ```
 
-(solution 3)
-
 ``` r
-library(robotstxt)
-
 options(robotstxt_warn = FALSE)
-
-paths_allowed("petermeissner.de")
-##  petermeissner.de
-## [1] TRUE
+paths_allowed("PATH_WITH_WARNING")
 ```
 
 ### Inspection and Debugging
@@ -507,14 +413,10 @@ paths_allowed("petermeissner.de")
 The robots.txt files retrieved are basically mere character vectors:
 
 ``` r
-rt <- 
-  get_robotstxt("petermeissner.de")
+rt <- get_robotstxt("petermeissner.de")
 
 as.character(rt)
 ## [1] "# just do it - punk\n"
-```
-
-``` r
 
 cat(rt)
 ## # just do it - punk
@@ -525,7 +427,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-19 23:48
+##   Date: 2024-08-27 19:20
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -567,7 +469,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-19 23:48
+##   Date: 2024-08-27 19:20
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -578,7 +480,7 @@ attr(rt, "request")
 
 ``` r
 httr::content(
-  x        = attr(rt, "request"), 
+  x        = attr(rt, "request"),
   as       = "text",
   encoding = "UTF-8"
 )
@@ -590,8 +492,7 @@ headers given back by the server:
 
 ``` r
 # extract request-response object
-rt_req <- 
-  attr(rt, "request")
+rt_req <- attr(rt, "request")
 
 # HTTP request
 rt_req$request
@@ -599,15 +500,12 @@ rt_req$request
 ## GET http://petermeissner.de/robots.txt
 ## Output: write_memory
 ## Options:
-## * useragent: libcurl/7.81.0 r-curl/5.2.1 httr/1.4.7
+## * useragent: libcurl/7.81.0 r-curl/5.2.2 httr/1.4.7
 ## * ssl_verifypeer: 1
 ## * httpget: TRUE
 ## Headers:
 ## * Accept: application/json, text/xml, application/xml, */*
 ## * user-agent: R version 4.4.1 (2024-06-14)
-```
-
-``` r
 
 # response headers
 rt_req$all_headers
@@ -623,7 +521,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Mon, 19 Aug 2024 23:48:37 GMT"
+## [1] "Tue, 27 Aug 2024 19:20:05 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -653,7 +551,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Mon, 19 Aug 2024 23:48:38 GMT"
+## [1] "Tue, 27 Aug 2024 19:20:05 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -712,7 +610,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-19 23:48
+##   Date: 2024-08-27 19:20
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -723,28 +621,27 @@ as.list(rt)
 
 The retrieval of robots.txt files is cached on a per R-session basis.
 Restarting an R-session will invalidate the cache. Also using the the
-function parameter `froce = TRUE` will force the package to re-retrieve
+function parameter `force = TRUE` will force the package to re-retrieve
 the robots.txt file.
 
 ``` r
 paths_allowed("petermeissner.de/I_want_to_scrape_this_now", force = TRUE, verbose = TRUE)
 ##  petermeissner.de                      rt_robotstxt_http_getter: force http get
 ## [1] TRUE
-```
-
-``` r
-paths_allowed("petermeissner.de/I_want_to_scrape_this_now",verbose = TRUE)
+paths_allowed("petermeissner.de/I_want_to_scrape_this_now", verbose = TRUE)
 ##  petermeissner.de                      rt_robotstxt_http_getter: cached http get
 ## [1] TRUE
 ```
 
 ## More information
 
-  - <https://www.robotstxt.org/norobots-rfc.txt>
-  - [Have a look at the vignette at
-    https://cran.r-project.org/package=robotstxt/vignettes/using\_robotstxt.html](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
-  - [Google on
-    robots.txt](https://developers.google.com/search/reference/robots_txt?hl=en)
-  - <https://wiki.selfhtml.org/wiki/Grundlagen/Robots.txt>
-  - <https://support.google.com/webmasters/answer/6062608?hl=en>
-  - <https://www.robotstxt.org/robotstxt.html>
+- <https://www.robotstxt.org/norobots-rfc.txt>
+- [Have a look at the vignette at
+  https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html](https://cran.r-project.org/package=robotstxt/vignettes/using_robotstxt.html)
+- [Google on
+  robots.txt](https://developers.google.com/search/reference/robots_txt?hl=en)
+- <https://wiki.selfhtml.org/wiki/Grundlagen/Robots.txt>
+- <https://support.google.com/webmasters/answer/6062608?hl=en>
+- <https://www.robotstxt.org/robotstxt.html>
+
+[![ropensci_footer](https://raw.githubusercontent.com/ropensci/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
