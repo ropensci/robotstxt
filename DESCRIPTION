@@ -37,7 +37,7 @@ Suggests:
     knitr,
     rmarkdown,
     dplyr,
-    testthat,
+    testthat (>= 3.0.0),
     covr,
     curl
 Depends:
@@ -45,3 +45,4 @@ Depends:
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
 Encoding: UTF-8
+Config/testthat/edition: 3

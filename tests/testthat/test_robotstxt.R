@@ -1,6 +1,3 @@
-# testing the workings of robotstxt objects
-
-
 rtxt_asb   <- rt_get_rtxt("allow_single_bot.txt")
 rtxt_dafa  <- rt_get_rtxt("disallow_all_for_all.txt")
 rtxt_dafbb <- rt_get_rtxt("disallow_all_for_BadBot.txt")
@@ -17,8 +14,6 @@ rtxt_yh    <- rt_get_rtxt("robots_yahoo.txt")
 rtxt_she   <- rt_get_rtxt("selfhtml_Example.txt")
 rtxt_pm    <- rt_get_rtxt("robots_pmeissner.txt")
 rtxt_wp    <- rt_get_rtxt("robots_wikipedia.txt")
-
-context("robotstxt creation")
 
 # test_that(
 #   "get_robotstxt() can fetch a file", {
@@ -39,15 +34,6 @@ test_that(
   }
 )
 
-test_that(
-  "robotstxt check method works well", {
-    expect_true( robotstxt(text=rtxt_she)$check() )
-    expect_true( robotstxt(text=rtxt_she)$check("blah") )
-  }
-)
-
-
-context("robotstxt checking")
 
 test_that(
   "robotstxt check method works well", {
@@ -57,7 +43,13 @@ test_that(
 )
 
 
-context("robotstxt parsing multi agent records without newline")
+test_that(
+  "robotstxt check method works well", {
+    expect_true( robotstxt(text=rtxt_she)$check() )
+    expect_true( robotstxt(text=rtxt_she)$check("blah") )
+  }
+)
+
 
 test_that(
   "robotstxt parsing multi agent records without newline", {
@@ -115,4 +107,3 @@ Disallow: /
     })
   }
 )
-

@@ -1,6 +1,3 @@
-# testing the workings of robotstxt objects
-
-
 rtxt_asb   <- rt_get_rtxt("allow_single_bot.txt")
 rtxt_dafa  <- rt_get_rtxt("disallow_all_for_all.txt")
 rtxt_dafbb <- rt_get_rtxt("disallow_all_for_BadBot.txt")
@@ -24,8 +21,6 @@ rtxt_list <-
     rtxt_tcom, rtxt_amzn, rtxt_bt, rtxt_ggl, rtxt_nyt, rtxt_spgl,
     rtxt_yh, rtxt_she, rtxt_pm, rtxt_wp
   )
-
-context("robotstxt print")
 
 
 test_that(
@@ -59,10 +54,6 @@ test_that(
 )
 
 
-
-context("robotstxt tools")
-
-
 test_that(
   "robotstxt tools work", {
 
@@ -77,9 +68,6 @@ test_that(
       rt_get_rtxt("robots_wikipedia.txt")
       rt_get_rtxt()
     })
-
-
-
   }
 )
 
@@ -109,5 +97,3 @@ test_that(
 
   }
 )
-
-

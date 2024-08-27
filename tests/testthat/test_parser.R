@@ -1,7 +1,3 @@
-# tests for functions responsible for data gathering and transformation
-
-
-
 rtxt_asb        <- rt_get_rtxt("allow_single_bot.txt")
 rtxt_dafa       <- rt_get_rtxt("disallow_all_for_all.txt")
 rtxt_dafbb      <- rt_get_rtxt("disallow_all_for_BadBot.txt")
@@ -27,116 +23,43 @@ rtxt_rbloggers  <- rt_get_rtxt("rbloggers.txt")
 rtxt_ct         <- rt_get_rtxt("robots_commented_token.txt")
 
 
+valid_rtxt_files <- c(
+  rtxt_asb, rtxt_dafa, rtxt_dafbb, rtxt_dsfa, rtxt_empty,
+  rtxt_datao, rtxt_tcom, rtxt_amzn, rtxt_bt, rtxt_ggl,
+  rtxt_nyt, rtxt_spgl, rtxt_yh, rtxt_she, rtxt_pm,
+  rtxt_wp, rtxt_cd, rtxt_host, rtxt_cdc, rtxt_ct,
+  "\n\n\n"
+)
+
+test_that("all robots.txt files are valid with check_strickt_ascii = F", {
+  expect_true(is_valid_robotstxt(valid_rtxt_files))
+})
 
 
-context("is_valid_robotstxt()")
+valid_rtxt_files_ascii <- c(
+  rtxt_asb, rtxt_dafa, rtxt_dafbb, rtxt_dsfa, rtxt_empty,
+  rtxt_datao, rtxt_tcom, rtxt_amzn, rtxt_bt, rtxt_ggl,
+  rtxt_nyt, rtxt_spgl, rtxt_yh, rtxt_she, rtxt_pm,
+  rtxt_cd, rtxt_host, rtxt_cdc, rtxt_ct,
+  "\n\n\n"
+)
+
+test_that("all robots.txt files are valid with check_strickt_ascii = T", {
+  expect_true(
+    is_valid_robotstxt(valid_rtxt_files_ascii, check_strickt_ascii = TRUE)
+  )
+})
 
 
-test_that(
-  "all robots.txt files are valid", {
-    expect_true(
-      is_valid_robotstxt( rtxt_asb    )
+test_that("broken robots.txt files are invalid", {
+  expect_false(is_valid_robotstxt(rtxt_fb_nsp))
+
+  expect_false(
+    is_valid_robotstxt(
+      "       # dings\nbums\n        dings"
     )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_dafa   )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_dafbb  )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_dsfa   )
-    )
-    expect_true(
-      is_valid_robotstxt( rtxt_empty  )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_datao  )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_tcom   )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_amzn   )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_bt     )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_ggl    )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_nyt    )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_spgl   )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_yh     )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_she    )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_pm     )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_wp     )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_cd     )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_host   )
-    )
-
-    expect_true(
-      is_valid_robotstxt(
-        "\n\n\n"
-      )
-    )
-
-    expect_false(
-      is_valid_robotstxt(
-        "       # dings\nbums\n        dings"
-      )
-    )
-
-    expect_false(
-      is_valid_robotstxt( rtxt_fb_nsp )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_cdc )
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_ct )
-    )
-  })
-
-
-test_that(
-  "broken robots.txt files are invalid", {
-    expect_false( is_valid_robotstxt( rtxt_fb_nsp ))
-  })
-
-
+  )
+})
 
 
 for (char in c(" ", "\t", "(", ")", "<", ">", "@", ",", ";", "<", ">", "/", "[", "]", "?", "=", "{", "}") ) {
@@ -148,143 +71,40 @@ for (char in c(" ", "\t", "(", ")", "<", ">", "@", ",", ";", "<", ">", "/", "[",
       replacement = char
     )
 
-  if ( is_valid_robotstxt(txt) ){
+  if (is_valid_robotstxt(txt)) {
     cat("CHAR: ", "'", char,"'; ", sep = "")
   }
 
-  test_that(
-    "field name has no special character",
-    expect_false( is_valid_robotstxt(txt) )
-  )
-
+  test_that("field name has no special character", {
+    expect_false(is_valid_robotstxt(txt))
+  })
 }
 
 
-
-test_that(
-  "field name has no special character",
+test_that("field name has no special character", {
   expect_false(
     is_valid_robotstxt("extension\\field: some value", check_strickt_ascii = TRUE)
   )
-)
+})
 
 
-test_that(
-  "field name has no special character",
+test_that("field name has no special character", {
   expect_false(
     is_valid_robotstxt("Error in curl::curl_fetch_memory(url, handle = handle) :   Could not resolve host: domain.tld", check_strickt_ascii = TRUE)
   )
-)
+})
 
 
+test_that("broken robots.txt files are invalid", {
+  expect_false(is_valid_robotstxt(rtxt_fb_nsp, check_strickt_ascii = TRUE))
 
-
-
-test_that(
-  "all robots.txt files are valid", {
-    expect_true(
-      is_valid_robotstxt( rtxt_asb    , check_strickt_ascii = TRUE)
+  expect_false(
+    is_valid_robotstxt(
+      "       # dings\nbums\n        dings", check_strickt_ascii = TRUE
     )
+  )
+})
 
-    expect_true(
-      is_valid_robotstxt( rtxt_dafa   , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_dafbb  , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_dsfa   , check_strickt_ascii = TRUE)
-    )
-    expect_true(
-      is_valid_robotstxt( rtxt_empty  , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_datao  , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_tcom   , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_amzn   , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_bt     , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_ggl    , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_nyt    , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_spgl   , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_yh     , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_she    , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_pm     , check_strickt_ascii = TRUE)
-    )
-
-    # expect_true(
-    #   is_valid_robotstxt( rtxt_wp     , check_strickt_ascii = TRUE)
-    # )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_cd     , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_host   , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt(
-        "\n\n\n", check_strickt_ascii = TRUE
-      )
-    )
-
-    expect_false(
-      is_valid_robotstxt(
-        "       # dings\nbums\n        dings", check_strickt_ascii = TRUE
-      )
-    )
-
-    expect_false(
-      is_valid_robotstxt( rtxt_fb_nsp , check_strickt_ascii = TRUE)
-    )
-
-    expect_true(
-      is_valid_robotstxt( rtxt_cdc , check_strickt_ascii = TRUE)
-    )
-  })
-
-
-test_that(
-  "broken robots.txt files are invalid", {
-    expect_false( is_valid_robotstxt( rtxt_fb_nsp , check_strickt_ascii = TRUE))
-  })
-
-
-
-
-
-context("useragent extraction")
 
 test_that(
   "all user agents are extracted", {
@@ -304,34 +124,32 @@ test_that(
   }
 )
 
-context("permission extraction")
 
 test_that(
   "specification of more than one user agent gets interpreted right", {
-    expect_true( dim(parse_robotstxt(rtxt_datao )$permissions)[1]==2  )
-    expect_true( all(parse_robotstxt(rtxt_datao )$permissions$value=="/private/")  )
+    expect_true( dim(parse_robotstxt(rtxt_datao )$permissions)[1]==2)
+    expect_true( all(parse_robotstxt(rtxt_datao )$permissions$value=="/private/"))
   }
 )
 
-
-context("non-useragent extraction")
 
 test_that(
   "comments get extracted right", {
-    expect_true( dim(parse_robotstxt(rtxt_tcom )$comments)[1]==3  )
+    expect_true(dim(parse_robotstxt(rtxt_tcom )$comments)[1]==3)
   }
 )
 
 
 test_that(
   "craw-delay gets extracted", {
-    expect_true( parse_robotstxt(rtxt_host)$host$value=="www.whatever.com"  )
+    expect_true(parse_robotstxt(rtxt_host)$host$value=="www.whatever.com")
   }
 )
 
+
 test_that(
   "craw-delay gets extracted", {
-    expect_true( parse_robotstxt(rtxt_cd)$crawl_delay$value==10  )
+    expect_true(parse_robotstxt(rtxt_cd)$crawl_delay$value==10)
   }
 )
 
@@ -339,6 +157,7 @@ test_that(
 classes <- function(x){
   unlist(lapply(x, class))
 }
+
 
 test_that(
   "data.frames contain no factors", {
@@ -357,8 +176,6 @@ test_that(
 )
 
 
-context("cdc gets parsed correctly")
-
 test_that(
   "cdc gets parsed correctly", {
     expect_true(
@@ -372,8 +189,6 @@ test_that(
 )
 
 
-context("can handle varIOUs cases for robots.txt fields")
-
 test_that(
   "can handle varIOUs cases for robots.txt fields - issue #55", {
     expect_true({
@@ -384,14 +199,6 @@ test_that(
 )
 
 
-
-
-
-
-
-
-context("Commented-out tokens get parsed correctly")
-
 test_that(
   "Commented-out tokens get ignored", {
     expect_true(
@@ -399,18 +206,3 @@ test_that(
     )
   }
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
