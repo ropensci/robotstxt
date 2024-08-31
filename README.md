@@ -14,6 +14,8 @@ Downloads](https://cranlogs.r-pkg.org/badges/grand-total/robotstxt)](https://cra
 Checks](https://badges.cranchecks.info/summary/robotstxt.svg)](https://cran.r-project.org/web/checks/check_results_robotstxt.html)
 [![Lifecycle:
 Stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Codecov test
+coverage](https://codecov.io/gh/ropensci/robotstxt/graph/badge.svg)](https://app.codecov.io/gh/ropensci/robotstxt)
 <!-- badges: end -->
 
 A ‘robots.txt’ Parser and ‘Webbot’/‘Spider’/‘Crawler’ Permissions
@@ -37,20 +39,21 @@ devtools::install_github("ropensci/robotstxt")
 
 ## License
 
-MIT + file LICENSE <br>c( person( “Pedro”, “Baltazar”, role = c(“aut”,
-“cre”), email = “<pedrobtz@gmail.com>” ), person( “Peter”, “Meissner”,
-role = c(“aut”), email = “<retep.meissner@gmail.com>” ), person( “Kun”,
-“Ren”, email = “<mail@renkun.me>”, role = c(“aut”, “cph”), comment =
-“Author and copyright holder of list_merge.R.” ), person(“Oliver”,
-“Keys”, role = “ctb”, comment = “original release code review”),
-person(“Rich”, “Fitz John”, role = “ctb”, comment = “original release
-code review”) )
+MIT + file LICENSE <br>c( person( “Pedro”, “Baltazar”, role = c(“ctb”),
+email = “<pedrobtz@gmail.com>” ), person( “Jordan”, “Bradford”, role =
+c(“cre”), email = “<jrdnbradford@gmail.com>” ), person( “Peter”,
+“Meissner”, role = c(“aut”), email = “<retep.meissner@gmail.com>” ),
+person( “Kun”, “Ren”, email = “<mail@renkun.me>”, role = c(“aut”,
+“cph”), comment = “Author and copyright holder of list_merge.R.” ),
+person(“Oliver”, “Keys”, role = “ctb”, comment = “original release code
+review”), person(“Rich”, “Fitz John”, role = “ctb”, comment = “original
+release code review”) )
 
 ## Citation
 
     To cite package 'robotstxt' in publications use:
 
-      Baltazar P, Meissner P, Ren K (2024). _robotstxt: A 'robots.txt' Parser and
+      Meissner P, Ren K (2024). _robotstxt: A 'robots.txt' Parser and
       'Webbot'/'Spider'/'Crawler' Permissions Checker_. R package version 0.7.15,
       https://github.com/ropensci/robotstxt, <https://docs.ropensci.org/robotstxt/>.
 
@@ -58,7 +61,7 @@ code review”) )
 
       @Manual{,
         title = {robotstxt: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker},
-        author = {Pedro Baltazar and Peter Meissner and Kun Ren},
+        author = {Peter Meissner and Kun Ren},
         year = {2024},
         note = {R package version 0.7.15, https://github.com/ropensci/robotstxt},
         url = {https://docs.ropensci.org/robotstxt/},
@@ -427,7 +430,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-27 19:20
+##   Date: 2024-08-31 17:33
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -469,7 +472,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-27 19:20
+##   Date: 2024-08-31 17:33
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -521,7 +524,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Tue, 27 Aug 2024 19:20:05 GMT"
+## [1] "Sat, 31 Aug 2024 17:33:06 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -551,7 +554,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Tue, 27 Aug 2024 19:20:05 GMT"
+## [1] "Sat, 31 Aug 2024 17:33:06 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -610,7 +613,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-27 19:20
+##   Date: 2024-08-31 17:33
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
