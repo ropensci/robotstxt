@@ -5,8 +5,12 @@ Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.7.15
 Authors@R: c(
         person(
-          "Pedro", "Baltazar", role = c("aut", "cre"),
+          "Pedro", "Baltazar", role = c("ctb"),
           email = "pedrobtz@gmail.com"
+        ),
+         person(
+          "Jordan", "Bradford", role = c("cre"),
+          email = "jrdnbradford@gmail.com"
         ),
         person(
           "Peter", "Meissner", role = c("aut"),
