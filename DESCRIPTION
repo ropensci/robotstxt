@@ -5,7 +5,7 @@ Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.7.15
 Authors@R: c(
         person(
-          "Pedro", "Baltazar", role = c("aut"),
+          "Pedro", "Baltazar", role = c("ctb"),
           email = "pedrobtz@gmail.com"
         ),
          person(
