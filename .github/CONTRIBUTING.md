@@ -34,4 +34,4 @@ Please also follow these additional guidelines.
 * Describe your contribution in the project's [`NEWS.md`](https://github.com/ropensci/robotstxt/blob/master/NEWS.md) file. Be sure to mention relevent GitHub issue numbers and your GitHub name as done in existing news entries.
 * If you feel contribution is substantial enough for official author or contributor status, please add yourself to the `Authors@R` field of the [`DESCRIPTION`](https://github.com/ropensci/robotstxt/blob/master/DESCRIPTION) file.
 
-[^1] This `CONTRIBUTING` file is modified from [ropensci/targets](https://github.com/ropensci/targets/blob/main/CONTRIBUTING.md).
+[^1]: This `CONTRIBUTING` file is modified from [ropensci/targets](https://github.com/ropensci/targets/blob/main/CONTRIBUTING.md).
