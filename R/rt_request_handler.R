@@ -80,7 +80,7 @@ rt_request_handler <-
 
     # encoding suplied or not
     encoding_supplied  <-
-      grepl("charset", null_to_defeault(request$headers$`content-type`, ""))
+      grepl("charset", null_to_default(request$headers$`content-type`, ""))
 
 
     if ( encoding_supplied == TRUE ) {
@@ -211,7 +211,7 @@ rt_request_handler <-
 
     ## file type mismatch
     file_type_mismatch <-
-      !(grepl("text/plain", null_to_defeault(request$headers$`content-type`, "")))
+      !(grepl("text/plain", null_to_default(request$headers$`content-type`, "")))
 
     if ( file_type_mismatch == TRUE ){
       res <-
