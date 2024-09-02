@@ -2,7 +2,7 @@
 % Please edit documentation in R/paths_allowed.R
 \name{paths_allowed}
 \alias{paths_allowed}
-\title{check if a bot has permissions to access page(s)}
+\title{Check if a bot has permissions to access page(s)}
 \usage{
 paths_allowed(
   paths = "/",
@@ -28,7 +28,7 @@ paths_allowed(
 )
 }
 \arguments{
-\item{paths}{paths for which to check bot's permission, defaults to "/". Please, note that path to a folder should end with a trailing slash ("/").}
+\item{paths}{paths for which to check bot's permission, defaults to "/". Please note that path to a folder should end with a trailing slash ("/").}
 
 \item{domain}{Domain for which paths should be checked. Defaults to "auto".
 If set to "auto" function will try to guess the domain by parsing the paths
@@ -86,5 +86,5 @@ than 'text/plain'}
 something else than a robots.txt file (usually a JSON, XML or HTML)}
 }
 \description{
-check if a bot has permissions to access page(s)
+Check if a bot has permissions to access page(s)
 }

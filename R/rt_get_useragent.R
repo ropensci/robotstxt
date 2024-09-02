@@ -1,4 +1,4 @@
-#' extracting HTTP useragents from robots.txt
+#' Extract HTTP useragents from robots.txt
 #' @param txt content of the robots.txt file
 #' @keywords internal
 # rt_get_useragent <- function(txt){

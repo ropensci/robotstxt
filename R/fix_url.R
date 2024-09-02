@@ -1,4 +1,4 @@
-#' fix_url
+#' Add http protocal if missing from URL
 #'
 #'
 #' @param url a character string containing a single URL

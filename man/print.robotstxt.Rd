@@ -2,7 +2,7 @@
 % Please edit documentation in R/print_robotstxt.R
 \name{print.robotstxt}
 \alias{print.robotstxt}
-\title{printing robotstxt}
+\title{Print robotstxt}
 \usage{
 \method{print}{robotstxt}(x, ...)
 }
@@ -12,5 +12,5 @@
 \item{...}{goes down the sink}
 }
 \description{
-printing robotstxt
+Print robotstxt
 }

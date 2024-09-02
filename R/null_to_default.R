@@ -1,4 +1,4 @@
-#' null_to_default
+#' Return default value if NULL
 #'
 #' @param x value to check and return
 #' @param d value to return in case x is NULL

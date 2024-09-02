@@ -4,7 +4,7 @@
 \name{rt_last_http}
 \alias{rt_last_http}
 \alias{get_robotstxt_http_get}
-\title{storage for http request response objects}
+\title{Storage for http request response objects}
 \format{
 An object of class \code{environment} of length 1.
 }
@@ -18,7 +18,7 @@ get_robotstxt_http_get(
 )
 }
 \arguments{
-\item{domain}{the domain to get tobots.txt. file for}
+\item{domain}{the domain to get robots.txt. file for}
 
 \item{user_agent}{the user agent to use for HTTP request header}
 
@@ -26,8 +26,8 @@ get_robotstxt_http_get(
 might help with robots.txt file retrieval}
 }
 \description{
-storage for http request response objects
+Storage for http request response objects
 
-get_robotstxt() worker function to execute HTTP request
+Execute HTTP request for get_robotstxt()
 }
 \keyword{datasets}

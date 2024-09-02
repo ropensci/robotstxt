@@ -1,5 +1,4 @@
-
-#' storage for http request response objects
+#' Storage for http request response objects
 #'
 #' @rdname get_robotstxt_http_get
 #'
@@ -7,11 +6,11 @@
 rt_last_http         <- new.env()
 rt_last_http$request <- list()
 
-#' get_robotstxt() worker function to execute HTTP request
+#' Execute HTTP request for get_robotstxt()
 #'
 #' @param ssl_verifypeer either 1 (default) or 0, if 0 it disables SSL peer verification, which
 #'   might help with robots.txt file retrieval
-#' @param domain the domain to get tobots.txt. file for
+#' @param domain the domain to get robots.txt. file for
 #' @param user_agent the user agent to use for HTTP request header
 #'
 #' @export

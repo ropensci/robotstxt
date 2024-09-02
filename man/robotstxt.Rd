@@ -2,7 +2,7 @@
 % Please edit documentation in R/robotstxt.R
 \name{robotstxt}
 \alias{robotstxt}
-\title{Generate a representations of a robots.txt file}
+\title{Generate a representation of a robots.txt file}
 \usage{
 robotstxt(
   domain = NULL,
@@ -79,7 +79,7 @@ particular bots) are allowed to access a resource on the domain.
 \item{\code{domain}}{character vector holding domain name for which the robots.txt
 file is valid; will be set to NA if not supplied on initialization}
 
-\item{\code{text}}{character vector of text of robots.txt file; either supplied on
+\item{\code{character}}{vector of text of robots.txt file; either supplied on
 initialization or automatically downloaded from domain supplied on
 initialization}
 

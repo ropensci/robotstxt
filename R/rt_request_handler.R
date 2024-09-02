@@ -1,14 +1,12 @@
-
-#' rt_request_handler
+#' Handle robotstxt object retrieved from HTTP request
 #'
 #' A helper function for get_robotstxt() that will extract the robots.txt file
-#' from the HTTP request result object. furthermore it will inform
-#' get_robotstxt() if the request should be cached and which problems occured.
+#' from the HTTP request result object. It will inform get_robotstxt() if the
+#' request should be cached and which problems occurred.
 #'
 #'
 #'
 #' @param request result of an HTTP request (e.g. httr::GET())
-#'
 #'
 #' @param on_server_error request state handler for any 5xx status
 #'
@@ -31,8 +29,8 @@
 #' @param on_suspect_content request state handler for content that seems to be
 #'   something else than a robots.txt file (usually a JSON, XML or HTML)
 #'
-#'
 #' @param warn suppress warnings
+#'
 #' @param encoding The text encoding to assume if no encoding is provided in the
 #'   headers of the response
 #'
@@ -97,8 +95,6 @@ rt_request_handler <-
           as       = "text"
         )
     }
-
-
 
 
     ## server error
@@ -205,8 +201,6 @@ rt_request_handler <-
           )
       }
     }
-
-
 
 
     ## file type mismatch

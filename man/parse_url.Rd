@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_url.R
 \name{parse_url}
 \alias{parse_url}
-\title{parse_url}
+\title{Parse a URL}
 \usage{
 parse_url(url)
 }
@@ -13,7 +13,7 @@ parse_url(url)
 data.frame with columns protocol, domain, path
 }
 \description{
-parse_url
+Parse a URL
 }
 \examples{
 

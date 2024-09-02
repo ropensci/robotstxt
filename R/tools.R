@@ -1,4 +1,4 @@
-#' make automatically named list
+#' Create a named list
 #' @param ... things to be put in list
 #' @keywords internal
 named_list <- function(...){
@@ -7,7 +7,7 @@ named_list <- function(...){
   thelist
 }
 
-#' load robots.txt files saved along with the package
+#' Load robots.txt files saved along with the package
 #'
 #' load robots.txt files saved along with the package:
 #' these functions are very handy for testing (not used otherwise)
@@ -23,7 +23,7 @@ rt_get_rtxt <- function(name=sample(rt_list_rtxt(),1)){
   )
 }
 
-#' list robots.txt files saved along with the package
+#' List robots.txt files saved along with the package
 #'
 #' list robots.txt files saved along with the package:
 #' these functions ar very handy for testing (not used otherwise)
@@ -31,4 +31,3 @@ rt_get_rtxt <- function(name=sample(rt_list_rtxt(),1)){
 rt_list_rtxt <- function(){
   list.files(system.file("robotstxts", package = "robotstxt" ))
 }
-

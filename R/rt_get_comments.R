@@ -1,5 +1,4 @@
-
-#' extracting comments from robots.txt
+#' Extract comments from robots.txt
 #' @param txt content of the robots.txt file
 #' @keywords internal
 rt_get_comments <- function(txt){
@@ -8,4 +7,3 @@ rt_get_comments <- function(txt){
   ccontent <- stringr::str_extract(txt[clines], "#.*")
   data.frame(line=clines, comment=ccontent, stringsAsFactors = FALSE)
 }
-

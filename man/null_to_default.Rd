@@ -2,7 +2,7 @@
 % Please edit documentation in R/null_to_default.R
 \name{null_to_default}
 \alias{null_to_default}
-\title{null_to_default}
+\title{Return default value if NULL}
 \usage{
 null_to_default(x, d)
 }
@@ -12,5 +12,5 @@ null_to_default(x, d)
 \item{d}{value to return in case x is NULL}
 }
 \description{
-null_to_default
+Return default value if NULL
 }

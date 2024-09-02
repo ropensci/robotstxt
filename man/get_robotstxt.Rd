@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_robotstxt.R
 \name{get_robotstxt}
 \alias{get_robotstxt}
-\title{downloading robots.txt file}
+\title{Download a robots.txt file}
 \usage{
 get_robotstxt(
   domain,
@@ -66,5 +66,5 @@ than 'text/plain'}
 something else than a robots.txt file (usually a JSON, XML or HTML)}
 }
 \description{
-downloading robots.txt file
+Download a robots.txt file
 }

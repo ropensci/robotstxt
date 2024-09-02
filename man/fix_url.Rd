@@ -2,7 +2,7 @@
 % Please edit documentation in R/fix_url.R
 \name{fix_url}
 \alias{fix_url}
-\title{fix_url}
+\title{Add http protocal if missing from URL}
 \usage{
 fix_url(url)
 }
@@ -10,5 +10,5 @@ fix_url(url)
 \item{url}{a character string containing a single URL}
 }
 \description{
-fix_url
+Add http protocal if missing from URL
 }

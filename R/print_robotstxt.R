@@ -1,4 +1,4 @@
-#' printing robotstxt
+#' Print robotstxt
 #' @param x robotstxt instance to be printed
 #' @param ... goes down the sink
 #' @export
@@ -28,5 +28,4 @@ print.robotstxt <- function(x, ...){
   print.default(tmp)
   invisible(x)
 }
-
 

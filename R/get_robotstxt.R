@@ -1,4 +1,4 @@
-#' downloading robots.txt file
+#' Download a robots.txt file
 #'
 #' @param domain domain from which to download robots.txt file
 #' @param warn warn about being unable to download domain/robots.txt because of

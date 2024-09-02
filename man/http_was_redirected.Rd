@@ -2,7 +2,7 @@
 % Please edit documentation in R/http_was_redirected.R
 \name{http_was_redirected}
 \alias{http_was_redirected}
-\title{http_was_redirected}
+\title{Check if HTTP redirect occurred}
 \usage{
 http_was_redirected(response)
 }
@@ -14,5 +14,5 @@ logical of length 1 indicating whether or not any redirect happened
   during the HTTP request
 }
 \description{
-http_was_redirected
+Check if HTTP redirect occurred
 }

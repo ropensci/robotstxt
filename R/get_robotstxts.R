@@ -1,5 +1,4 @@
-
-#' function to get multiple robotstxt files
+#' Download multiple robotstxt files
 #'
 #' @inheritParams get_robotstxt
 #' @param use_futures Should future::future_lapply be used for possible

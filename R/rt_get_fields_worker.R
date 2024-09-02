@@ -1,5 +1,4 @@
-
-#' extracting robotstxt fields
+#' Extract robotstxt fields
 #' @param txt content of the robots.txt file
 #' @param type name or names of the fields to be returned, defaults to all
 #'   fields
