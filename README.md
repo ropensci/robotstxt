@@ -19,7 +19,7 @@ coverage](https://codecov.io/gh/ropensci/robotstxt/graph/badge.svg)](https://app
 <!-- badges: end -->
 
 A ‘robots.txt’ Parser and ‘Webbot’/‘Spider’/‘Crawler’ Permissions
-Checker.Provides functions to download and parse ‘robots.txt’ files.
+Checker. Provides functions to download and parse ‘robots.txt’ files.
 Ultimately the package makes it easy to check if bots (spiders, crawler,
 scrapers, …) are allowed to access specific resources on a domain.
 
@@ -430,7 +430,7 @@ The last HTTP request is stored in an object
 ``` r
 rt_last_http$request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-31 17:33
+##   Date: 2024-09-02 01:32
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -472,7 +472,7 @@ was going on in the client-server exchange.
 ``` r
 attr(rt, "request")
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-31 17:33
+##   Date: 2024-09-02 01:32
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -524,7 +524,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sat, 31 Aug 2024 17:33:06 GMT"
+## [1] "Mon, 02 Sep 2024 01:32:23 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/html"
@@ -554,7 +554,7 @@ rt_req$all_headers
 ## [1] "nginx/1.10.3 (Ubuntu)"
 ## 
 ## $date
-## [1] "Sat, 31 Aug 2024 17:33:06 GMT"
+## [1] "Mon, 02 Sep 2024 01:32:24 GMT"
 ## 
 ## $`content-type`
 ## [1] "text/plain"
@@ -613,7 +613,7 @@ as.list(rt)
 ## 
 ## $request
 ## Response [https://petermeissner.de/robots.txt]
-##   Date: 2024-08-31 17:33
+##   Date: 2024-09-02 01:32
 ##   Status: 200
 ##   Content-Type: text/plain
 ##   Size: 20 B
@@ -647,4 +647,4 @@ paths_allowed("petermeissner.de/I_want_to_scrape_this_now", verbose = TRUE)
 - <https://support.google.com/webmasters/answer/6062608?hl=en>
 - <https://www.robotstxt.org/robotstxt.html>
 
-[![ropensci_footer](https://raw.githubusercontent.com/ropensci/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org/)

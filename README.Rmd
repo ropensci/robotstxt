@@ -32,7 +32,7 @@ tmp <- packageDescription( basename(getwd()) )
 ```
 
 ```{r, results='asis', echo=FALSE}
-cat(paste0(tmp$Title, "."))
+cat(paste0(tmp$Title, ". "))
 cat(tmp$Description)
 ```
 
@@ -379,4 +379,5 @@ paths_allowed("petermeissner.de/I_want_to_scrape_this_now", verbose = TRUE)
 - https://www.robotstxt.org/robotstxt.html
 
 
-[![ropensci\_footer](https://raw.githubusercontent.com/ropensci/robotstxt/master/logo/github_footer.png)](https://ropensci.org)
+[![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org/)
+
