@@ -14,3 +14,4 @@ revdep/*.*
 ^\.github$
 ^CRAN-SUBMISSION$
 ^cran-comments\.md$
+^_pkgdown\.yml$
