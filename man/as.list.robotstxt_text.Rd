@@ -2,7 +2,7 @@
 % Please edit documentation in R/as_list.R
 \name{as.list.robotstxt_text}
 \alias{as.list.robotstxt_text}
-\title{Method as.list() for class robotstxt_text}
+\title{Convert robotstxt_text to list}
 \usage{
 \method{as.list}{robotstxt_text}(x, ...)
 }
@@ -12,5 +12,5 @@
 \item{...}{further arguments (inherited from \code{base::as.list()})}
 }
 \description{
-Method as.list() for class robotstxt_text
+Convert robotstxt_text to list
 }

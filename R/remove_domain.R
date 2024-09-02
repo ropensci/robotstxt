@@ -1,4 +1,4 @@
-#' function to remove domain from path
+#' Remove domain from path
 #' @param x path aka URL from which to first infer domain and then remove it
 remove_domain <- function(x){
   unlist(lapply(
@@ -12,5 +12,3 @@ remove_domain <- function(x){
     }
   ))
 }
-
-

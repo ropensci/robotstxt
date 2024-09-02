@@ -2,7 +2,7 @@ Package: robotstxt
 Date: 2024-08-25
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
-Version: 0.7.15
+Version: 0.7.15.9000
 Authors@R: c(
         person(
           "Pedro", "Baltazar", role = c("ctb"),
@@ -47,6 +47,6 @@ Suggests:
 Depends:
     R (>= 3.0.0)
 VignetteBuilder: knitr
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 Config/testthat/edition: 3

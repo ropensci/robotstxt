@@ -2,7 +2,7 @@
 % Please edit documentation in R/http_domain_changed.R
 \name{http_domain_changed}
 \alias{http_domain_changed}
-\title{http_domain_changed}
+\title{Check if HTTP domain changed}
 \usage{
 http_domain_changed(response)
 }
@@ -14,5 +14,5 @@ logical of length 1 indicating whether or not any domain change
     happened during the HTTP request
 }
 \description{
-http_domain_changed
+Check if HTTP domain changed
 }

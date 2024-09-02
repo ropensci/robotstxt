@@ -1,10 +1,10 @@
-#' request_handler_handler
+#' Handle robotstxt handlers
 #'
 #' Helper function to handle robotstxt handlers.
 #'
 #' @param request the request object returned by call to httr::GET()
 #' @param handler the handler either a character string entailing various options or a function producing a specific list, see return.
-#' @param res a list a list with elements '[handler names], ...', 'rtxt', and 'cache'
+#' @param res a list with elements '[handler names], ...', 'rtxt', and 'cache'
 #' @param info info to add to problems list
 #' @param warn if FALSE warnings and messages are suppressed
 #'

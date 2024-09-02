@@ -1,6 +1,6 @@
-#' is_suspect_robotstxt
+#' Check if file is valid / parsable robots.txt file
 #'
-#' function that checks if file is valid / parsable robots.txt file
+#' Function that checks if file is valid / parsable robots.txt file
 #'
 #' @param text content of a robots.txt file provides as character vector
 #'
@@ -26,5 +26,3 @@ is_suspect_robotstxt <- function(text){
   # return default
   return(FALSE)
 }
-
-

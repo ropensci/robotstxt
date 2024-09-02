@@ -1,9 +1,8 @@
-#' function parsing robots.txt
-#' @param  txt content of the robots.txt file
+#' Parse a robots.txt file
+#' @param txt content of the robots.txt file
 #' @return a named list with useragents, comments, permissions, sitemap
 #' @export
 parse_robotstxt <- function(txt){
-  # return
   res <-
     list(
       useragents  = rt_get_useragent(txt),
@@ -21,21 +20,3 @@ parse_robotstxt <- function(txt){
     )
   return(res)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

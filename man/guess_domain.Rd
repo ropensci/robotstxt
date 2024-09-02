@@ -2,7 +2,7 @@
 % Please edit documentation in R/guess_domain.R
 \name{guess_domain}
 \alias{guess_domain}
-\title{function guessing domain from path}
+\title{Guess a domain from path}
 \usage{
 guess_domain(x)
 }
@@ -10,5 +10,5 @@ guess_domain(x)
 \item{x}{path aka URL from which to infer domain}
 }
 \description{
-function guessing domain from path
+Guess a domain from path
 }

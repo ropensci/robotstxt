@@ -1,5 +1,4 @@
-
-#' extracting permissions from robots.txt
+#' Extract permissions from robots.txt
 #' @param txt content of the robots.txt file
 #' @param regex regular expression specify field
 #' @param invert invert selection made via regex?

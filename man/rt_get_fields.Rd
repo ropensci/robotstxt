@@ -2,7 +2,7 @@
 % Please edit documentation in R/rt_get_fields.R
 \name{rt_get_fields}
 \alias{rt_get_fields}
-\title{extracting permissions from robots.txt}
+\title{Extract permissions from robots.txt}
 \usage{
 rt_get_fields(txt, regex = "", invert = FALSE)
 }
@@ -14,6 +14,6 @@ rt_get_fields(txt, regex = "", invert = FALSE)
 \item{invert}{invert selection made via regex?}
 }
 \description{
-extracting permissions from robots.txt
+Extract permissions from robots.txt
 }
 \keyword{internal}

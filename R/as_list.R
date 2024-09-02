@@ -1,6 +1,4 @@
-
-
-#' Method as.list() for class robotstxt_text
+#' Convert robotstxt_text to list
 #'
 #' @param x class robotstxt_text object to be transformed into list
 #' @param ... further arguments (inherited from \code{base::as.list()})

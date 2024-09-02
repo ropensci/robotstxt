@@ -1,6 +1,4 @@
-
-
-#' paths_allowed_worker spiderbar flavor
+#' Check if a spiderbar bot has permissions to access page(s)
 #'
 #' @inheritParams paths_allowed
 #'

@@ -1,4 +1,4 @@
-#' function guessing domain from path
+#' Guess a domain from path
 #' @param x path aka URL from which to infer domain
 guess_domain <- function(x){
 

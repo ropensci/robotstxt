@@ -2,7 +2,7 @@
 % Please edit documentation in R/is_suspect_robotstxt.R
 \name{is_suspect_robotstxt}
 \alias{is_suspect_robotstxt}
-\title{is_suspect_robotstxt}
+\title{Check if file is valid / parsable robots.txt file}
 \usage{
 is_suspect_robotstxt(text)
 }
@@ -10,5 +10,5 @@ is_suspect_robotstxt(text)
 \item{text}{content of a robots.txt file provides as character vector}
 }
 \description{
-function that checks if file is valid / parsable robots.txt file
+Function that checks if file is valid / parsable robots.txt file
 }

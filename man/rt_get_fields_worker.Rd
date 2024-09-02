@@ -2,7 +2,7 @@
 % Please edit documentation in R/rt_get_fields_worker.R
 \name{rt_get_fields_worker}
 \alias{rt_get_fields_worker}
-\title{extracting robotstxt fields}
+\title{Extract robotstxt fields}
 \usage{
 rt_get_fields_worker(txt, type = "all", regex = NULL, invert = FALSE)
 }
@@ -17,6 +17,6 @@ fields}
 \item{invert}{field selection}
 }
 \description{
-extracting robotstxt fields
+Extract robotstxt fields
 }
 \keyword{internal}

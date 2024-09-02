@@ -2,7 +2,7 @@
 % Please edit documentation in R/sanitize_path.R
 \name{sanitize_path}
 \alias{sanitize_path}
-\title{making paths uniform}
+\title{Make paths uniform}
 \usage{
 sanitize_path(path)
 }
@@ -13,6 +13,6 @@ sanitize_path(path)
 sanitized path
 }
 \description{
-making paths uniform
+Make paths uniform
 }
 \keyword{internal}

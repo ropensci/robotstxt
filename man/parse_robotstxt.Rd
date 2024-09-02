@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_robotstxt.R
 \name{parse_robotstxt}
 \alias{parse_robotstxt}
-\title{function parsing robots.txt}
+\title{Parse a robots.txt file}
 \usage{
 parse_robotstxt(txt)
 }
@@ -13,5 +13,5 @@ parse_robotstxt(txt)
 a named list with useragents, comments, permissions, sitemap
 }
 \description{
-function parsing robots.txt
+Parse a robots.txt file
 }

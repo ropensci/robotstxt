@@ -1,4 +1,4 @@
-#' http_was_redirected
+#' Check if HTTP redirect occurred
 #'
 #' @param response an httr response object, e.g. from a call to httr::GET()
 #'

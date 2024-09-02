@@ -1,8 +1,8 @@
-#' http_subdomain_changed
+#' Check if HTTP subdomain changed
 #'
 #' @param response an httr response object, e.g. from a call to httr::GET()
 #'
-#' @return logical of length 1 indicating whether or not any domain change
+#' @return logical of length 1 indicating whether or not any subdomain change
 #'     happened during the HTTP request
 #'
 #'

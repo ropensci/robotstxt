@@ -1,12 +1,8 @@
-
-
-
-#' parse_url
+#' Parse a URL
 #'
 #' @param url url to parse into its components
 #'
 #' @return data.frame with columns protocol, domain, path
-#'
 #'
 #' @keywords internal
 #'

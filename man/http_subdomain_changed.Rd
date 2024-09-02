@@ -2,7 +2,7 @@
 % Please edit documentation in R/http_subdomain_changed.R
 \name{http_subdomain_changed}
 \alias{http_subdomain_changed}
-\title{http_subdomain_changed}
+\title{Check if HTTP subdomain changed}
 \usage{
 http_subdomain_changed(response)
 }
@@ -10,9 +10,9 @@ http_subdomain_changed(response)
 \item{response}{an httr response object, e.g. from a call to httr::GET()}
 }
 \value{
-logical of length 1 indicating whether or not any domain change
+logical of length 1 indicating whether or not any subdomain change
     happened during the HTTP request
 }
 \description{
-http_subdomain_changed
+Check if HTTP subdomain changed
 }

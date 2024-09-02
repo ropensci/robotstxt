@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{rt_list_rtxt}
 \alias{rt_list_rtxt}
-\title{list robots.txt files saved along with the package}
+\title{List robots.txt files saved along with the package}
 \usage{
 rt_list_rtxt()
 }

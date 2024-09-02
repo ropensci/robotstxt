@@ -1,4 +1,4 @@
-#' Generate a representations of a robots.txt file
+#' Generate a representation of a robots.txt file
 #'
 #' The function generates a list that entails data resulting from parsing a robots.txt file
 #' as well as a function called check that enables to ask the representation if bot (or
@@ -6,6 +6,7 @@
 #'
 #' @param domain Domain for which to generate a representation. If text equals to NULL,
 #' the function will download the file from server - the default.
+#'
 #' @param text If automatic download of the robots.txt is not preferred, the text can be
 #' supplied directly.
 #' @inheritParams get_robotstxt
@@ -20,7 +21,7 @@
 #' @field domain character vector holding domain name for which the robots.txt
 #'   file is valid; will be set to NA if not supplied on initialization
 #'
-#' @field text character vector of text of robots.txt file; either supplied on
+#' @field character vector of text of robots.txt file; either supplied on
 #'   initialization or automatically downloaded from domain supplied on
 #'   initialization
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{rt_get_rtxt}
 \alias{rt_get_rtxt}
-\title{load robots.txt files saved along with the package}
+\title{Load robots.txt files saved along with the package}
 \usage{
 rt_get_rtxt(name = sample(rt_list_rtxt(), 1))
 }

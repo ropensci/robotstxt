@@ -1,6 +1,6 @@
-#' function that checks if file is valid / parsable robots.txt file
+#' Validate if a file is valid / parsable robots.txt file
 #'
-#' @param text content of a robots.txt file provides as character vector
+#' @param text content of a robots.txt file provided as character vector
 #' @param check_strickt_ascii whether or not to check if content does adhere to the specification of RFC to use plain text aka ASCII
 #'
 #' @export
@@ -39,5 +39,3 @@ is_valid_robotstxt <- function(text, check_strickt_ascii = FALSE){
 
   )
 }
-
-

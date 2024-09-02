@@ -1,4 +1,4 @@
-#' http_domain_changed
+#' Check if HTTP domain changed
 #'
 #' @param response an httr response object, e.g. from a call to httr::GET()
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{named_list}
 \alias{named_list}
-\title{make automatically named list}
+\title{Create a named list}
 \usage{
 named_list(...)
 }
@@ -10,6 +10,6 @@ named_list(...)
 \item{...}{things to be put in list}
 }
 \description{
-make automatically named list
+Create a named list
 }
 \keyword{internal}

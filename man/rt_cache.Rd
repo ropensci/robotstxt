@@ -3,7 +3,7 @@
 \docType{data}
 \name{rt_cache}
 \alias{rt_cache}
-\title{get_robotstxt() cache}
+\title{Get the robotstxt cache}
 \format{
 An object of class \code{environment} of length 0.
 }
@@ -11,6 +11,6 @@ An object of class \code{environment} of length 0.
 rt_cache
 }
 \description{
-get_robotstxt() cache
+Get the robotstxt cache
 }
 \keyword{datasets}

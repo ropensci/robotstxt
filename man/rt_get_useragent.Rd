@@ -2,7 +2,7 @@
 % Please edit documentation in R/rt_get_useragent.R
 \name{rt_get_useragent}
 \alias{rt_get_useragent}
-\title{extracting HTTP useragents from robots.txt}
+\title{Extract HTTP useragents from robots.txt}
 \usage{
 rt_get_useragent(txt)
 }
@@ -10,6 +10,6 @@ rt_get_useragent(txt)
 \item{txt}{content of the robots.txt file}
 }
 \description{
-extracting HTTP useragents from robots.txt
+Extract HTTP useragents from robots.txt
 }
 \keyword{internal}

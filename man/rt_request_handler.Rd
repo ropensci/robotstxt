@@ -12,7 +12,7 @@
 \alias{on_sub_domain_change_default}
 \alias{on_file_type_mismatch_default}
 \alias{on_suspect_content_default}
-\title{rt_request_handler}
+\title{Handle robotstxt object retrieved from HTTP request}
 \format{
 An object of class \code{list} of length 4.
 
@@ -97,7 +97,7 @@ a list with three items following the following schema: \cr \code{
 }
 \description{
 A helper function for get_robotstxt() that will extract the robots.txt file
-from the HTTP request result object. furthermore it will inform
-get_robotstxt() if the request should be cached and which problems occured.
+from the HTTP request result object. It will inform get_robotstxt() if the
+request should be cached and which problems occurred.
 }
 \keyword{datasets}

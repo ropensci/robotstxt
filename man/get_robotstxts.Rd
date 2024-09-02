@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_robotstxts.R
 \name{get_robotstxts}
 \alias{get_robotstxts}
-\title{function to get multiple robotstxt files}
+\title{Download multiple robotstxt files}
 \usage{
 get_robotstxts(
   domain,
@@ -70,5 +70,5 @@ than 'text/plain'}
 something else than a robots.txt file (usually a JSON, XML or HTML)}
 }
 \description{
-function to get multiple robotstxt files
+Download multiple robotstxt files
 }
