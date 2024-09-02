@@ -1,8 +1,3 @@
-# testing the workings of get_robotstxt function
-
-context("get_robotstxt()")
-
-
 test_that(
   "NA in NA out", {
     expect_true({
@@ -12,7 +7,7 @@ test_that(
     expect_true({
       all(
         is.na(
-          get_robotstxts(domain = c(NA, NA))
+          suppressMessages(get_robotstxts(domain = c(NA, NA)))
         )
       )
     })
@@ -29,7 +24,11 @@ test_that(
       })
 
       expect_true({
-        suppressWarnings(get_robotstxts(domain = c("example.com", "example.com")))
+        suppressMessages(
+          suppressWarnings(
+            get_robotstxts(domain = c("example.com", "example.com"))
+          )
+        )
         TRUE
       })
     }

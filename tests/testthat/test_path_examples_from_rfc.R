@@ -1,8 +1,5 @@
 # tests for functions responsible for data gathering and transformation
 
-
-
-
 # This table illustrates some examples:
 #
 #   Record Path        URL path         Matches
@@ -27,8 +24,6 @@
 # /~joe/index.html   /%7Ejoe/index.html yes
 
 
-context("paths_allowed()")
-
 test_that(
   "simple check", {
     expect_true(
@@ -45,8 +40,8 @@ test_that(
 
 # A fictional site may have the following URLs:
 #
-#   http://www.fict.org/
-#   http://www.fict.org/index.html
+# http://www.fict.org/
+# http://www.fict.org/index.html
 # http://www.fict.org/robots.txt
 # http://www.fict.org/server.html
 # http://www.fict.org/services/fast.html
@@ -99,10 +94,3 @@ test_that(
 # http://www.fict.org/org/plans.html           No       Yes       No
 # http://www.fict.org/%7Ejim/jim.html          No       Yes       No
 # http://www.fict.org/%7Emak/mak.html          No       Yes       Yes
-
-
-
-
-
-
-
