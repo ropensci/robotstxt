@@ -1,5 +1,4 @@
 Package: robotstxt
-Date: 2024-08-25
 Type: Package
 Title: A 'robots.txt' Parser and 'Webbot'/'Spider'/'Crawler' Permissions Checker
 Version: 0.7.15.9000
