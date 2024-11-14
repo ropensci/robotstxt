@@ -18,9 +18,11 @@ get_robotstxt_http_get(
 )
 }
 \arguments{
-\item{domain}{the domain to get robots.txt file for. Defaults to current version of R}
+\item{domain}{the domain to get robots.txt file for.}
 
-\item{user_agent}{the user agent to use for HTTP request header}
+\item{user_agent}{the user agent to use for HTTP request header. Defaults to current version of R.
+If `NULL` is passed, httr will use software versions for the header, such as
+`libcurl/8.7.1 r-curl/5.2.3 httr/1.4.7`}
 
 \item{ssl_verifypeer}{either 1 (default) or 0, if 0 it disables SSL peer verification, which
 might help with robots.txt file retrieval}
