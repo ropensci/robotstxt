@@ -4,7 +4,7 @@
 \name{rt_last_http}
 \alias{rt_last_http}
 \alias{get_robotstxt_http_get}
-\title{Storage for http request response objects}
+\title{Storage for HTTP request response objects}
 \format{
 An object of class \code{environment} of length 1.
 }
@@ -18,15 +18,17 @@ get_robotstxt_http_get(
 )
 }
 \arguments{
-\item{domain}{the domain to get robots.txt. file for}
+\item{domain}{the domain to get robots.txt file for.}
 
-\item{user_agent}{the user agent to use for HTTP request header}
+\item{user_agent}{the user agent to use for HTTP request header. Defaults to current version of R.
+If `NULL` is passed, httr will use software versions for the header, such as
+`libcurl/8.7.1 r-curl/5.2.3 httr/1.4.7`}
 
 \item{ssl_verifypeer}{either 1 (default) or 0, if 0 it disables SSL peer verification, which
 might help with robots.txt file retrieval}
 }
 \description{
-Storage for http request response objects
+Storage for HTTP request response objects
 
 Execute HTTP request for get_robotstxt()
 }
